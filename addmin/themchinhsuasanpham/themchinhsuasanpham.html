@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>N2 Sport - Add/Edit Product</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#AFED00", // Lime Green for positive/success/active
+                        "accent": "#E42C14", // Red for warning/delete/main action
+                        "dark-text": "#111111", // Main text
+                        "gray-text": "#A5A5A5", // Secondary text/border
+                        "gray-light": "#E8E8E8", // Divider/Light background
+                        "background-light": "#f8f8f5", // As per provided config, but overridden by page specific needs mostly
+                        "background-dark": "#1e230f",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "body": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        /* Toggle Switch */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #AFED00;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #AFED00;
+        }
+    </style>
+</head>
+<body class="bg-[#F5F5F5] text-[#111111] min-h-screen flex flex-col font-body">
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-white border-b border-[#E8E8E8] shadow-sm">
+<div class="px-4 md:px-8 py-3 flex items-center justify-between">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3">
+<div class="size-8 bg-black text-[#AFED00] rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined font-bold">sports_soccer</span>
+</div>
+<h2 class="text-[#111111] text-xl font-bold tracking-tight">N2 Sport Admin</h2>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-[#111111] text-sm font-semibold hover:text-[#AFED00] transition-colors" href="#">Dashboard</a>
+<a class="text-[#111111] text-sm font-semibold border-b-2 border-[#AFED00] pb-0.5" href="#">Products</a>
+<a class="text-[#111111] text-sm font-semibold hover:text-[#AFED00] transition-colors" href="#">Orders</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="absolute inset-y-0 left-0 flex items-center pl-3 text-[#A5A5A5]">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</span>
+<input class="pl-10 pr-4 py-2 border border-[#A5A5A5] rounded-lg text-sm focus:outline-none focus:border-[#AFED00] focus:ring-1 focus:ring-[#AFED00] w-64 transition-all" placeholder="Search..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<button class="relative p-2 rounded-full hover:bg-[#F5F5F5] transition-colors group">
+<span class="material-symbols-outlined text-[#111111] group-hover:text-[#AFED00]">notifications</span>
+<span class="absolute top-1.5 right-1.5 size-2 bg-[#E42C14] rounded-full border border-white"></span>
+</button>
+<div class="w-px h-6 bg-[#E8E8E8]"></div>
+<button class="flex items-center gap-2 hover:bg-[#F5F5F5] p-1.5 rounded-lg transition-colors">
+<div class="size-8 rounded-full bg-gray-200 overflow-hidden border border-[#A5A5A5]">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="User avatar placeholder" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTQaYTCu5U5bZZWkggLDJXrk5ZtJvJ8ejACItBGS8B17Hp6pyR-WPtFtxLZcfhQgZGA9hYj4MVqZmrSJE6Wv04QXImKwOvY36Uw3anZsg3nU0-ffSe5ANpOQgff-UI-JwryhALrgQdUYjXi_zwM3YeIgMF3XgRpEYkJ-HDK7_FKeFA3LGUz9bUhCBVOpgZjIzn-dxRDZzRkGt1qAexwqDY61_e7O_z63QZZD1Cr8nft4_gPfw7lKpyAmrbEwT8N8E8PeKcr_g9HwZc"/>
+</div>
+<span class="text-sm font-bold text-[#111111] hidden sm:block">Admin</span>
+<span class="material-symbols-outlined text-sm text-[#A5A5A5]">expand_more</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-[1280px] mx-auto p-4 md:p-8 flex flex-col gap-6">
+<!-- Breadcrumbs & Title -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div>
+<nav class="flex items-center gap-2 text-sm text-[#A5A5A5] mb-1">
+<a class="hover:text-[#111111] transition-colors" href="#">Dashboard</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<a class="hover:text-[#111111] transition-colors" href="#">Products</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-[#111111] font-medium">Add New Product</span>
+</nav>
+<h1 class="text-3xl font-extrabold text-[#111111] tracking-tight">Add New Product</h1>
+</div>
+<div class="flex items-center gap-3 bg-white p-2 rounded-lg shadow-sm border border-[#E8E8E8]">
+<span class="text-xs font-semibold text-[#AFED00] px-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+                    Draft saved
+                </span>
+</div>
+</div>
+<!-- Form Layout -->
+<div class="flex flex-col lg:flex-row gap-6">
+<!-- Left Column: Main Form Area -->
+<div class="w-full lg:w-3/4 flex flex-col gap-6">
+<!-- Tabs -->
+<div class="bg-white rounded-xl shadow-sm border border-[#E8E8E8] overflow-hidden">
+<div class="border-b border-[#E8E8E8] overflow-x-auto hide-scrollbar">
+<nav class="flex px-6 min-w-max">
+<button class="px-4 py-4 text-sm font-bold text-[#111111] border-b-[3px] border-[#AFED00] transition-colors">
+                                General Info
+                            </button>
+<button class="px-4 py-4 text-sm font-bold text-[#A5A5A5] border-b-[3px] border-transparent hover:text-[#E42C14] transition-colors">
+                                Gallery
+                            </button>
+<button class="px-4 py-4 text-sm font-bold text-[#A5A5A5] border-b-[3px] border-transparent hover:text-[#E42C14] transition-colors">
+                                Variants
+                            </button>
+<button class="px-4 py-4 text-sm font-bold text-[#A5A5A5] border-b-[3px] border-transparent hover:text-[#E42C14] transition-colors">
+                                SEO
+                            </button>
+<button class="px-4 py-4 text-sm font-bold text-[#A5A5A5] border-b-[3px] border-transparent hover:text-[#E42C14] transition-colors">
+                                Promotions
+                            </button>
+</nav>
+</div>
+<div class="p-6 md:p-8 space-y-8">
+<!-- TAB 1 CONTENT: General Info -->
+<div class="space-y-6">
+<!-- Product Name -->
+<div class="space-y-1">
+<label class="block text-sm font-bold text-[#111111]">Product Name <span class="text-[#E42C14]">*</span></label>
+<input class="w-full px-4 py-3 rounded-lg border border-[#A5A5A5] text-[#111111] focus:ring-1 focus:ring-[#AFED00] focus:border-[#AFED00] focus:outline-none transition-all placeholder-[#A5A5A5]" placeholder="Enter product name" type="text" value="Nike Air Zoom Pegasus 39"/>
+<p class="text-xs text-[#A5A5A5]">Slug preview: <span class="font-mono bg-[#F5F5F5] px-1 rounded">nike-air-zoom-pegasus-39</span></p>
+</div>
+<!-- Description -->
+<div class="space-y-2">
+<label class="block text-sm font-bold text-[#111111]">Description</label>
+<div class="border border-[#A5A5A5] rounded-lg overflow-hidden">
+<div class="bg-[#F5F5F5] border-b border-[#E8E8E8] px-3 py-2 flex gap-2">
+<button class="p-1 hover:bg-white rounded transition"><span class="material-symbols-outlined text-[18px]">format_bold</span></button>
+<button class="p-1 hover:bg-white rounded transition"><span class="material-symbols-outlined text-[18px]">format_italic</span></button>
+<button class="p-1 hover:bg-white rounded transition"><span class="material-symbols-outlined text-[18px]">format_list_bulleted</span></button>
+<button class="p-1 hover:bg-white rounded transition"><span class="material-symbols-outlined text-[18px]">image</span></button>
+<button class="p-1 hover:bg-white rounded transition"><span class="material-symbols-outlined text-[18px]">link</span></button>
+</div>
+<div class="p-4 min-h-[160px] text-sm text-[#111111]">
+<p>The Nike Air Zoom Pegasus 39 returns to help you ascend to new heights. More lightweight up top than the Pegasus 38 and ideal to wear in any season, it has a supportive sensation to help keep your feet contained, while underfoot cushioning and 2 Zoom Air units (1 more than the Pegasus 38) give you an extra pop to your step.</p>
+</div>
+</div>
+</div>
+<!-- Category & Brand -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-1">
+<label class="block text-sm font-bold text-[#111111]">Category <span class="text-[#E42C14]">*</span></label>
+<div class="relative">
+<select class="w-full px-4 py-3 rounded-lg border border-[#A5A5A5] text-[#111111] focus:ring-1 focus:ring-[#AFED00] focus:border-[#AFED00] appearance-none bg-white">
+<option>Running Shoes</option>
+<option>Gym Clothing</option>
+<option>Accessories</option>
+</select>
+<span class="absolute right-4 top-3.5 pointer-events-none text-[#A5A5A5]">
+<span class="material-symbols-outlined">expand_more</span>
+</span>
+</div>
+</div>
+<div class="space-y-1">
+<label class="block text-sm font-bold text-[#111111]">Brand <span class="text-[#E42C14]">*</span></label>
+<div class="relative">
+<select class="w-full px-4 py-3 rounded-lg border border-[#A5A5A5] text-[#111111] focus:ring-1 focus:ring-[#AFED00] focus:border-[#AFED00] appearance-none bg-white">
+<option>Nike</option>
+<option>Adidas</option>
+<option>Puma</option>
+<option>Under Armour</option>
+</select>
+<span class="absolute right-4 top-3.5 pointer-events-none text-[#A5A5A5]">
+<span class="material-symbols-outlined">expand_more</span>
+</span>
+</div>
+</div>
+</div>
+<!-- Price & Status -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+<div class="space-y-1">
+<label class="block text-sm font-bold text-[#111111]">Base Price ($) <span class="text-[#E42C14]">*</span></label>
+<input class="w-full px-4 py-3 rounded-lg border border-[#A5A5A5] text-[#E42C14] font-bold focus:ring-1 focus:ring-[#AFED00] focus:border-[#AFED00] focus:outline-none transition-all" type="number" value="120.00"/>
+</div>
+<div class="space-y-1 pt-6 flex items-center justify-between p-4 border border-[#E8E8E8] rounded-lg bg-[#F5F5F5]">
+<div>
+<span class="block text-sm font-bold text-[#111111]">Product Status</span>
+<span class="text-xs text-[#A5A5A5]">Visible on storefront</span>
+</div>
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer border-[#E8E8E8] checked:border-[#AFED00]" id="toggle" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-[#E8E8E8] cursor-pointer checked:bg-[#AFED00]" for="toggle"></label>
+</div>
+</div>
+</div>
+</div>
+<hr class="border-[#E8E8E8]"/>
+<!-- TAB 2 PREVIEW (Simulated): Gallery & Variants (Collapsed for view) -->
+<div>
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-bold text-[#111111]">Product Gallery</h3>
+<button class="text-sm font-bold text-[#AFED00] hover:text-[#111111] transition-colors">+ Add Media</button>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+<!-- Main Image -->
+<div class="relative aspect-square rounded-lg overflow-hidden group border-2 border-[#AFED00]">
+<img alt="Red Nike Sneaker side view" class="w-full h-full object-cover" data-alt="Red Nike Sneaker side view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbog0aMDG3kADCwMtg9pKBgGlUhjqfV9ITEJa7aOWZEM4VbUxGLf3xYyxawS-v34OrCpRracVXPZkd2yj_rHi8mGy_Ey2IsCIuCf7MneyUuCvQPkqAHqlIRWeFzNsG5CtCqevfjyzj_f5UzZ67tBExyI1JEVC64Sxjz9GqzIM3mQY1TOnAYX3uzZwjZoWEU8l-EGbw1XjumQaEywBkyMRAWiLAPUcnlwVGr7IDk4ISZuo5mclIh8xK7GZvWSrVDRWl9JnlqkeGTofx"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+<button class="bg-white p-1.5 rounded-full hover:bg-[#E42C14] hover:text-white transition"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+<button class="bg-white p-1.5 rounded-full hover:bg-[#AFED00] transition"><span class="material-symbols-outlined text-[18px]">crop</span></button>
+</div>
+<div class="absolute top-2 left-2 bg-[#AFED00] text-[#111111] text-[10px] font-bold px-2 py-0.5 rounded">MAIN</div>
+</div>
+<!-- Thumb 2 -->
+<div class="relative aspect-square rounded-lg overflow-hidden group border border-[#E8E8E8]">
+<img alt="Nike Sneaker top down view" class="w-full h-full object-cover" data-alt="Nike Sneaker top down view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJGPgv9iS_AojkoWlNqTK-mj8w2GjyyJDGs_l3Mv4HeNYYCCazN3NaBDhmyeuUI5ia2tF4r7-K7zSw8HO1Wyne01nYiICPcjk-vbhYvSeaJMqmGbzqCtTxzbdlWXfnG--ZliI29N6ppK_Qu4sxrFzFVxmZdxmPSvMdtntLwRIP4a9RIEezLdWnmsTYcJ3eDhH1S94NjyrOOb2YVcqR8-vJAiRi3huy6JBFRo4XtvKD4Msjo_4WXD045o3ATlgjSa1_HmihC3-HIDBy"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+<button class="bg-white p-1.5 rounded-full hover:bg-[#E42C14] hover:text-white transition"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+<button class="bg-white p-1.5 rounded-full hover:bg-[#AFED00] transition"><span class="material-symbols-outlined text-[18px]">star</span></button>
+</div>
+</div>
+<!-- Upload Box -->
+<div class="border-2 border-dashed border-[#A5A5A5] rounded-lg flex flex-col items-center justify-center gap-2 p-4 cursor-pointer hover:bg-[#F5F5F5] transition-colors aspect-square">
+<span class="material-symbols-outlined text-[#A5A5A5] text-3xl">cloud_upload</span>
+<span class="text-xs text-[#A5A5A5] text-center font-medium">Drop images here</span>
+</div>
+</div>
+</div>
+<hr class="border-[#E8E8E8]"/>
+<!-- Variant Preview Table -->
+<div>
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-bold text-[#111111]">Variants</h3>
+<button class="bg-[#111111] text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-[#333] transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">tune</span> Manage Variants
+                                </button>
+</div>
+<div class="overflow-x-auto border border-[#E8E8E8] rounded-lg">
+<table class="w-full text-left text-sm whitespace-nowrap">
+<thead class="bg-[#F5F5F5] border-b border-[#E8E8E8] text-[#111111]">
+<tr>
+<th class="px-4 py-3 font-bold w-10"><input class="rounded border-[#A5A5A5] text-[#AFED00] focus:ring-0" type="checkbox"/></th>
+<th class="px-4 py-3 font-bold">Variant</th>
+<th class="px-4 py-3 font-bold">SKU</th>
+<th class="px-4 py-3 font-bold">Price</th>
+<th class="px-4 py-3 font-bold">Stock</th>
+<th class="px-4 py-3 font-bold text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#E8E8E8]">
+<tr class="hover:bg-[#F9F9F9]">
+<td class="px-4 py-3"><input class="rounded border-[#A5A5A5] text-[#AFED00] focus:ring-0" type="checkbox"/></td>
+<td class="px-4 py-3 flex items-center gap-3">
+<span class="size-6 rounded-full border border-gray-200 bg-[#E42C14]" title="Red"></span>
+<span>Red / US 9</span>
+</td>
+<td class="px-4 py-3 text-[#A5A5A5]">NK-AIR-RED-9</td>
+<td class="px-4 py-3 font-medium">$120.00</td>
+<td class="px-4 py-3 text-[#AFED00] font-bold">45</td>
+<td class="px-4 py-3 text-right">
+<button class="text-[#A5A5A5] hover:text-[#E42C14] transition"><span class="material-symbols-outlined text-[20px]">delete</span></button>
+</td>
+</tr>
+<tr class="hover:bg-[#F9F9F9]">
+<td class="px-4 py-3"><input class="rounded border-[#A5A5A5] text-[#AFED00] focus:ring-0" type="checkbox"/></td>
+<td class="px-4 py-3 flex items-center gap-3">
+<span class="size-6 rounded-full border border-gray-200 bg-[#E42C14]" title="Red"></span>
+<span>Red / US 10</span>
+</td>
+<td class="px-4 py-3 text-[#A5A5A5]">NK-AIR-RED-10</td>
+<td class="px-4 py-3 font-medium">$120.00</td>
+<td class="px-4 py-3 text-[#E42C14] font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">warning</span> 2
+                                            </td>
+<td class="px-4 py-3 text-right">
+<button class="text-[#A5A5A5] hover:text-[#E42C14] transition"><span class="material-symbols-outlined text-[20px]">delete</span></button>
+</td>
+</tr>
+<tr class="hover:bg-[#F9F9F9]">
+<td class="px-4 py-3"><input class="rounded border-[#A5A5A5] text-[#AFED00] focus:ring-0" type="checkbox"/></td>
+<td class="px-4 py-3 flex items-center gap-3">
+<span class="size-6 rounded-full border border-gray-200 bg-black" title="Black"></span>
+<span>Black / US 9</span>
+</td>
+<td class="px-4 py-3 text-[#A5A5A5]">NK-AIR-BLK-9</td>
+<td class="px-4 py-3 font-medium">$120.00</td>
+<td class="px-4 py-3 text-[#AFED00] font-bold">120</td>
+<td class="px-4 py-3 text-right">
+<button class="text-[#A5A5A5] hover:text-[#E42C14] transition"><span class="material-symbols-outlined text-[20px]">delete</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Sidebar / SEO / Metadata -->
+<div class="w-full lg:w-1/4 flex flex-col gap-6">
+<!-- Publish Card -->
+<div class="bg-white rounded-xl shadow-sm border border-[#E8E8E8] p-5">
+<h3 class="text-sm font-bold text-[#111111] uppercase tracking-wide mb-4 border-b border-[#E8E8E8] pb-2">Publishing</h3>
+<div class="space-y-4">
+<div class="flex justify-between items-center text-sm">
+<span class="text-[#A5A5A5]">Status:</span>
+<span class="font-bold text-[#AFED00]">Draft</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-[#A5A5A5]">Visibility:</span>
+<span class="font-bold text-[#111111]">Public</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-[#A5A5A5]">Schedule:</span>
+<span class="font-bold text-[#111111]">Immediately</span>
+</div>
+<div class="pt-4 flex flex-col gap-3">
+<button class="w-full bg-[#E42C14] text-white font-bold py-3 rounded-lg hover:bg-[#c21e09] transition-all shadow-lg shadow-red-500/30 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">save</span> Save Product
+                            </button>
+<button class="w-full bg-white border border-[#AFED00] text-[#111111] font-bold py-2.5 rounded-lg hover:bg-[#f0fccf] transition-all">
+                                Save Draft
+                            </button>
+<button class="w-full text-[#A5A5A5] text-sm font-medium hover:text-[#E42C14] py-1 transition-colors">
+                                Cancel
+                            </button>
+</div>
+</div>
+</div>
+<!-- SEO Preview Card -->
+<div class="bg-white rounded-xl shadow-sm border border-[#E8E8E8] p-5">
+<div class="flex items-center justify-between mb-4 border-b border-[#E8E8E8] pb-2">
+<h3 class="text-sm font-bold text-[#111111] uppercase tracking-wide">SEO Preview</h3>
+<span class="text-[#AFED00]"><span class="material-symbols-outlined text-[18px]">visibility</span></span>
+</div>
+<div class="bg-white p-3 rounded border border-transparent hover:border-[#E8E8E8] transition cursor-pointer group">
+<p class="text-xs text-[#111111] truncate">https://n2sport.com/products/nike-air-zoom...</p>
+<h4 class="text-[#1a0dab] text-lg font-medium leading-tight group-hover:underline truncate">Nike Air Zoom Pegasus 39 | N2 Sport</h4>
+<p class="text-xs text-[#4d5156] mt-1 line-clamp-2">
+                            Buy Nike Air Zoom Pegasus 39 online. Lightweight, breathable running shoes for all seasons. Best prices and fast shipping at N2 Sport.
+                        </p>
+</div>
+<div class="mt-4">
+<label class="block text-xs font-bold text-[#111111] mb-1">Focus Keyword</label>
+<input class="w-full px-3 py-2 text-sm rounded border border-[#A5A5A5] text-[#111111] focus:ring-1 focus:ring-[#AFED00] focus:border-[#AFED00] outline-none" type="text" value="nike running shoes"/>
+</div>
+</div>
+<!-- Statistics Mini Card -->
+<div class="bg-[#111111] text-white rounded-xl shadow-sm p-5 relative overflow-hidden">
+<div class="absolute -right-4 -top-4 text-[#AFED00] opacity-10">
+<span class="material-symbols-outlined text-[100px]">trending_up</span>
+</div>
+<h3 class="text-sm font-bold text-[#A5A5A5] uppercase tracking-wide mb-2">Projected Profit</h3>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-extrabold text-[#AFED00]">$45.00</span>
+<span class="text-xs text-[#A5A5A5]">per unit</span>
+</div>
+<div class="mt-4 w-full bg-[#333] h-1.5 rounded-full overflow-hidden">
+<div class="bg-[#AFED00] h-full w-[70%]"></div>
+</div>
+<p class="text-[10px] text-[#A5A5A5] mt-2">Margin: 38% (Good)</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Sticky Save Bar for Mobile (Optional/Responsive) -->
+<div class="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-[#E8E8E8] p-4 z-40 flex items-center justify-between shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+<button class="text-[#A5A5A5] font-bold">Cancel</button>
+<div class="flex gap-3">
+<button class="bg-[#F5F5F5] text-[#111111] px-4 py-2 rounded-lg font-bold border border-[#E8E8E8]">Draft</button>
+<button class="bg-[#E42C14] text-white px-6 py-2 rounded-lg font-bold shadow-md shadow-red-500/20">Save</button>
+</div>
+</div>
+<!-- Footer -->
+<footer class="bg-[#111111] text-white border-t border-[#333] mt-12 pb-20 lg:pb-0">
+<div class="max-w-[1280px] mx-auto px-8 py-8 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="text-sm text-[#A5A5A5]">
+                © 2023 N2 Sport Inc. All rights reserved.
+            </div>
+<div class="flex gap-6">
+<a class="text-sm text-[#A5A5A5] hover:text-[#AFED00] transition-colors" href="#">Documentation</a>
+<a class="text-sm text-[#A5A5A5] hover:text-[#AFED00] transition-colors" href="#">Support</a>
+<a class="text-sm text-[#A5A5A5] hover:text-[#AFED00] transition-colors" href="#">Settings</a>
+</div>
+</div>
+</footer>
+</body></html>

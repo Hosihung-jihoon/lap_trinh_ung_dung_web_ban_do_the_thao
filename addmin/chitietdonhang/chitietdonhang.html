@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>N2 Sport - Chi Tiết Đơn Hàng</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;family=Noto+Sans:wght@300..800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#E42C14", // Brand Red
+                        "n2-green": "#AFED00", // Brand Acid Green
+                        "n2-black": "#111111", // Brand Black
+                        "n2-gray": "#A5A5A5", // Brand Gray
+                        "n2-light": "#E8E8E8", // Brand Light Gray/Divider
+                        "background-light": "#F8F6F6", // Page BG
+                        "background-dark": "#221210",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Print Styles */
+        @media print {
+            .no-print { display: none !important; }
+            .print-full-width { width: 100% !important; max-width: none !important; }
+            body { background-color: white !important; }
+            .print-border { border: 1px solid #ddd !important; }
+        }
+        
+        /* Custom Scrollbar for Table */
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 6px;
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #ccc; 
+            border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #A5A5A5; 
+        }
+    </style>
+</head>
+<body class="bg-background-light text-n2-black font-display antialiased min-h-screen flex flex-col">
+<!-- Header (Sticky) -->
+<header class="sticky top-0 z-50 w-full bg-white border-b border-[#f4f1f0] shadow-sm no-print">
+<div class="px-6 py-3 flex items-center justify-between gap-4">
+<!-- Left: Logo & Search -->
+<div class="flex items-center gap-8">
+<a class="flex items-center gap-3 text-n2-black group" href="#">
+<div class="size-8 bg-black text-n2-green flex items-center justify-center rounded-lg">
+<span class="material-symbols-outlined font-bold">bolt</span>
+</div>
+<h2 class="text-xl font-bold tracking-tight">N2 Sport Admin</h2>
+</a>
+<!-- Navigation -->
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-n2-gray hover:text-primary font-medium transition-colors" href="#">Dashboard</a>
+<a class="text-n2-black font-bold transition-colors" href="#">Orders</a>
+<a class="text-n2-gray hover:text-primary font-medium transition-colors" href="#">Products</a>
+<a class="text-n2-gray hover:text-primary font-medium transition-colors" href="#">Customers</a>
+</nav>
+<!-- Search -->
+<div class="hidden lg:flex items-center relative group">
+<div class="absolute left-3 text-n2-gray">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="pl-10 pr-4 py-2 bg-white border border-n2-gray rounded-lg text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary w-64 transition-all" placeholder="Search orders, customers..." type="text"/>
+</div>
+</div>
+<!-- Right: Actions -->
+<div class="flex items-center gap-4">
+<button class="relative p-2 rounded-full hover:bg-gray-100 transition-colors text-n2-black">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 size-2.5 bg-primary rounded-full border-2 border-white"></span>
+</button>
+<div class="h-8 w-[1px] bg-n2-light"></div>
+<button class="flex items-center gap-3 hover:bg-gray-50 p-1 pr-3 rounded-full transition-colors border border-transparent hover:border-n2-light">
+<div class="size-8 rounded-full bg-cover bg-center border border-n2-light" data-alt="Admin User Profile Picture" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAJATQa4Un4uaFokDhSTBjs6BRxPsJKQF9ASYXExRx2Jv88dUZQbYa1IWg4fzKRml6_u8lYbtIk1RLnjkg8uVM4jRQfS3WEEr9IwjI86PgdSGdqTWuG8gmQad6bIcQbc-9PlLCLZl7VeQrcPztoLDz4gOvQrO1_GpNmacjdbzUKQeuWsOIpB1Zzhyz-9SqIQrGGEn5Eg0jzhO-lGoeyPnZGKVFS_QrfkQi66Pef3lYeYR5MTlWBIkTaIqctAH3tKLGonqZz6UukKx6t');"></div>
+<span class="text-sm font-semibold hidden sm:block">Admin User</span>
+<span class="material-symbols-outlined text-n2-gray text-[20px]">expand_more</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-8 print-full-width">
+<!-- Breadcrumbs -->
+<div class="flex items-center gap-2 mb-6 text-sm no-print">
+<a class="text-n2-gray hover:text-primary" href="#">Dashboard</a>
+<span class="text-n2-gray">/</span>
+<a class="text-n2-gray hover:text-primary" href="#">Orders</a>
+<span class="text-n2-gray">/</span>
+<span class="font-semibold text-n2-black">Order #2024-9382</span>
+</div>
+<!-- Layout Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+<!-- Left Column (Main Details) -->
+<div class="lg:col-span-7 xl:col-span-8 flex flex-col gap-6 print-full-width">
+<!-- Section 1: Order Header & Timeline -->
+<div class="bg-white rounded-xl shadow-sm border border-[#f0f0f0] p-6">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+<div>
+<div class="flex items-center gap-3 mb-1">
+<h1 class="text-3xl font-black text-primary tracking-tight">Order #2024-9382</h1>
+<span class="px-3 py-1 rounded-full bg-n2-green/20 text-green-700 text-xs font-bold border border-n2-green uppercase tracking-wide">Processing</span>
+</div>
+<p class="text-n2-gray text-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+                                Oct 24, 2023 at 10:30 AM
+                            </p>
+</div>
+</div>
+<!-- Horizontal Timeline -->
+<div class="relative w-full">
+<div class="absolute top-1/2 left-0 w-full h-[2px] bg-n2-light -translate-y-1/2 z-0"></div>
+<!-- Active Progress Bar -->
+<div class="absolute top-1/2 left-0 w-1/2 h-[2px] bg-n2-green -translate-y-1/2 z-0"></div>
+<div class="relative z-10 flex justify-between w-full">
+<!-- Step 1: Placed -->
+<div class="flex flex-col items-center gap-2 group cursor-default">
+<div class="size-8 rounded-full bg-n2-green flex items-center justify-center border-4 border-white shadow-sm">
+<span class="material-symbols-outlined text-black text-[16px] font-bold">check</span>
+</div>
+<span class="text-xs font-bold text-n2-black">Placed</span>
+<span class="text-[10px] text-n2-gray">10:30 AM</span>
+</div>
+<!-- Step 2: Confirmed -->
+<div class="flex flex-col items-center gap-2 group cursor-default">
+<div class="size-8 rounded-full bg-n2-green flex items-center justify-center border-4 border-white shadow-sm">
+<span class="material-symbols-outlined text-black text-[16px] font-bold">check</span>
+</div>
+<span class="text-xs font-bold text-n2-black">Confirmed</span>
+<span class="text-[10px] text-n2-gray">10:35 AM</span>
+</div>
+<!-- Step 3: Processing (Current) -->
+<div class="flex flex-col items-center gap-2 group cursor-default">
+<div class="size-8 rounded-full bg-primary flex items-center justify-center border-4 border-white shadow-sm animate-pulse">
+<span class="material-symbols-outlined text-white text-[16px]">sync</span>
+</div>
+<span class="text-xs font-bold text-primary">Processing</span>
+<span class="text-[10px] text-n2-gray">Today</span>
+</div>
+<!-- Step 4: Shipped -->
+<div class="flex flex-col items-center gap-2 group cursor-default opacity-50">
+<div class="size-8 rounded-full bg-n2-light flex items-center justify-center border-4 border-white">
+<span class="material-symbols-outlined text-n2-gray text-[16px]">local_shipping</span>
+</div>
+<span class="text-xs font-medium text-n2-gray">Shipped</span>
+</div>
+<!-- Step 5: Delivered -->
+<div class="flex flex-col items-center gap-2 group cursor-default opacity-50">
+<div class="size-8 rounded-full bg-n2-light flex items-center justify-center border-4 border-white">
+<span class="material-symbols-outlined text-n2-gray text-[16px]">home</span>
+</div>
+<span class="text-xs font-medium text-n2-gray">Delivered</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Info Grid: Customer & Shipping -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Section 2: Customer Info -->
+<div class="bg-white rounded-xl shadow-sm border border-[#f0f0f0] p-6 h-full">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-bold text-n2-black flex items-center gap-2">
+<span class="material-symbols-outlined text-n2-gray">person</span>
+                                Customer
+                            </h3>
+<a class="text-xs font-bold text-primary hover:underline" href="#">View Profile</a>
+</div>
+<div class="space-y-4">
+<div class="flex items-start gap-3">
+<div class="size-10 rounded-full bg-gray-100 bg-cover bg-center" data-alt="Customer Avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAQxb2ysTZDBLRcRMbmUeBgXWbLTwI2rcdJG5opGthZ3CtRVQ_3Diulah5OsjOCJGaG4LWdkWQpBDKn7q0I7kvMI_y5Y2K7uKekWKFhhD084u-XbgBAumMz5Ih1zcROB3tLgp4nKWR8zktT44V0G8VdzoKXCc6ltjebT3FW7BGYVi1sglgEK93oj9-6AN91mbx67nfj_I9Vy3fFJ29cBde6L8qOQZGY7iBrU3Y7UCccaMoUYHbjM2fXHXpyyzmiZcunSIGlT0ntmvwO');"></div>
+<div>
+<p class="text-base font-bold text-n2-black hover:text-primary cursor-pointer transition-colors">Nguyen Van A</p>
+<p class="text-sm text-n2-gray">nguyenvana@example.com</p>
+<p class="text-sm text-n2-gray">+84 909 123 456</p>
+</div>
+</div>
+<div class="pt-4 border-t border-dashed border-n2-light">
+<label class="text-xs font-medium text-n2-gray uppercase mb-1 block">Customer Note</label>
+<textarea class="w-full text-sm bg-[#F8F8F8] border border-transparent focus:border-n2-gray/50 rounded-lg p-3 resize-none focus:outline-none focus:ring-0 text-n2-black" placeholder="No notes from customer..." rows="2">Please deliver before 5PM.</textarea>
+</div>
+</div>
+</div>
+<!-- Section 3: Shipping Info -->
+<div class="bg-white rounded-xl shadow-sm border border-[#f0f0f0] p-6 h-full">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-bold text-n2-black flex items-center gap-2">
+<span class="material-symbols-outlined text-n2-gray">local_shipping</span>
+                                Delivery
+                            </h3>
+<button class="text-xs font-bold text-primary hover:underline flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">edit</span> Edit
+                            </button>
+</div>
+<div class="space-y-4">
+<div>
+<p class="text-sm text-n2-gray mb-1">Shipping Address</p>
+<p class="text-sm font-medium text-n2-black leading-relaxed">
+                                    123 Le Loi Street, Ben Thanh Ward,<br/>
+                                    District 1, Ho Chi Minh City,<br/>
+                                    Vietnam
+                                </p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<p class="text-sm text-n2-gray mb-1">Method</p>
+<p class="text-sm font-bold text-n2-black">Express Delivery</p>
+</div>
+<div>
+<p class="text-sm text-n2-gray mb-1">Tracking ID</p>
+<div class="flex items-center gap-2 group">
+<input class="w-full text-sm font-mono text-primary bg-transparent border-b border-dashed border-n2-gray focus:border-primary focus:outline-none py-0.5" type="text" value="N2S-8839201"/>
+<span class="material-symbols-outlined text-[14px] text-n2-gray opacity-0 group-hover:opacity-100 transition-opacity">open_in_new</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 4: Products Table -->
+<div class="bg-white rounded-xl shadow-sm border border-[#f0f0f0] overflow-hidden">
+<div class="px-6 py-4 border-b border-[#f0f0f0] flex justify-between items-center">
+<h3 class="text-lg font-bold text-n2-black">Order Items (3)</h3>
+<span class="text-xs px-2 py-1 bg-gray-100 rounded text-n2-gray">Fulfilled from Warehouse A</span>
+</div>
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-[#fafafa] text-xs uppercase text-n2-gray font-semibold">
+<th class="px-6 py-3 min-w-[300px]">Product</th>
+<th class="px-6 py-3 text-center">Price</th>
+<th class="px-6 py-3 text-center">Qty</th>
+<th class="px-6 py-3 text-right">Total</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#f0f0f0]">
+<!-- Item 1 -->
+<tr class="hover:bg-[#fcfcfc] transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-start gap-4">
+<div class="size-16 rounded-lg bg-gray-100 border border-gray-200 flex-shrink-0 bg-cover bg-center" data-alt="Nike Air Zoom Shoe Thumbnail" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDmNZt9bJBCgW06PMy9Ctar_E0nZmdMQRWK_-6tXoZSouPu4XTRFtCGo42MCuu9iCRHNB5kUPisTJSmVDxK6Qz4xTGSsd7tB3ErE0Sih8nlXw5ezBCWzd5O0WXjGR_c-4bum0j8asERgpE34c7t6D4CqOkXXMNVYoVJJu6mUzCuGftuAY0HjR_TLxlmpOwGcFe2VbheHR8o-wLVG0EBbvT-YgGML6G9lAcBN3oGB5XA6xZYBFqydDjBlTek4QEG9AFLdabFqmrocoXw');"></div>
+<div>
+<p class="text-sm font-bold text-n2-black line-clamp-2">Nike Air Zoom Pegasus 39 - Running Shoes</p>
+<p class="text-xs text-n2-gray mt-1">SKU: NK-AZP39-BLK</p>
+<div class="flex gap-2 mt-1">
+<span class="text-[10px] bg-gray-100 px-1.5 py-0.5 rounded border border-gray-200 text-n2-black">Size: 42</span>
+<span class="text-[10px] bg-gray-100 px-1.5 py-0.5 rounded border border-gray-200 text-n2-black">Color: Black</span>
+</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<p class="text-sm font-medium text-n2-black">2.500.000đ</p>
+<p class="text-xs text-n2-green font-medium">-250.000đ</p>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center justify-center bg-n2-green/20 text-green-800 text-xs font-bold px-2.5 py-1 rounded-md border border-n2-green/30">1</span>
+</td>
+<td class="px-6 py-4 text-right">
+<p class="text-sm font-bold text-n2-black">2.250.000đ</p>
+</td>
+</tr>
+<!-- Item 2 -->
+<tr class="hover:bg-[#fcfcfc] transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-start gap-4">
+<div class="size-16 rounded-lg bg-gray-100 border border-gray-200 flex-shrink-0 bg-cover bg-center" data-alt="Gym Shorts Thumbnail" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCH9YrRZ6W5dGtJLbpgNOre_h8WxzDSngXJUEc10vyLjIO4a0auNcZcVaahQDV7QlOIU50HWbBnekiwEFwxUulf8Wy0vzeM_6tZHu5X_lxLTCDFl5KnCVHKoUrsd9DaQjkM9Z6msGBhTcStpVuUlinOIiB8yNO7LHxg5wJUqjIHWkkFjDEjJlUhaxQS6hdhB485qRAwy1zlfdhHs0qz2zBLmSVEzZmhN5Cx8s-9JDLAp1NYivyNeMt4ka3DSj0ZGMBuSkYEYz3GQE7b');"></div>
+<div>
+<p class="text-sm font-bold text-n2-black line-clamp-2">N2 Pro Gym Shorts - Dry Fit</p>
+<p class="text-xs text-n2-gray mt-1">SKU: N2-SH-GRY</p>
+<div class="flex gap-2 mt-1">
+<span class="text-[10px] bg-gray-100 px-1.5 py-0.5 rounded border border-gray-200 text-n2-black">Size: L</span>
+</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<p class="text-sm font-medium text-n2-black">350.000đ</p>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center justify-center bg-n2-green/20 text-green-800 text-xs font-bold px-2.5 py-1 rounded-md border border-n2-green/30">2</span>
+</td>
+<td class="px-6 py-4 text-right">
+<p class="text-sm font-bold text-n2-black">700.000đ</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Right Column (Actions & Summary) -->
+<div class="lg:col-span-5 xl:col-span-4 flex flex-col gap-6 no-print">
+<!-- Status Update Panel -->
+<div class="bg-white rounded-xl shadow-sm border border-[#f0f0f0] p-5 sticky top-24">
+<h3 class="text-sm font-bold text-n2-gray uppercase tracking-wider mb-4">Status Management</h3>
+<div class="space-y-4">
+<div>
+<label class="text-xs font-semibold text-n2-black mb-1.5 block">Change Order Status</label>
+<div class="relative">
+<select class="w-full appearance-none bg-white border border-n2-gray text-n2-black text-sm rounded-lg focus:ring-primary focus:border-primary block p-2.5 pr-8">
+<option selected="" value="processing">Processing</option>
+<option value="shipped">Shipped</option>
+<option value="delivered">Delivered</option>
+<option value="cancelled">Cancelled</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-n2-gray pointer-events-none">expand_more</span>
+</div>
+</div>
+<div>
+<label class="text-xs font-semibold text-n2-black mb-1.5 block">Internal Note</label>
+<textarea class="w-full text-sm bg-background-light border border-transparent focus:bg-white focus:border-n2-gray rounded-lg p-3 resize-none focus:outline-none focus:ring-0 transition-all text-n2-black placeholder:text-n2-gray" placeholder="Add a note for other admins..." rows="3"></textarea>
+</div>
+<button class="w-full bg-primary hover:bg-red-700 text-white font-bold py-2.5 px-4 rounded-lg shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">save</span>
+                            Update Status
+                        </button>
+</div>
+</div>
+<!-- Section 5: Payment Summary -->
+<div class="bg-white rounded-xl shadow-sm border border-[#f0f0f0] p-5">
+<h3 class="text-sm font-bold text-n2-gray uppercase tracking-wider mb-4">Payment Details</h3>
+<div class="flex items-center justify-between p-3 bg-green-50 rounded-lg border border-green-100 mb-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-green-600">credit_card</span>
+<span class="text-sm font-bold text-green-800">Paid via Momo</span>
+</div>
+<span class="text-xs text-green-700 font-mono">TXN: 9938201</span>
+</div>
+<div class="space-y-3 pb-4 border-b border-dashed border-n2-light">
+<div class="flex justify-between text-sm">
+<span class="text-n2-gray">Subtotal (3 items)</span>
+<span class="font-medium text-n2-black">3.200.000đ</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-n2-gray">Discount</span>
+<span class="font-medium text-n2-green">-250.000đ</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-n2-gray">Shipping Fee</span>
+<span class="font-medium text-n2-black">30.000đ</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-n2-gray">Tax (VAT 8%)</span>
+<span class="font-medium text-n2-black">238.400đ</span>
+</div>
+</div>
+<div class="flex justify-between items-end pt-4">
+<span class="text-sm font-bold text-n2-black">Grand Total</span>
+<span class="text-2xl font-black text-primary">3.218.400đ</span>
+</div>
+</div>
+<!-- Section 6: Actions -->
+<div class="grid grid-cols-2 gap-3">
+<button class="col-span-1 bg-white border border-n2-gray hover:bg-gray-50 text-n2-black font-semibold py-2 px-4 rounded-lg transition-colors flex flex-col items-center justify-center gap-1 h-20" onclick="window.print()">
+<span class="material-symbols-outlined text-primary">print</span>
+<span class="text-xs">Print Invoice</span>
+</button>
+<button class="col-span-1 bg-white border border-n2-green hover:bg-green-50 text-n2-black font-semibold py-2 px-4 rounded-lg transition-colors flex flex-col items-center justify-center gap-1 h-20">
+<span class="material-symbols-outlined text-n2-green font-bold">mail</span>
+<span class="text-xs">Send Email</span>
+</button>
+<button class="col-span-1 bg-white border border-red-200 hover:bg-red-50 text-primary font-semibold py-2 px-4 rounded-lg transition-colors flex flex-col items-center justify-center gap-1 h-20">
+<span class="material-symbols-outlined">undo</span>
+<span class="text-xs">Refund</span>
+</button>
+<button class="col-span-1 bg-red-50 border border-transparent hover:bg-red-100 text-primary font-bold py-2 px-4 rounded-lg transition-colors flex flex-col items-center justify-center gap-1 h-20">
+<span class="material-symbols-outlined">cancel</span>
+<span class="text-xs">Cancel Order</span>
+</button>
+</div>
+<!-- Footer Links (Admin Specific) -->
+<div class="mt-4 text-center">
+<p class="text-xs text-n2-gray">Order created on Oct 24, 2023 10:30 AM <br/> Last updated 2 hours ago by Admin.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-n2-black text-white py-6 mt-auto no-print">
+<div class="max-w-[1440px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-n2-green">bolt</span>
+<span class="font-bold">N2 Sport Admin</span>
+</div>
+<div class="flex gap-6 text-sm text-gray-400">
+<a class="hover:text-white transition-colors" href="#">Documentation</a>
+<a class="hover:text-white transition-colors" href="#">Support</a>
+<a class="hover:text-white transition-colors" href="#">Privacy Policy</a>
+</div>
+<p class="text-xs text-gray-500">© 2024 N2 Sport Inc. All rights reserved.</p>
+</div>
+</footer>
+</body></html>

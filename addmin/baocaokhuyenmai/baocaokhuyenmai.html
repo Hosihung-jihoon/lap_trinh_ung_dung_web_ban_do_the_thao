@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>N2 Sport - Báo Cáo Khuyến Mãi</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#aceb00", // The prompt's #AFED00 is very close to this #aceb00 from the config. I will use #aceb00 to match the theme config provided, but alias custom colors for the specific prompt requirements.
+              "n2-green": "#AFED00",
+              "n2-red": "#E42C14",
+              "n2-black": "#111111",
+              "n2-grey-text": "#A5A5A5",
+              "n2-grey-bg": "#E8E8E8",
+              "background-light": "#f8f8f5",
+              "background-dark": "#1e230f",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        /* Custom scrollbar for tables */
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 8px;
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #d1d5db; 
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #9ca3af; 
+        }
+    </style>
+</head>
+<body class="bg-background-light text-n2-black font-display antialiased flex flex-col min-h-screen">
+<!-- Header -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-n2-grey-bg bg-white px-6 py-3 shadow-sm">
+<div class="flex items-center gap-8">
+<!-- Logo -->
+<div class="flex items-center gap-2 text-n2-black">
+<div class="size-8 flex items-center justify-center rounded-lg bg-n2-black text-n2-green">
+<span class="material-symbols-outlined text-2xl">bolt</span>
+</div>
+<h2 class="text-n2-black text-xl font-bold leading-tight tracking-[-0.015em]">N2 Sport <span class="text-n2-green">Admin</span></h2>
+</div>
+<!-- Navigation -->
+<nav class="hidden md:flex items-center gap-6">
+<div class="relative group cursor-pointer">
+<span class="text-sm font-medium hover:text-n2-green transition-colors flex items-center gap-1">
+                        Reports <span class="material-symbols-outlined text-sm">expand_more</span>
+</span>
+</div>
+<div class="relative group cursor-pointer">
+<span class="text-sm font-medium hover:text-n2-green transition-colors flex items-center gap-1">
+                        Orders <span class="material-symbols-outlined text-sm">expand_more</span>
+</span>
+</div>
+</nav>
+<!-- Search -->
+<label class="hidden lg:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full border border-n2-grey-text/30 bg-white overflow-hidden">
+<div class="text-n2-grey-text flex border-none bg-transparent items-center justify-center pl-3">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-n2-black focus:outline-0 focus:ring-0 border-none bg-transparent focus:border-none h-full placeholder:text-n2-grey-text px-3 text-sm font-normal leading-normal" placeholder="Search data..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex items-center gap-4">
+<!-- Notifications -->
+<button class="relative flex size-10 items-center justify-center rounded-full hover:bg-n2-grey-bg transition-colors">
+<span class="material-symbols-outlined text-n2-black">notifications</span>
+<span class="absolute top-2 right-2 size-2.5 rounded-full bg-n2-red border border-white"></span>
+</button>
+<!-- Profile -->
+<div class="flex items-center gap-2 cursor-pointer hover:bg-n2-grey-bg/50 p-1 rounded-full pr-3 transition-colors">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-8 bg-n2-grey-bg" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDI_L42CNMm3U43YbpT3O8p6lAjLs7HAbWeE3ooF9ntVumaaWHvkTYH77pxcydtJnEUMd7_4EZLmnTNBC9wbF2MILoc2Z0a8OlpYPMh0xwHj1DqBmlASzczv7bdNRJ7DcUULk3nvEFwmwWKyYjExkmGIKoVWwdeRoNSX7PfNWsPSGeNJ-CEzR1qfDz3wvj7nNXd0RZYg2Z2nL_vk07KcWqbc0TiUKPiQSn_d2IL8iA7_LdUdFnVtmDiNVaYMvIxJkAXvXqPpczW03px");'></div>
+<span class="text-sm font-medium text-n2-black hidden sm:block">Admin User</span>
+<span class="material-symbols-outlined text-sm text-n2-grey-text hidden sm:block">expand_more</span>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-6 gap-6">
+<!-- Page Title & Breadcrumb (Optional but good for context) -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<h1 class="text-2xl font-bold text-n2-black">Promotion Report</h1>
+<!-- Date Range & Filter Toolbar -->
+<div class="flex flex-wrap items-center gap-3 bg-white p-2 rounded-xl shadow-sm border border-n2-grey-bg">
+<!-- Presets -->
+<div class="hidden md:flex gap-1">
+<button class="px-3 py-1.5 rounded-lg text-xs font-medium text-n2-black hover:bg-n2-grey-bg transition-colors border border-transparent">Today</button>
+<button class="px-3 py-1.5 rounded-lg text-xs font-medium text-n2-black hover:bg-n2-grey-bg transition-colors border border-transparent">Yesterday</button>
+<button class="px-3 py-1.5 rounded-lg text-xs font-medium text-n2-black bg-n2-green/20 border border-n2-green transition-colors">Last 7 days</button>
+<button class="px-3 py-1.5 rounded-lg text-xs font-medium text-n2-black hover:bg-n2-grey-bg transition-colors border border-transparent">Last 30 days</button>
+</div>
+<div class="h-6 w-px bg-n2-grey-bg hidden md:block"></div>
+<!-- Custom Date Picker Trigger -->
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-n2-grey-text/30 cursor-pointer hover:border-n2-green group">
+<span class="material-symbols-outlined text-n2-grey-text text-sm group-hover:text-n2-green">calendar_today</span>
+<span class="text-sm text-n2-black font-medium">Oct 24 - Oct 31, 2023</span>
+</div>
+<!-- Apply Button -->
+<button class="flex items-center justify-center px-5 py-1.5 rounded-lg bg-n2-red text-white text-sm font-bold shadow-sm hover:bg-red-700 transition-colors ml-auto sm:ml-0">
+                    Apply
+                </button>
+</div>
+</div>
+<!-- Tab Navigation & Export -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between border-b border-n2-grey-bg gap-4">
+<div class="flex overflow-x-auto no-scrollbar gap-8">
+<a class="pb-3 text-sm font-medium text-n2-grey-text hover:text-n2-red transition-colors whitespace-nowrap" href="#">Revenue Report</a>
+<a class="pb-3 text-sm font-medium text-n2-grey-text hover:text-n2-red transition-colors whitespace-nowrap" href="#">Product Report</a>
+<a class="pb-3 text-sm font-medium text-n2-grey-text hover:text-n2-red transition-colors whitespace-nowrap" href="#">Customer Report</a>
+<a class="pb-3 text-sm font-bold text-n2-black border-b-2 border-n2-green transition-colors whitespace-nowrap" href="#">Promotion Report</a>
+</div>
+<div class="flex gap-3 pb-2 lg:pb-0">
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg border border-n2-green/50 text-n2-black text-sm font-medium hover:bg-n2-green/10 transition-colors bg-white">
+<span class="material-symbols-outlined text-lg text-green-700">description</span>
+                    Export to Excel
+                </button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg border border-n2-green/50 text-n2-black text-sm font-medium hover:bg-n2-green/10 transition-colors bg-white">
+<span class="material-symbols-outlined text-lg text-red-700">picture_as_pdf</span>
+                    Export to PDF
+                </button>
+</div>
+</div>
+<!-- KPI Summary Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Card 1: Revenue -->
+<div class="bg-white p-5 rounded-xl border border-n2-grey-bg shadow-sm flex flex-col justify-between h-32">
+<div class="flex justify-between items-start">
+<p class="text-n2-grey-text text-sm font-medium">Promo Revenue</p>
+<span class="p-1.5 bg-n2-green/20 rounded-md text-green-800">
+<span class="material-symbols-outlined text-sm">attach_money</span>
+</span>
+</div>
+<div>
+<h3 class="text-2xl font-bold text-n2-black">$124,500</h3>
+<p class="text-xs font-medium text-green-700 mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">trending_up</span> +12.5% vs last period
+                    </p>
+</div>
+</div>
+<!-- Card 2: Discounts Given -->
+<div class="bg-white p-5 rounded-xl border border-n2-grey-bg shadow-sm flex flex-col justify-between h-32">
+<div class="flex justify-between items-start">
+<p class="text-n2-grey-text text-sm font-medium">Total Discounts</p>
+<span class="p-1.5 bg-n2-red/10 rounded-md text-n2-red">
+<span class="material-symbols-outlined text-sm">local_offer</span>
+</span>
+</div>
+<div>
+<h3 class="text-2xl font-bold text-n2-black">-$18,200</h3>
+<p class="text-xs font-medium text-n2-red mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">trending_up</span> +5.2% cost vs last period
+                    </p>
+</div>
+</div>
+<!-- Card 3: Coupon Usage -->
+<div class="bg-white p-5 rounded-xl border border-n2-grey-bg shadow-sm flex flex-col justify-between h-32">
+<div class="flex justify-between items-start">
+<p class="text-n2-grey-text text-sm font-medium">Coupon Usage</p>
+<span class="p-1.5 bg-blue-100 rounded-md text-blue-800">
+<span class="material-symbols-outlined text-sm">confirmation_number</span>
+</span>
+</div>
+<div>
+<h3 class="text-2xl font-bold text-n2-black">3,450</h3>
+<p class="text-xs font-medium text-n2-grey-text mt-1">
+                        18% of total orders
+                    </p>
+</div>
+</div>
+<!-- Card 4: ROI -->
+<div class="bg-white p-5 rounded-xl border border-n2-grey-bg shadow-sm flex flex-col justify-between h-32">
+<div class="flex justify-between items-start">
+<p class="text-n2-grey-text text-sm font-medium">Avg. ROI</p>
+<span class="p-1.5 bg-n2-green/20 rounded-md text-green-800">
+<span class="material-symbols-outlined text-sm">bar_chart</span>
+</span>
+</div>
+<div>
+<h3 class="text-2xl font-bold text-n2-black">450%</h3>
+<p class="text-xs font-medium text-green-700 mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">arrow_upward</span> Outstanding
+                    </p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Main Chart: Most Effective Promotions -->
+<div class="lg:col-span-2 bg-white rounded-xl border border-n2-grey-bg p-6 shadow-sm">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-lg font-bold text-n2-black">Most Effective Promotions (ROI)</h3>
+<button class="text-n2-grey-text hover:text-n2-black">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<!-- Chart Visualization (CSS Bars) -->
+<div class="flex items-end justify-between h-64 w-full gap-4 pt-4 border-b border-n2-grey-bg border-dashed pb-2">
+<!-- Bar 1 -->
+<div class="flex flex-col items-center gap-2 flex-1 group">
+<div class="relative w-full bg-n2-grey-bg rounded-t-lg h-full overflow-hidden flex items-end">
+<div class="w-full bg-n2-green transition-all duration-500 hover:opacity-80" style="height: 85%;"></div>
+<div class="absolute bottom-full mb-1 w-full text-center text-xs font-bold text-n2-black opacity-0 group-hover:opacity-100">850%</div>
+</div>
+<span class="text-xs font-medium text-n2-grey-text text-center truncate w-20">Summer Sale</span>
+</div>
+<!-- Bar 2 -->
+<div class="flex flex-col items-center gap-2 flex-1 group">
+<div class="relative w-full bg-n2-grey-bg rounded-t-lg h-full overflow-hidden flex items-end">
+<div class="w-full bg-n2-green transition-all duration-500 hover:opacity-80" style="height: 65%;"></div>
+<div class="absolute bottom-full mb-1 w-full text-center text-xs font-bold text-n2-black opacity-0 group-hover:opacity-100">650%</div>
+</div>
+<span class="text-xs font-medium text-n2-grey-text text-center truncate w-20">Black Friday</span>
+</div>
+<!-- Bar 3 -->
+<div class="flex flex-col items-center gap-2 flex-1 group">
+<div class="relative w-full bg-n2-grey-bg rounded-t-lg h-full overflow-hidden flex items-end">
+<div class="w-full bg-n2-green transition-all duration-500 hover:opacity-80" style="height: 50%;"></div>
+<div class="absolute bottom-full mb-1 w-full text-center text-xs font-bold text-n2-black opacity-0 group-hover:opacity-100">500%</div>
+</div>
+<span class="text-xs font-medium text-n2-grey-text text-center truncate w-20">New Year</span>
+</div>
+<!-- Bar 4 -->
+<div class="flex flex-col items-center gap-2 flex-1 group">
+<div class="relative w-full bg-n2-grey-bg rounded-t-lg h-full overflow-hidden flex items-end">
+<div class="w-full bg-n2-green/50 transition-all duration-500 hover:opacity-80" style="height: 35%;"></div>
+<div class="absolute bottom-full mb-1 w-full text-center text-xs font-bold text-n2-black opacity-0 group-hover:opacity-100">350%</div>
+</div>
+<span class="text-xs font-medium text-n2-grey-text text-center truncate w-20">Flash Deal</span>
+</div>
+<!-- Bar 5 -->
+<div class="flex flex-col items-center gap-2 flex-1 group">
+<div class="relative w-full bg-n2-grey-bg rounded-t-lg h-full overflow-hidden flex items-end">
+<div class="w-full bg-n2-red transition-all duration-500 hover:opacity-80" style="height: 15%;"></div>
+<div class="absolute bottom-full mb-1 w-full text-center text-xs font-bold text-n2-red opacity-0 group-hover:opacity-100">-15%</div>
+</div>
+<span class="text-xs font-medium text-n2-grey-text text-center truncate w-20">Clearance</span>
+</div>
+</div>
+<div class="mt-4 flex justify-center gap-6">
+<div class="flex items-center gap-2">
+<span class="size-3 rounded-full bg-n2-green"></span>
+<span class="text-xs text-n2-grey-text">Positive ROI</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="size-3 rounded-full bg-n2-red"></span>
+<span class="text-xs text-n2-grey-text">Negative ROI</span>
+</div>
+</div>
+</div>
+<!-- Side Table: Top Coupons -->
+<div class="bg-white rounded-xl border border-n2-grey-bg p-6 shadow-sm flex flex-col">
+<h3 class="text-lg font-bold text-n2-black mb-4">Top Coupon Codes</h3>
+<div class="overflow-y-auto custom-scrollbar flex-1 pr-2">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-n2-grey-bg">
+<th class="pb-2 text-xs font-semibold text-n2-grey-text uppercase tracking-wider">Code</th>
+<th class="pb-2 text-xs font-semibold text-n2-grey-text uppercase tracking-wider text-right">Usage</th>
+<th class="pb-2 text-xs font-semibold text-n2-grey-text uppercase tracking-wider text-right">Revenue</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-n2-grey-bg">
+<tr class="group hover:bg-background-light">
+<td class="py-3 text-sm font-bold text-n2-black font-mono">SUMMER2023</td>
+<td class="py-3 text-sm font-medium text-n2-black text-right">1,204</td>
+<td class="py-3 text-sm font-medium text-green-700 text-right">+$45k</td>
+</tr>
+<tr class="group hover:bg-background-light">
+<td class="py-3 text-sm font-bold text-n2-black font-mono">WELCOME10</td>
+<td class="py-3 text-sm font-medium text-n2-black text-right">982</td>
+<td class="py-3 text-sm font-medium text-green-700 text-right">+$22k</td>
+</tr>
+<tr class="group hover:bg-background-light">
+<td class="py-3 text-sm font-bold text-n2-black font-mono">FLASH50</td>
+<td class="py-3 text-sm font-medium text-n2-black text-right">543</td>
+<td class="py-3 text-sm font-medium text-green-700 text-right">+$12k</td>
+</tr>
+<tr class="group hover:bg-background-light">
+<td class="py-3 text-sm font-bold text-n2-black font-mono">VIPMEMBER</td>
+<td class="py-3 text-sm font-medium text-n2-black text-right">210</td>
+<td class="py-3 text-sm font-medium text-green-700 text-right">+$8.5k</td>
+</tr>
+<tr class="group hover:bg-background-light">
+<td class="py-3 text-sm font-bold text-n2-black font-mono">FREESHIP</td>
+<td class="py-3 text-sm font-medium text-n2-black text-right">2,100</td>
+<td class="py-3 text-sm font-medium text-n2-red text-right">-$4.2k</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Detailed Report Table -->
+<div class="bg-white rounded-xl border border-n2-grey-bg shadow-sm overflow-hidden">
+<div class="p-6 border-b border-n2-grey-bg flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<h3 class="text-lg font-bold text-n2-black">Promotions Performance</h3>
+<div class="flex gap-2">
+<button class="px-3 py-1.5 border border-n2-grey-bg rounded-lg text-xs font-medium text-n2-black hover:bg-n2-grey-bg">Filter</button>
+<button class="px-3 py-1.5 border border-n2-grey-bg rounded-lg text-xs font-medium text-n2-black hover:bg-n2-grey-bg">Columns</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left whitespace-nowrap">
+<thead class="bg-background-light text-n2-grey-text">
+<tr>
+<th class="px-6 py-3 text-xs font-semibold uppercase tracking-wider">Promotion Name</th>
+<th class="px-6 py-3 text-xs font-semibold uppercase tracking-wider text-right">Usage Count</th>
+<th class="px-6 py-3 text-xs font-semibold uppercase tracking-wider text-right">Revenue Generated</th>
+<th class="px-6 py-3 text-xs font-semibold uppercase tracking-wider text-right">Discount Amount</th>
+<th class="px-6 py-3 text-xs font-semibold uppercase tracking-wider text-right">ROI %</th>
+<th class="px-6 py-3 text-xs font-semibold uppercase tracking-wider text-center">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-n2-grey-bg">
+<!-- Row 1 -->
+<tr class="hover:bg-background-light transition-colors">
+<td class="px-6 py-4">
+<a class="text-sm font-bold text-n2-black hover:underline hover:text-n2-green" href="#">Summer End Sale</a>
+<div class="text-xs text-n2-grey-text">Auto-applied • 15% Off</div>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-n2-green/20 text-green-800">
+                                    5,240
+                                </span>
+</td>
+<td class="px-6 py-4 text-sm font-medium text-n2-black text-right">$125,400.00</td>
+<td class="px-6 py-4 text-sm font-medium text-n2-red text-right">-$18,810.00</td>
+<td class="px-6 py-4 text-right">
+<span class="text-sm font-bold text-green-600">+566%</span>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex size-2 rounded-full bg-n2-green"></span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-background-light transition-colors">
+<td class="px-6 py-4">
+<a class="text-sm font-bold text-n2-black hover:underline hover:text-n2-green" href="#">Nike Brand Week</a>
+<div class="text-xs text-n2-grey-text">Code: NIKE20 • 20% Off</div>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-n2-green/20 text-green-800">
+                                    3,105
+                                </span>
+</td>
+<td class="px-6 py-4 text-sm font-medium text-n2-black text-right">$98,200.00</td>
+<td class="px-6 py-4 text-sm font-medium text-n2-red text-right">-$19,640.00</td>
+<td class="px-6 py-4 text-right">
+<span class="text-sm font-bold text-green-600">+400%</span>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex size-2 rounded-full bg-n2-green"></span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-background-light transition-colors">
+<td class="px-6 py-4">
+<a class="text-sm font-bold text-n2-black hover:underline hover:text-n2-green" href="#">Free Shipping &gt; $50</a>
+<div class="text-xs text-n2-grey-text">Auto-applied • Shipping</div>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-n2-green/20 text-green-800">
+                                    12,500
+                                </span>
+</td>
+<td class="px-6 py-4 text-sm font-medium text-n2-black text-right">$650,000.00</td>
+<td class="px-6 py-4 text-sm font-medium text-n2-red text-right">-$62,500.00</td>
+<td class="px-6 py-4 text-right">
+<span class="text-sm font-bold text-green-600">+940%</span>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex size-2 rounded-full bg-n2-green"></span>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-background-light transition-colors">
+<td class="px-6 py-4">
+<a class="text-sm font-bold text-n2-black hover:underline hover:text-n2-green" href="#">Clearance: Socks</a>
+<div class="text-xs text-n2-grey-text">Auto-applied • 50% Off</div>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-n2-grey-bg text-n2-black">
+                                    450
+                                </span>
+</td>
+<td class="px-6 py-4 text-sm font-medium text-n2-black text-right">$2,250.00</td>
+<td class="px-6 py-4 text-sm font-medium text-n2-red text-right">-$2,250.00</td>
+<td class="px-6 py-4 text-right">
+<span class="text-sm font-bold text-n2-red">0%</span>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex size-2 rounded-full bg-n2-red"></span>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-background-light transition-colors">
+<td class="px-6 py-4">
+<a class="text-sm font-bold text-n2-black hover:underline hover:text-n2-green" href="#">Black Friday Early Access</a>
+<div class="text-xs text-n2-grey-text">Code: BFVIP • 30% Off</div>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-n2-green/20 text-green-800">
+                                    8,900
+                                </span>
+</td>
+<td class="px-6 py-4 text-sm font-medium text-n2-black text-right">$450,120.00</td>
+<td class="px-6 py-4 text-sm font-medium text-n2-red text-right">-$135,036.00</td>
+<td class="px-6 py-4 text-right">
+<span class="text-sm font-bold text-green-600">+233%</span>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex size-2 rounded-full bg-n2-grey-text"></span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-4 border-t border-n2-grey-bg flex items-center justify-between">
+<span class="text-sm text-n2-grey-text">Showing <span class="font-medium text-n2-black">1-5</span> of <span class="font-medium text-n2-black">24</span> results</span>
+<div class="flex gap-2">
+<button class="px-3 py-1 border border-n2-grey-bg rounded text-sm text-n2-grey-text disabled:opacity-50">Previous</button>
+<button class="px-3 py-1 border border-n2-grey-bg rounded text-sm text-n2-black hover:bg-background-light">Next</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-n2-black text-white mt-auto">
+<div class="max-w-[1440px] mx-auto px-6 py-8">
+<div class="flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2">
+<div class="size-6 flex items-center justify-center rounded bg-white text-n2-black">
+<span class="material-symbols-outlined text-sm font-bold">bolt</span>
+</div>
+<span class="font-bold text-lg">N2 Sport Admin</span>
+</div>
+<p class="text-sm text-n2-grey-text">Empowering your e-commerce growth.</p>
+</div>
+<div class="flex gap-8">
+<a class="text-sm text-n2-grey-text hover:text-n2-green transition-colors" href="#">Dashboard</a>
+<a class="text-sm text-n2-grey-text hover:text-n2-green transition-colors" href="#">Orders</a>
+<a class="text-sm text-n2-grey-text hover:text-n2-green transition-colors" href="#">Products</a>
+<a class="text-sm text-n2-grey-text hover:text-n2-green transition-colors" href="#">Settings</a>
+</div>
+<div class="text-xs text-n2-grey-text">
+                    © 2024 N2 Sport. All rights reserved.
+                </div>
+</div>
+</div>
+</footer>
+</body></html>

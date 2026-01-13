@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>N2 Sport - Dashboard Tài Khoản</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#AFED00", // Updated to match user request
+                        "primary-hover": "#9bd100",
+                        "danger": "#E42C14",
+                        "dark": "#111111",
+                        "gray-medium": "#A5A5A5",
+                        "gray-light": "#E8E8E8",
+                        "background-light": "#f7f8f5",
+                        "background-dark": "#1c230f",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "body": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.375rem",
+                        "md": "0.375rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+            background-color: #E8E8E8;
+        }
+        /* Custom Scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c1c1c1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #A5A5A5; 
+        }
+        .text-neon {
+            color: #AFED00;
+        }
+        .bg-neon {
+            background-color: #AFED00;
+        }
+        .text-danger {
+            color: #E42C14;
+        }
+        .bg-danger {
+            background-color: #E42C14;
+        }
+    </style>
+</head>
+<body class="text-dark antialiased">
+<!-- Header -->
+<header class="sticky top-0 z-50 w-full bg-white shadow-sm border-b border-gray-100">
+<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+<!-- Logo -->
+<div class="flex items-center gap-2 cursor-pointer flex-shrink-0">
+<div class="w-10 h-10 bg-black text-neon rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl font-bold">bolt</span>
+</div>
+<h1 class="text-2xl font-bold tracking-tight text-dark hidden sm:block">N2 Sport</h1>
+</div>
+<!-- Search Bar (Hidden on small mobile) -->
+<div class="hidden md:flex flex-1 max-w-xl mx-4">
+<div class="relative w-full">
+<input class="w-full h-11 pl-11 pr-4 rounded-full border border-gray-medium focus:border-neon focus:ring-1 focus:ring-neon text-dark placeholder:text-gray-medium transition-all bg-white" placeholder="Tìm kiếm sản phẩm..." type="text"/>
+<div class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-medium">
+<span class="material-symbols-outlined">search</span>
+</div>
+</div>
+</div>
+<!-- Icons -->
+<div class="flex items-center gap-2 sm:gap-4">
+<button class="md:hidden p-2 text-dark hover:text-neon transition-colors">
+<span class="material-symbols-outlined">search</span>
+</button>
+<div class="relative group cursor-pointer">
+<button class="p-2 text-dark hover:text-danger transition-colors relative">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="absolute top-1 right-0 bg-danger text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center">3</span>
+</button>
+</div>
+<div class="relative group cursor-pointer">
+<button class="flex items-center gap-2 p-1 pl-2 pr-1 rounded-full border border-gray-200 hover:border-neon transition-colors bg-white">
+<span class="text-sm font-medium hidden sm:block ml-1">Nam</span>
+<div class="w-8 h-8 rounded-full bg-gray-100 overflow-hidden border border-gray-200">
+<img alt="User Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJBRrX7a4CvVZnmitFUsZJ28BJtYIIdz6zjKyCquyM-mj6WNwPVTkS000uFETXp8K2CtOAvoO4fzpUPTLRrRl8LAmSXuFR2xuNdzkeSIs678_9GtU0YkyXrzQ5h6tbG3gdSIwn046MNYEw-UmoKM4uABhiQ43j3gGeK_RugWJygQYfebf2UwrQXe8cTROjVmbnE8vyXvfiOjDsRr51WwOlr3EReJQHVbM4soujMotm_WtN1pSMgqoRv11zzUAc0O_XWdEwipcBBxrg"/>
+</div>
+</button>
+<!-- Dropdown demo -->
+<div class="absolute right-0 top-full mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-100 py-1 hidden group-hover:block animate-fade-in">
+<a class="block px-4 py-2 text-sm hover:bg-background-light" href="#">Hồ sơ</a>
+<a class="block px-4 py-2 text-sm hover:bg-background-light" href="#">Đơn hàng</a>
+<div class="border-t border-gray-100 my-1"></div>
+<a class="block px-4 py-2 text-sm text-danger hover:bg-red-50" href="#">Đăng xuất</a>
+</div>
+</div>
+<!-- Mobile Menu Button -->
+<button class="lg:hidden p-2 text-dark">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Layout -->
+<div class="max-w-[1440px] mx-auto min-h-screen flex flex-col lg:flex-row py-6 lg:py-10 px-4 sm:px-6 lg:px-8 gap-6 lg:gap-8">
+<!-- Sidebar Navigation -->
+<aside class="w-full lg:w-1/5 flex-shrink-0">
+<div class="bg-gray-light lg:bg-transparent rounded-xl p-4 lg:p-0">
+<!-- User Brief -->
+<div class="flex items-center gap-3 mb-6 pb-6 border-b border-gray-300 lg:border-gray-200 lg:hidden">
+<div class="w-12 h-12 rounded-full bg-white overflow-hidden border-2 border-neon">
+<img alt="User Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA06rUc-EWRo0VoLvbQUyWP7t3Zq2ZYyMUg_dirK6LmdqLbNdOp7uTY0y2Zx8petAiYfQBlNCO_6Q9kUdrU-7zjgWOshY39V00uHJVCEQavt55AjC0NUCZC-J5tGgCi4IwZWI5lzgiFZjSHOYgEWvqIxvQUcx93tOnOaf1jdSJPDsG49S0Lgo6KnfO5bxSI7tBF8I5DZNU2UpHpnlnXbZysK14Xw9zxNYLjM8LBqnHSbs8_TrS3VDXFvATYLJ4mWdO-g-fhb4-jWMxx"/>
+</div>
+<div>
+<h3 class="font-bold text-dark">Nguyễn Văn Nam</h3>
+<p class="text-xs text-gray-medium">Thành viên Bạc</p>
+</div>
+</div>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 bg-white rounded-lg text-dark font-medium border-l-4 border-neon shadow-sm group" href="#">
+<span class="material-symbols-outlined text-neon group-hover:text-danger transition-colors">person</span>
+<span>Thông tin tài khoản</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:text-danger hover:bg-white rounded-lg transition-all group" href="#">
+<span class="material-symbols-outlined text-gray-medium group-hover:text-danger">package_2</span>
+<span>Đơn hàng của tôi</span>
+<span class="ml-auto bg-danger text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">2</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:text-danger hover:bg-white rounded-lg transition-all group" href="#">
+<span class="material-symbols-outlined text-gray-medium group-hover:text-danger">location_on</span>
+<span>Địa chỉ</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:text-danger hover:bg-white rounded-lg transition-all group" href="#">
+<span class="material-symbols-outlined text-gray-medium group-hover:text-danger">lock_reset</span>
+<span>Đổi mật khẩu</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:text-danger hover:bg-white rounded-lg transition-all group" href="#">
+<span class="material-symbols-outlined text-gray-medium group-hover:text-danger">loyalty</span>
+<span>Điểm thưởng</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:text-danger hover:bg-white rounded-lg transition-all group" href="#">
+<span class="material-symbols-outlined text-gray-medium group-hover:text-danger">star</span>
+<span>Đánh giá của tôi</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:text-danger hover:bg-white rounded-lg transition-all group" href="#">
+<span class="material-symbols-outlined text-gray-medium group-hover:text-danger">favorite</span>
+<span>Sản phẩm yêu thích</span>
+</a>
+<div class="pt-4 mt-4 border-t border-gray-200">
+<a class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:text-danger hover:bg-white rounded-lg transition-all group" href="#">
+<span class="material-symbols-outlined text-gray-medium group-hover:text-danger">logout</span>
+<span>Đăng xuất</span>
+</a>
+</div>
+</nav>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="w-full lg:w-4/5 flex flex-col gap-8">
+<!-- SECTION 1: ACCOUNT INFO (Active View) -->
+<div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
+<div>
+<h2 class="text-2xl font-bold text-dark">Hồ sơ của tôi</h2>
+<p class="text-gray-medium text-sm mt-1">Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
+</div>
+<div class="flex items-center gap-2 bg-gray-50 px-4 py-2 rounded-lg border border-gray-100">
+<span class="material-symbols-outlined text-neon">verified</span>
+<span class="text-sm font-medium text-dark">Thành viên Bạc</span>
+<div class="w-px h-4 bg-gray-300 mx-2"></div>
+<span class="material-symbols-outlined text-neon">monetization_on</span>
+<span class="text-lg font-bold text-neon">1,250</span>
+<span class="text-xs text-gray-medium uppercase font-semibold">điểm</span>
+</div>
+</div>
+<div class="flex flex-col-reverse lg:flex-row gap-8 lg:gap-12">
+<!-- Form -->
+<div class="flex-1 space-y-5">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+<div class="space-y-2">
+<label class="text-sm font-medium text-dark">Họ và tên</label>
+<input class="w-full h-12 rounded-lg border-gray-medium/30 text-dark focus:border-neon focus:ring-neon shadow-sm" type="text" value="Nguyễn Văn Nam"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-dark">Số điện thoại</label>
+<input class="w-full h-12 rounded-lg border-gray-medium/30 text-dark focus:border-neon focus:ring-neon shadow-sm" type="tel" value="0912 345 678"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-dark">Email</label>
+<div class="relative">
+<input class="w-full h-12 rounded-lg border-gray-medium/30 bg-gray-50 text-gray-medium focus:ring-0 shadow-sm pr-10" readonly="" type="email" value="nam.nguyen@example.com"/>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-neon text-lg">check_circle</span>
+</div>
+<p class="text-xs text-gray-medium italic">*Email đã được xác thực, không thể thay đổi trực tiếp.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+<div class="space-y-2">
+<label class="text-sm font-medium text-dark">Ngày sinh</label>
+<div class="relative">
+<input class="w-full h-12 rounded-lg border-gray-medium/30 text-dark focus:border-neon focus:ring-neon shadow-sm" type="date" value="1995-08-15"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-dark">Giới tính</label>
+<div class="flex gap-4 pt-2">
+<label class="flex items-center gap-2 cursor-pointer">
+<input checked="" class="text-neon focus:ring-neon" name="gender" type="radio"/>
+<span>Nam</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="text-neon focus:ring-neon" name="gender" type="radio"/>
+<span>Nữ</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="text-neon focus:ring-neon" name="gender" type="radio"/>
+<span>Khác</span>
+</label>
+</div>
+</div>
+</div>
+<div class="pt-4">
+<button class="bg-danger hover:bg-[#c92510] text-white font-bold py-3 px-8 rounded-lg shadow-md hover:shadow-lg transition-all transform active:scale-95">
+                                Cập nhật thông tin
+                            </button>
+</div>
+</div>
+<!-- Avatar Upload -->
+<div class="flex flex-col items-center gap-4 lg:border-l lg:border-gray-100 lg:pl-12 lg:w-72">
+<div class="relative group">
+<div class="w-32 h-32 rounded-full overflow-hidden border-4 border-gray-100 shadow-md">
+<img alt="Profile picture preview" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAB3V2Weo-UJgGsHvNtySEkYX9h_Erkawzj1pecRAg8ESp98klrGhXtSkSEJAKMcT8WdZLMviMFRn8XOdn9nG9Vh0WXWQwir2uWH_g-0JtRmUudXQV4QXNMicaPuY_Xu6PBTxC8TzIXpkjfFeVwODLqlIbOtt6IJRErTSnE3RWsTnTOl4bvK6UPg6nO6EY9z6UmMyD03ido-pwtSOf7bmf1FmRdTreZXXKB90eMejnFEt6gp5BPTzXcIerapTtA48kSSfFTcZ7UyiUa"/>
+</div>
+<div class="absolute inset-0 rounded-full bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
+<span class="material-symbols-outlined text-white">photo_camera</span>
+</div>
+</div>
+<button class="text-dark border border-gray-medium/40 hover:border-neon hover:text-neon font-medium text-sm py-2 px-4 rounded-lg transition-colors flex items-center gap-2 bg-white">
+<span class="material-symbols-outlined text-lg">upload</span>
+                            Chọn ảnh
+                        </button>
+<p class="text-xs text-gray-medium text-center px-4">
+                            Dụng lượng file tối đa 1 MB.<br/>Định dạng: .JPEG, .PNG
+                        </p>
+</div>
+</div>
+</div>
+<!-- SECTION 2: RECENT ORDERS (Demo Content) -->
+<div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+<div class="p-6 border-b border-gray-100 flex flex-col sm:flex-row justify-between items-center gap-4">
+<h2 class="text-xl font-bold text-dark">Đơn hàng gần đây</h2>
+<a class="text-neon hover:text-danger text-sm font-medium transition-colors" href="#">Xem tất cả đơn hàng</a>
+</div>
+<!-- Status Tabs -->
+<div class="flex overflow-x-auto border-b border-gray-100 bg-gray-50/50">
+<button class="px-6 py-4 text-sm font-medium text-dark border-b-2 border-neon whitespace-nowrap">Tất cả</button>
+<button class="px-6 py-4 text-sm font-medium text-gray-medium hover:text-dark border-b-2 border-transparent hover:border-gray-300 whitespace-nowrap transition-colors">Chờ xác nhận</button>
+<button class="px-6 py-4 text-sm font-medium text-gray-medium hover:text-dark border-b-2 border-transparent hover:border-gray-300 whitespace-nowrap transition-colors">Đang giao</button>
+<button class="px-6 py-4 text-sm font-medium text-gray-medium hover:text-dark border-b-2 border-transparent hover:border-gray-300 whitespace-nowrap transition-colors">Đã giao</button>
+<button class="px-6 py-4 text-sm font-medium text-gray-medium hover:text-dark border-b-2 border-transparent hover:border-gray-300 whitespace-nowrap transition-colors">Đã hủy</button>
+</div>
+<!-- Order List -->
+<div class="divide-y divide-gray-100">
+<!-- Order Item 1 -->
+<div class="p-6 hover:bg-gray-50 transition-colors">
+<div class="flex flex-wrap justify-between items-start mb-4 gap-2">
+<div class="flex gap-4 items-center">
+<span class="bg-neon/10 text-dark border border-neon/30 text-xs font-bold px-2 py-1 rounded">Đang giao</span>
+<span class="text-sm font-medium text-gray-medium">#N2S-839210</span>
+<span class="text-sm text-gray-medium">|</span>
+<span class="text-sm text-gray-medium">20/10/2023</span>
+</div>
+<span class="text-danger font-bold text-lg">1.450.000₫</span>
+</div>
+<div class="flex gap-4 items-center">
+<div class="w-16 h-16 rounded-md bg-gray-100 border border-gray-200 overflow-hidden flex-shrink-0">
+<img alt="Running shoes green" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAq0F6Z2wFOMAKOb6zzmLO8yZlvFJg5s1JouxY1HmpaghgsP_AxVvximetkTqOIVyLi4Vtj9R6JWVl1-IUypScprZzQ2Jw_v4Ti2GmpicV4Pv7t0dcLtqIzt-khaC86fXjvIHlsRr36tUX1AJ-0xmpH0zC2pjStiTIW9YiBQkTczZ0T9G3QHx4odJvYdlgbwz_9Yc1jPltZb1g5IoWW73LHflS6h0fajEguAZMjmOYcVFQg0W2B4Hx9XHcxvDD0f3_YzpvJnw0eXLKS"/>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="text-dark font-medium truncate">Giày Chạy Bộ Nike Air Zoom Pegasus 40 - Xanh Neon</h4>
+<p class="text-sm text-gray-medium">Phân loại: Size 42</p>
+<p class="text-sm text-gray-medium">x1</p>
+</div>
+</div>
+<div class="flex justify-end gap-3 mt-4 pt-4 border-t border-gray-100 border-dashed">
+<button class="px-4 py-2 rounded-lg border border-gray-300 text-sm font-medium text-dark hover:border-neon hover:text-neon transition-colors">Xem chi tiết</button>
+<button class="px-4 py-2 rounded-lg bg-white border border-transparent text-sm font-medium text-gray-medium cursor-not-allowed" disabled="">Đã nhận hàng</button>
+</div>
+</div>
+<!-- Order Item 2 -->
+<div class="p-6 hover:bg-gray-50 transition-colors">
+<div class="flex flex-wrap justify-between items-start mb-4 gap-2">
+<div class="flex gap-4 items-center">
+<span class="bg-gray-100 text-gray-600 border border-gray-200 text-xs font-bold px-2 py-1 rounded">Đã giao</span>
+<span class="text-sm font-medium text-gray-medium">#N2S-839005</span>
+<span class="text-sm text-gray-medium">|</span>
+<span class="text-sm text-gray-medium">10/09/2023</span>
+</div>
+<span class="text-danger font-bold text-lg">550.000₫</span>
+</div>
+<div class="flex gap-4 items-center">
+<div class="w-16 h-16 rounded-md bg-gray-100 border border-gray-200 overflow-hidden flex-shrink-0">
+<img alt="Yoga mat" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmAZSetL69SBADyXQoAaYKa8cl4UlzfktuVwg1LXaaDm-oSyOQanHD1BD3-gUA4rUFscda7yCwkcNLSFV_3XmLde1KKJ4RPFDUNxDMOkcTmuLsZBKreodmP0B6e9ektZ-Zb_Zux7GP44KBBbxboUxzox6G9rpCu5KGTO7GQHBsXMrBa3dsdJBlCI-u2baiH7HOUotyqvDIseJJ7WjFue8Lv5Ni4VC1jVnx-1CflcJKzl4GsQH56q5JX_-iMZaT4Kj9SFK04OoAfkpm"/>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="text-dark font-medium truncate">Thảm Tập Yoga TPE 2 Lớp Chống Trượt</h4>
+<p class="text-sm text-gray-medium">Phân loại: Tím</p>
+<p class="text-sm text-gray-medium">x1</p>
+</div>
+</div>
+<div class="flex justify-end gap-3 mt-4 pt-4 border-t border-gray-100 border-dashed">
+<button class="px-4 py-2 rounded-lg border border-gray-300 text-sm font-medium text-dark hover:border-neon hover:text-neon transition-colors">Xem chi tiết</button>
+<button class="px-4 py-2 rounded-lg bg-danger text-white text-sm font-bold shadow-sm hover:bg-[#c92510] transition-colors">Mua lại</button>
+</div>
+</div>
+</div>
+</div>
+<!-- SECTION 3: ADDRESSES (Demo Content) -->
+<div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-xl font-bold text-dark">Sổ địa chỉ</h2>
+<button class="flex items-center gap-2 bg-danger text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-[#c92510] transition-colors">
+<span class="material-symbols-outlined text-lg">add</span>
+                        Thêm địa chỉ mới
+                    </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Address Card 1 (Default) -->
+<div class="border border-neon bg-neon/5 rounded-xl p-4 relative group">
+<div class="absolute top-4 right-4">
+<span class="text-[10px] font-bold uppercase tracking-wider text-neon bg-black px-2 py-1 rounded">Mặc định</span>
+</div>
+<div class="space-y-1 mb-4 pr-16">
+<div class="flex items-center gap-2">
+<span class="font-bold text-dark">Nguyễn Văn Nam</span>
+<span class="w-px h-3 bg-gray-400"></span>
+<span class="text-gray-600 text-sm">(+84) 912 345 678</span>
+</div>
+<p class="text-gray-600 text-sm leading-relaxed">
+                                Số 123, Đường Nguyễn Trãi, Phường Thượng Đình<br/>
+                                Quận Thanh Xuân, Hà Nội
+                            </p>
+</div>
+<div class="flex gap-2 border-t border-gray-200 pt-3 mt-2">
+<button class="text-gray-500 hover:text-neon text-sm font-medium flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-base">edit</span> Sửa
+                            </button>
+</div>
+</div>
+<!-- Address Card 2 -->
+<div class="border border-gray-200 rounded-xl p-4 relative group hover:border-gray-400 transition-colors bg-white">
+<div class="space-y-1 mb-4 pr-8">
+<div class="flex items-center gap-2">
+<span class="font-bold text-dark">Văn phòng N2</span>
+<span class="w-px h-3 bg-gray-400"></span>
+<span class="text-gray-600 text-sm">(+84) 987 654 321</span>
+</div>
+<p class="text-gray-600 text-sm leading-relaxed">
+                                Tầng 5, Tòa nhà Sport Tower, 25 Lê Văn Lương<br/>
+                                Quận Thanh Xuân, Hà Nội
+                            </p>
+</div>
+<div class="flex gap-4 border-t border-gray-200 pt-3 mt-2">
+<button class="text-gray-500 hover:text-neon text-sm font-medium flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-base">edit</span> Sửa
+                            </button>
+<button class="text-gray-500 hover:text-danger text-sm font-medium flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-base">delete</span> Xóa
+                            </button>
+<button class="ml-auto text-gray-400 hover:text-neon text-sm border border-gray-200 hover:border-neon px-2 py-0.5 rounded transition-colors">
+                                Thiết lập mặc định
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="bg-dark text-white pt-12 pb-6 mt-12 border-t border-gray-800">
+<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+<div class="space-y-4">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 bg-neon text-dark rounded-md flex items-center justify-center">
+<span class="material-symbols-outlined text-xl font-bold">bolt</span>
+</div>
+<span class="text-xl font-bold">N2 Sport</span>
+</div>
+<p class="text-gray-400 text-sm leading-relaxed">
+                        Nâng tầm phong cách thể thao của bạn với các sản phẩm chất lượng cao và thiết kế hiện đại.
+                    </p>
+<div class="flex gap-4">
+<a class="text-gray-400 hover:text-neon transition-colors" href="#"><i class="material-symbols-outlined">public</i></a>
+<a class="text-gray-400 hover:text-neon transition-colors" href="#"><i class="material-symbols-outlined">alternate_email</i></a>
+</div>
+</div>
+<div>
+<h4 class="text-lg font-bold mb-4">Về N2 Sport</h4>
+<ul class="space-y-2 text-sm text-gray-400">
+<li><a class="hover:text-neon transition-colors" href="#">Giới thiệu</a></li>
+<li><a class="hover:text-neon transition-colors" href="#">Tuyển dụng</a></li>
+<li><a class="hover:text-neon transition-colors" href="#">Hệ thống cửa hàng</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-bold mb-4">Hỗ trợ khách hàng</h4>
+<ul class="space-y-2 text-sm text-gray-400">
+<li><a class="hover:text-neon transition-colors" href="#">Hướng dẫn mua hàng</a></li>
+<li><a class="hover:text-neon transition-colors" href="#">Chính sách đổi trả</a></li>
+<li><a class="hover:text-neon transition-colors" href="#">Chính sách bảo mật</a></li>
+<li><a class="hover:text-neon transition-colors" href="#">Tra cứu đơn hàng</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-bold mb-4">Liên hệ</h4>
+<ul class="space-y-3 text-sm text-gray-400">
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-neon">location_on</span>
+<span>123 Đường Thể Thao, Quận 1, TP.HCM</span>
+</li>
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-neon">phone</span>
+<span>1900 123 456</span>
+</li>
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-neon">mail</span>
+<span>support@n2sport.vn</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="border-t border-gray-800 pt-6 text-center text-sm text-gray-500">
+<p>© 2023 N2 Sport. All rights reserved.</p>
+</div>
+</div>
+</footer>
+</body></html>

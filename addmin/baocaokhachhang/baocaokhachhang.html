@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>N2 Sport - Báo Cáo Khách Hàng</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#AFED00", // Adjusted to user request
+              "alert": "#E42C14",
+              "text-main": "#111111",
+              "text-sub": "#A5A5A5",
+              "bg-secondary": "#E8E8E8",
+              "background-light": "#f7f8f5",
+              "background-dark": "#1b230f",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"],
+              "body": ["Noto Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        /* Custom scrollbar for tables if needed */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #ccc; 
+            border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #aaa; 
+        }
+    </style>
+</head>
+<body class="bg-white text-text-main font-display antialiased flex flex-col min-h-screen">
+<!-- Sticky Header -->
+<header class="sticky top-0 z-50 w-full border-b border-bg-secondary bg-white">
+<div class="px-6 md:px-10 py-3 flex items-center justify-between gap-4">
+<!-- Left: Logo & Search -->
+<div class="flex items-center gap-8 flex-1">
+<div class="flex items-center gap-3">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-text-main">
+<span class="material-symbols-outlined font-bold">bolt</span>
+</div>
+<h2 class="text-text-main text-xl font-bold tracking-tight">N2 Sport Admin</h2>
+</div>
+<div class="hidden lg:flex flex-col min-w-40 w-full max-w-sm h-10">
+<div class="relative flex w-full h-full items-center rounded-lg border border-text-sub bg-white overflow-hidden focus-within:ring-2 focus-within:ring-primary focus-within:border-primary transition-all">
+<div class="absolute left-3 flex items-center justify-center text-text-sub">
+<span class="material-symbols-outlined" style="font-size: 20px;">search</span>
+</div>
+<input class="w-full h-full bg-transparent border-none pl-10 pr-4 text-text-main placeholder:text-text-sub focus:ring-0 text-sm" placeholder="Search orders, customers, reports..."/>
+</div>
+</div>
+</div>
+<!-- Right: Nav & Profile -->
+<div class="flex items-center justify-end gap-6">
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-text-main font-semibold text-sm hover:text-primary transition-colors" href="#">Reports</a>
+<a class="text-text-sub font-medium text-sm hover:text-text-main transition-colors" href="#">Orders</a>
+<a class="text-text-sub font-medium text-sm hover:text-text-main transition-colors" href="#">Inventory</a>
+</nav>
+<div class="flex items-center gap-4 border-l border-bg-secondary pl-6">
+<button class="relative flex items-center justify-center size-10 rounded-full hover:bg-bg-secondary transition-colors text-text-main">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2.5 bg-alert rounded-full border-2 border-white"></span>
+</button>
+<button class="flex items-center gap-3 hover:bg-bg-secondary p-1 pr-3 rounded-full transition-colors border border-transparent hover:border-bg-secondary">
+<div class="size-8 rounded-full bg-center bg-cover bg-no-repeat" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCt3FpSvt-6rSOdu2E1-7iBbqvL3OTnL5isR5l1haWtFvCL9SER78XoN3rCvTILfmIqzJQmJF18Ui8nFl0JFW3kfnQ4e-SdjIKik4lLt2_vkKkoadjisOs6YOQwvSOx9dfSeIgAGsbapeQ3BgM10q75Rtf59AnyjE1g99i5QC4ytGswB_7fAX5PYiadBc72U7gAjM0n3gx36NCvEMDYYvevKr7t0JYMkeGUCxgwyp1fqxpm-qJMXvaD8PAwKWwbwb_O8pwnyVaEeciX");'></div>
+<span class="hidden xl:block text-sm font-semibold text-text-main">Admin User</span>
+<span class="material-symbols-outlined text-text-sub" style="font-size: 20px;">keyboard_arrow_down</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 w-full max-w-[1440px] mx-auto px-6 md:px-10 py-8 flex flex-col gap-8">
+<!-- Header Section: Title & Date/Actions -->
+<section class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+<div class="flex flex-col gap-2">
+<h1 class="text-3xl font-bold text-text-main tracking-tight">Customer Report</h1>
+<p class="text-text-sub text-sm">Analyze customer growth, retention, and lifetime value metrics.</p>
+</div>
+<div class="flex flex-wrap items-center gap-3">
+<!-- Date Filter Group -->
+<div class="flex items-center bg-white border border-text-sub rounded-lg overflow-hidden h-10 p-0.5">
+<button class="px-3 h-full text-xs font-medium text-text-main hover:bg-bg-secondary rounded-md transition-colors">Today</button>
+<button class="px-3 h-full text-xs font-medium text-text-main hover:bg-bg-secondary rounded-md transition-colors">Yesterday</button>
+<button class="px-3 h-full text-xs font-medium text-text-main hover:bg-bg-secondary rounded-md transition-colors">Last 7d</button>
+<button class="px-3 h-full text-xs font-bold bg-primary text-text-main rounded-md shadow-sm">Last 30d</button>
+<div class="w-px h-4 bg-gray-300 mx-1"></div>
+<button class="px-3 h-full flex items-center gap-2 text-xs font-medium text-text-main hover:bg-bg-secondary rounded-md transition-colors">
+<span class="material-symbols-outlined" style="font-size: 16px;">calendar_month</span>
+                        Custom
+                    </button>
+</div>
+<!-- Apply Button -->
+<button class="h-10 px-6 bg-alert hover:bg-red-700 text-white text-sm font-bold rounded-lg shadow-sm transition-colors flex items-center justify-center">
+                    Apply
+                </button>
+<!-- Divider -->
+<div class="hidden sm:block w-px h-8 bg-gray-200 mx-1"></div>
+<!-- Export Actions -->
+<button class="h-10 px-4 bg-white border border-primary text-text-main hover:bg-primary/10 text-sm font-semibold rounded-lg transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-green-700" style="font-size: 18px;">table_view</span>
+                    Excel
+                </button>
+<button class="h-10 px-4 bg-white border border-primary text-text-main hover:bg-primary/10 text-sm font-semibold rounded-lg transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-red-700" style="font-size: 18px;">picture_as_pdf</span>
+                    PDF
+                </button>
+</div>
+</section>
+<!-- Tabs Navigation -->
+<section class="border-b border-bg-secondary">
+<div class="flex gap-8 overflow-x-auto no-scrollbar">
+<a class="pb-3 border-b-2 border-transparent text-text-sub text-sm font-bold hover:text-alert transition-colors whitespace-nowrap" href="#">Revenue Report</a>
+<a class="pb-3 border-b-2 border-transparent text-text-sub text-sm font-bold hover:text-alert transition-colors whitespace-nowrap" href="#">Product Report</a>
+<a class="pb-3 border-b-4 border-primary text-text-main text-sm font-bold transition-colors whitespace-nowrap" href="#">Customer Report</a>
+<a class="pb-3 border-b-2 border-transparent text-text-sub text-sm font-bold hover:text-alert transition-colors whitespace-nowrap" href="#">Promotion Report</a>
+</div>
+</section>
+<!-- KPI Cards Row -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Card 1: Total Customers -->
+<div class="bg-white rounded-xl border border-bg-secondary p-5 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between mb-2">
+<p class="text-text-sub text-sm font-medium">Total Customers</p>
+<div class="p-1.5 bg-bg-secondary/50 rounded-md text-text-main">
+<span class="material-symbols-outlined" style="font-size: 20px;">groups</span>
+</div>
+</div>
+<div class="flex items-baseline gap-2">
+<h3 class="text-2xl font-bold text-text-main">12,450</h3>
+<span class="flex items-center text-xs font-bold text-primary bg-primary/10 px-1.5 py-0.5 rounded">
+<span class="material-symbols-outlined" style="font-size: 14px;">trending_up</span>
+                        5.2%
+                    </span>
+</div>
+<p class="text-text-sub text-xs mt-1">vs. previous 30 days</p>
+</div>
+<!-- Card 2: New Customers -->
+<div class="bg-white rounded-xl border border-bg-secondary p-5 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between mb-2">
+<p class="text-text-sub text-sm font-medium">New Customers (30d)</p>
+<div class="p-1.5 bg-bg-secondary/50 rounded-md text-text-main">
+<span class="material-symbols-outlined" style="font-size: 20px;">person_add</span>
+</div>
+</div>
+<div class="flex items-baseline gap-2">
+<h3 class="text-2xl font-bold text-text-main">+1,203</h3>
+<span class="flex items-center text-xs font-bold text-primary bg-primary/10 px-1.5 py-0.5 rounded">
+<span class="material-symbols-outlined" style="font-size: 14px;">trending_up</span>
+                        12.5%
+                    </span>
+</div>
+<p class="text-text-sub text-xs mt-1">Acquisition is growing</p>
+</div>
+<!-- Card 3: CLV -->
+<div class="bg-white rounded-xl border border-bg-secondary p-5 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between mb-2">
+<p class="text-text-sub text-sm font-medium">Avg. Lifetime Value (CLV)</p>
+<div class="p-1.5 bg-bg-secondary/50 rounded-md text-text-main">
+<span class="material-symbols-outlined" style="font-size: 20px;">payments</span>
+</div>
+</div>
+<div class="flex items-baseline gap-2">
+<h3 class="text-2xl font-bold text-alert">$450.00</h3>
+<span class="flex items-center text-xs font-bold text-text-sub bg-bg-secondary px-1.5 py-0.5 rounded">
+<span class="material-symbols-outlined" style="font-size: 14px;">remove</span>
+                        0.0%
+                    </span>
+</div>
+<p class="text-text-sub text-xs mt-1">Requires attention</p>
+</div>
+<!-- Card 4: Retention -->
+<div class="bg-white rounded-xl border border-bg-secondary p-5 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between mb-2">
+<p class="text-text-sub text-sm font-medium">Retention Rate</p>
+<div class="p-1.5 bg-bg-secondary/50 rounded-md text-text-main">
+<span class="material-symbols-outlined" style="font-size: 20px;">autorenew</span>
+</div>
+</div>
+<div class="flex items-baseline gap-2">
+<h3 class="text-2xl font-bold text-text-main">68%</h3>
+<span class="flex items-center text-xs font-bold text-alert bg-alert/10 px-1.5 py-0.5 rounded">
+<span class="material-symbols-outlined" style="font-size: 14px;">trending_down</span>
+                        -0.5%
+                    </span>
+</div>
+<p class="text-text-sub text-xs mt-1">Slight drop from last month</p>
+</div>
+</section>
+<!-- Main Chart Section -->
+<section class="bg-white rounded-xl border border-bg-secondary p-6 shadow-sm">
+<div class="flex items-center justify-between mb-6">
+<div>
+<h3 class="text-lg font-bold text-text-main">New Customers Over Time</h3>
+<p class="text-sm text-text-sub">Daily customer acquisition trends</p>
+</div>
+<button class="p-2 hover:bg-bg-secondary rounded-lg transition-colors text-text-sub">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<!-- CSS Chart Approximation (Simulated Line Chart) -->
+<div class="w-full h-64 relative flex items-end justify-between gap-1 pt-6 px-2 border-b border-l border-bg-secondary">
+<!-- Grid lines background -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none pb-6 pl-2 pr-2">
+<div class="w-full h-px bg-bg-secondary/50 border-t border-dashed border-gray-200"></div>
+<div class="w-full h-px bg-bg-secondary/50 border-t border-dashed border-gray-200"></div>
+<div class="w-full h-px bg-bg-secondary/50 border-t border-dashed border-gray-200"></div>
+<div class="w-full h-px bg-bg-secondary/50 border-t border-dashed border-gray-200"></div>
+</div>
+<!-- SVG Line -->
+<svg class="absolute inset-0 w-full h-full pb-0 pl-0 overflow-visible z-10" preserveaspectratio="none" viewbox="0 0 100 100">
+<!-- Area Gradient -->
+<defs>
+<lineargradient id="gradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#AFED00" stop-opacity="0.2"></stop>
+<stop offset="100%" stop-color="#AFED00" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,100 L0,70 L10,65 L20,75 L30,40 L40,50 L50,30 L60,35 L70,20 L80,25 L90,10 L100,5 L100,100 Z" fill="url(#gradient)"></path>
+<!-- Line -->
+<polyline fill="none" points="0,70 10,65 20,75 30,40 40,50 50,30 60,35 70,20 80,25 90,10 100,5" stroke="#AFED00" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" vector-effect="non-scaling-stroke"></polyline>
+</svg>
+<!-- X Axis Labels (Simulated) -->
+<div class="absolute -bottom-6 left-0 text-xs text-text-sub w-full flex justify-between px-2">
+<span>Oct 01</span>
+<span>Oct 05</span>
+<span>Oct 10</span>
+<span>Oct 15</span>
+<span>Oct 20</span>
+<span>Oct 25</span>
+<span>Oct 30</span>
+</div>
+<!-- Hover Points (Invisible hit targets) -->
+<!-- Just visual simulation -->
+</div>
+</section>
+<!-- Split Section: Top Customers & Map -->
+<section class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+<!-- Top Customers Table -->
+<div class="xl:col-span-2 bg-white rounded-xl border border-bg-secondary shadow-sm flex flex-col">
+<div class="p-6 border-b border-bg-secondary flex justify-between items-center">
+<div>
+<h3 class="text-lg font-bold text-text-main">Top Customers</h3>
+<p class="text-sm text-text-sub">Highest spending customers in selected period</p>
+</div>
+<a class="text-sm font-semibold text-primary hover:underline" href="#">View All</a>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-background-light border-b border-bg-secondary">
+<th class="py-3 px-6 text-xs font-semibold text-text-sub uppercase tracking-wider">Rank</th>
+<th class="py-3 px-6 text-xs font-semibold text-text-sub uppercase tracking-wider">Customer</th>
+<th class="py-3 px-6 text-xs font-semibold text-text-sub uppercase tracking-wider text-right">Orders</th>
+<th class="py-3 px-6 text-xs font-semibold text-text-sub uppercase tracking-wider text-right">Total Spent</th>
+<th class="py-3 px-6 text-xs font-semibold text-text-sub uppercase tracking-wider text-right">Last Active</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-bg-secondary">
+<!-- Row 1 -->
+<tr class="group hover:bg-background-light/50 transition-colors">
+<td class="py-4 px-6 text-sm text-text-sub font-medium">#1</td>
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-gray-200 bg-cover" data-alt="Customer avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDedKsGfrNM-9DM7GWcf0a170youiNhSxdnv1CDQpprNHznTEaz14L9ereUM4v2J2zX_7K91ToYiUe0ls73IZ0nknB1_sGzSOpv8LeX4MTS8l2sZJ4G_ZV6yLL7NIC2luGDLfP0qOfZ3NAVK_KOOVfFY6D0S6BrDqbzNAkqVDT82AjL1yCj4dwXzNOra7RKB33eDlSdi8QXQ85Y69qrjQUIkEZcDoHj-Bmvgo25bX3fiVGZ05ZvcHHjHdC6yCNv_BqwoF11gzNlX2XX");'></div>
+<div>
+<a class="font-semibold text-text-main hover:text-primary transition-colors" href="#">Sarah Jenkins</a>
+<p class="text-xs text-text-sub">sarah.j@example.com</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 text-right text-sm font-medium text-primary">12</td>
+<td class="py-4 px-6 text-right text-sm font-bold text-alert">$2,450.00</td>
+<td class="py-4 px-6 text-right text-sm text-text-sub">2h ago</td>
+</tr>
+<!-- Row 2 -->
+<tr class="group hover:bg-background-light/50 transition-colors">
+<td class="py-4 px-6 text-sm text-text-sub font-medium">#2</td>
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-gray-200 bg-cover" data-alt="Customer avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAXnJeNIo-3zimo57TcPKbfsWWRt14ieESr8x3Mc0Bwg8osA6fxeV5Hsr-3n7Fkg5IcecLUvDBiuZpqSXYlbFPfc0R1L1I2g6M9NoeHsrAkJJPeNBRLJ2w-kHiPFCVjOg0lhyqpWJu99u8t9Aaj7lya0mXijAlon5-OjvkkfB8nZAYRLCgVh9_bvvEQTVGENBx4OJchPmt30pzUJm7T-_r8jyuEkaOb9XbAw_i12inQsaEUFQZjv3oC9V2lzqRLRPBwiOV1lGOgb8AN");'></div>
+<div>
+<a class="font-semibold text-text-main hover:text-primary transition-colors" href="#">Michael Ross</a>
+<p class="text-xs text-text-sub">mike.ross@example.com</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 text-right text-sm font-medium text-primary">8</td>
+<td class="py-4 px-6 text-right text-sm font-bold text-alert">$1,890.50</td>
+<td class="py-4 px-6 text-right text-sm text-text-sub">1d ago</td>
+</tr>
+<!-- Row 3 -->
+<tr class="group hover:bg-background-light/50 transition-colors">
+<td class="py-4 px-6 text-sm text-text-sub font-medium">#3</td>
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-gray-200 bg-cover" data-alt="Customer avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCCTLhUa1b8KQA7j1TTI9IJn92ISSdFWXhcuezfl8Kr5d7lTRn7QTlfbYbtyWF3rMVivVjipo6JFwzeUIURzIJE3D2TCWY4UfaCfXtg0bvg_Eo4fXh-c8_RhcE2lSt9-MQvb0kN66SUi-pAjy3HPu8iTbYLzxNMoXNddOboob-Ln3Fj7yfvVoyJBvlWtd0lDvLalxZL6ek0-JbugAD333rz6P3c4l1ZXryw91dPt0KxpSSKHe5QZ2-MsQg0Y_fJismVyG6RAIDA3h3J");'></div>
+<div>
+<a class="font-semibold text-text-main hover:text-primary transition-colors" href="#">Emma Wilson</a>
+<p class="text-xs text-text-sub">emma.w@example.com</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 text-right text-sm font-medium text-primary">15</td>
+<td class="py-4 px-6 text-right text-sm font-bold text-alert">$1,650.00</td>
+<td class="py-4 px-6 text-right text-sm text-text-sub">3d ago</td>
+</tr>
+<!-- Row 4 -->
+<tr class="group hover:bg-background-light/50 transition-colors">
+<td class="py-4 px-6 text-sm text-text-sub font-medium">#4</td>
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-gray-200 bg-cover" data-alt="Customer avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCyfhGYEPfmmva7BGsYlgfkbbunW6mNNRsczco8PkMUhSr4qQGaB6UN4IG301UmRGtAs3rYNdL7WrkZugcjfeSQAkZ_T0t3Xa-d9KZn6pJOvjug27cPHayFMo7EfeLMHq0Hh0bBCRRS-B0MzuFyYbXloQdf04Xt-fxEZSSIJxcT0DlTpbf-HCW-DcDWhZOMXdgWVj23agnWlbDbckswTrnZ2cRwiuG6i1AomVMiDD5asV-xz5alrb7bi1hfTLzJ8RQFuBGcfHVgDAbK");'></div>
+<div>
+<a class="font-semibold text-text-main hover:text-primary transition-colors" href="#">David Kim</a>
+<p class="text-xs text-text-sub">david.k@example.com</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 text-right text-sm font-medium text-primary">6</td>
+<td class="py-4 px-6 text-right text-sm font-bold text-alert">$1,200.00</td>
+<td class="py-4 px-6 text-right text-sm text-text-sub">5d ago</td>
+</tr>
+<!-- Row 5 -->
+<tr class="group hover:bg-background-light/50 transition-colors">
+<td class="py-4 px-6 text-sm text-text-sub font-medium">#5</td>
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-gray-200 bg-cover" data-alt="Customer avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCWC5AqegyIg7x4bM_-8PbuLibgSuouwy7jLlpoj0TuR9q1G7YqzBP8I8TzSwt7sbZgaDEd7a2ZNFcIfQubnKCrGt44-I0t1X-AXlw2qZgKMv70n-C5AFbXGGO5e6L8u4TSpEOPmAg7DF7lOEbmmvSY7V5zVXLceqWZ-H8HvpTsV2TFS0W_OuO15qhZqivvQrCDp0Wgl7jSI3-krco5lV8Vy2__-AS4E4OZ53knh12GrDrLFoKDQR3k_QIO8a-_SSzAF9sYP0tBPOrr");'></div>
+<div>
+<a class="font-semibold text-text-main hover:text-primary transition-colors" href="#">Olivia Brown</a>
+<p class="text-xs text-text-sub">olivia.b@example.com</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 text-right text-sm font-medium text-primary">9</td>
+<td class="py-4 px-6 text-right text-sm font-bold text-alert">$1,150.00</td>
+<td class="py-4 px-6 text-right text-sm text-text-sub">1w ago</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Customer by Region -->
+<div class="bg-white rounded-xl border border-bg-secondary shadow-sm p-6 flex flex-col">
+<div class="mb-6">
+<h3 class="text-lg font-bold text-text-main">Customer by Region</h3>
+<p class="text-sm text-text-sub">Distribution by location</p>
+</div>
+<div class="flex-1 flex flex-col justify-center">
+<!-- Fake Donut Chart via CSS Conic Gradient -->
+<div class="relative size-48 mx-auto mb-8 rounded-full" style="background: conic-gradient(#AFED00 0% 45%, #d4f77c 45% 70%, #111111 70% 90%, #E8E8E8 90% 100%);">
+<div class="absolute inset-4 bg-white rounded-full flex flex-col items-center justify-center">
+<span class="text-3xl font-bold text-text-main">12k</span>
+<span class="text-xs text-text-sub">Total</span>
+</div>
+</div>
+<!-- Legend List -->
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="size-3 rounded-full bg-primary"></div>
+<span class="text-sm font-medium text-text-main">Ho Chi Minh City</span>
+</div>
+<span class="text-sm font-bold text-text-main">45%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="size-3 rounded-full bg-[#d4f77c]"></div>
+<span class="text-sm font-medium text-text-main">Hanoi</span>
+</div>
+<span class="text-sm font-bold text-text-main">25%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="size-3 rounded-full bg-text-main"></div>
+<span class="text-sm font-medium text-text-main">Da Nang</span>
+</div>
+<span class="text-sm font-bold text-text-main">20%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="size-3 rounded-full bg-bg-secondary"></div>
+<span class="text-sm font-medium text-text-main">Others</span>
+</div>
+<span class="text-sm font-bold text-text-main">10%</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-text-main text-white py-12 border-t border-bg-secondary/10">
+<div class="max-w-[1440px] mx-auto px-6 md:px-10 flex flex-col md:flex-row justify-between gap-8">
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined font-bold">bolt</span>
+<span class="font-bold text-lg text-white">N2 Sport Admin</span>
+</div>
+<p class="text-gray-400 text-sm max-w-xs">Premium sports e-commerce administration dashboard for analytics and management.</p>
+<div class="flex gap-4 mt-2">
+<span class="text-xs text-gray-500">© 2024 N2 Sport. All rights reserved.</span>
+</div>
+</div>
+<div class="flex gap-12 flex-wrap">
+<div class="flex flex-col gap-3">
+<h4 class="font-bold text-sm text-gray-200 uppercase tracking-wider">Platform</h4>
+<a class="text-sm text-gray-400 hover:text-primary transition-colors" href="#">Analytics</a>
+<a class="text-sm text-gray-400 hover:text-primary transition-colors" href="#">Inventory</a>
+<a class="text-sm text-gray-400 hover:text-primary transition-colors" href="#">Orders</a>
+</div>
+<div class="flex flex-col gap-3">
+<h4 class="font-bold text-sm text-gray-200 uppercase tracking-wider">Support</h4>
+<a class="text-sm text-gray-400 hover:text-primary transition-colors" href="#">Help Center</a>
+<a class="text-sm text-gray-400 hover:text-primary transition-colors" href="#">Documentation</a>
+<a class="text-sm text-gray-400 hover:text-primary transition-colors" href="#">API Status</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

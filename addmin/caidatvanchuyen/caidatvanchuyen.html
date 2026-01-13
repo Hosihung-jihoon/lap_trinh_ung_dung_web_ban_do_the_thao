@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>N2 Sport - Cài Đặt Vận Chuyển</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#AFED00", // Neon Green for active states
+                        "danger": "#E42C14",   // Red for actions/finance
+                        "dark": "#111111",     // Main text
+                        "secondary": "#A5A5A5",// Grey text/border
+                        "divider": "#E8E8E8",  // Dividers
+                        "background-light": "#F8F8F5", // Main background (subtle off-white)
+                        "background-dark": "#1E230F",  // Dark mode bg (not heavily used per request but good for structure)
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F8F5; /* Set specific light bg */
+        }
+        /* Custom scrollbar for better look in tables/lists */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c1c1c1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8; 
+        }
+    </style>
+</head>
+<body class="bg-background-light text-dark flex flex-col min-h-screen relative">
+<!-- Sticky Header -->
+<header class="sticky top-0 z-50 bg-white border-b border-divider shadow-sm px-6 py-3">
+<div class="max-w-7xl mx-auto flex items-center justify-between">
+<!-- Brand -->
+<div class="flex items-center gap-3">
+<div class="bg-dark text-primary p-1.5 rounded-md">
+<span class="material-symbols-outlined !text-[24px]">fitness_center</span>
+</div>
+<h1 class="text-dark text-xl font-bold tracking-tight">N2 Sport <span class="text-primary font-normal">Admin</span></h1>
+</div>
+<!-- Search -->
+<div class="hidden md:flex flex-1 max-w-lg mx-8">
+<div class="relative w-full">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-secondary material-symbols-outlined">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-white border border-secondary rounded-lg text-sm text-dark placeholder-secondary focus:border-dark focus:ring-0 focus:outline-none transition-colors" placeholder="Search settings, orders, products..." type="text"/>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-6">
+<!-- Nav Links -->
+<div class="hidden lg:flex items-center gap-6 text-sm font-medium">
+<a class="text-dark hover:text-danger transition-colors" href="#">Settings</a>
+<a class="text-dark hover:text-danger transition-colors" href="#">Reports</a>
+</div>
+<!-- Notifications -->
+<button class="relative p-2 text-dark hover:bg-gray-100 rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-danger rounded-full border border-white"></span>
+</button>
+<!-- Profile -->
+<button class="flex items-center gap-2 group">
+<div class="w-8 h-8 rounded-full bg-gray-200 bg-center bg-cover border border-divider" data-alt="User profile picture showing a smiling man" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDjX-vOh7DXn-gaDxazGh8vUqLNO9YMczbDlG3biAo44SgBVpNa_LRDkCAQFKKlDmNHI3e3mh9U8hpGP6Fav3IZ7kBMDf1s_rEvh5gczv5NBi75tObXjfs3rGd1fejphHGZdvSo0RZfGzL6xxOJ4i_mSrxPkF970HRdk5vQALW6ZkyJ8zaFKMTBUOOcnmizbVzS2W4V6PCduZqEScm_cNZNGCuqNS1lOg0gdl7QIrddtXmsZM2kl8nGBd6GYyUuaXim0sTWPmYx0v_m');"></div>
+<span class="hidden sm:block text-sm font-medium text-dark group-hover:text-danger">Admin User</span>
+<span class="material-symbols-outlined text-secondary !text-[18px]">expand_more</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Wrapper -->
+<main class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 py-8">
+<!-- Page Header & Tabs -->
+<div class="mb-8">
+<h2 class="text-3xl font-bold text-dark mb-2">Shipping Settings</h2>
+<p class="text-secondary text-sm">Manage your shipping zones, methods, and fees for your store.</p>
+<!-- Tabs -->
+<div class="mt-6 border-b border-divider overflow-x-auto">
+<nav aria-label="Tabs" class="flex space-x-8 min-w-max">
+<a class="border-transparent text-secondary hover:text-danger hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors" href="#">
+                        General Settings
+                    </a>
+<a class="border-transparent text-secondary hover:text-danger hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors" href="#">
+                        Payment Settings
+                    </a>
+<a aria-current="page" class="border-primary text-dark whitespace-nowrap py-4 px-1 border-b-2 font-bold text-sm" href="#">
+                        Shipping Settings
+                    </a>
+<a class="border-transparent text-secondary hover:text-danger hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors" href="#">
+                        Email Settings
+                    </a>
+<a class="border-transparent text-secondary hover:text-danger hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors" href="#">
+                        Role &amp; Permissions
+                    </a>
+<a class="border-transparent text-secondary hover:text-danger hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors" href="#">
+                        Staff Management
+                    </a>
+</nav>
+</div>
+</div>
+<!-- Settings Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 pb-24">
+<!-- Left Column: Global Rules -->
+<div class="lg:col-span-1 space-y-6">
+<!-- Free Shipping Card -->
+<div class="bg-white rounded-xl shadow-sm border border-divider p-6">
+<div class="flex items-center gap-3 mb-4">
+<div class="p-2 bg-primary/20 rounded-lg text-dark">
+<span class="material-symbols-outlined">local_shipping</span>
+</div>
+<h3 class="font-bold text-lg text-dark">Free Shipping Rule</h3>
+</div>
+<p class="text-secondary text-sm mb-4">Automatically apply free shipping when the cart total exceeds this amount.</p>
+<label class="block">
+<span class="text-xs font-semibold text-secondary uppercase tracking-wider">Threshold Amount (VNĐ)</span>
+<div class="mt-1 relative rounded-md shadow-sm">
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+<span class="text-secondary sm:text-sm">₫</span>
+</div>
+<input class="block w-full rounded-lg border-secondary pl-7 pr-12 py-3 text-danger font-bold focus:border-dark focus:ring-dark sm:text-sm" id="price" name="price" placeholder="0" type="number" value="500000"/>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+<span class="text-secondary sm:text-sm">VND</span>
+</div>
+</div>
+</label>
+<div class="mt-4 flex items-center justify-between">
+<span class="text-sm font-medium text-dark">Enable Free Shipping</span>
+<!-- Toggle Switch -->
+<button aria-checked="true" class="bg-primary relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" role="switch" type="button">
+<span aria-hidden="true" class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+</button>
+</div>
+</div>
+<!-- Shipping Carrier Integration (Placeholder for UI completeness) -->
+<div class="bg-white rounded-xl shadow-sm border border-divider p-6 opacity-60">
+<div class="flex items-center justify-between mb-2">
+<h3 class="font-bold text-lg text-dark">Carrier Integration</h3>
+<span class="bg-gray-100 text-secondary text-xs px-2 py-1 rounded">Coming Soon</span>
+</div>
+<p class="text-secondary text-sm">Connect directly with GHN, GHTK, or Viettel Post for automatic calculations.</p>
+</div>
+</div>
+<!-- Right Column: Zones & Methods -->
+<div class="lg:col-span-2 space-y-6">
+<!-- Shipping Zones Section -->
+<div class="bg-white rounded-xl shadow-sm border border-divider overflow-hidden">
+<div class="p-6 border-b border-divider flex flex-wrap items-center justify-between gap-4">
+<div>
+<h3 class="font-bold text-lg text-dark">Shipping Zones</h3>
+<p class="text-secondary text-sm">Define where you ship and how much it costs.</p>
+</div>
+<button class="inline-flex items-center gap-2 bg-white border border-danger text-danger hover:bg-danger hover:text-white px-4 py-2 rounded-lg text-sm font-bold transition-all shadow-sm">
+<span class="material-symbols-outlined !text-[18px]">add</span>
+                            Add Zone
+                        </button>
+</div>
+<div class="divide-y divide-divider">
+<!-- Zone Item 1 -->
+<div class="p-6 hover:bg-gray-50 transition-colors group">
+<div class="flex items-start justify-between mb-3">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">location_on</span>
+<h4 class="text-dark font-bold text-base">Inner City (HCM &amp; HN)</h4>
+</div>
+<div class="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-secondary hover:text-primary transition-colors bg-white border border-divider rounded-md shadow-sm" title="Edit">
+<span class="material-symbols-outlined !text-[18px]">edit</span>
+</button>
+<button class="p-2 text-secondary hover:text-danger transition-colors bg-white border border-divider rounded-md shadow-sm" title="Delete">
+<span class="material-symbols-outlined !text-[18px]">delete</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+<!-- Provinces List (Simulated Tree) -->
+<div class="bg-background-light p-3 rounded-lg border border-divider">
+<p class="text-xs font-bold text-secondary uppercase mb-2">Regions</p>
+<div class="flex flex-wrap gap-2">
+<span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-white border border-divider text-dark">
+                                            Ho Chi Minh City
+                                        </span>
+<span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-white border border-divider text-dark">
+                                            Ha Noi
+                                        </span>
+</div>
+</div>
+<!-- Methods within Zone -->
+<div class="bg-background-light p-3 rounded-lg border border-divider">
+<p class="text-xs font-bold text-secondary uppercase mb-2">Rates</p>
+<div class="space-y-2">
+<div class="flex justify-between items-center text-sm">
+<span class="text-dark">Standard</span>
+<span class="text-danger font-bold">25,000 ₫</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-dark">Express</span>
+<span class="text-danger font-bold">45,000 ₫</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Zone Item 2 -->
+<div class="p-6 hover:bg-gray-50 transition-colors group">
+<div class="flex items-start justify-between mb-3">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">public</span>
+<h4 class="text-dark font-bold text-base">Nationwide (Other Provinces)</h4>
+</div>
+<div class="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-secondary hover:text-primary transition-colors bg-white border border-divider rounded-md shadow-sm" title="Edit">
+<span class="material-symbols-outlined !text-[18px]">edit</span>
+</button>
+<button class="p-2 text-secondary hover:text-danger transition-colors bg-white border border-divider rounded-md shadow-sm" title="Delete">
+<span class="material-symbols-outlined !text-[18px]">delete</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+<div class="bg-background-light p-3 rounded-lg border border-divider">
+<p class="text-xs font-bold text-secondary uppercase mb-2">Regions</p>
+<div class="flex flex-wrap gap-2">
+<span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-white border border-divider text-dark">
+                                            Rest of Vietnam
+                                        </span>
+</div>
+</div>
+<div class="bg-background-light p-3 rounded-lg border border-divider">
+<p class="text-xs font-bold text-secondary uppercase mb-2">Rates</p>
+<div class="space-y-2">
+<div class="flex justify-between items-center text-sm">
+<span class="text-dark">Standard</span>
+<span class="text-danger font-bold">35,000 ₫</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Shipping Methods Definition -->
+<div class="bg-white rounded-xl shadow-sm border border-divider p-6">
+<h3 class="font-bold text-lg text-dark mb-1">Global Method Definitions</h3>
+<p class="text-secondary text-sm mb-6">Configure the default names and estimated times for your shipping methods.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Method Card 1 -->
+<div class="border border-divider rounded-lg p-4 bg-background-light relative">
+<div class="absolute top-4 right-4">
+<button aria-checked="true" class="bg-primary relative inline-flex h-5 w-9 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" role="switch" type="button">
+<span aria-hidden="true" class="translate-x-4 pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+</button>
+</div>
+<div class="mb-4">
+<label class="block text-xs font-bold text-secondary uppercase mb-1">Method Name</label>
+<input class="w-full bg-white border border-divider rounded px-3 py-2 text-sm text-dark font-medium focus:border-dark focus:ring-0" type="text" value="Standard Delivery"/>
+</div>
+<div>
+<label class="block text-xs font-bold text-secondary uppercase mb-1">Est. Delivery Time</label>
+<input class="w-full bg-white border border-divider rounded px-3 py-2 text-sm text-secondary focus:text-dark focus:border-dark focus:ring-0" type="text" value="3-5 Business Days"/>
+</div>
+</div>
+<!-- Method Card 2 -->
+<div class="border border-divider rounded-lg p-4 bg-background-light relative">
+<div class="absolute top-4 right-4">
+<button aria-checked="true" class="bg-primary relative inline-flex h-5 w-9 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" role="switch" type="button">
+<span aria-hidden="true" class="translate-x-4 pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+</button>
+</div>
+<div class="mb-4">
+<label class="block text-xs font-bold text-secondary uppercase mb-1">Method Name</label>
+<input class="w-full bg-white border border-divider rounded px-3 py-2 text-sm text-dark font-medium focus:border-dark focus:ring-0" type="text" value="Express Delivery"/>
+</div>
+<div>
+<label class="block text-xs font-bold text-secondary uppercase mb-1">Est. Delivery Time</label>
+<input class="w-full bg-white border border-divider rounded px-3 py-2 text-sm text-secondary focus:text-dark focus:border-dark focus:ring-0" type="text" value="1-2 Business Days"/>
+</div>
+</div>
+<!-- Add Method Button -->
+<button class="border border-dashed border-secondary rounded-lg p-4 flex flex-col items-center justify-center text-secondary hover:text-danger hover:border-danger hover:bg-white transition-all min-h-[160px]">
+<span class="material-symbols-outlined !text-[32px] mb-2">add_circle</span>
+<span class="font-medium text-sm">Add New Method</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-dark text-white py-12 px-6 mt-auto">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+<div>
+<div class="flex items-center gap-2 mb-4">
+<div class="bg-white text-dark p-1 rounded-sm">
+<span class="material-symbols-outlined !text-[20px]">fitness_center</span>
+</div>
+<span class="text-xl font-bold">N2 Sport Admin</span>
+</div>
+<p class="text-secondary text-sm max-w-xs">Empowering your sports business with advanced management tools.</p>
+</div>
+<div class="flex flex-wrap gap-8 text-sm text-secondary">
+<a class="hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="hover:text-primary transition-colors" href="#">Orders</a>
+<a class="hover:text-primary transition-colors" href="#">Products</a>
+<a class="hover:text-primary transition-colors" href="#">Customers</a>
+<a class="hover:text-primary transition-colors" href="#">Support</a>
+</div>
+</div>
+<div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-gray-800 text-xs text-secondary flex justify-between">
+<span>© 2023 N2 Sport. All rights reserved.</span>
+<span>v2.4.0</span>
+</div>
+</footer>
+<!-- Sticky Action Bar (Shows when changes detected - always visible for this demo) -->
+<div class="fixed bottom-0 left-0 right-0 bg-white border-t border-divider p-4 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] z-40 animate-slide-up">
+<div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary animate-pulse">sync</span>
+<span class="text-sm font-medium text-dark">Unsaved changes detected. <span class="text-primary ml-1 hidden sm:inline">Auto-saving enabled.</span></span>
+</div>
+<div class="flex items-center gap-3 w-full sm:w-auto">
+<button class="flex-1 sm:flex-none px-6 py-2.5 rounded-lg border border-secondary text-dark font-medium hover:bg-gray-50 transition-colors">Cancel</button>
+<button class="flex-1 sm:flex-none px-6 py-2.5 rounded-lg bg-danger text-white font-bold hover:bg-red-700 shadow-md transition-all transform hover:scale-105">Save Changes</button>
+</div>
+</div>
+</div>
+</body></html>

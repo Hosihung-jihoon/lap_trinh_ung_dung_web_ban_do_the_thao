@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>N2 Sport - Staff Management</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#AFED00",
+                        "alert": "#E42C14",
+                        "dark": "#111111",
+                        "gray-text": "#A5A5A5",
+                        "gray-bg": "#E8E8E8",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#1e230f",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "sans": ["Inter", "sans-serif"],
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom Scrollbar for tabs if needed */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* Toggle Switch Styling */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #AFED00;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #AFED00;
+        }
+    </style>
+</head>
+<body class="bg-white text-dark font-display antialiased flex flex-col min-h-screen relative">
+<!-- Sticky Header -->
+<header class="sticky top-0 z-50 bg-white border-b border-gray-bg h-16 flex items-center px-4 lg:px-10 justify-between">
+<div class="flex items-center gap-4 lg:gap-8">
+<div class="flex items-center gap-2">
+<div class="text-primary">
+<span class="material-symbols-outlined text-4xl">sports_score</span>
+</div>
+<h1 class="text-dark text-xl font-bold tracking-tight">N2 Sport <span class="text-gray-text font-normal text-sm ml-1">Admin</span></h1>
+</div>
+<!-- Global Search -->
+<div class="hidden md:flex items-center max-w-md w-64 h-10">
+<div class="relative w-full h-full">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-text">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="block w-full h-full pl-10 pr-3 py-2 border border-gray-text rounded-lg leading-5 bg-white placeholder-gray-text focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary sm:text-sm" placeholder="Search admin..." type="text"/>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4 lg:gap-6">
+<!-- Notification Bell -->
+<button class="relative p-2 text-dark hover:bg-gray-bg rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-alert opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-alert"></span>
+</span>
+</button>
+<!-- User Profile -->
+<div class="flex items-center gap-3 cursor-pointer group">
+<div class="w-9 h-9 rounded-full bg-gray-200 bg-center bg-cover border border-gray-bg" data-alt="Admin user profile picture" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDOLUSBdK1OZrzcqI3KLDmDBgR_DC9CKEVzkt8F7NBNVf-5c7lodpmVJzbjPlRNyfHqY_PRMm7-0pmnyog28GqaPyD5le4uClVr39dgicy-L7Br6xj2JnhYg6zJT6q-O7YQm00eMyFWsbgdD49zq5rsHHw1XY3AKaix8lV6ddh_f0-HIOuKpCSBFsriD-vRleaqj1EKam-535l-ZkeYd_uiFSThUUjWjmFK_VN_YiN1pi2v-sSR0BK5VxhS-8ChbbZM8WJKFPQtjoRK');"></div>
+<div class="hidden lg:flex flex-col">
+<span class="text-xs font-semibold text-dark">Admin User</span>
+<span class="text-[10px] text-gray-text">Super Admin</span>
+</div>
+<span class="material-symbols-outlined text-gray-text group-hover:text-dark transition-colors text-lg">expand_more</span>
+</div>
+</div>
+</header>
+<!-- Main Layout -->
+<div class="flex-1 flex flex-col w-full max-w-[1440px] mx-auto">
+<!-- Breadcrumb / Back (Optional) -->
+<div class="px-4 lg:px-10 py-4 hidden">
+<a class="flex items-center gap-1 text-sm text-gray-text hover:text-dark" href="#">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+                Back to Dashboard
+             </a>
+</div>
+<!-- Tabbed Navigation -->
+<div class="px-4 lg:px-10 border-b border-gray-bg overflow-x-auto no-scrollbar">
+<nav aria-label="Tabs" class="flex space-x-8 min-w-max">
+<a class="group border-b-2 border-transparent py-4 px-1 text-sm font-medium text-gray-text hover:text-alert hover:border-transparent transition-colors" href="#">
+                    General Settings
+                </a>
+<a class="group border-b-2 border-transparent py-4 px-1 text-sm font-medium text-gray-text hover:text-alert hover:border-transparent transition-colors" href="#">
+                    Payment Settings
+                </a>
+<a class="group border-b-2 border-transparent py-4 px-1 text-sm font-medium text-gray-text hover:text-alert hover:border-transparent transition-colors" href="#">
+                    Shipping Settings
+                </a>
+<a class="group border-b-2 border-transparent py-4 px-1 text-sm font-medium text-gray-text hover:text-alert hover:border-transparent transition-colors" href="#">
+                    Email Settings
+                </a>
+<a class="group border-b-2 border-transparent py-4 px-1 text-sm font-medium text-gray-text hover:text-alert hover:border-transparent transition-colors" href="#">
+                    Role &amp; Permissions
+                </a>
+<a aria-current="page" class="group border-b-2 border-primary py-4 px-1 text-sm font-bold text-dark" href="#">
+                    Staff Management
+                </a>
+</nav>
+</div>
+<!-- Content Area -->
+<main class="flex-1 px-4 lg:px-10 py-8 bg-white pb-32"> <!-- pb-32 for sticky footer clearance -->
+<!-- Page Heading & Actions -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+<div>
+<h2 class="text-3xl font-bold text-dark tracking-tight">Staff Management</h2>
+<p class="text-gray-text text-sm mt-1">Manage access, roles, and permissions for your team members.</p>
+</div>
+<button class="flex items-center justify-center gap-2 bg-dark hover:bg-opacity-90 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors shadow-sm">
+<span class="material-symbols-outlined text-lg">add</span>
+<span>Add Staff Member</span>
+</button>
+</div>
+<!-- Filters & Controls -->
+<div class="bg-white rounded-xl mb-6 flex flex-col sm:flex-row gap-4">
+<div class="relative flex-1">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-text">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-2.5 border border-gray-bg rounded-lg text-dark placeholder-gray-text focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary sm:text-sm bg-[#fafafa]" placeholder="Search by name, email, or role..." type="text"/>
+</div>
+<div class="flex gap-3">
+<div class="relative">
+<select class="appearance-none h-full pl-4 pr-10 py-2.5 border border-gray-bg rounded-lg text-dark bg-white focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-sm font-medium cursor-pointer min-w-[140px]">
+<option>All Roles</option>
+<option>Admin</option>
+<option>Editor</option>
+<option>Support</option>
+<option>Fulfillment</option>
+</select>
+<div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-gray-text">
+<span class="material-symbols-outlined text-lg">expand_more</span>
+</div>
+</div>
+<button class="flex items-center justify-center h-full px-4 py-2.5 border border-gray-bg rounded-lg text-dark hover:bg-gray-50 transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+</div>
+<!-- Staff Table -->
+<div class="border border-gray-bg rounded-xl overflow-hidden bg-white shadow-sm">
+<div class="overflow-x-auto">
+<table class="min-w-full divide-y divide-gray-bg">
+<thead class="bg-[#FAFAFA]">
+<tr>
+<th class="px-6 py-4 text-left text-xs font-bold text-gray-text uppercase tracking-wider" scope="col">Name</th>
+<th class="px-6 py-4 text-left text-xs font-bold text-gray-text uppercase tracking-wider" scope="col">Email</th>
+<th class="px-6 py-4 text-left text-xs font-bold text-gray-text uppercase tracking-wider" scope="col">Role</th>
+<th class="px-6 py-4 text-left text-xs font-bold text-gray-text uppercase tracking-wider" scope="col">Last Login</th>
+<th class="px-6 py-4 text-left text-xs font-bold text-gray-text uppercase tracking-wider" scope="col">Status</th>
+<th class="px-6 py-4 text-right text-xs font-bold text-gray-text uppercase tracking-wider" scope="col">Actions</th>
+</tr>
+</thead>
+<tbody class="bg-white divide-y divide-gray-bg">
+<!-- Row 1: Active Admin -->
+<tr class="hover:bg-[#fafafa] transition-colors group">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="h-10 w-10 flex-shrink-0">
+<div class="h-10 w-10 rounded-full bg-gray-200 bg-cover bg-center" data-alt="Nguyen Van A profile" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBOsQRec8C2uYtaVQ8CMdngmVOuRipg-Mm3VRnnpk3CNSCMB0hR-Q1O1p2ExXyszfQNhO_utW1Cu79ivyIAZFX1XiqGkkcIIxW-DwEhzjXaRkjy-ogY1zGZBVnwu4t8Fhgel-MS2ihOWJMHMuO1Pw4khDX_WhSPuSIRVcM-AWC1nPRmJ4I_QlNk1kXpsDGRf-hHI8VQKqVFgfAZIvfq5m52-TXQ3nTeIw_cTgtujoqTRNxo2yxrzeIuRvjFoVX-L1SuEsQHKTuxqFPx');"></div>
+</div>
+<div class="ml-4">
+<div class="text-sm font-semibold text-dark hover:underline cursor-pointer">Nguyen Van A</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-gray-text">a.nguyen@n2sport.com</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-3 py-1 inline-flex text-xs leading-5 font-bold rounded-full bg-primary text-dark">
+                                        Admin
+                                    </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-text">
+                                    2 hours ago
+                                </td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer" id="toggle1" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-gray-300 cursor-pointer" for="toggle1"></label>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<div class="flex items-center justify-end gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-gray-400 hover:text-primary transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="text-gray-400 hover:text-alert transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Inactive User -->
+<tr class="hover:bg-[#fafafa] transition-colors group">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="h-10 w-10 flex-shrink-0">
+<div class="h-10 w-10 rounded-full bg-gray-200 bg-cover bg-center" data-alt="Tran Thi B profile" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCpBpgWzVOLeDCxdHKTvkamsSIuwjBqQzb-R1yhw3xDZEvmSbKLIzlcwt79FQIqsQ28vT5k-tjsaHMgW4OvtFY6kIIMIXy0cqO_EDVGB5s5EAQqvOE5lOBWvOT2DQ7VpbiG76JiifaP382Fbrhq3ckBYpooQMscv_Q3muQ0lIdVIJfI-MFnclBzNWtimqlBvYoSBslgHqmfa60QHG7tICPpr8HlCf-rpHiax1i_fFHznJVTgiUMVO_oYsV0jYKJ4EtCDV8yj-hIB9xj');"></div>
+</div>
+<div class="ml-4">
+<div class="text-sm font-semibold text-dark hover:underline cursor-pointer">Tran Thi B</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-gray-text">b.tran@n2sport.com</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-3 py-1 inline-flex text-xs leading-5 font-bold rounded-full bg-gray-bg text-gray-text">
+                                        Editor
+                                    </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-text">
+                                    1 day ago
+                                </td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer border-gray-300" id="toggle2" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-gray-300 cursor-pointer" for="toggle2"></label>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<div class="flex items-center justify-end gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-gray-400 hover:text-primary transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="text-gray-400 hover:text-alert transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Support -->
+<tr class="hover:bg-[#fafafa] transition-colors group">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="h-10 w-10 flex-shrink-0 flex items-center justify-center bg-purple-100 text-purple-600 rounded-full font-bold text-sm">
+                                            LC
+                                        </div>
+<div class="ml-4">
+<div class="text-sm font-semibold text-dark hover:underline cursor-pointer">Le Van C</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-gray-text">c.le@n2sport.com</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-3 py-1 inline-flex text-xs leading-5 font-bold rounded-full bg-gray-bg text-gray-text">
+                                        Support
+                                    </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-text">
+                                    5 mins ago
+                                </td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer" id="toggle3" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-gray-300 cursor-pointer" for="toggle3"></label>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<div class="flex items-center justify-end gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-gray-400 hover:text-primary transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="text-gray-400 hover:text-alert transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4: Fulfillment -->
+<tr class="hover:bg-[#fafafa] transition-colors group">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="h-10 w-10 flex-shrink-0">
+<div class="h-10 w-10 rounded-full bg-gray-200 bg-cover bg-center" data-alt="Pham Thi D profile" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCOVDd-5JIPvWe6IOe-2tYAx5mMSsVfx9a-VwKHjUKpj67QTAT_CIl-8chxh_myVXtMgK8qxbSDNjQgEga6Oh9TIQqgCnqopcXrD-FPAiR3WfaeVUrGy8wpfAzsFP3Zt1KhA0dRmf28ZlACM3Mfutje6xjhxJiNxWxr6WrtumIZKnkjqAALNgBZaVnSQSmrLBYsgbvrn7EBd8INvB7qx1sN-UrA5yQcaaKjriXMqmt8BxcmDnbs61P5KWKZOkIxhgOA3iY7kMakP2Nd');"></div>
+</div>
+<div class="ml-4">
+<div class="text-sm font-semibold text-dark hover:underline cursor-pointer">Pham Thi D</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-gray-text">d.pham@n2sport.com</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-3 py-1 inline-flex text-xs leading-5 font-bold rounded-full bg-gray-bg text-gray-text">
+                                        Fulfillment
+                                    </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-text">
+                                    3 days ago
+                                </td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer" id="toggle4" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-gray-300 cursor-pointer" for="toggle4"></label>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<div class="flex items-center justify-end gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-gray-400 hover:text-primary transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="text-gray-400 hover:text-alert transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-bg sm:px-6">
+<div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+<div>
+<p class="text-sm text-gray-text">
+                                Showing <span class="font-medium text-dark">1</span> to <span class="font-medium text-dark">4</span> of <span class="font-medium text-dark">12</span> results
+                            </p>
+</div>
+<div>
+<nav aria-label="Pagination" class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px">
+<a class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-bg bg-white text-sm font-medium text-gray-500 hover:bg-gray-50" href="#">
+<span class="sr-only">Previous</span>
+<span class="material-symbols-outlined text-lg">chevron_left</span>
+</a>
+<a aria-current="page" class="z-10 bg-primary/10 border-primary text-primary relative inline-flex items-center px-4 py-2 border text-sm font-bold" href="#">
+                                    1
+                                </a>
+<a class="bg-white border-gray-bg text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium" href="#">
+                                    2
+                                </a>
+<a class="bg-white border-gray-bg text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium" href="#">
+                                    3
+                                </a>
+<a class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-bg bg-white text-sm font-medium text-gray-500 hover:bg-gray-50" href="#">
+<span class="sr-only">Next</span>
+<span class="material-symbols-outlined text-lg">chevron_right</span>
+</a>
+</nav>
+</div>
+</div>
+</div>
+</div>
+<!-- "Add Staff" Modal - Visually implied as active or rendered for demo -->
+<!-- Using a details/summary or checkbo hack to toggle visibility would require JS or complex CSS.
+                 Instead, I will render the structure below as if it's a dialog on top for the screenshot, 
+                 OR keep it clean. The request is for the *Page*. 
+                 I will keep the page clean but add the Modal markup HIDDEN so it respects the "no js" rule but is present in code.
+            -->
+<div aria-labelledby="modal-title" aria-modal="true" class="hidden fixed inset-0 z-50 overflow-y-auto" id="add-staff-modal" role="dialog">
+<div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+<div aria-hidden="true" class="fixed inset-0 bg-dark bg-opacity-75 transition-opacity"></div>
+<span aria-hidden="true" class="hidden sm:inline-block sm:align-middle sm:h-screen">​</span>
+<div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg w-full">
+<div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+<h3 class="text-lg leading-6 font-bold text-dark mb-4" id="modal-title">Add New Staff Member</h3>
+<div class="space-y-4">
+<div>
+<label class="block text-sm font-medium text-gray-700">Full Name</label>
+<input class="mt-1 block w-full border border-gray-text rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700">Email Address</label>
+<input class="mt-1 block w-full border border-gray-text rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm" type="email"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700">Password</label>
+<input class="mt-1 block w-full border border-gray-text rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm" type="password"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700">Role</label>
+<select class="mt-1 block w-full border border-gray-text rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm bg-white">
+<option>Select a role...</option>
+<option>Admin</option>
+<option>Editor</option>
+<option>Support</option>
+</select>
+</div>
+<div class="flex items-center">
+<input checked="" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded" id="invite" name="invite" type="checkbox"/>
+<label class="ml-2 block text-sm text-dark" for="invite">
+                                        Send invitation email to this address
+                                    </label>
+</div>
+</div>
+</div>
+<div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+<button class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-dark text-base font-medium text-white hover:bg-opacity-90 focus:outline-none sm:ml-3 sm:w-auto sm:text-sm" type="button">
+                                Add Member
+                            </button>
+<button class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" type="button">
+                                Cancel
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Sticky Save Bar -->
+<div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-bg p-4 flex items-center justify-between shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] z-40 transform translate-y-0 transition-transform duration-300">
+<div class="flex items-center gap-2">
+<span class="text-primary font-medium text-sm animate-pulse">Auto-saving...</span>
+<span class="text-gray-text text-xs ml-2 hidden sm:inline-block">Last saved 2 mins ago</span>
+</div>
+<div class="flex gap-4">
+<button class="px-4 py-2 rounded-lg border border-gray-text text-dark text-sm font-medium hover:bg-gray-50 transition-colors">
+                Discard
+            </button>
+<button class="px-6 py-2 rounded-lg bg-alert text-white text-sm font-bold shadow-md hover:bg-opacity-90 transition-colors">
+                Save Changes
+            </button>
+</div>
+</div>
+<!-- Footer -->
+<footer class="bg-dark text-white py-12">
+<div class="max-w-[1440px] mx-auto px-4 lg:px-10 flex flex-col md:flex-row justify-between items-start gap-8">
+<div>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary text-2xl">sports_score</span>
+<span class="text-xl font-bold">N2 Sport</span>
+</div>
+<p class="text-gray-400 text-sm max-w-xs">Premium sports administration portal for managing your e-commerce platform efficiently.</p>
+</div>
+<div class="flex gap-12">
+<div>
+<h4 class="font-bold mb-4 text-sm uppercase tracking-wider text-gray-500">Platform</h4>
+<ul class="space-y-2 text-sm text-gray-300">
+<li><a class="hover:text-primary transition-colors" href="#">Dashboard</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Orders</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Products</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-4 text-sm uppercase tracking-wider text-gray-500">Support</h4>
+<ul class="space-y-2 text-sm text-gray-300">
+<li><a class="hover:text-primary transition-colors" href="#">Help Center</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">API Docs</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Contact</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="max-w-[1440px] mx-auto px-4 lg:px-10 mt-12 pt-8 border-t border-gray-800 text-xs text-gray-500 flex justify-between items-center">
+<p>© 2023 N2 Sport Inc. All rights reserved.</p>
+<p>Version 2.4.0</p>
+</div>
+</footer>
+</body></html>

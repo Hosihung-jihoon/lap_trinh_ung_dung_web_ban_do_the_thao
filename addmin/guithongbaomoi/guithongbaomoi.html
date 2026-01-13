@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>N2 Sport Admin - Send Notification</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#aceb00", // Closest match to #AFED00
+                        "alert": "#E42C14",
+                        "dark": "#111111",
+                        "secondary-text": "#A5A5A5",
+                        "secondary-bg": "#E8E8E8",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#1e230f",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>/* Custom scrollbar for a cleaner look */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px
+    }
+::-webkit-scrollbar-track {
+    background: #f1f1f1
+    }
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px
+    }
+.form-radio:checked {
+    background-color: #aceb00;
+    border-color: #aceb00;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDV88R1InYmQ83Lmbs5tUv_7AQx4o4WdFTJv9iCKaAS0alI_y0rn3OXD7bXj-_JwXMRUlH7-2vezSizOHbsqn4R6zJ-S5e91DN8qrFXWveYzdtYVTaTo4IRxb4oitQzdqCIojpVNksPg2_v9YZKBbOsXLK3-O2S7issYFqPRhBdkcjGfcvfI4d0I-iF7zsV_gjgF0cgJpcNI_B77jT0GWIPuf1HbZ25aTABjJhtw_l4CEJR74WB2YAwnCAw7XpE6Tv3xgIjQyJVxVeh)
+    }
+.form-checkbox:checked {
+    background-color: #aceb00;
+    border-color: #aceb00;
+    color: black
+    }</style>
+</head>
+<body class="bg-white dark:bg-background-dark font-display text-dark antialiased flex flex-col min-h-screen">
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-white border-b border-[#f3f5f0] shadow-sm">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<!-- Left: Logo & Search -->
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-2">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-dark">
+<span class="material-symbols-outlined font-bold">sports_soccer</span>
+</div>
+<h1 class="text-dark text-xl font-bold tracking-tight">N2 Sport Admin</h1>
+</div>
+<div class="hidden md:flex relative max-w-md w-64">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-secondary-text text-[20px]">search</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-2 border border-secondary-text rounded-lg leading-5 bg-white placeholder-secondary-text focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary sm:text-sm" placeholder="Search orders, users..." type="text"/>
+</div>
+</div>
+<!-- Right: Nav & Profile -->
+<div class="flex items-center gap-6">
+<nav class="hidden lg:flex gap-6">
+<a class="text-sm font-medium text-dark hover:text-primary transition-colors" href="#">Dashboard</a>
+<div class="relative group">
+<button class="flex items-center gap-1 text-sm font-medium text-dark hover:text-primary transition-colors">
+                                Notifications
+                                <span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+</div>
+<a class="text-sm font-medium text-dark hover:text-primary transition-colors" href="#">Users</a>
+</nav>
+<div class="flex items-center gap-3 border-l border-gray-200 pl-6">
+<button class="relative p-2 text-dark hover:bg-background-light rounded-full transition-colors group">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-alert text-[10px] font-bold text-white ring-2 ring-white">3</span>
+</button>
+<div class="flex items-center gap-2 cursor-pointer hover:bg-background-light p-1.5 rounded-lg transition-colors">
+<div class="h-8 w-8 rounded-full bg-secondary-bg flex items-center justify-center border border-gray-200 overflow-hidden">
+<img alt="Admin user avatar" class="h-full w-full object-cover" data-alt="Portrait of admin user" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIwtawtBuzHa8wcXPhCrhDHsmQx6pzF7dkZsEKDXGGqX312xhh48vLA1UJqfwkR8_QCXeXhaas_pUaef_91M9MRmTvKe7hw8fAekjvP1N43GKnD0-0Kg8e-ns3Qihaw3Fiq8Urb4TkARtxWv8RMeRqcC1Cj-FpEQiLuykGJvM767Pc4Szi18ugUmqTxAeUw9oUkW2x2u612kQMH4V0gmaNReTD1akA0zNfJjXxcLbzRuZQJtmFFaIOVJ3DHg78uiD8qrwfQL0mROen"/>
+</div>
+<span class="text-sm font-medium text-dark hidden sm:block">Admin User</span>
+<span class="material-symbols-outlined text-secondary-text text-[18px]">expand_more</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow bg-white">
+<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<!-- Page Heading -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+<h2 class="text-3xl font-bold text-dark tracking-tight">Quản lý thông báo</h2>
+<div class="text-sm text-secondary-text">Admin / Notifications / Send New</div>
+</div>
+<!-- Tabs -->
+<div class="border-b border-gray-200 mb-8">
+<nav aria-label="Tabs" class="-mb-px flex space-x-8">
+<a class="border-primary text-dark whitespace-nowrap py-4 px-1 border-b-[3px] font-bold text-sm flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-[20px]">send</span>
+                        Send New Notification
+                    </a>
+<a class="border-transparent text-secondary-text hover:text-alert hover:border-alert whitespace-nowrap py-4 px-1 border-b-[3px] font-medium text-sm flex items-center gap-2 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">history</span>
+                        Notification History
+                    </a>
+</nav>
+</div>
+<!-- Form Container -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Main Form Area -->
+<div class="lg:col-span-2 space-y-6">
+<!-- Card: Recipients -->
+<div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+<div class="bg-secondary-bg/30 px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+<h3 class="text-lg font-bold text-dark">1. Select Recipients</h3>
+<span class="bg-primary/20 text-dark text-xs font-bold px-2 py-1 rounded">Step 1 of 3</span>
+</div>
+<div class="p-6">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+<label class="relative flex cursor-pointer rounded-lg border border-gray-200 bg-white p-4 shadow-sm focus:outline-none has-[:checked]:border-primary has-[:checked]:ring-1 has-[:checked]:ring-primary hover:border-gray-300">
+<input checked="" class="sr-only" name="recipient-type" type="radio" value="all"/>
+<span class="flex flex-1">
+<span class="flex flex-col">
+<span class="block text-sm font-medium text-dark">All Users</span>
+<span class="mt-1 flex items-center text-xs text-secondary-text">Send to entire database</span>
+</span>
+</span>
+<span class="material-symbols-outlined text-primary h-5 w-5 absolute top-4 right-4 hidden has-[:checked]:block">check_circle</span>
+</label>
+<label class="relative flex cursor-pointer rounded-lg border border-gray-200 bg-white p-4 shadow-sm focus:outline-none has-[:checked]:border-primary has-[:checked]:ring-1 has-[:checked]:ring-primary hover:border-gray-300">
+<input class="sr-only" name="recipient-type" type="radio" value="specific"/>
+<span class="flex flex-1">
+<span class="flex flex-col">
+<span class="block text-sm font-medium text-dark">Specific User</span>
+<span class="mt-1 flex items-center text-xs text-secondary-text">Select individual</span>
+</span>
+</span>
+</label>
+<label class="relative flex cursor-pointer rounded-lg border border-gray-200 bg-white p-4 shadow-sm focus:outline-none has-[:checked]:border-primary has-[:checked]:ring-1 has-[:checked]:ring-primary hover:border-gray-300">
+<input class="sr-only" name="recipient-type" type="radio" value="segment"/>
+<span class="flex flex-1">
+<span class="flex flex-col">
+<span class="block text-sm font-medium text-dark">User Segment</span>
+<span class="mt-1 flex items-center text-xs text-secondary-text">Based on criteria</span>
+</span>
+</span>
+</label>
+</div>
+<!-- Conditional Input: Specific User -->
+<div class="relative hidden">
+<label class="block text-sm font-medium text-dark mb-1">Search User</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-secondary-text">search</span>
+</span>
+<input class="block w-full pl-10 pr-10 py-2 border border-secondary-text rounded-lg focus:ring-primary focus:border-primary sm:text-sm" placeholder="Enter name, email or ID" type="text"/>
+</div>
+</div>
+<!-- Conditional Input: Segment Builder -->
+<div class="bg-gray-50 rounded-lg border border-dashed border-secondary-text p-4">
+<div class="flex items-center justify-between mb-3">
+<span class="text-sm font-bold text-dark">Filter Rules</span>
+<button class="text-xs text-primary font-bold hover:underline">+ Add Rule</button>
+</div>
+<div class="space-y-2">
+<div class="flex items-center gap-2 bg-white p-2 rounded border border-gray-200">
+<select class="text-sm border-none bg-transparent font-medium focus:ring-0 text-dark"><option>Total Orders</option></select>
+<span class="text-secondary-text text-xs">is greater than</span>
+<input class="w-16 h-8 text-sm border-gray-200 rounded focus:border-primary focus:ring-primary" type="number" value="5"/>
+<button class="ml-auto text-secondary-text hover:text-alert"><span class="material-symbols-outlined text-[18px]">close</span></button>
+</div>
+<div class="flex items-center gap-2 bg-white p-2 rounded border border-gray-200">
+<select class="text-sm border-none bg-transparent font-medium focus:ring-0 text-dark"><option>Region</option></select>
+<span class="text-secondary-text text-xs">equals</span>
+<select class="text-sm border-gray-200 rounded focus:border-primary focus:ring-primary h-8 py-0"><option>Hanoi</option></select>
+<button class="ml-auto text-secondary-text hover:text-alert"><span class="material-symbols-outlined text-[18px]">close</span></button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card: Content -->
+<div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+<div class="bg-secondary-bg/30 px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+<h3 class="text-lg font-bold text-dark">2. Notification Content</h3>
+<span class="bg-primary/20 text-dark text-xs font-bold px-2 py-1 rounded">Step 2 of 3</span>
+</div>
+<div class="p-6 space-y-5">
+<div>
+<div class="flex justify-between">
+<label class="block text-sm font-medium text-dark" for="title">Title <span class="text-alert">*</span></label>
+<span class="text-xs text-secondary-text">0/50</span>
+</div>
+<input class="mt-1 block w-full border-secondary-text rounded-lg shadow-sm focus:ring-primary focus:border-primary sm:text-sm" id="title" name="title" placeholder="e.g., Flash Sale: 50% Off Everything!" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-dark" for="message">Message <span class="text-alert">*</span></label>
+<div class="mt-1 rounded-lg shadow-sm border border-secondary-text overflow-hidden focus-within:ring-1 focus-within:ring-primary focus-within:border-primary">
+<div class="bg-gray-50 border-b border-gray-200 px-3 py-2 flex gap-2">
+<button class="p-1 hover:bg-gray-200 rounded text-secondary-text"><span class="material-symbols-outlined text-[18px]">format_bold</span></button>
+<button class="p-1 hover:bg-gray-200 rounded text-secondary-text"><span class="material-symbols-outlined text-[18px]">format_italic</span></button>
+<div class="w-px h-6 bg-gray-300 mx-1"></div>
+<button class="p-1 hover:bg-gray-200 rounded text-secondary-text"><span class="material-symbols-outlined text-[18px]">link</span></button>
+<button class="p-1 hover:bg-gray-200 rounded text-secondary-text"><span class="material-symbols-outlined text-[18px]">sentiment_satisfied</span></button>
+</div>
+<textarea class="block w-full border-none p-3 focus:ring-0 sm:text-sm bg-secondary-bg/20" id="message" name="message" placeholder="Type your message here..." rows="4"></textarea>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+<div>
+<label class="block text-sm font-medium text-dark" for="type">Notification Type</label>
+<select class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-secondary-text focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-lg" id="type" name="type">
+<option>Promo (Green)</option>
+<option>Warning (Red)</option>
+<option>Info (Gray)</option>
+<option>Order Update (Black)</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-medium text-dark" for="link">Destination Link (Optional)</label>
+<div class="mt-1 flex rounded-md shadow-sm">
+<input class="flex-1 min-w-0 block w-full px-3 py-2 rounded-none rounded-l-lg border-secondary-text focus:ring-primary focus:border-primary sm:text-sm" id="link" name="link" placeholder="https://n2sport.com/products/..." type="text"/>
+<button class="inline-flex items-center px-3 rounded-r-lg border border-l-0 border-secondary-text bg-gray-50 text-secondary-text text-sm hover:bg-gray-100" type="button">
+<span class="material-symbols-outlined text-[18px]">open_in_new</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Sidebar: Timing & Summary -->
+<div class="space-y-6">
+<!-- Timing Card -->
+<div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+<div class="bg-secondary-bg/30 px-6 py-4 border-b border-gray-200">
+<h3 class="text-lg font-bold text-dark">3. Timing</h3>
+</div>
+<div class="p-6">
+<div class="space-y-4">
+<label class="flex items-center">
+<input checked="" class="form-radio text-primary focus:ring-primary h-4 w-4" name="timing" type="radio" value="now"/>
+<span class="ml-3 block text-sm font-medium text-dark">Send Immediately</span>
+</label>
+<label class="flex items-center mb-2">
+<input class="form-radio text-primary focus:ring-primary h-4 w-4" name="timing" type="radio" value="schedule"/>
+<span class="ml-3 block text-sm font-medium text-dark">Schedule for later</span>
+</label>
+<div class="ml-7">
+<div class="relative">
+<input class="block w-full border-secondary-text rounded-lg shadow-sm focus:ring-primary focus:border-primary sm:text-sm text-secondary-text" type="datetime-local"/>
+</div>
+<p class="mt-2 text-xs text-secondary-text">Timezone: Asia/Ho_Chi_Minh (GMT+7)</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Summary / Preview Card -->
+<div class="bg-secondary-bg rounded-xl p-6 border border-gray-200">
+<h4 class="text-sm font-bold text-dark uppercase tracking-wider mb-4">Preview</h4>
+<!-- Mobile Notification Preview Mockup -->
+<div class="bg-white rounded-lg shadow-md p-4 max-w-sm mx-auto border border-gray-100">
+<div class="flex gap-3">
+<div class="flex-shrink-0">
+<div class="size-10 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-dark">sports_soccer</span>
+</div>
+</div>
+<div class="flex-1 space-y-1">
+<div class="flex justify-between items-start">
+<p class="text-sm font-bold text-dark">N2 Sport</p>
+<p class="text-[10px] text-secondary-text">now</p>
+</div>
+<p class="text-sm font-medium text-dark">Flash Sale: 50% Off Everything!</p>
+<p class="text-xs text-gray-500 line-clamp-2">Get your gear now before it's gone. Limited time offer for our loyal members.</p>
+</div>
+</div>
+</div>
+<div class="mt-6 space-y-3">
+<button class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-bold text-white bg-alert hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all">
+                                Send Notification
+                            </button>
+<button class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-bold text-dark bg-primary hover:bg-[#9ed600] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all">
+<span class="material-symbols-outlined text-[18px] mr-2">visibility</span> Full Preview
+                            </button>
+<button class="w-full flex justify-center py-3 px-4 border border-secondary-text rounded-lg shadow-sm text-sm font-bold text-dark bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-all">
+                                Cancel
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-dark text-white py-8 mt-auto">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">sports_soccer</span>
+<span class="font-bold text-lg">N2 Sport Admin</span>
+</div>
+<div class="flex gap-6 text-sm text-gray-400">
+<a class="hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-white transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-white transition-colors" href="#">Support</a>
+</div>
+<div class="text-sm text-gray-500">
+                    © 2023 N2 Sport. All rights reserved.
+                </div>
+</div>
+</div>
+</footer>
+</body></html>

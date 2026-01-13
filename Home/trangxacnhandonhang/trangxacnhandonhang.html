@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>N2 Sport - Xác Nhận Đơn Hàng</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "n2-green": "#AFED00",
+              "n2-red": "#E42C14",
+              "n2-black": "#111111",
+              "n2-grey": "#A5A5A5",
+              "n2-light-grey": "#E8E8E8",
+              "n2-white": "#FFFFFF",
+            },
+            fontFamily: {
+              "display": ["Lexend", "sans-serif"],
+              "body": ["Lexend", "sans-serif"],
+            },
+            animation: {
+                'bounce-slight': 'bounce-slight 2s infinite',
+                'fade-in': 'fadeIn 0.5s ease-out forwards',
+            },
+            keyframes: {
+                'bounce-slight': {
+                    '0%, 100%': { transform: 'translateY(-5%)' },
+                    '50%': { transform: 'translateY(0)' },
+                },
+                fadeIn: {
+                    '0%': { opacity: '0', transform: 'translateY(10px)' },
+                    '100%': { opacity: '1', transform: 'translateY(0)' },
+                }
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+            background-color: #FFFFFF;
+            color: #111111;
+        }
+        
+        /* Print Styles */
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            .print-only {
+                display: block !important;
+            }
+            body {
+                background-color: white;
+                color: black;
+            }
+            .print-border {
+                border: 1px solid #ddd;
+            }
+            /* Reset specific colors for print to save ink */
+            .text-n2-green, .text-n2-red {
+                color: black !important;
+                font-weight: bold;
+            }
+            .bg-n2-light-grey {
+                background-color: white !important;
+                border: 1px solid #eee;
+            }
+        }
+        
+        .scale-in-center {
+            animation: scale-in-center 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        }
+        
+        @keyframes scale-in-center {
+            0% { transform: scale(0); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+<!-- Header (Sticky) -->
+<header class="sticky top-0 z-50 w-full bg-n2-white border-b border-n2-light-grey no-print shadow-sm">
+<div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-20">
+<!-- Logo -->
+<div class="flex-shrink-0 flex items-center gap-2">
+<a class="text-n2-green text-3xl font-bold tracking-tighter hover:opacity-80 transition" href="#">N2 Sport</a>
+</div>
+<!-- Desktop Nav -->
+<nav class="hidden md:flex gap-8">
+<a class="text-n2-black font-medium hover:text-n2-green transition" href="#">Nam</a>
+<a class="text-n2-black font-medium hover:text-n2-green transition" href="#">Nữ</a>
+<a class="text-n2-black font-medium hover:text-n2-green transition" href="#">Trẻ em</a>
+<a class="text-n2-black font-medium text-n2-red hover:text-n2-red/80 transition" href="#">Sale</a>
+</nav>
+<!-- Utilities -->
+<div class="flex items-center gap-4 lg:gap-6">
+<!-- Search Bar (Desktop) -->
+<div class="hidden lg:flex items-center relative">
+<input class="w-64 h-10 pl-4 pr-10 rounded-full border border-n2-grey bg-white focus:outline-none focus:border-n2-green focus:ring-1 focus:ring-n2-green text-sm transition-colors placeholder:text-n2-grey" placeholder="Tìm kiếm sản phẩm..." type="text"/>
+<span class="material-symbols-outlined absolute right-3 text-n2-grey cursor-pointer">search</span>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-4">
+<button class="relative group">
+<span class="material-symbols-outlined text-n2-black text-[28px] group-hover:text-n2-green transition">shopping_cart</span>
+<span class="absolute -top-1 -right-2 bg-n2-red text-white text-[10px] font-bold h-5 w-5 flex items-center justify-center rounded-full">0</span>
+</button>
+<button class="group">
+<span class="material-symbols-outlined text-n2-black text-[28px] group-hover:text-n2-green transition">account_circle</span>
+</button>
+<!-- Mobile Menu Button -->
+<button class="md:hidden">
+<span class="material-symbols-outlined text-n2-black text-[28px]">menu</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow bg-white pb-20">
+<!-- Hero / Success Message -->
+<section class="pt-12 pb-8 px-4 text-center animate-fade-in">
+<div class="flex justify-center mb-6">
+<div class="w-24 h-24 rounded-full bg-n2-green/10 flex items-center justify-center scale-in-center">
+<span class="material-symbols-outlined text-n2-green text-[64px] font-bold">check_circle</span>
+</div>
+</div>
+<h1 class="text-3xl md:text-4xl font-bold text-n2-black mb-3 tracking-tight">Đặt hàng thành công!</h1>
+<p class="text-n2-grey max-w-lg mx-auto text-base md:text-lg mb-4 leading-relaxed">
+                Cảm ơn bạn đã mua sắm tại N2 Sport. Đơn hàng của bạn đã được xác nhận.
+            </p>
+<div class="inline-flex items-center gap-2 bg-n2-light-grey/50 px-4 py-2 rounded-lg border border-n2-light-grey">
+<span class="material-symbols-outlined text-n2-green">mail</span>
+<span class="text-sm text-n2-black font-medium">Xác nhận đơn hàng đã được gửi qua email của bạn</span>
+</div>
+</section>
+<!-- Container -->
+<div class="max-w-[1024px] mx-auto px-4 sm:px-6">
+<!-- Timeline Stepper -->
+<div class="mb-12 no-print">
+<div class="flex items-center justify-between relative w-full max-w-3xl mx-auto">
+<!-- Line Background -->
+<div class="absolute left-0 top-1/2 transform -translate-y-1/2 w-full h-1 bg-n2-light-grey -z-10"></div>
+<!-- Step 1: Active -->
+<div class="flex flex-col items-center gap-2 bg-white px-2">
+<div class="w-8 h-8 rounded-full bg-n2-green flex items-center justify-center border-4 border-white shadow-sm z-10">
+<span class="material-symbols-outlined text-n2-black text-sm font-bold">check</span>
+</div>
+<span class="text-xs md:text-sm font-bold text-n2-black">Xác nhận</span>
+</div>
+<!-- Step 2: Inactive -->
+<div class="flex flex-col items-center gap-2 bg-white px-2">
+<div class="w-8 h-8 rounded-full bg-n2-light-grey flex items-center justify-center border-4 border-white z-10">
+<span class="material-symbols-outlined text-n2-grey text-sm">inventory_2</span>
+</div>
+<span class="text-xs md:text-sm font-medium text-n2-grey">Chuẩn bị hàng</span>
+</div>
+<!-- Step 3: Inactive -->
+<div class="flex flex-col items-center gap-2 bg-white px-2">
+<div class="w-8 h-8 rounded-full bg-n2-light-grey flex items-center justify-center border-4 border-white z-10">
+<span class="material-symbols-outlined text-n2-grey text-sm">local_shipping</span>
+</div>
+<span class="text-xs md:text-sm font-medium text-n2-grey">Giao hàng</span>
+</div>
+<!-- Step 4: Inactive -->
+<div class="flex flex-col items-center gap-2 bg-white px-2">
+<div class="w-8 h-8 rounded-full bg-n2-light-grey flex items-center justify-center border-4 border-white z-10">
+<span class="material-symbols-outlined text-n2-grey text-sm">flag</span>
+</div>
+<span class="text-xs md:text-sm font-medium text-n2-grey">Hoàn thành</span>
+</div>
+</div>
+</div>
+<!-- Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 print-border">
+<!-- Left Column: Order Meta & Address -->
+<div class="lg:col-span-5 space-y-6">
+<!-- Order Info Card -->
+<div class="bg-n2-light-grey/30 border border-n2-light-grey rounded-xl overflow-hidden p-6 animate-fade-in" style="animation-delay: 0.1s;">
+<div class="flex items-center gap-2 mb-4 border-b border-n2-light-grey pb-3">
+<span class="material-symbols-outlined text-n2-black">receipt_long</span>
+<h2 class="text-lg font-bold text-n2-black">Thông tin đơn hàng</h2>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between">
+<span class="text-n2-grey text-sm">Mã đơn hàng:</span>
+<span class="text-n2-red font-bold font-mono text-base">#N2S-83921</span>
+</div>
+<div class="flex justify-between">
+<span class="text-n2-grey text-sm">Ngày đặt:</span>
+<span class="text-n2-black font-medium text-sm">24/05/2024</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-n2-grey text-sm">Thanh toán:</span>
+<span class="inline-flex items-center px-2 py-1 rounded bg-n2-green/20 text-n2-black text-xs font-bold border border-n2-green/30">
+                                    Đã thanh toán
+                                </span>
+</div>
+<div class="flex justify-between">
+<span class="text-n2-grey text-sm">Dự kiến giao:</span>
+<span class="text-n2-black font-medium text-sm">26/05 - 28/05/2024</span>
+</div>
+</div>
+</div>
+<!-- Shipping Info Card -->
+<div class="bg-white border border-n2-light-grey rounded-xl overflow-hidden p-6 shadow-sm animate-fade-in" style="animation-delay: 0.2s;">
+<div class="flex items-center gap-2 mb-4 border-b border-n2-light-grey pb-3">
+<span class="material-symbols-outlined text-n2-black">local_shipping</span>
+<h2 class="text-lg font-bold text-n2-black">Thông tin giao hàng</h2>
+</div>
+<div class="space-y-2">
+<p class="font-bold text-n2-black text-base">Nguyễn Văn A</p>
+<p class="text-n2-black text-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-n2-grey">call</span>
+                                0912 345 678
+                            </p>
+<p class="text-n2-grey text-sm leading-relaxed pt-2">
+                                Số 15, Ngõ 86, Đường Cầu Giấy, Quận Cầu Giấy, Hà Nội, Việt Nam.
+                            </p>
+</div>
+</div>
+<!-- Next Steps (Desktop Only location, moves on mobile if needed) -->
+<div class="bg-white p-6 no-print hidden lg:block animate-fade-in" style="animation-delay: 0.3s;">
+<h3 class="font-bold text-n2-black mb-3 text-lg">Tiếp theo?</h3>
+<ul class="space-y-3">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-n2-green text-xl mt-0.5">mail_outline</span>
+<span class="text-n2-grey text-sm">Kiểm tra email để xem hóa đơn điện tử.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-n2-green text-xl mt-0.5">location_on</span>
+<span class="text-n2-grey text-sm">Bạn có thể theo dõi vị trí đơn hàng trong phần "Tài khoản".</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-n2-green text-xl mt-0.5">support_agent</span>
+<span class="text-n2-grey text-sm">Liên hệ hotline 1900 1234 nếu cần thay đổi thông tin giao hàng.</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Right Column: Products & Totals -->
+<div class="lg:col-span-7 space-y-6">
+<!-- Product Details -->
+<div class="bg-white border border-n2-light-grey rounded-xl overflow-hidden shadow-sm animate-fade-in" style="animation-delay: 0.2s;">
+<div class="bg-n2-light-grey/30 px-6 py-4 border-b border-n2-light-grey flex justify-between items-center">
+<h2 class="text-lg font-bold text-n2-black">Chi tiết sản phẩm</h2>
+<span class="text-xs text-n2-grey font-medium bg-white px-2 py-1 rounded border border-n2-light-grey">2 Sản phẩm</span>
+</div>
+<div class="divide-y divide-n2-light-grey">
+<!-- Product 1 -->
+<div class="p-4 sm:p-6 flex gap-4 sm:gap-6 items-start">
+<div class="w-20 h-20 sm:w-24 sm:h-24 flex-shrink-0 bg-n2-light-grey rounded-lg overflow-hidden border border-n2-light-grey">
+<img alt="Red Nike Running Shoe" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDb3NMpsx8Pd1oyY5NM-4hNughXJy9iJqAhIakTcHMTvsX81rpw2rvhILKXLp07YYdmgL1KdChO795JfoqsQFVpzyvdPScAAIwIzMConWqnEp51WztUs7B9dyeK9rvqa9sH-BphmHY7GE6VOWEEKKawzCDExwAspuiPiXqKJNmE0Ot_y8b0UzUxHREudFu8Q4ANqQpQ-TSSg4Rmg5OXKn9rS9nmGatHCxoiZxLJreSiugnCWUFDFKzpxKpRD6XzvcygkRDfLENOFUIm"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<h3 class="text-n2-black font-bold text-base truncate pr-2 hover:text-n2-red cursor-pointer transition">N2 Speed Runner Pro</h3>
+<p class="text-n2-red font-bold text-base whitespace-nowrap">2.500.000₫</p>
+</div>
+<p class="text-n2-grey text-sm mb-1">Màu: Đỏ / Size: 42</p>
+<div class="flex justify-between items-end mt-2">
+<span class="text-xs text-n2-black bg-n2-light-grey px-2 py-1 rounded">x1</span>
+<p class="text-n2-black font-medium text-sm">Tổng: 2.500.000₫</p>
+</div>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="p-4 sm:p-6 flex gap-4 sm:gap-6 items-start">
+<div class="w-20 h-20 sm:w-24 sm:h-24 flex-shrink-0 bg-n2-light-grey rounded-lg overflow-hidden border border-n2-light-grey">
+<img alt="Black Gym Training Shirt" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgRPUwDHjonLgDXeG5nmzZxO_TtoZUYPU6xklHISu0Ri5FQR3Sa9gxl8qZ2xSeZaZuy_XheftmM_FeE1pJK80PvFKUHz8wzZE-hsHzqbKe1F1tQ_rvmoGDdaTrt6j-hiqc-61OfOmECzXT3LwZjhblTRY1OKr6MrPeKFOAXURezINXNF_sUe8ABmvcaQc-eWWIcrcoR7NBdvw5lKnIr5Yf0O3MhTehDq4JA_EXDORZbLzstLSA4KeGTLs1B1Rq-De3vBFkZZcIuiKB"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<h3 class="text-n2-black font-bold text-base truncate pr-2 hover:text-n2-red cursor-pointer transition">Áo Gym Shark Dry-Fit</h3>
+<p class="text-n2-red font-bold text-base whitespace-nowrap">500.000₫</p>
+</div>
+<p class="text-n2-grey text-sm mb-1">Màu: Đen / Size: L</p>
+<div class="flex justify-between items-end mt-2">
+<span class="text-xs text-n2-black bg-n2-light-grey px-2 py-1 rounded">x2</span>
+<p class="text-n2-black font-medium text-sm">Tổng: 1.000.000₫</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Summary Footer -->
+<div class="bg-n2-light-grey/20 p-6 space-y-3 border-t border-n2-light-grey">
+<div class="flex justify-between text-sm">
+<span class="text-n2-black">Tạm tính</span>
+<span class="text-n2-black font-medium">3.500.000₫</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-n2-black">Phí vận chuyển</span>
+<span class="text-n2-grey">30.000₫</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-n2-green font-medium">Giảm giá (Voucher)</span>
+<span class="text-n2-green font-bold">-30.000₫</span>
+</div>
+<div class="h-px bg-n2-light-grey my-2"></div>
+<div class="flex justify-between items-center">
+<span class="text-n2-black font-bold text-lg">Tổng cộng</span>
+<span class="text-n2-red font-bold text-2xl">3.500.000₫</span>
+</div>
+</div>
+</div>
+<!-- Mobile Next Steps (Visible only on mobile) -->
+<div class="bg-white p-4 rounded-xl border border-n2-light-grey lg:hidden no-print">
+<h3 class="font-bold text-n2-black mb-3">Tiếp theo?</h3>
+<p class="text-n2-grey text-sm">Kiểm tra email xác nhận và theo dõi đơn hàng trong trang tài khoản.</p>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 pb-10 no-print animate-fade-in" style="animation-delay: 0.4s;">
+<button class="w-full sm:w-auto px-6 py-3 rounded-lg border border-n2-light-grey text-n2-grey font-medium hover:bg-n2-light-grey/50 hover:text-n2-black transition flex items-center justify-center gap-2" onclick="window.print()">
+<span class="material-symbols-outlined">print</span>
+                    In hóa đơn
+                </button>
+<button class="w-full sm:w-auto px-8 py-3 rounded-lg border-2 border-n2-red text-n2-black font-bold hover:bg-n2-red hover:text-white transition uppercase tracking-wide">
+                    Tiếp tục mua sắm
+                </button>
+<button class="w-full sm:w-auto px-8 py-3 rounded-lg bg-n2-green text-n2-black font-bold shadow-lg shadow-n2-green/20 hover:bg-n2-green/90 hover:shadow-xl transition uppercase tracking-wide flex items-center justify-center gap-2">
+                    Xem chi tiết đơn hàng
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-n2-black text-white pt-16 pb-8 no-print">
+<div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+<!-- Brand -->
+<div class="space-y-4">
+<h3 class="text-2xl font-bold text-n2-green">N2 Sport</h3>
+<p class="text-gray-400 text-sm leading-relaxed">
+                        Nâng tầm trải nghiệm thể thao của bạn với những sản phẩm chất lượng hàng đầu. Mạnh mẽ, phong cách và bền bỉ.
+                    </p>
+<div class="flex gap-4 pt-2">
+<a class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-n2-green hover:text-n2-black transition text-n2-green" href="#">
+<i class="fa-brands fa-facebook-f text-sm">f</i> <!-- Placeholder for icon font -->
+</a>
+<a class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-n2-green hover:text-n2-black transition text-n2-green" href="#">
+<i class="fa-brands fa-instagram text-sm">in</i> <!-- Placeholder for icon font -->
+</a>
+<a class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-n2-green hover:text-n2-black transition text-n2-green" href="#">
+<i class="fa-brands fa-youtube text-sm">yt</i> <!-- Placeholder for icon font -->
+</a>
+</div>
+</div>
+<!-- Links -->
+<div>
+<h4 class="text-lg font-bold mb-6">Thông tin</h4>
+<ul class="space-y-3 text-sm text-gray-400">
+<li><a class="hover:text-n2-green transition" href="#">Về chúng tôi</a></li>
+<li><a class="hover:text-n2-green transition" href="#">Tuyển dụng</a></li>
+<li><a class="hover:text-n2-green transition" href="#">Tin tức</a></li>
+<li><a class="hover:text-n2-green transition" href="#">Liên hệ</a></li>
+</ul>
+</div>
+<!-- Policies -->
+<div>
+<h4 class="text-lg font-bold mb-6">Chính sách</h4>
+<ul class="space-y-3 text-sm text-gray-400">
+<li><a class="hover:text-n2-green transition" href="#">Chính sách đổi trả</a></li>
+<li><a class="hover:text-n2-green transition" href="#">Chính sách bảo mật</a></li>
+<li><a class="hover:text-n2-green transition" href="#">Điều khoản dịch vụ</a></li>
+<li><a class="hover:text-n2-green transition" href="#">Vận chuyển &amp; Giao hàng</a></li>
+</ul>
+</div>
+<!-- Contact -->
+<div>
+<h4 class="text-lg font-bold mb-6">Liên hệ</h4>
+<ul class="space-y-4 text-sm text-gray-400">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-n2-green text-lg">location_on</span>
+<span>123 Đường Thể Thao, Quận 1, TP.HCM</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-n2-green text-lg">call</span>
+<span>1900 1234 5678</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-n2-green text-lg">mail</span>
+<span>support@n2sport.com</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-sm text-gray-500">© 2024 N2 Sport. All rights reserved.</p>
+<div class="flex gap-4">
+<!-- Payment Icons Placeholders -->
+<div class="h-6 w-10 bg-gray-700 rounded"></div>
+<div class="h-6 w-10 bg-gray-700 rounded"></div>
+<div class="h-6 w-10 bg-gray-700 rounded"></div>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

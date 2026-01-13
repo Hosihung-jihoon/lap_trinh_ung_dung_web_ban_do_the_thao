@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>N2 Sport - Payment Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#AFED00",
+                        "alert": "#E42C14",
+                        "dark-text": "#111111",
+                        "gray-text": "#A5A5A5",
+                        "divider": "#E8E8E8",
+                        "background-light": "#FFFFFF",
+                        "background-dark": "#1e230f",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for better look */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ccc; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #A5A5A5; 
+        }
+        
+        /* Custom toggle switch styles */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #AFED00;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #AFED00;
+        }
+        
+        /* Hide default details marker */
+        details > summary {
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-[#F9FAFB] text-[#111111] font-display min-h-screen flex flex-col overflow-x-hidden">
+<!-- Top Sticky Header -->
+<header class="sticky top-0 z-50 bg-white border-b border-[#E8E8E8] h-16 px-4 md:px-8 flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-8">
+<!-- Logo -->
+<div class="flex items-center gap-3">
+<div class="size-8 bg-[#111111] rounded-lg flex items-center justify-center text-[#AFED00]">
+<span class="material-symbols-outlined text-2xl font-bold">bolt</span>
+</div>
+<h1 class="text-[#111111] text-xl font-bold tracking-tight">N2 Sport Admin</h1>
+</div>
+<!-- Main Nav (Desktop) -->
+<nav class="hidden lg:flex items-center gap-6">
+<a class="text-[#111111] font-medium hover:text-[#AFED00] transition-colors" href="#">Dashboard</a>
+<div class="relative group">
+<button class="flex items-center gap-1 text-[#111111] font-bold border-b-2 border-[#AFED00] py-5">
+                        Settings
+                        <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+</div>
+<a class="text-[#A5A5A5] font-medium hover:text-[#111111] transition-colors" href="#">Reports</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<!-- Search -->
+<div class="hidden md:flex items-center bg-[#F3F4F6] rounded-lg px-3 py-2 w-64 border border-transparent focus-within:border-[#A5A5A5] focus-within:bg-white transition-all">
+<span class="material-symbols-outlined text-[#A5A5A5]">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full text-[#111111] placeholder-[#A5A5A5]" placeholder="Search settings..." type="text"/>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-4">
+<button class="relative p-2 text-[#111111] hover:bg-[#F3F4F6] rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 size-2.5 bg-[#E42C14] rounded-full border-2 border-white"></span>
+</button>
+<div class="flex items-center gap-3 cursor-pointer pl-2 border-l border-[#E8E8E8]">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-bold leading-none">Admin User</p>
+<p class="text-xs text-[#A5A5A5]">Super Admin</p>
+</div>
+<div class="size-9 rounded-full bg-gray-200 overflow-hidden border border-[#E8E8E8]" data-alt="Profile picture of a man" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC5bJeHLNzW5HRoJsPCnbz_iNCuf8CufrtyGBbpftwMXj12U53XQSO1oudvM3cjA1Yw-2oOgAp1SRFtm2WPVT1Xg6mP7uSRv0HGqi-_N-0A3_w-4qAObjFMbsEZfny0DOOQa9OdNvES2w7lycgA6NHi-Tk3e-Ae_kMLeFe7QiFg9KOYCrNffw12VfLevsYnUBbgQjtOEVV7BCIRqPNODPvc35Su8GMrso4La6DMbdg1r7uj_lcpkX7UH40SdGTHLSfjO9S7T4EakAOC'); background-size: cover;">
+</div>
+<span class="material-symbols-outlined text-[#A5A5A5] text-sm">expand_more</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Layout -->
+<div class="flex-1 flex flex-col max-w-7xl mx-auto w-full px-4 md:px-8 py-8 pb-32">
+<!-- Breadcrumb / Page Header -->
+<div class="mb-8">
+<div class="flex items-center gap-2 text-sm text-[#A5A5A5] mb-2">
+<span>Settings</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-[#111111]">Payment</span>
+</div>
+<h2 class="text-3xl font-bold text-[#111111]">Payment Settings</h2>
+<p class="text-[#A5A5A5] mt-1">Manage payment methods, gateways, and checkout preferences for your store.</p>
+</div>
+<!-- Tabbed Navigation -->
+<div class="border-b border-[#E8E8E8] mb-8 overflow-x-auto">
+<div class="flex gap-8 min-w-max">
+<a class="pb-3 text-[#A5A5A5] font-medium hover:text-[#E42C14] transition-colors text-sm" href="#">General Settings</a>
+<a class="pb-3 text-[#111111] font-bold border-b-2 border-[#AFED00] text-sm" href="#">Payment Settings</a>
+<a class="pb-3 text-[#A5A5A5] font-medium hover:text-[#E42C14] transition-colors text-sm" href="#">Shipping Settings</a>
+<a class="pb-3 text-[#A5A5A5] font-medium hover:text-[#E42C14] transition-colors text-sm" href="#">Email Settings</a>
+<a class="pb-3 text-[#A5A5A5] font-medium hover:text-[#E42C14] transition-colors text-sm" href="#">Role &amp; Permissions</a>
+<a class="pb-3 text-[#A5A5A5] font-medium hover:text-[#E42C14] transition-colors text-sm" href="#">Staff Management</a>
+</div>
+</div>
+<!-- Payment Methods Content -->
+<div class="grid gap-6">
+<!-- Section 1: Manual Payments -->
+<div class="bg-white rounded-xl border border-[#E8E8E8] shadow-sm overflow-hidden">
+<div class="px-6 py-4 bg-[#F9FAFB] border-b border-[#E8E8E8]">
+<h3 class="text-lg font-bold text-[#111111]">Manual Payment Methods</h3>
+</div>
+<!-- COD -->
+<details class="group border-b border-[#E8E8E8] last:border-0" open="">
+<summary class="flex items-center justify-between px-6 py-5 cursor-pointer bg-white hover:bg-gray-50 transition-colors list-none">
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-full bg-[#E8E8E8] flex items-center justify-center text-[#111111]">
+<span class="material-symbols-outlined">local_shipping</span>
+</div>
+<div>
+<p class="font-bold text-[#111111]">Cash on Delivery (COD)</p>
+<p class="text-xs text-[#A5A5A5]">Payment upon receipt of goods</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<label class="relative inline-flex items-center cursor-pointer" onclick="event.stopPropagation()">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-[#E8E8E8] peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#AFED00]/30 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#AFED00]"></div>
+</label>
+<span class="material-symbols-outlined text-[#A5A5A5] group-open:rotate-180 transition-transform">expand_more</span>
+</div>
+</summary>
+<div class="px-6 pb-6 pt-2 pl-[72px]">
+<label class="block mb-2 text-sm font-medium text-[#111111]">Instructions for customer</label>
+<textarea class="w-full rounded-lg border-[#E8E8E8] bg-[#F9FAFB] text-[#111111] focus:ring-[#AFED00] focus:border-[#AFED00] text-sm p-3 min-h-[80px]" placeholder="Enter instructions that will appear at checkout...">Please pay the delivery staff the exact amount upon receiving your package.</textarea>
+</div>
+</details>
+<!-- Bank Transfer -->
+<details class="group border-b border-[#E8E8E8] last:border-0">
+<summary class="flex items-center justify-between px-6 py-5 cursor-pointer bg-white hover:bg-gray-50 transition-colors list-none">
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-full bg-[#E8E8E8] flex items-center justify-center text-[#111111]">
+<span class="material-symbols-outlined">account_balance</span>
+</div>
+<div>
+<p class="font-bold text-[#111111]">Bank Transfer</p>
+<p class="text-xs text-[#A5A5A5]">Manual bank transfer instructions</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<label class="relative inline-flex items-center cursor-pointer" onclick="event.stopPropagation()">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-[#E8E8E8] peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#AFED00]/30 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#AFED00]"></div>
+</label>
+<span class="material-symbols-outlined text-[#A5A5A5] group-open:rotate-180 transition-transform">expand_more</span>
+</div>
+</summary>
+<div class="px-6 pb-6 pt-2 pl-[72px]">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div>
+<label class="block mb-2 text-sm font-medium text-[#111111]">Bank Name</label>
+<input class="w-full rounded-lg border-[#E8E8E8] bg-[#F9FAFB] text-[#111111] focus:ring-[#AFED00] focus:border-[#AFED00] text-sm p-3" placeholder="e.g. Vietcombank" type="text"/>
+</div>
+<div>
+<label class="block mb-2 text-sm font-medium text-[#111111]">Account Name</label>
+<input class="w-full rounded-lg border-[#E8E8E8] bg-[#F9FAFB] text-[#111111] focus:ring-[#AFED00] focus:border-[#AFED00] text-sm p-3" placeholder="e.g. N2 SPORT COMPANY" type="text"/>
+</div>
+<div class="md:col-span-2">
+<label class="block mb-2 text-sm font-medium text-[#111111]">Account Number</label>
+<input class="w-full rounded-lg border-[#E8E8E8] bg-[#F9FAFB] text-[#111111] focus:ring-[#AFED00] focus:border-[#AFED00] text-sm p-3" placeholder="e.g. 0123456789" type="text"/>
+</div>
+<div class="md:col-span-2">
+<label class="block mb-2 text-sm font-medium text-[#111111]">Instructions</label>
+<textarea class="w-full rounded-lg border-[#E8E8E8] bg-[#F9FAFB] text-[#111111] focus:ring-[#AFED00] focus:border-[#AFED00] text-sm p-3 min-h-[80px]">Please transfer the total amount to the account above with content: Order #[Order ID]</textarea>
+</div>
+</div>
+</div>
+</details>
+</div>
+<!-- Section 2: E-Wallets -->
+<div class="bg-white rounded-xl border border-[#E8E8E8] shadow-sm overflow-hidden">
+<div class="px-6 py-4 bg-[#F9FAFB] border-b border-[#E8E8E8]">
+<h3 class="text-lg font-bold text-[#111111]">E-Wallets &amp; Digital Payment</h3>
+</div>
+<!-- VNPay -->
+<details class="group border-b border-[#E8E8E8] last:border-0" open="">
+<summary class="flex items-center justify-between px-6 py-5 cursor-pointer bg-white hover:bg-gray-50 transition-colors list-none">
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-full bg-white border border-[#E8E8E8] flex items-center justify-center p-1 overflow-hidden relative">
+<!-- Abstract gradient for VNPay -->
+<div class="w-full h-full rounded-full bg-gradient-to-tr from-blue-500 to-red-500 opacity-80" data-alt="Gradient representing VNPay logo colors"></div>
+</div>
+<div>
+<p class="font-bold text-[#111111]">VNPay QR</p>
+<p class="text-xs text-[#A5A5A5]">Scan to pay with banking apps</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<label class="relative inline-flex items-center cursor-pointer" onclick="event.stopPropagation()">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-[#E8E8E8] peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#AFED00]/30 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#AFED00]"></div>
+</label>
+<span class="material-symbols-outlined text-[#A5A5A5] group-open:rotate-180 transition-transform">expand_more</span>
+</div>
+</summary>
+<div class="px-6 pb-6 pt-2 pl-[72px]">
+<div class="grid grid-cols-1 gap-4">
+<div>
+<label class="block mb-2 text-sm font-medium text-[#111111]">Terminal ID</label>
+<input class="w-full rounded-lg border-[#E8E8E8] bg-[#F9FAFB] text-[#111111] focus:ring-[#AFED00] focus:border-[#AFED00] text-sm p-3" type="text" value="N2SPORT_TERM_01"/>
+</div>
+<div>
+<label class="block mb-2 text-sm font-medium text-[#111111]">Secret Key</label>
+<div class="relative">
+<input class="w-full rounded-lg border-[#E8E8E8] bg-[#F9FAFB] text-[#111111] focus:ring-[#AFED00] focus:border-[#AFED00] text-sm p-3 pr-10" type="password" value="****************"/>
+<button class="absolute inset-y-0 right-0 flex items-center px-3 text-[#A5A5A5] hover:text-[#111111]">
+<span class="material-symbols-outlined text-lg">visibility_off</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</details>
+<!-- MoMo -->
+<details class="group border-b border-[#E8E8E8] last:border-0">
+<summary class="flex items-center justify-between px-6 py-5 cursor-pointer bg-white hover:bg-gray-50 transition-colors list-none">
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-full bg-white border border-[#E8E8E8] flex items-center justify-center p-1">
+<div class="w-full h-full rounded-full bg-[#A50064]" data-alt="MoMo brand color block"></div>
+</div>
+<div>
+<p class="font-bold text-[#111111]">MoMo Wallet</p>
+<p class="text-xs text-[#A5A5A5]">Mobile wallet payment</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<label class="relative inline-flex items-center cursor-pointer" onclick="event.stopPropagation()">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-[#E8E8E8] peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#AFED00]/30 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#AFED00]"></div>
+</label>
+<span class="material-symbols-outlined text-[#A5A5A5] group-open:rotate-180 transition-transform">expand_more</span>
+</div>
+</summary>
+<div class="px-6 pb-6 pt-2 pl-[72px]">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div>
+<label class="block mb-2 text-sm font-medium text-[#111111]">Partner Code</label>
+<input class="w-full rounded-lg border-[#E8E8E8] bg-[#F9FAFB] text-[#111111] focus:ring-[#AFED00] focus:border-[#AFED00] text-sm p-3" type="text"/>
+</div>
+<div>
+<label class="block mb-2 text-sm font-medium text-[#111111]">Access Key</label>
+<div class="relative">
+<input class="w-full rounded-lg border-[#E8E8E8] bg-[#F9FAFB] text-[#111111] focus:ring-[#AFED00] focus:border-[#AFED00] text-sm p-3 pr-10" type="password"/>
+<button class="absolute inset-y-0 right-0 flex items-center px-3 text-[#A5A5A5] hover:text-[#111111]">
+<span class="material-symbols-outlined text-lg">visibility</span>
+</button>
+</div>
+</div>
+<div class="md:col-span-2">
+<label class="block mb-2 text-sm font-medium text-[#111111]">Secret Key</label>
+<div class="relative">
+<input class="w-full rounded-lg border-[#E8E8E8] bg-[#F9FAFB] text-[#111111] focus:ring-[#AFED00] focus:border-[#AFED00] text-sm p-3 pr-10" type="password"/>
+<button class="absolute inset-y-0 right-0 flex items-center px-3 text-[#A5A5A5] hover:text-[#111111]">
+<span class="material-symbols-outlined text-lg">visibility_off</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</details>
+<!-- ZaloPay -->
+<details class="group border-b border-[#E8E8E8] last:border-0">
+<summary class="flex items-center justify-between px-6 py-5 cursor-pointer bg-white hover:bg-gray-50 transition-colors list-none">
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-full bg-white border border-[#E8E8E8] flex items-center justify-center p-1">
+<div class="w-full h-full rounded-full bg-[#0068FF]" data-alt="ZaloPay brand color block"></div>
+</div>
+<div>
+<p class="font-bold text-[#111111]">ZaloPay</p>
+<p class="text-xs text-[#A5A5A5]">Zalo Wallet integration</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<label class="relative inline-flex items-center cursor-pointer" onclick="event.stopPropagation()">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-[#E8E8E8] peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#AFED00]/30 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#AFED00]"></div>
+</label>
+<span class="material-symbols-outlined text-[#A5A5A5] group-open:rotate-180 transition-transform">expand_more</span>
+</div>
+</summary>
+<div class="px-6 pb-6 pt-2 pl-[72px]">
+<div class="grid grid-cols-1 gap-4">
+<div>
+<label class="block mb-2 text-sm font-medium text-[#111111]">App ID</label>
+<input class="w-full rounded-lg border-[#E8E8E8] bg-[#F9FAFB] text-[#111111] focus:ring-[#AFED00] focus:border-[#AFED00] text-sm p-3" type="text"/>
+</div>
+<div>
+<label class="block mb-2 text-sm font-medium text-[#111111]">Key 1 (Signing)</label>
+<div class="relative">
+<input class="w-full rounded-lg border-[#E8E8E8] bg-[#F9FAFB] text-[#111111] focus:ring-[#AFED00] focus:border-[#AFED00] text-sm p-3 pr-10" type="password"/>
+<button class="absolute inset-y-0 right-0 flex items-center px-3 text-[#A5A5A5] hover:text-[#111111]">
+<span class="material-symbols-outlined text-lg">visibility_off</span>
+</button>
+</div>
+</div>
+<div>
+<label class="block mb-2 text-sm font-medium text-[#111111]">Key 2 (Query)</label>
+<div class="relative">
+<input class="w-full rounded-lg border-[#E8E8E8] bg-[#F9FAFB] text-[#111111] focus:ring-[#AFED00] focus:border-[#AFED00] text-sm p-3 pr-10" type="password"/>
+<button class="absolute inset-y-0 right-0 flex items-center px-3 text-[#A5A5A5] hover:text-[#111111]">
+<span class="material-symbols-outlined text-lg">visibility_off</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</details>
+</div>
+<!-- Section 3: Credit Cards -->
+<div class="bg-white rounded-xl border border-[#E8E8E8] shadow-sm overflow-hidden">
+<div class="px-6 py-4 bg-[#F9FAFB] border-b border-[#E8E8E8]">
+<h3 class="text-lg font-bold text-[#111111]">Credit Cards</h3>
+</div>
+<details class="group border-b border-[#E8E8E8] last:border-0" open="">
+<summary class="flex items-center justify-between px-6 py-5 cursor-pointer bg-white hover:bg-gray-50 transition-colors list-none">
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-full bg-[#E8E8E8] flex items-center justify-center text-[#111111]">
+<span class="material-symbols-outlined">credit_card</span>
+</div>
+<div>
+<p class="font-bold text-[#111111]">Credit/Debit Card</p>
+<p class="text-xs text-[#A5A5A5]">Visa, Mastercard, JCB</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<label class="relative inline-flex items-center cursor-pointer" onclick="event.stopPropagation()">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-[#E8E8E8] peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#AFED00]/30 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#AFED00]"></div>
+</label>
+<span class="material-symbols-outlined text-[#A5A5A5] group-open:rotate-180 transition-transform">expand_more</span>
+</div>
+</summary>
+<div class="px-6 pb-6 pt-2 pl-[72px]">
+<div class="grid grid-cols-1 gap-4">
+<div>
+<label class="block mb-2 text-sm font-medium text-[#111111]">Payment Gateway</label>
+<div class="relative">
+<select class="w-full rounded-lg border-[#E8E8E8] bg-[#F9FAFB] text-[#111111] focus:ring-[#AFED00] focus:border-[#AFED00] text-sm p-3 appearance-none">
+<option value="stripe">Stripe</option>
+<option value="paypal">PayPal</option>
+<option value="2checkout">2Checkout</option>
+</select>
+<span class="absolute inset-y-0 right-3 flex items-center pointer-events-none text-[#A5A5A5]">
+<span class="material-symbols-outlined">expand_more</span>
+</span>
+</div>
+</div>
+<div>
+<label class="block mb-2 text-sm font-medium text-[#111111]">Publishable Key</label>
+<input class="w-full rounded-lg border-[#E8E8E8] bg-[#F9FAFB] text-[#111111] focus:ring-[#AFED00] focus:border-[#AFED00] text-sm p-3" type="text" value="pk_live_51H..."/>
+</div>
+<div>
+<label class="block mb-2 text-sm font-medium text-[#111111]">Secret Key</label>
+<div class="relative">
+<input class="w-full rounded-lg border-[#E8E8E8] bg-[#F9FAFB] text-[#111111] focus:ring-[#AFED00] focus:border-[#AFED00] text-sm p-3 pr-10" type="password" value="sk_live_51H..."/>
+<button class="absolute inset-y-0 right-0 flex items-center px-3 text-[#A5A5A5] hover:text-[#111111]">
+<span class="material-symbols-outlined text-lg">visibility_off</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</details>
+</div>
+</div>
+</div>
+<!-- Sticky Save Bar -->
+<div class="fixed bottom-0 left-0 right-0 bg-white border-t border-[#E8E8E8] shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] z-40 transform transition-transform duration-300">
+<div class="max-w-7xl mx-auto w-full px-4 md:px-8 py-4 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="animate-pulse w-2 h-2 rounded-full bg-[#AFED00]"></div>
+<span class="text-sm font-medium text-[#111111]">Unsaved changes detected</span>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-5 py-2.5 rounded-lg border border-[#A5A5A5] text-[#111111] text-sm font-bold hover:bg-gray-50 transition-colors">
+                    Cancel
+                </button>
+<button class="px-5 py-2.5 rounded-lg bg-[#E42C14] text-white text-sm font-bold shadow-sm hover:bg-[#c91e07] transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">save</span>
+                    Save Changes
+                </button>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="bg-[#111111] text-white py-12 mt-auto mb-16 md:mb-20">
+<div class="max-w-7xl mx-auto w-full px-4 md:px-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+<div class="col-span-1 md:col-span-1">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-[#AFED00]">bolt</span>
+<span class="font-bold text-lg">N2 Sport</span>
+</div>
+<p class="text-[#A5A5A5] text-sm">Premium sports e-commerce management platform.</p>
+</div>
+<div>
+<h4 class="font-bold mb-4 text-sm uppercase tracking-wider text-[#A5A5A5]">Quick Links</h4>
+<ul class="space-y-2 text-sm text-gray-400">
+<li><a class="hover:text-[#AFED00] transition-colors" href="#">Dashboard</a></li>
+<li><a class="hover:text-[#AFED00] transition-colors" href="#">Orders</a></li>
+<li><a class="hover:text-[#AFED00] transition-colors" href="#">Products</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-4 text-sm uppercase tracking-wider text-[#A5A5A5]">Support</h4>
+<ul class="space-y-2 text-sm text-gray-400">
+<li><a class="hover:text-[#AFED00] transition-colors" href="#">Help Center</a></li>
+<li><a class="hover:text-[#AFED00] transition-colors" href="#">API Documentation</a></li>
+<li><a class="hover:text-[#AFED00] transition-colors" href="#">Contact Support</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-4 text-sm uppercase tracking-wider text-[#A5A5A5]">System</h4>
+<ul class="space-y-2 text-sm text-gray-400">
+<li><a class="hover:text-[#AFED00] transition-colors" href="#">Server Status</a></li>
+<li><a class="hover:text-[#AFED00] transition-colors" href="#">Changelog</a></li>
+</ul>
+</div>
+</div>
+<div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-sm text-gray-500">© 2023 N2 Sport. All rights reserved.</p>
+<div class="flex gap-4">
+<a class="text-gray-500 hover:text-white transition-colors text-sm" href="#">Privacy Policy</a>
+<a class="text-gray-500 hover:text-white transition-colors text-sm" href="#">Terms of Service</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

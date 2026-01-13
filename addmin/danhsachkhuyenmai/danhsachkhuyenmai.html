@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>N2 Sport - Danh Sách Khuyến Mãi</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#E42C14", // Red for warnings, primary actions
+                        "accent": "#AFED00", // Lime green for active states, positive indicators
+                        "neutral-dark": "#111111", // Main text
+                        "neutral-mid": "#A5A5A5", // Secondary text, borders
+                        "neutral-light": "#E8E8E8", // Dividers, secondary backgrounds
+                        "background-light": "#F8F9FA", // Page background
+                        "background-surface": "#FFFFFF", // Card background
+                        "background-dark": "#221210",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for table if needed */
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 8px;
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+        
+        /* Toggle Switch */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #AFED00;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #AFED00;
+        }
+    </style>
+</head>
+<body class="bg-background-light text-neutral-dark font-display min-h-screen flex flex-col">
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-background-surface border-b border-neutral-light px-6 py-3 shadow-sm">
+<div class="max-w-[1440px] mx-auto flex items-center justify-between">
+<div class="flex items-center gap-10">
+<!-- Logo -->
+<div class="flex items-center gap-3">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[24px]">bolt</span>
+</div>
+<h2 class="text-neutral-dark text-xl font-extrabold tracking-tight">N2 Sport Admin</h2>
+</div>
+<!-- Navigation -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-neutral-dark text-sm font-bold border-b-2 border-primary pb-0.5" href="#">Promotions</a>
+<a class="text-neutral-mid hover:text-neutral-dark text-sm font-medium transition-colors" href="#">Orders</a>
+<a class="text-neutral-mid hover:text-neutral-dark text-sm font-medium transition-colors" href="#">Customers</a>
+<a class="text-neutral-mid hover:text-neutral-dark text-sm font-medium transition-colors" href="#">Analytics</a>
+</nav>
+</div>
+<!-- Right Actions -->
+<div class="flex items-center gap-6">
+<!-- Search -->
+<div class="hidden lg:flex items-center bg-background-light rounded-lg px-3 h-10 w-64 border border-transparent focus-within:border-neutral-mid transition-colors">
+<span class="material-symbols-outlined text-neutral-mid">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full text-neutral-dark placeholder-neutral-mid" placeholder="Search..." type="text"/>
+</div>
+<!-- Notifications -->
+<button class="relative p-2 text-neutral-dark hover:bg-neutral-light rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-2 size-2.5 bg-primary rounded-full border-2 border-white"></span>
+</button>
+<!-- Profile -->
+<div class="flex items-center gap-3 cursor-pointer hover:bg-neutral-light p-1.5 pr-3 rounded-full transition-colors">
+<div class="size-8 rounded-full bg-neutral-light overflow-hidden">
+<img alt="Admin User Profile" class="w-full h-full object-cover" data-alt="Close up portrait of a man smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIMTqtoxzcREJhcx6b689AykLFFmXLL9rAWHZknwdTP4COY8GG3JiVQxMDTbeUTsZ9ivBwh4VzXN7iDpS90WsNui-3dI607N7tKvH0yq-7YNgERS4cvqO67wuBQip_VAkk3fmPs_LuUm4_cvmuBKa9CuU674lx8XDxmn3COEUXGCoTv2l-TxrrVzSfTSiZzmZYn8fRWuvF7GcGeE_lE_-xl7lO4YpYDJDz9SzbLt3C2A4j7JULpc5yM4Gvstmpnj_vGQ9pC3yNfkf5"/>
+</div>
+<span class="hidden sm:block text-sm font-bold">Admin</span>
+<span class="material-symbols-outlined text-sm text-neutral-mid">expand_more</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 w-full max-w-[1440px] mx-auto p-6 md:p-8">
+<!-- Page Header & Actions -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+<div>
+<h1 class="text-3xl font-black text-neutral-dark tracking-tight">Danh Sách Khuyến Mãi</h1>
+<p class="text-neutral-mid text-sm mt-1">Quản lý các chương trình giảm giá và ưu đãi cho khách hàng.</p>
+</div>
+<button class="flex items-center justify-center gap-2 bg-primary hover:bg-red-700 text-white font-bold py-2.5 px-5 rounded-lg shadow-md hover:shadow-lg transition-all active:scale-95">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                Create promotion
+            </button>
+</div>
+<!-- Filters Section -->
+<section class="bg-background-surface rounded-xl border border-neutral-light shadow-sm mb-6 p-5">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Search Filter -->
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-bold text-neutral-dark uppercase tracking-wider">Search</label>
+<div class="flex items-center bg-background-light border border-neutral-light rounded-lg h-10 px-3 focus-within:border-neutral-mid transition-colors">
+<span class="material-symbols-outlined text-neutral-mid text-[20px]">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full ml-2 text-neutral-dark" placeholder="Promotion name..." type="text"/>
+</div>
+</div>
+<!-- Status Filter -->
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-bold text-neutral-dark uppercase tracking-wider">Status</label>
+<div class="relative">
+<select class="appearance-none bg-background-light border border-neutral-light rounded-lg h-10 w-full px-3 text-sm text-neutral-dark focus:ring-0 focus:border-neutral-mid cursor-pointer">
+<option value="all">All Status</option>
+<option value="active">Active</option>
+<option value="inactive">Inactive</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-neutral-mid pointer-events-none text-[20px]">expand_more</span>
+</div>
+</div>
+<!-- Type Filter -->
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-bold text-neutral-dark uppercase tracking-wider">Discount Type</label>
+<div class="relative">
+<select class="appearance-none bg-background-light border border-neutral-light rounded-lg h-10 w-full px-3 text-sm text-neutral-dark focus:ring-0 focus:border-neutral-mid cursor-pointer">
+<option value="all">All Types</option>
+<option value="percentage">Percentage (%)</option>
+<option value="fixed">Fixed Amount</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-neutral-mid pointer-events-none text-[20px]">expand_more</span>
+</div>
+</div>
+<!-- Date Range -->
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-bold text-neutral-dark uppercase tracking-wider">Duration</label>
+<div class="flex items-center bg-background-light border border-neutral-light rounded-lg h-10 px-3 cursor-pointer hover:border-neutral-mid transition-colors group">
+<span class="material-symbols-outlined text-neutral-mid text-[20px] group-hover:text-primary transition-colors">calendar_month</span>
+<span class="text-sm text-neutral-dark ml-2 truncate">Jun 01 - Jun 30, 2024</span>
+</div>
+</div>
+</div>
+<div class="flex justify-end mt-4 pt-4 border-t border-neutral-light gap-3">
+<button class="text-sm font-bold text-neutral-mid hover:text-neutral-dark px-3 py-1.5">Clear All</button>
+<button class="text-sm font-bold text-primary bg-primary/10 hover:bg-primary/20 px-4 py-1.5 rounded-lg transition-colors">Apply Filters</button>
+</div>
+</section>
+<!-- Data Table Section -->
+<div class="bg-background-surface rounded-xl border border-neutral-light shadow-sm overflow-hidden flex flex-col">
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full text-left border-collapse min-w-[1000px]">
+<thead>
+<tr class="bg-background-light border-b border-neutral-light text-neutral-mid text-xs uppercase tracking-wider font-bold">
+<th class="px-6 py-4">Promotion</th>
+<th class="px-6 py-4 cursor-pointer hover:text-neutral-dark group">
+<div class="flex items-center gap-1">Type <span class="material-symbols-outlined text-[16px] opacity-0 group-hover:opacity-100">sort</span></div>
+</th>
+<th class="px-6 py-4 cursor-pointer hover:text-neutral-dark group">
+<div class="flex items-center gap-1">Value <span class="material-symbols-outlined text-[16px] opacity-0 group-hover:opacity-100">sort</span></div>
+</th>
+<th class="px-6 py-4">Duration</th>
+<th class="px-6 py-4 w-48">Usage</th>
+<th class="px-6 py-4 text-center">Priority</th>
+<th class="px-6 py-4 text-center">Stackable</th>
+<th class="px-6 py-4 text-center">Status</th>
+<th class="px-6 py-4 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-neutral-light text-sm text-neutral-dark">
+<!-- Row 1: Active -->
+<tr class="group hover:bg-background-light transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-12 rounded-lg bg-neutral-light overflow-hidden flex-shrink-0">
+<img alt="Running shoes on track" class="w-full h-full object-cover" data-alt="Running shoes promotional banner thumbnail" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAszNbmk8AIZe-72z0B5-0T7FZ3Q2oBa5lNWEhy1w7jR7AtCun3_JxkWtY6oWBXpY8O_7_0A9tTHAS3B-UYUkxmoDngKTf-KjOm_7HAmDH5f5Y5JbJM1IIxOgeLvL4KgSxLe9wkYSG33vGpxokyrI9UzMvZr1X9Daq6C9niInS5c2S0sBM1gInayD6Ni3p_N5faAhW2E6FfhMhan7EGbyYkYWDpDKfUnB_rULZQzNQ96oCrRHZuq3nx4I2rhsjiooZu2hufVkZrfgp"/>
+</div>
+<div>
+<a class="font-bold text-neutral-dark hover:text-primary transition-colors text-base block" href="#">Summer Run 2024</a>
+<span class="text-xs text-neutral-mid">ID: PR-2024-001</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-neutral-light text-neutral-600 border border-neutral-200">
+                                    Percentage
+                                </span>
+</td>
+<td class="px-6 py-4">
+<span class="font-bold text-primary text-base">-20%</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col text-xs font-medium">
+<span class="text-neutral-dark">Jun 01, 2024</span>
+<span class="text-neutral-mid text-[10px] uppercase">to</span>
+<span class="text-neutral-dark">Jun 30, 2024</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-xs font-bold">
+<span class="text-accent-dark">450</span>
+<span class="text-neutral-mid">/ 1000</span>
+</div>
+<div class="w-full bg-neutral-light rounded-full h-1.5 overflow-hidden">
+<div class="bg-accent h-full rounded-full" style="width: 45%"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-center font-bold">1</td>
+<td class="px-6 py-4 text-center">
+<span class="material-symbols-outlined text-neutral-mid text-[20px]">close</span>
+</td>
+<td class="px-6 py-4 text-center">
+<label class="flex items-center justify-center cursor-pointer relative" for="toggle1">
+<input checked="" class="sr-only toggle-checkbox" id="toggle1" type="checkbox"/>
+<div class="toggle-label w-10 h-6 bg-neutral-light rounded-full shadow-inner transition-colors duration-200 ease-in-out"></div>
+<div class="absolute left-0.5 top-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform duration-200 ease-in-out transform translate-x-4"></div>
+</label>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 text-neutral-mid hover:text-accent hover:bg-neutral-light rounded transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<div class="relative group/menu">
+<button class="p-1.5 text-neutral-mid hover:text-neutral-dark hover:bg-neutral-light rounded transition-colors">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+<!-- Dropdown placeholder (hidden by default in this demo structure unless implemented with JS, but styled for layout) -->
+</div>
+</div>
+</td>
+</tr>
+<!-- Row 2: Fixed Amount, Stackable -->
+<tr class="group hover:bg-background-light transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-12 rounded-lg bg-neutral-light overflow-hidden flex-shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-neutral-mid">shopping_bag</span>
+</div>
+<div>
+<a class="font-bold text-neutral-dark hover:text-primary transition-colors text-base block" href="#">Welcome Bonus</a>
+<span class="text-xs text-neutral-mid">ID: PR-2024-002</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-neutral-light text-neutral-600 border border-neutral-200">
+                                    Fixed
+                                </span>
+</td>
+<td class="px-6 py-4">
+<span class="font-bold text-primary text-base">-50k</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col text-xs font-medium">
+<span class="text-neutral-dark">Jan 01, 2024</span>
+<span class="text-neutral-mid text-[10px] uppercase">to</span>
+<span class="text-neutral-dark">Dec 31, 2024</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-xs font-bold">
+<span class="text-primary">2,100</span>
+<span class="text-neutral-mid">/ 2,000</span>
+</div>
+<div class="w-full bg-neutral-light rounded-full h-1.5 overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 100%"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-center font-bold">2</td>
+<td class="px-6 py-4 text-center">
+<div class="flex justify-center">
+<span class="material-symbols-outlined text-accent text-[20px] font-bold">check</span>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<label class="flex items-center justify-center cursor-pointer relative" for="toggle2">
+<input checked="" class="sr-only toggle-checkbox" id="toggle2" type="checkbox"/>
+<div class="toggle-label w-10 h-6 bg-neutral-light rounded-full shadow-inner transition-colors duration-200 ease-in-out"></div>
+<div class="absolute left-0.5 top-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform duration-200 ease-in-out transform translate-x-4"></div>
+</label>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 text-neutral-mid hover:text-accent hover:bg-neutral-light rounded transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 text-neutral-mid hover:text-neutral-dark hover:bg-neutral-light rounded transition-colors">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Inactive -->
+<tr class="group hover:bg-background-light transition-colors bg-neutral-light/30">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-12 rounded-lg bg-neutral-light overflow-hidden flex-shrink-0">
+<img alt="Gym clothes" class="w-full h-full object-cover grayscale opacity-70" data-alt="Gym clothes collection thumbnail" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPUzzrByfnKkoc9vx3t4pm0ubKf8REHg5x1gbQRamUC3km6JKgdp3f5nqHCjeDM2G48AROHa8No2_Iv73OFFZLOT4H-TfCgxiwtK_GPmWBtWlhZ7cLDkvkw2Y64XlcOMa-SeFn46ZqsWA155NUQIJvPaYMvRQ5NjhUEbqae826D0NktGWyyA7FYQDRNbUiqp0uqa_qQk8UbuDewjdIVoYUqirFCSTH-dJqU4cSRYwD84epPzNH8R656R-N04GAimEchWb0Qd1buRxw"/>
+</div>
+<div>
+<a class="font-bold text-neutral-500 hover:text-primary transition-colors text-base block" href="#">Flash Sale May</a>
+<span class="text-xs text-neutral-400">ID: PR-2024-003</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-neutral-light text-neutral-400 border border-neutral-200">
+                                    Percentage
+                                </span>
+</td>
+<td class="px-6 py-4">
+<span class="font-bold text-neutral-400 text-base">-30%</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col text-xs font-medium text-neutral-400">
+<span>May 05, 2024</span>
+<span class="text-[10px] uppercase">to</span>
+<span>May 07, 2024</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col gap-1 opacity-50">
+<div class="flex justify-between text-xs font-bold text-neutral-400">
+<span>100</span>
+<span>/ 100</span>
+</div>
+<div class="w-full bg-neutral-light rounded-full h-1.5 overflow-hidden">
+<div class="bg-neutral-400 h-full rounded-full" style="width: 100%"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-center font-bold text-neutral-400">3</td>
+<td class="px-6 py-4 text-center">
+<span class="material-symbols-outlined text-neutral-300 text-[20px]">close</span>
+</td>
+<td class="px-6 py-4 text-center">
+<label class="flex items-center justify-center cursor-pointer relative" for="toggle3">
+<input class="sr-only toggle-checkbox" id="toggle3" type="checkbox"/>
+<div class="toggle-label w-10 h-6 bg-neutral-light rounded-full shadow-inner border border-neutral-300 transition-colors duration-200 ease-in-out"></div>
+<div class="absolute left-0.5 top-0.5 w-5 h-5 bg-neutral-400 rounded-full shadow transition-transform duration-200 ease-in-out"></div>
+</label>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 text-neutral-mid hover:text-accent hover:bg-neutral-light rounded transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 text-neutral-mid hover:text-neutral-dark hover:bg-neutral-light rounded transition-colors">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4: Active -->
+<tr class="group hover:bg-background-light transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-12 rounded-lg bg-neutral-light overflow-hidden flex-shrink-0">
+<img alt="Dumbbells" class="w-full h-full object-cover" data-alt="Dumbbells equipment promotion" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHbXT8stUEZRd_KZ-oo4jw3_ba5QCJ36yshvBb-XJ7Wlfmr81UA1qewqDjnn_aL-F4S8z957twxNbyrBTs2y2_42JNT5rihPCRLWGvqtNVpm0lFd3VquQcGFXLNhO_nWq_PgK8cbjPv1OgNpq-PuMQMqRI58WMTZ0YjDVsU25F3lp0Z9reH_t-C1N_gNbuaiv8TXFJ3srJT_YkouPBat2moTK7qsY4A-POcOnbMwuq5-7N3Pf7AcHFyRxoYyKVLgFV2hI-5by5wRY3"/>
+</div>
+<div>
+<a class="font-bold text-neutral-dark hover:text-primary transition-colors text-base block" href="#">Gym Equipment Deal</a>
+<span class="text-xs text-neutral-mid">ID: PR-2024-004</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-neutral-light text-neutral-600 border border-neutral-200">
+                                    Fixed
+                                </span>
+</td>
+<td class="px-6 py-4">
+<span class="font-bold text-primary text-base">-100k</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col text-xs font-medium">
+<span class="text-neutral-dark">Jun 15, 2024</span>
+<span class="text-neutral-mid text-[10px] uppercase">to</span>
+<span class="text-neutral-dark">Jul 15, 2024</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-xs font-bold">
+<span class="text-accent-dark">12</span>
+<span class="text-neutral-mid">/ 500</span>
+</div>
+<div class="w-full bg-neutral-light rounded-full h-1.5 overflow-hidden">
+<div class="bg-accent h-full rounded-full" style="width: 2%"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-center font-bold">5</td>
+<td class="px-6 py-4 text-center">
+<div class="flex justify-center">
+<span class="material-symbols-outlined text-accent text-[20px] font-bold">check</span>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<label class="flex items-center justify-center cursor-pointer relative" for="toggle4">
+<input checked="" class="sr-only toggle-checkbox" id="toggle4" type="checkbox"/>
+<div class="toggle-label w-10 h-6 bg-neutral-light rounded-full shadow-inner transition-colors duration-200 ease-in-out"></div>
+<div class="absolute left-0.5 top-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform duration-200 ease-in-out transform translate-x-4"></div>
+</label>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 text-neutral-mid hover:text-accent hover:bg-neutral-light rounded transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 text-neutral-mid hover:text-neutral-dark hover:bg-neutral-light rounded transition-colors">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="bg-background-surface border-t border-neutral-light px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+<div class="text-sm text-neutral-mid">
+                    Showing <span class="font-bold text-neutral-dark">1</span> to <span class="font-bold text-neutral-dark">4</span> of <span class="font-bold text-neutral-dark">24</span> entries
+                </div>
+<div class="flex items-center gap-2">
+<div class="flex items-center gap-1 mr-4">
+<span class="text-sm text-neutral-mid">Rows per page:</span>
+<select class="border-none text-sm font-bold text-neutral-dark focus:ring-0 cursor-pointer bg-transparent p-0 pr-6">
+<option>10</option>
+<option>20</option>
+<option>50</option>
+</select>
+</div>
+<nav class="flex items-center gap-1">
+<button class="p-1 rounded hover:bg-neutral-light text-neutral-dark disabled:opacity-50 disabled:cursor-not-allowed">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<button class="size-8 rounded bg-accent text-neutral-dark font-bold text-sm flex items-center justify-center shadow-sm">1</button>
+<button class="size-8 rounded hover:bg-neutral-light text-neutral-mid hover:text-neutral-dark font-medium text-sm flex items-center justify-center transition-colors">2</button>
+<button class="size-8 rounded hover:bg-neutral-light text-neutral-mid hover:text-neutral-dark font-medium text-sm flex items-center justify-center transition-colors">3</button>
+<span class="text-neutral-mid px-1">...</span>
+<button class="size-8 rounded hover:bg-neutral-light text-neutral-mid hover:text-neutral-dark font-medium text-sm flex items-center justify-center transition-colors">6</button>
+<button class="p-1 rounded hover:bg-neutral-light hover:text-primary text-neutral-dark transition-colors">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</nav>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-neutral-dark text-white py-8 px-6 mt-auto">
+<div class="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-2">
+<div class="size-6 bg-white/10 rounded flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[16px]">bolt</span>
+</div>
+<span class="text-sm font-medium opacity-80">© 2024 N2 Sport Inc. All rights reserved.</span>
+</div>
+<div class="flex gap-6">
+<a class="text-sm text-neutral-400 hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="text-sm text-neutral-400 hover:text-white transition-colors" href="#">Terms of Service</a>
+<a class="text-sm text-neutral-400 hover:text-white transition-colors" href="#">Support</a>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>N2 Sport - Trang Thanh Toán</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#a8f000",
+                        "accent-red": "#E42C14",
+                        "neutral-black": "#111111",
+                        "neutral-gray": "#A5A5A5",
+                        "neutral-light": "#E8E8E8",
+                        "background-light": "#f7f8f5",
+                        "background-dark": "#1d230f",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for better look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        
+        /* Spinner animation */
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .spinner {
+            animation: spin 1s linear infinite;
+        }
+    </style>
+</head>
+<body class="bg-background-light font-display text-neutral-black">
+<div class="relative flex min-h-screen flex-col overflow-x-hidden">
+<!-- Header -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-[#e5e7eb] bg-white px-6 py-3 shadow-sm md:px-10">
+<div class="flex items-center gap-8">
+<a class="flex items-center gap-2 text-neutral-black no-underline" href="#">
+<div class="size-8 flex items-center justify-center rounded-full bg-neutral-black text-primary">
+<span class="material-symbols-outlined text-2xl font-bold">bolt</span>
+</div>
+<h2 class="text-2xl font-bold leading-tight tracking-[-0.015em] text-neutral-black">N2 Sport</h2>
+</a>
+<!-- Mega Menu (Simplified) -->
+<nav class="hidden items-center gap-6 lg:flex">
+<a class="text-sm font-medium hover:text-accent-red" href="#">Nam</a>
+<a class="text-sm font-medium hover:text-accent-red" href="#">Nữ</a>
+<a class="text-sm font-medium hover:text-accent-red" href="#">Phụ kiện</a>
+<a class="text-sm font-medium hover:text-accent-red" href="#">Sale</a>
+</nav>
+</div>
+<!-- Search Bar -->
+<label class="hidden md:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-full border border-neutral-gray h-full overflow-hidden focus-within:border-accent-red transition-colors">
+<div class="text-neutral-gray flex bg-white items-center justify-center pl-3 pr-1">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="flex w-full min-w-0 flex-1 resize-none bg-white text-neutral-black focus:outline-0 focus:ring-0 border-none h-full placeholder:text-neutral-gray px-2 text-sm" placeholder="Tìm kiếm sản phẩm..."/>
+</div>
+</label>
+<!-- Icons -->
+<div class="flex items-center gap-3">
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-neutral-light transition-colors relative">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-accent-red text-[10px] font-bold text-white">3</span>
+</button>
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-neutral-light transition-colors">
+<span class="material-symbols-outlined">person</span>
+</button>
+</div>
+</header>
+<!-- Main Layout -->
+<div class="layout-container flex grow flex-col">
+<div class="flex flex-1 justify-center py-5 md:py-10 px-4 md:px-6 lg:px-20">
+<div class="layout-content-container flex flex-col max-w-[1280px] flex-1">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap items-center gap-2 px-4 py-2 mb-6">
+<a class="text-neutral-gray text-sm font-medium hover:text-accent-red" href="#">Home</a>
+<span class="material-symbols-outlined text-neutral-gray text-sm">chevron_right</span>
+<a class="text-neutral-gray text-sm font-medium hover:text-accent-red" href="#">Giỏ hàng</a>
+<span class="material-symbols-outlined text-neutral-gray text-sm">chevron_right</span>
+<span class="text-neutral-black text-sm font-medium">Thanh toán</span>
+</div>
+<div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
+<!-- LEFT COLUMN: STEPS & FORMS -->
+<div class="flex-1 flex flex-col gap-8">
+<!-- Step Indicator -->
+<div class="px-4">
+<div class="flex items-center justify-between w-full max-w-md mx-auto lg:mx-0 lg:max-w-full">
+<div class="flex items-center gap-2">
+<div class="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-neutral-black font-bold text-sm">1</div>
+<span class="hidden sm:inline text-neutral-black font-medium text-sm">Thông tin</span>
+</div>
+<div class="h-[2px] flex-1 mx-2 bg-neutral-light">
+<div class="h-full bg-primary w-1/2"></div>
+</div>
+<div class="flex items-center gap-2 opacity-50">
+<div class="flex h-8 w-8 items-center justify-center rounded-full bg-neutral-light text-neutral-gray font-bold text-sm">2</div>
+<span class="hidden sm:inline text-neutral-gray font-medium text-sm">Vận chuyển</span>
+</div>
+<div class="h-[2px] flex-1 mx-2 bg-neutral-light"></div>
+<div class="flex items-center gap-2 opacity-50">
+<div class="flex h-8 w-8 items-center justify-center rounded-full bg-neutral-light text-neutral-gray font-bold text-sm">3</div>
+<span class="hidden sm:inline text-neutral-gray font-medium text-sm">Thanh toán</span>
+</div>
+</div>
+</div>
+<!-- Step 1 Content: Information -->
+<div class="bg-white rounded-xl border border-neutral-light p-6 shadow-sm">
+<h2 class="text-xl font-bold text-neutral-black mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-accent-red">local_shipping</span>
+                                    Thông tin giao hàng
+                                </h2>
+<!-- Login Prompt -->
+<div class="mb-8 rounded-lg bg-background-light p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border border-primary/30">
+<div class="flex flex-col">
+<span class="text-neutral-black font-bold text-sm">Bạn đã có tài khoản?</span>
+<span class="text-neutral-gray text-sm">Đăng nhập để thanh toán nhanh hơn</span>
+</div>
+<button class="shrink-0 px-4 py-2 bg-primary text-neutral-black text-sm font-bold rounded-lg hover:bg-opacity-90 transition-colors">
+                                        Đăng nhập / Đăng ký
+                                    </button>
+</div>
+<!-- Shipping Address Form -->
+<form class="flex flex-col gap-5">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-medium text-neutral-black">Họ và tên <span class="text-accent-red">*</span></label>
+<input class="form-input w-full rounded-lg border-neutral-gray focus:border-primary focus:ring-primary h-11 px-4 bg-white" placeholder="Nguyễn Văn A" type="text"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-medium text-neutral-black">Số điện thoại <span class="text-accent-red">*</span></label>
+<input class="form-input w-full rounded-lg border-neutral-gray focus:border-primary focus:ring-primary h-11 px-4 bg-white" placeholder="0901234567" type="tel"/>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-medium text-neutral-black">Email <span class="text-accent-red">*</span></label>
+<input class="form-input w-full rounded-lg border-neutral-gray focus:border-primary focus:ring-primary h-11 px-4 bg-white" placeholder="email@example.com" type="email"/>
+<span class="hidden text-xs text-accent-red">Vui lòng nhập email hợp lệ</span>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-medium text-neutral-black">Địa chỉ nhận hàng <span class="text-accent-red">*</span></label>
+<input class="form-input w-full rounded-lg border-neutral-gray focus:border-primary focus:ring-primary h-11 px-4 bg-white" placeholder="Số nhà, tên đường..." type="text"/>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-medium text-neutral-black">Tỉnh / Thành phố <span class="text-accent-red">*</span></label>
+<select class="form-select w-full rounded-lg border-neutral-gray focus:border-primary focus:ring-primary h-11 px-4 bg-white">
+<option disabled="" selected="" value="">Chọn Tỉnh/Thành</option>
+<option value="hanoi">Hà Nội</option>
+<option value="hcm">TP. Hồ Chí Minh</option>
+</select>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-medium text-neutral-black">Quận / Huyện <span class="text-accent-red">*</span></label>
+<select class="form-select w-full rounded-lg border-neutral-gray focus:border-primary focus:ring-primary h-11 px-4 bg-white" disabled="">
+<option disabled="" selected="" value="">Chọn Quận/Huyện</option>
+</select>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-medium text-neutral-black">Phường / Xã <span class="text-accent-red">*</span></label>
+<select class="form-select w-full rounded-lg border-neutral-gray focus:border-primary focus:ring-primary h-11 px-4 bg-white" disabled="">
+<option disabled="" selected="" value="">Chọn Phường/Xã</option>
+</select>
+</div>
+</div>
+<label class="flex items-center gap-3 mt-2 cursor-pointer group">
+<div class="relative flex items-center">
+<input class="peer h-5 w-5 cursor-pointer appearance-none rounded border border-neutral-gray checked:border-primary checked:bg-primary transition-all" type="checkbox"/>
+<span class="material-symbols-outlined absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[16px] text-neutral-black opacity-0 peer-checked:opacity-100 pointer-events-none">check</span>
+</div>
+<span class="text-sm font-medium text-neutral-black group-hover:text-neutral-gray transition-colors">Lưu địa chỉ này làm mặc định</span>
+</label>
+</form>
+</div>
+<!-- Step 2 Content: Shipping Method -->
+<div class="bg-white rounded-xl border border-neutral-light p-6 shadow-sm">
+<h2 class="text-xl font-bold text-neutral-black mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-accent-red">local_shipping</span>
+                                    Phương thức vận chuyển
+                                </h2>
+<div class="flex flex-col gap-3">
+<label class="relative flex cursor-pointer items-start gap-4 rounded-xl border-2 border-primary bg-primary/5 p-4 transition-all">
+<input checked="" class="peer sr-only" name="shipping" type="radio"/>
+<div class="mt-1 flex h-5 w-5 items-center justify-center rounded-full border border-neutral-black peer-checked:bg-primary peer-checked:border-primary">
+<div class="h-2.5 w-2.5 rounded-full bg-neutral-black opacity-0 peer-checked:opacity-100"></div>
+</div>
+<div class="flex flex-1 flex-col">
+<div class="flex justify-between items-center mb-1">
+<span class="font-bold text-neutral-black">Giao hàng tiêu chuẩn</span>
+<span class="font-bold text-accent-red">30.000đ</span>
+</div>
+<span class="text-sm text-neutral-gray">Nhận hàng vào 25 Thg 10 - 27 Thg 10</span>
+</div>
+</label>
+<label class="relative flex cursor-pointer items-start gap-4 rounded-xl border border-neutral-light p-4 hover:border-neutral-gray transition-all">
+<input class="peer sr-only" name="shipping" type="radio"/>
+<div class="mt-1 flex h-5 w-5 items-center justify-center rounded-full border border-neutral-gray peer-checked:bg-primary peer-checked:border-primary">
+<div class="h-2.5 w-2.5 rounded-full bg-neutral-black opacity-0 peer-checked:opacity-100"></div>
+</div>
+<div class="flex flex-1 flex-col">
+<div class="flex justify-between items-center mb-1">
+<span class="font-bold text-neutral-black">Giao hàng nhanh 2H</span>
+<span class="font-bold text-accent-red">55.000đ</span>
+</div>
+<span class="text-sm text-neutral-gray">Nhận hàng trong vòng 2 giờ (Nội thành)</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Step 3 Content: Payment -->
+<div class="bg-white rounded-xl border border-neutral-light p-6 shadow-sm">
+<h2 class="text-xl font-bold text-neutral-black mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-accent-red">payments</span>
+                                    Phương thức thanh toán
+                                </h2>
+<div class="flex flex-col gap-4 mb-6">
+<!-- Option 1: COD -->
+<label class="group relative flex cursor-pointer items-center gap-4 rounded-xl border border-neutral-light p-4 hover:border-primary has-[:checked]:border-primary has-[:checked]:bg-primary/5 transition-all">
+<input checked="" class="peer sr-only" name="payment" type="radio"/>
+<div class="flex h-5 w-5 items-center justify-center rounded-full border border-neutral-gray peer-checked:bg-primary peer-checked:border-primary">
+<div class="h-2.5 w-2.5 rounded-full bg-neutral-black opacity-0 peer-checked:opacity-100"></div>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-neutral-black">attach_money</span>
+<span class="font-medium text-neutral-black">Thanh toán khi nhận hàng (COD)</span>
+</div>
+</label>
+<!-- Option 2: Bank Transfer -->
+<label class="group relative flex flex-col cursor-pointer rounded-xl border border-neutral-light p-4 hover:border-primary has-[:checked]:border-primary has-[:checked]:bg-primary/5 transition-all">
+<div class="flex items-center gap-4">
+<input class="peer sr-only" name="payment" type="radio"/>
+<div class="flex h-5 w-5 items-center justify-center rounded-full border border-neutral-gray peer-checked:bg-primary peer-checked:border-primary">
+<div class="h-2.5 w-2.5 rounded-full bg-neutral-black opacity-0 peer-checked:opacity-100"></div>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-neutral-black">account_balance</span>
+<span class="font-medium text-neutral-black">Chuyển khoản ngân hàng</span>
+</div>
+</div>
+<!-- Hidden details for bank transfer -->
+<div class="hidden peer-checked:block mt-4 pt-4 border-t border-neutral-light pl-9">
+<p class="text-sm text-neutral-gray mb-2">Vui lòng chuyển khoản đến:</p>
+<div class="bg-white p-3 rounded border border-neutral-light text-sm">
+<p><strong>Vietcombank</strong> - CN Hà Nội</p>
+<p>STK: <strong>0011002233445</strong></p>
+<p>Chủ TK: <strong>N2 SPORT COMPANY</strong></p>
+<p>Nội dung: <strong>[Mã đơn hàng] - SĐT</strong></p>
+</div>
+</div>
+</label>
+<!-- Option 3: E-wallets -->
+<label class="group relative flex cursor-pointer items-center gap-4 rounded-xl border border-neutral-light p-4 hover:border-primary has-[:checked]:border-primary has-[:checked]:bg-primary/5 transition-all">
+<input class="peer sr-only" name="payment" type="radio"/>
+<div class="flex h-5 w-5 items-center justify-center rounded-full border border-neutral-gray peer-checked:bg-primary peer-checked:border-primary">
+<div class="h-2.5 w-2.5 rounded-full bg-neutral-black opacity-0 peer-checked:opacity-100"></div>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">qr_code_scanner</span>
+<span class="font-medium text-neutral-black">Ví điện tử (MoMo / ZaloPay / VNPay)</span>
+</div>
+</label>
+</div>
+<div class="flex flex-col gap-2 mb-6">
+<label class="text-sm font-medium text-neutral-black">Ghi chú đơn hàng (Tùy chọn)</label>
+<textarea class="form-textarea w-full rounded-lg border-neutral-gray focus:border-primary focus:ring-primary min-h-[80px] px-4 py-3 bg-white resize-none" placeholder="Lưu ý cho người bán..."></textarea>
+</div>
+<label class="flex items-start gap-3 mt-4 cursor-pointer group mb-8">
+<div class="relative flex items-center mt-0.5">
+<input class="peer h-5 w-5 cursor-pointer appearance-none rounded border border-neutral-gray checked:border-primary checked:bg-primary transition-all" required="" type="checkbox"/>
+<span class="material-symbols-outlined absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[16px] text-neutral-black opacity-0 peer-checked:opacity-100 pointer-events-none">check</span>
+</div>
+<span class="text-sm text-neutral-black">Tôi đồng ý với <a class="text-accent-red font-medium underline" href="#">Điều khoản &amp; Điều kiện</a> mua hàng của N2 Sport.</span>
+</label>
+<div class="flex flex-col sm:flex-row gap-4 pt-4 border-t border-neutral-light justify-between items-center">
+<button class="order-2 sm:order-1 px-6 py-3 rounded-lg border border-primary text-neutral-black font-bold hover:bg-primary/10 transition-colors w-full sm:w-auto">
+                                        Quay lại
+                                    </button>
+<button class="order-1 sm:order-2 px-8 py-3 rounded-lg bg-accent-red text-white font-bold shadow-md hover:bg-red-700 transition-all transform hover:scale-[1.02] w-full sm:w-auto flex items-center justify-center gap-2">
+<span>Đặt hàng</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: ORDER SUMMARY -->
+<div class="w-full lg:w-[400px] shrink-0">
+<div class="sticky top-24 rounded-xl bg-neutral-light/50 p-6 border border-neutral-light">
+<h3 class="text-lg font-bold text-neutral-black mb-5 pb-3 border-b border-neutral-gray/20">Đơn hàng (3 sản phẩm)</h3>
+<!-- Product List -->
+<div class="flex flex-col gap-4 max-h-[350px] overflow-y-auto pr-2 mb-6">
+<!-- Item 1 -->
+<div class="flex gap-4 group">
+<div class="relative h-20 w-20 shrink-0 overflow-hidden rounded-lg border border-neutral-light bg-white">
+<div class="absolute top-0 right-0 bg-primary text-[10px] font-bold px-1.5 py-0.5 z-10 text-neutral-black">x1</div>
+<img class="h-full w-full object-cover group-hover:scale-110 transition-transform duration-300" data-alt="Red Nike sport shoe on white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJodWEfaQjlrTrwi3GELVCSdzTm5FzTlpiHcDYMzCzC8U6MaHfO1v67OpSv5m28insF3wy8vxlBGvFJW5ZmwO8bqfuLG9rmo40KItwSiqleqvQ5XJv9PSbmULM5qzYRwKOgQ98erLzraY-OhQ1aRI1N5RqqWuOC86OYvNDcy71dNi_r4wy0RESB2nwgdfHWNn7nUg1XrsTmf4OHKOaKzm2RQVLDDeK0nRqOwInsd0nRXoBox0sC4VVXwIO94L1dxY761fi99U7x1F4"/>
+</div>
+<div class="flex flex-1 flex-col justify-between py-1">
+<div>
+<a class="text-sm font-bold text-neutral-black line-clamp-2 hover:text-accent-red transition-colors" href="#">Giày Chạy Bộ Nike Air Zoom Pegasus 39</a>
+<p class="text-xs text-neutral-gray mt-1">Size: 42 | Màu: Đỏ</p>
+</div>
+<p class="text-sm font-bold text-accent-red">3.200.000đ</p>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex gap-4 group">
+<div class="relative h-20 w-20 shrink-0 overflow-hidden rounded-lg border border-neutral-light bg-white">
+<div class="absolute top-0 right-0 bg-primary text-[10px] font-bold px-1.5 py-0.5 z-10 text-neutral-black">x2</div>
+<img class="h-full w-full object-cover group-hover:scale-110 transition-transform duration-300" data-alt="Gym workout t-shirt folded" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQfuoPgGtrdambz7Fo2Cswzc92o_9lHrnHABZpNf4WlB07UK6t9Mt428VyXmYOlmLGDn4xqnWZGqJzAUM2VWulyH0AkHmY5uczNCTaeEADKa_vhYpB53F4neYds5GNybxZiyVgq09T_OZVLOQsiS14IuMuSq7VIgAsnVmThprS67eVwlvNrE0OZ-zMN0bq_OVK4iJQHxLjhfZq4uVy6NPdAmZJoQ9uaiQlM3ckNEGY46FH_jZKLvtoiNCBTQQO_cn6T_BU6UAcUqsX"/>
+</div>
+<div class="flex flex-1 flex-col justify-between py-1">
+<div>
+<a class="text-sm font-bold text-neutral-black line-clamp-2 hover:text-accent-red transition-colors" href="#">Áo Thun Tập Gym Nam Dry-Fit</a>
+<p class="text-xs text-neutral-gray mt-1">Size: L | Màu: Đen</p>
+</div>
+<p class="text-sm font-bold text-accent-red">450.000đ</p>
+</div>
+</div>
+</div>
+<!-- Coupon -->
+<div class="flex gap-2 mb-6">
+<input class="flex-1 rounded-lg border-neutral-gray/50 bg-white px-3 py-2 text-sm placeholder:text-neutral-gray focus:border-primary focus:ring-primary" placeholder="Mã giảm giá" type="text"/>
+<button class="bg-neutral-black text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-neutral-gray transition-colors">Áp dụng</button>
+</div>
+<!-- Summary Stats -->
+<div class="flex flex-col gap-3 border-t border-neutral-gray/20 pt-4">
+<div class="flex justify-between items-center text-sm">
+<span class="text-neutral-black">Tạm tính</span>
+<span class="font-medium text-neutral-black">4.100.000đ</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-neutral-black">Vận chuyển</span>
+<span class="font-medium text-neutral-gray">30.000đ</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-neutral-black">Giảm giá</span>
+<span class="font-medium text-primary">-100.000đ</span>
+</div>
+<div class="h-[1px] bg-neutral-gray/20 my-2"></div>
+<div class="flex justify-between items-center">
+<span class="text-base font-bold text-neutral-black">Tổng cộng</span>
+<span class="text-xl font-bold text-accent-red">4.030.000đ</span>
+</div>
+<p class="text-xs text-neutral-gray text-right mt-1">(Đã bao gồm VAT)</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="bg-neutral-black text-white py-12 px-6 md:px-20 mt-10">
+<div class="max-w-[1280px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-2 text-white mb-2">
+<div class="size-8 flex items-center justify-center rounded-full bg-primary text-neutral-black">
+<span class="material-symbols-outlined text-xl font-bold">bolt</span>
+</div>
+<h2 class="text-xl font-bold">N2 Sport</h2>
+</div>
+<p class="text-neutral-gray text-sm leading-relaxed">Đồng hành cùng đam mê thể thao của bạn. Cung cấp sản phẩm chính hãng, chất lượng cao.</p>
+<div class="flex gap-4 mt-2">
+<a class="text-neutral-gray hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">public</span></a>
+<a class="text-neutral-gray hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">alternate_email</span></a>
+<a class="text-neutral-gray hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">phone_iphone</span></a>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-bold mb-4 text-white">Về N2 Sport</h3>
+<ul class="flex flex-col gap-2 text-sm text-neutral-gray">
+<li><a class="hover:text-primary transition-colors" href="#">Giới thiệu</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Tuyển dụng</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Tin tức</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Hệ thống cửa hàng</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-bold mb-4 text-white">Hỗ trợ khách hàng</h3>
+<ul class="flex flex-col gap-2 text-sm text-neutral-gray">
+<li><a class="hover:text-primary transition-colors" href="#">Hướng dẫn mua hàng</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Chính sách giao hàng</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Chính sách đổi trả</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Bảo mật thông tin</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-bold mb-4 text-white">Đăng ký nhận tin</h3>
+<p class="text-sm text-neutral-gray mb-4">Nhận thông tin khuyến mãi mới nhất từ chúng tôi.</p>
+<div class="flex">
+<input class="bg-white/10 border-none text-white placeholder:text-neutral-gray text-sm rounded-l-lg px-4 py-2 w-full focus:ring-1 focus:ring-primary" placeholder="Email của bạn" type="email"/>
+<button class="bg-primary text-neutral-black px-4 py-2 rounded-r-lg font-bold text-sm hover:bg-opacity-90">Gửi</button>
+</div>
+</div>
+</div>
+<div class="max-w-[1280px] mx-auto pt-8 mt-8 border-t border-white/10 text-center text-xs text-neutral-gray">
+                © 2023 N2 Sport. All rights reserved.
+            </div>
+</footer>
+<!-- Loading Overlay (Hidden by default, can be toggled via JS) -->
+<div class="fixed inset-0 z-[100] bg-white/80 backdrop-blur-sm hidden items-center justify-center" id="loading-overlay">
+<div class="flex flex-col items-center gap-4">
+<div class="spinner size-12 rounded-full border-4 border-neutral-light border-t-primary"></div>
+<p class="text-neutral-black font-medium">Đang xử lý thanh toán...</p>
+</div>
+</div>
+</div>
+</body></html>

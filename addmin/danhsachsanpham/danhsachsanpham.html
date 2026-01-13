@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>N2 Sport Admin - Danh Sách Sản Phẩm</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#aceb00", // Lime Green for success/active
+              "accent-red": "#E42C14", // Red for primary actions/alerts
+              "neutral-dark": "#111111", // Main text
+              "neutral-gray": "#A5A5A5", // Secondary text/borders
+              "neutral-light": "#E8E8E8", // Dividers/Secondary BG
+              "background-light": "#f8f8f5", // Main BG
+              "background-white": "#FFFFFF",
+              "background-dark": "#1e230f",
+            },
+            fontFamily: {
+              "display": ["Lexend", "sans-serif"],
+              "body": ["Lexend", "sans-serif"],
+            },
+            borderRadius: {
+              "DEFAULT": "0.5rem", 
+              "lg": "0.75rem", 
+              "xl": "1rem", 
+              "full": "9999px"
+            },
+          },
+        },
+      }
+    </script>
+<style>
+        /* Custom scrollbar for table */
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 8px;
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #9ca3af;
+        }
+        
+        /* Toggle Switch */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #aceb00;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #aceb00;
+        }
+        
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light text-neutral-dark antialiased min-h-screen flex flex-col">
+<!-- Header (Sticky) -->
+<header class="sticky top-0 z-50 bg-white border-b border-neutral-light shadow-sm">
+<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex h-16 items-center justify-between">
+<!-- Logo & Nav -->
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-2">
+<div class="size-8 bg-neutral-dark rounded flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">bolt</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight text-neutral-dark">N2 Sport <span class="text-primary">Admin</span></h1>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-neutral-dark font-medium border-b-2 border-primary py-5" href="#">Sản phẩm</a>
+<a class="text-neutral-gray hover:text-neutral-dark font-medium transition-colors" href="#">Đơn hàng</a>
+<a class="text-neutral-gray hover:text-neutral-dark font-medium transition-colors" href="#">Khách hàng</a>
+<a class="text-neutral-gray hover:text-neutral-dark font-medium transition-colors" href="#">Báo cáo</a>
+</nav>
+</div>
+<!-- Search & Actions -->
+<div class="flex items-center gap-4">
+<div class="hidden md:flex relative max-w-md w-64">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-neutral-gray text-[20px]">search</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-2 border border-neutral-gray rounded-lg leading-5 bg-white placeholder-neutral-gray focus:outline-none focus:placeholder-neutral-400 focus:border-neutral-dark focus:ring-0 sm:text-sm transition duration-150 ease-in-out" placeholder="Tìm kiếm..." type="text"/>
+</div>
+<button class="relative p-2 text-neutral-dark hover:bg-neutral-light rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-accent-red ring-2 ring-white"></span>
+</button>
+<div class="relative ml-2">
+<button class="flex items-center gap-2 focus:outline-none">
+<img alt="User avatar" class="h-8 w-8 rounded-full object-cover border border-neutral-light" data-alt="User profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAAlbb30TIPy0ZhgvnWWqqN4wHEZuCEmVgKdS07g-eq5FXaLZXxlj37HcWhZhJD5Ou1uYpxY43v1gZHGIvPFsNaB_frsLBd32DBPMw5o4tWNnRFzSIDUMvgjELnStXI48C5l036mLW-pT_kOBolgBiLN0AajVQUET50XunfzswA8_PBod7s13ULj_K8hvT6Tyrrme6oh3YaKJVijhlwxuLcOXbs2Jse-RMNryYGNriXU5HD0l5H_Qi_oj30dbJiA5OhFD6kRqwXxF_"/>
+<span class="hidden sm:block text-sm font-medium text-neutral-dark">Admin User</span>
+<span class="material-symbols-outlined text-neutral-gray text-[20px]">expand_more</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 max-w-[1440px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<!-- Page Heading & Primary Actions -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+<div>
+<h2 class="text-3xl font-black text-neutral-dark tracking-tight">Danh Sách Sản Phẩm</h2>
+<p class="text-neutral-gray mt-1 text-sm">Quản lý kho hàng giày dép, quần áo và dụng cụ thể thao.</p>
+</div>
+<div class="flex flex-wrap gap-3">
+<button class="inline-flex items-center justify-center px-4 py-2 border border-primary text-sm font-medium rounded-lg text-neutral-dark bg-white hover:bg-primary/10 focus:outline-none transition-colors h-10">
+<span class="material-symbols-outlined mr-2 text-[20px]">upload_file</span>
+                    Import CSV
+                </button>
+<button class="inline-flex items-center justify-center px-4 py-2 border border-primary text-sm font-medium rounded-lg text-neutral-dark bg-white hover:bg-primary/10 focus:outline-none transition-colors h-10">
+<span class="material-symbols-outlined mr-2 text-[20px]">download</span>
+                    Export CSV
+                </button>
+<button class="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-bold rounded-lg text-white bg-accent-red hover:bg-red-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-red h-10">
+<span class="material-symbols-outlined mr-2 text-[20px]">add</span>
+                    Thêm sản phẩm mới
+                </button>
+</div>
+</div>
+<!-- Toolbar & Filters -->
+<div class="bg-white rounded-xl shadow-sm border border-neutral-light mb-6">
+<!-- Top Toolbar -->
+<div class="p-4 border-b border-neutral-light flex flex-col sm:flex-row gap-4 items-center justify-between">
+<!-- Bulk Actions -->
+<div class="flex items-center gap-3 w-full sm:w-auto">
+<div class="relative group">
+<button class="flex items-center gap-2 px-3 py-2 text-sm font-medium text-neutral-dark bg-white border border-neutral-gray rounded-lg hover:bg-neutral-light transition-colors">
+                            Hành động hàng loạt
+                            <span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+<!-- Dropdown (Hidden by default, shown on focus/hover logic in real app) -->
+</div>
+<div class="h-6 w-px bg-neutral-light mx-2 hidden sm:block"></div>
+<span class="text-sm text-neutral-gray hidden sm:block">Đã chọn 2 sản phẩm</span>
+</div>
+<!-- Filter Toggles -->
+<div class="flex items-center gap-3 w-full sm:w-auto justify-end">
+<button class="flex items-center gap-2 text-sm font-medium text-neutral-dark hover:text-accent-red transition-colors">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+                        Bộ lọc nâng cao
+                    </button>
+<button class="flex items-center gap-2 text-sm font-medium text-neutral-dark hover:text-accent-red transition-colors ml-4">
+<span class="material-symbols-outlined text-[20px]">view_column</span>
+                        Cột hiển thị
+                    </button>
+</div>
+</div>
+<!-- Filter Panel (Accordion style - simplified to be open for demo) -->
+<div class="p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 bg-neutral-light/20">
+<!-- Search -->
+<div class="relative">
+<label class="block text-xs font-medium text-neutral-gray mb-1">Từ khóa</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-neutral-gray text-[18px]">search</span>
+<input class="w-full pl-9 pr-3 py-2 text-sm border-neutral-gray rounded-lg focus:ring-accent-red focus:border-accent-red bg-white" placeholder="Tên sản phẩm, SKU..." type="text"/>
+</div>
+</div>
+<!-- Category -->
+<div>
+<label class="block text-xs font-medium text-neutral-gray mb-1">Danh mục</label>
+<select class="w-full py-2 pl-3 pr-10 text-sm border-neutral-gray rounded-lg focus:ring-accent-red focus:border-accent-red bg-white">
+<option>Tất cả danh mục</option>
+<option>Giày chạy bộ</option>
+<option>Quần áo Gym</option>
+<option>Dụng cụ tập luyện</option>
+<option>Phụ kiện</option>
+</select>
+</div>
+<!-- Status -->
+<div>
+<label class="block text-xs font-medium text-neutral-gray mb-1">Trạng thái</label>
+<select class="w-full py-2 pl-3 pr-10 text-sm border-neutral-gray rounded-lg focus:ring-accent-red focus:border-accent-red bg-white">
+<option>Tất cả trạng thái</option>
+<option value="active">Đang bán</option>
+<option value="inactive">Ngừng kinh doanh</option>
+</select>
+</div>
+<!-- Date Range -->
+<div class="flex items-end gap-2">
+<div class="flex-1">
+<label class="block text-xs font-medium text-neutral-gray mb-1">Khoảng ngày</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-neutral-gray text-[18px]">calendar_today</span>
+<input class="w-full pl-3 pr-9 py-2 text-sm border-neutral-gray rounded-lg focus:ring-accent-red focus:border-accent-red bg-white" placeholder="Chọn ngày" type="text"/>
+</div>
+</div>
+<button class="h-[38px] px-4 bg-white border border-accent-red text-accent-red rounded-lg text-sm font-medium hover:bg-accent-red hover:text-white transition-colors">
+                        Lọc
+                    </button>
+</div>
+</div>
+</div>
+<!-- Data Table Container -->
+<div class="bg-white rounded-xl shadow-sm border border-neutral-light overflow-hidden">
+<div class="overflow-x-auto custom-scrollbar">
+<table class="min-w-full divide-y divide-neutral-light">
+<thead class="bg-gray-50">
+<tr>
+<th class="px-6 py-3 text-left w-12" scope="col">
+<input class="rounded border-neutral-gray text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+</th>
+<th class="px-6 py-3 text-left text-xs font-bold text-neutral-gray uppercase tracking-wider" scope="col">Sản phẩm</th>
+<th class="px-6 py-3 text-left text-xs font-bold text-neutral-gray uppercase tracking-wider" scope="col">SKU &amp; Danh mục</th>
+<th class="px-6 py-3 text-left text-xs font-bold text-neutral-gray uppercase tracking-wider" scope="col">Giá bán</th>
+<th class="px-6 py-3 text-left text-xs font-bold text-neutral-gray uppercase tracking-wider" scope="col">Tồn kho</th>
+<th class="px-6 py-3 text-left text-xs font-bold text-neutral-gray uppercase tracking-wider" scope="col">Trạng thái</th>
+<th class="px-6 py-3 text-left text-xs font-bold text-neutral-gray uppercase tracking-wider text-right" scope="col">Thống kê</th>
+<th class="px-6 py-3 text-right text-xs font-bold text-neutral-gray uppercase tracking-wider" scope="col">Hành động</th>
+</tr>
+</thead>
+<tbody class="bg-white divide-y divide-neutral-light">
+<!-- Row 1 -->
+<tr class="hover:bg-neutral-light/30 transition-colors group">
+<td class="px-6 py-4 whitespace-nowrap">
+<input class="rounded border-neutral-gray text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="h-12 w-12 flex-shrink-0 relative overflow-hidden rounded-md border border-neutral-light bg-white group-hover:scale-105 transition-transform duration-300">
+<img alt="Red Nike Running Shoe" class="h-full w-full object-cover" data-alt="Red sports shoe side view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKSr2RtSJdy_FDNCW6Ko6DkXcfLbwlTtB2FrCKr3X3_UlQlNrmvyh1deXscoZ43XbvXRUml2AAAObelwcmxKLsuudQA-BGPejnhRb_86cdC2EDMtWFDBSSxSZuKbfUfPTFAc2jGznuL3VK3NC5YKPh9bf1IylTgw_SsPFIXaKVhbi3iahfK64cToYnAwYBYZt2jVnVd8jnHutOh_4EbeWl3cFoCbBLQgrn7DFd7W84SkijNYApTWfGGLFEgxQSVEQqq8AkI8WyUpN7"/>
+</div>
+<div class="ml-4">
+<div class="text-sm font-bold text-neutral-dark hover:text-accent-red cursor-pointer">Nike Air Zoom Pegasus 39</div>
+<div class="text-xs text-neutral-gray">Nike</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-neutral-dark font-mono">NK-PEG-39-RED</div>
+<div class="text-xs text-neutral-gray mt-0.5">Giày chạy bộ</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm font-bold text-accent-red">3,250,000 ₫</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-primary/20 text-[#6ea300]">
+                                    Còn hàng (45)
+                                </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<!-- Custom Toggle -->
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer checked:right-0 checked:border-primary transition-all duration-300" id="toggle1" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-primary cursor-pointer" for="toggle1"></label>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right">
+<div class="flex flex-col items-end gap-1">
+<div class="flex items-center text-xs text-neutral-gray">
+<span class="material-symbols-outlined text-[14px] mr-1">visibility</span> 1.2k
+                                    </div>
+<div class="flex items-center text-xs font-medium text-primary">
+<span class="material-symbols-outlined text-[14px] mr-1">shopping_cart</span> 128
+                                    </div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-neutral-gray hover:text-neutral-dark p-1">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="text-neutral-gray hover:text-neutral-dark p-1">
+<span class="material-symbols-outlined text-[20px]">content_copy</span>
+</button>
+<button class="text-neutral-gray hover:text-accent-red p-1">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-neutral-light/30 transition-colors group">
+<td class="px-6 py-4 whitespace-nowrap">
+<input class="rounded border-neutral-gray text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="h-12 w-12 flex-shrink-0 relative overflow-hidden rounded-md border border-neutral-light bg-white group-hover:scale-105 transition-transform duration-300">
+<img alt="Black Gym T-shirt" class="h-full w-full object-cover" data-alt="Black gym t-shirt folded" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQMGde6n4xwqhV4fq8Tx6QGPn2dHXq58AGGzxlAZ-z-3HzozJkW7VjK6bOn_CgCwDiKEUXsP31yv9DYbmHtrnhDsjwfRrw5KfWBKG84L6aehlsbovx1NYRBMShGlvy5QKfxutdpeDN4wgn_9UesVFOKeccGO0ju1BmYiSzJg1xGfSfH7RsnuOP9T3GmitZtDEN_VtjsAsSU1rqT2PW7yrO75cNs3tCPWhoS1FBiZ8l0GTgICXsNQWDGuVJxZtuy20cG2tAq0K2qAhU"/>
+</div>
+<div class="ml-4">
+<div class="text-sm font-bold text-neutral-dark hover:text-accent-red cursor-pointer">Áo Gym Shark Seamless</div>
+<div class="text-xs text-neutral-gray">Gym Shark</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-neutral-dark font-mono">GS-SEAM-BLK</div>
+<div class="text-xs text-neutral-gray mt-0.5">Quần áo Gym</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm font-bold text-accent-red">850,000 ₫</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-orange-100 text-orange-600">
+                                    Sắp hết (5)
+                                </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<!-- Custom Toggle -->
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer checked:right-0 checked:border-primary transition-all duration-300" id="toggle2" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-primary cursor-pointer" for="toggle2"></label>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right">
+<div class="flex flex-col items-end gap-1">
+<div class="flex items-center text-xs text-neutral-gray">
+<span class="material-symbols-outlined text-[14px] mr-1">visibility</span> 850
+                                    </div>
+<div class="flex items-center text-xs font-medium text-primary">
+<span class="material-symbols-outlined text-[14px] mr-1">shopping_cart</span> 92
+                                    </div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-neutral-gray hover:text-neutral-dark p-1">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="text-neutral-gray hover:text-neutral-dark p-1">
+<span class="material-symbols-outlined text-[20px]">content_copy</span>
+</button>
+<button class="text-neutral-gray hover:text-accent-red p-1">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-neutral-light/30 transition-colors group bg-red-50/30">
+<td class="px-6 py-4 whitespace-nowrap">
+<input class="rounded border-neutral-gray text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="h-12 w-12 flex-shrink-0 relative overflow-hidden rounded-md border border-neutral-light bg-white group-hover:scale-105 transition-transform duration-300">
+<img alt="Dumbbell set" class="h-full w-full object-cover grayscale" data-alt="Dumbbell set on floor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTloiq3w2ULjmfSo8SNizOCt_OsowpDJG1lg2iUIOTGu7ovRM7kjc06MNfrz7SWJieE5gxmNuhwUiQVanrjb7BpxFAo8RAU3-sjWa1Rw2GBTyfLRZKiXh29IIUlCo7FpcrtZ9lsb35KnVzxz4h80OnwALO5sqYbrmNWjgwWDLO8ItEuqLDrzDanSEfc-72C18X7XJbgv0Ud_LgBuB3uz3xnDF16LoLROT1mmSDWw01YSX2UXeysYp-yB8CNy3tBFV7uerpCE8W-0gp"/>
+</div>
+<div class="ml-4">
+<div class="text-sm font-bold text-neutral-dark hover:text-accent-red cursor-pointer">Bộ Tạ Tay Điều Chỉnh</div>
+<div class="text-xs text-neutral-gray">Bowflex</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-neutral-dark font-mono">BW-DUMB-552</div>
+<div class="text-xs text-neutral-gray mt-0.5">Dụng cụ tập luyện</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm font-bold text-accent-red">5,900,000 ₫</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-accent-red/10 text-accent-red">
+                                    Hết hàng (0)
+                                </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<!-- Custom Toggle Off -->
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 border-neutral-gray appearance-none cursor-pointer transition-all duration-300" id="toggle3" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-neutral-gray cursor-pointer" for="toggle3"></label>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right">
+<div class="flex flex-col items-end gap-1">
+<div class="flex items-center text-xs text-neutral-gray">
+<span class="material-symbols-outlined text-[14px] mr-1">visibility</span> 3.4k
+                                    </div>
+<div class="flex items-center text-xs font-medium text-neutral-gray">
+<span class="material-symbols-outlined text-[14px] mr-1">shopping_cart</span> 450
+                                    </div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-neutral-gray hover:text-neutral-dark p-1">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="text-neutral-gray hover:text-neutral-dark p-1">
+<span class="material-symbols-outlined text-[20px]">content_copy</span>
+</button>
+<button class="text-neutral-gray hover:text-accent-red p-1">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-neutral-light/30 transition-colors group">
+<td class="px-6 py-4 whitespace-nowrap">
+<input class="rounded border-neutral-gray text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="h-12 w-12 flex-shrink-0 relative overflow-hidden rounded-md border border-neutral-light bg-white group-hover:scale-105 transition-transform duration-300">
+<img alt="Running Shoes" class="h-full w-full object-cover" data-alt="White running sneakers on asphalt" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiVfcVwgGGvqlmS4Brt33LjRTwo7C-4Y2Reqf1LedUcgOqML_89LBxJx0NXRMnSxbB02mqAJnHT4RDiQgJm5gB-l4JJSQc1EuCfQjNNDV_V3iWGNvT0NaZKvL-JvGsqeWJKoQS74elip1NkIdly9GWO8Udy1_o4q5lkCMGJ3WFgEa_rCdTgp6F7vu-6MfsI183-cF1l4p0QcdT0qdEw31AWwYnPZTpY5x0uwzK6digA5gjkUYrp4imsCiZoX-W_gWQtbuvdxRx9cFD"/>
+</div>
+<div class="ml-4">
+<div class="text-sm font-bold text-neutral-dark hover:text-accent-red cursor-pointer">Adidas Ultraboost 22</div>
+<div class="text-xs text-neutral-gray">Adidas</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-neutral-dark font-mono">AD-ULT-22-WHT</div>
+<div class="text-xs text-neutral-gray mt-0.5">Giày chạy bộ</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm font-bold text-accent-red">4,100,000 ₫</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-primary/20 text-[#6ea300]">
+                                    Còn hàng (112)
+                                </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer checked:right-0 checked:border-primary transition-all duration-300" id="toggle4" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-primary cursor-pointer" for="toggle4"></label>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right">
+<div class="flex flex-col items-end gap-1">
+<div class="flex items-center text-xs text-neutral-gray">
+<span class="material-symbols-outlined text-[14px] mr-1">visibility</span> 560
+                                    </div>
+<div class="flex items-center text-xs font-medium text-primary">
+<span class="material-symbols-outlined text-[14px] mr-1">shopping_cart</span> 23
+                                    </div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-neutral-gray hover:text-neutral-dark p-1">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="text-neutral-gray hover:text-neutral-dark p-1">
+<span class="material-symbols-outlined text-[20px]">content_copy</span>
+</button>
+<button class="text-neutral-gray hover:text-accent-red p-1">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-neutral-light/30 transition-colors group">
+<td class="px-6 py-4 whitespace-nowrap">
+<input class="rounded border-neutral-gray text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="h-12 w-12 flex-shrink-0 relative overflow-hidden rounded-md border border-neutral-light bg-white group-hover:scale-105 transition-transform duration-300">
+<img alt="Black T-shirt" class="h-full w-full object-cover" data-alt="Black men's t-shirt" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaB45sqDPgBR7985e5vH2VcE1qzHyosvXWUnYx9n19FFAOhtLJPWrObMEINgaDLZJFdRE47NUnwyobzfBbDuTZyjv40cfkKpWykWqA-f2Kd5q9OBPGYlu9ZO3lS-Or3NbHKZ-hbO3nbCTf9VQkHbMh7kgp6PiDGVDKlXfANzrfGCe3bq1iTih0goY4OT6a5GwyJaCFbYtIf6tJBb0o2COQR5VvAM-VNWamvS4cw-FkkzTYmheOQKpXdaOLR9h5vbg-j_vfGhhJYmJf"/>
+</div>
+<div class="ml-4">
+<div class="text-sm font-bold text-neutral-dark hover:text-accent-red cursor-pointer">Under Armour Tech 2.0</div>
+<div class="text-xs text-neutral-gray">Under Armour</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-neutral-dark font-mono">UA-TECH-2-BLK</div>
+<div class="text-xs text-neutral-gray mt-0.5">Quần áo Gym</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm font-bold text-accent-red">550,000 ₫</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-primary/20 text-[#6ea300]">
+                                    Còn hàng (67)
+                                </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer checked:right-0 checked:border-primary transition-all duration-300" id="toggle5" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-primary cursor-pointer" for="toggle5"></label>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right">
+<div class="flex flex-col items-end gap-1">
+<div class="flex items-center text-xs text-neutral-gray">
+<span class="material-symbols-outlined text-[14px] mr-1">visibility</span> 210
+                                    </div>
+<div class="flex items-center text-xs font-medium text-primary">
+<span class="material-symbols-outlined text-[14px] mr-1">shopping_cart</span> 15
+                                    </div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-neutral-gray hover:text-neutral-dark p-1">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="text-neutral-gray hover:text-neutral-dark p-1">
+<span class="material-symbols-outlined text-[20px]">content_copy</span>
+</button>
+<button class="text-neutral-gray hover:text-accent-red p-1">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="bg-white px-4 py-3 flex items-center justify-between border-t border-neutral-light sm:px-6">
+<div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+<div>
+<p class="text-sm text-neutral-gray">
+                            Hiển thị <span class="font-medium text-neutral-dark">1</span> đến <span class="font-medium text-neutral-dark">5</span> trong số <span class="font-medium text-neutral-dark">97</span> kết quả
+                        </p>
+</div>
+<div class="flex items-center gap-4">
+<select class="form-select block w-full pl-3 pr-8 py-1.5 text-base border-neutral-gray focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md">
+<option>10 hàng</option>
+<option>20 hàng</option>
+<option>50 hàng</option>
+</select>
+<nav aria-label="Pagination" class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px">
+<a class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-neutral-light bg-white text-sm font-medium text-neutral-gray hover:bg-gray-50" href="#">
+<span class="sr-only">Previous</span>
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</a>
+<a aria-current="page" class="z-10 bg-primary/20 border-primary text-neutral-dark relative inline-flex items-center px-4 py-2 border text-sm font-bold" href="#">
+                                1
+                            </a>
+<a class="bg-white border-neutral-light text-neutral-gray hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium" href="#">
+                                2
+                            </a>
+<a class="bg-white border-neutral-light text-neutral-gray hover:bg-gray-50 hidden md:inline-flex relative items-center px-4 py-2 border text-sm font-medium" href="#">
+                                3
+                            </a>
+<span class="relative inline-flex items-center px-4 py-2 border border-neutral-light bg-white text-sm font-medium text-neutral-gray">
+                                ...
+                            </span>
+<a class="bg-white border-neutral-light text-neutral-gray hover:bg-gray-50 hidden md:inline-flex relative items-center px-4 py-2 border text-sm font-medium" href="#">
+                                8
+                            </a>
+<a class="bg-white border-neutral-light text-neutral-gray hover:bg-gray-50 hidden md:inline-flex relative items-center px-4 py-2 border text-sm font-medium" href="#">
+                                9
+                            </a>
+<a class="bg-white border-neutral-light text-neutral-gray hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium" href="#">
+                                10
+                            </a>
+<a class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-neutral-light bg-white text-sm font-medium text-neutral-gray hover:bg-gray-50" href="#">
+<span class="sr-only">Next</span>
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</a>
+</nav>
+</div>
+</div>
+<!-- Mobile Pagination -->
+<div class="flex items-center justify-between sm:hidden w-full">
+<a class="relative inline-flex items-center px-4 py-2 border border-neutral-light text-sm font-medium rounded-md text-neutral-gray bg-white hover:bg-gray-50" href="#">
+                        Trước
+                    </a>
+<a class="ml-3 relative inline-flex items-center px-4 py-2 border border-neutral-light text-sm font-medium rounded-md text-neutral-gray bg-white hover:bg-gray-50" href="#">
+                        Sau
+                    </a>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-background-dark border-t border-gray-800 mt-auto">
+<div class="max-w-[1440px] mx-auto py-8 px-4 sm:px-6 lg:px-8">
+<div class="md:flex md:items-center md:justify-between">
+<div class="flex space-x-6 md:order-2">
+<a class="text-gray-400 hover:text-primary" href="#">Trung tâm trợ giúp</a>
+<a class="text-gray-400 hover:text-primary" href="#">Tài liệu API</a>
+<a class="text-gray-400 hover:text-primary" href="#">Hệ thống</a>
+</div>
+<div class="mt-8 md:mt-0 md:order-1">
+<p class="text-center text-base text-gray-400">
+                        © 2023 N2 Sport Inc. All rights reserved. Version 2.4.0
+                    </p>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

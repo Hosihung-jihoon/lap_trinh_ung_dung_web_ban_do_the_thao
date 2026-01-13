@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>N2 Sport - Danh Sách Khách Hàng</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#E62C14", // Red
+                        "n2-lime": "#AFED00", // Lime Green
+                        "n2-black": "#111111", // Dark Text
+                        "n2-gray": "#A5A5A5", // Secondary Text/Border
+                        "n2-light": "#E8E8E8", // Secondary BG
+                        "background-light": "#FFFFFF",
+                        "background-dark": "#221210",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for table if needed */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* Toggle Switch Styles */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #AFED00;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #AFED00;
+        }
+        
+        /* Custom Range Slider Styling */
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            border: 1px solid #A5A5A5;
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+            background: #ffffff;
+            cursor: pointer;
+            margin-top: -6px;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #E8E8E8;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body class="bg-background-light font-display text-n2-black antialiased overflow-x-hidden min-h-screen flex flex-col">
+<!-- Sticky Header -->
+<header class="sticky top-0 z-50 w-full bg-white border-b border-[#f4f1f0] shadow-sm">
+<div class="px-4 md:px-10 py-3 flex items-center justify-between gap-4">
+<!-- Brand & Logo -->
+<div class="flex items-center gap-8">
+<a class="flex items-center gap-3 group" href="#">
+<div class="size-8 flex items-center justify-center bg-n2-black rounded-lg">
+<span class="material-symbols-outlined text-n2-lime">bolt</span>
+</div>
+<h2 class="text-n2-black text-xl font-bold tracking-tight">N2 Sport <span class="text-n2-lime">Admin</span></h2>
+</a>
+<!-- Desktop Nav (Hidden on Mobile) -->
+<nav class="hidden md:flex items-center gap-6 text-sm font-medium text-n2-gray">
+<a class="text-n2-black hover:text-primary transition-colors" href="#">Customers</a>
+<a class="hover:text-primary transition-colors" href="#">Orders</a>
+<a class="hover:text-primary transition-colors" href="#">Inventory</a>
+</nav>
+</div>
+<!-- Search & Actions -->
+<div class="flex items-center gap-4 flex-1 justify-end">
+<!-- Search Bar -->
+<div class="hidden md:flex max-w-xs w-full">
+<div class="relative w-full">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-n2-gray text-lg">search</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-2 border border-n2-gray rounded-lg leading-5 bg-white placeholder-n2-gray focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary sm:text-sm" placeholder="Search global..." type="text"/>
+</div>
+</div>
+<!-- Notifications -->
+<button class="relative p-2 text-n2-black hover:bg-n2-light rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 size-2.5 bg-primary rounded-full border border-white"></span>
+</button>
+<!-- Profile Dropdown -->
+<div class="flex items-center gap-3 pl-2 border-l border-n2-gray/20">
+<div class="text-right hidden sm:block">
+<p class="text-xs font-bold text-n2-black">Admin User</p>
+<p class="text-[10px] text-n2-gray">Super Admin</p>
+</div>
+<div class="size-9 rounded-full bg-n2-light bg-cover bg-center border border-n2-gray/20" data-alt="Admin user profile picture showing a smiling person" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBKhufeDyLYthE-Enc6jRK4D7-UF-kBA_iWK-rkwFIJh17HBxXUPt9TBjDnMjC1pRE3UJwBRbXF3Uob5fJGiSUeOR8XiWlkcxhqDkFEGWG2oJEJyuENT53cwznKaoww-wi-84rPROVNUx8aGwD43vgxVLebAMdFBRwmOHF9UUA0NtqYTKtyE2PROUXwpRmSBd_lTMcPiKf_-rZMQZNQ7znCojyfyhhq6Y0ZWynBuwHgo90lPUSglMrN_2SXpzZ1rx0jM1KL5XOJEckX');"></div>
+<span class="material-symbols-outlined text-n2-black text-sm hidden sm:block">expand_more</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-[1440px] mx-auto px-4 md:px-8 py-8 space-y-6">
+<!-- Stats Cards Section -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Total Customers -->
+<div class="bg-n2-light rounded-xl p-6 flex flex-col justify-between h-32 relative overflow-hidden group">
+<div class="absolute right-0 top-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-n2-black text-6xl">groups</span>
+</div>
+<p class="text-n2-black text-sm font-medium">Total Customers</p>
+<div>
+<h3 class="text-n2-black text-3xl font-bold tracking-tight">1,240</h3>
+<p class="text-n2-gray text-xs mt-1">Total registered accounts</p>
+</div>
+</div>
+<!-- Active Customers -->
+<div class="bg-n2-light rounded-xl p-6 flex flex-col justify-between h-32 relative overflow-hidden group">
+<div class="absolute right-0 top-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-n2-lime text-6xl">person_check</span>
+</div>
+<p class="text-n2-black text-sm font-medium">Active Customers</p>
+<div>
+<h3 class="text-n2-lime text-3xl font-bold tracking-tight drop-shadow-sm" style="text-shadow: 1px 1px 0 #00000010;">980</h3>
+<div class="flex items-center gap-1 mt-1">
+<span class="text-xs font-bold text-n2-lime bg-n2-black px-1.5 py-0.5 rounded flex items-center gap-0.5">
+                            +0.8% <span class="material-symbols-outlined text-[10px]">trending_up</span>
+</span>
+<p class="text-n2-gray text-xs">vs last week</p>
+</div>
+</div>
+</div>
+<!-- New Customers -->
+<div class="bg-n2-light rounded-xl p-6 flex flex-col justify-between h-32 relative overflow-hidden group">
+<div class="absolute right-0 top-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-primary text-6xl">person_add</span>
+</div>
+<p class="text-n2-black text-sm font-medium">New (This Month)</p>
+<div>
+<h3 class="text-primary text-3xl font-bold tracking-tight">125</h3>
+<div class="flex items-center gap-1 mt-1">
+<span class="text-xs font-bold text-n2-lime bg-n2-black px-1.5 py-0.5 rounded flex items-center gap-0.5">
+                            +15% <span class="material-symbols-outlined text-[10px]">trending_up</span>
+</span>
+<p class="text-n2-gray text-xs">Growth rate</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Toolbar Section -->
+<section class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+<h1 class="text-2xl font-bold text-n2-black">Customer Management</h1>
+<div class="flex gap-3 w-full sm:w-auto">
+<button class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2.5 bg-white border border-n2-lime text-n2-black rounded-lg hover:bg-n2-lime hover:border-n2-lime transition-colors text-sm font-bold">
+<span class="material-symbols-outlined text-lg">download</span>
+                    Export CSV
+                </button>
+<button class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2.5 bg-primary text-white rounded-lg hover:bg-red-700 transition-colors shadow-lg shadow-red-200 text-sm font-bold">
+<span class="material-symbols-outlined text-lg">add</span>
+                    Add Customer
+                </button>
+</div>
+</section>
+<!-- Filters Section (Accordion) -->
+<section class="bg-white border border-n2-light rounded-xl shadow-sm overflow-hidden">
+<details class="group p-4" open="">
+<summary class="flex cursor-pointer items-center justify-between font-bold text-n2-black list-none select-none">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-n2-gray">filter_list</span>
+<span>Advanced Filters</span>
+</div>
+<span class="material-symbols-outlined transition group-open:rotate-180">expand_more</span>
+</summary>
+<div class="mt-4 pt-4 border-t border-n2-light grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Search Input -->
+<div class="col-span-1 md:col-span-2">
+<label class="block text-xs font-medium text-n2-gray mb-1">Search User</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-n2-gray text-lg">search</span>
+</span>
+<input class="w-full pl-9 pr-3 py-2 border border-n2-gray rounded-lg text-sm focus:ring-1 focus:ring-n2-lime focus:border-n2-lime" placeholder="Name, Email, or Phone number" type="text"/>
+</div>
+</div>
+<!-- Role Filter -->
+<div>
+<label class="block text-xs font-medium text-n2-gray mb-1">Role</label>
+<select class="w-full py-2 pl-3 pr-10 border border-n2-gray rounded-lg text-sm focus:ring-1 focus:ring-n2-lime focus:border-n2-lime bg-white">
+<option value="">All Roles</option>
+<option value="vip">VIP Customer</option>
+<option value="standard">Standard</option>
+<option value="wholesale">Wholesale</option>
+</select>
+</div>
+<!-- Status Filter -->
+<div>
+<label class="block text-xs font-medium text-n2-gray mb-1">Status</label>
+<select class="w-full py-2 pl-3 pr-10 border border-n2-gray rounded-lg text-sm focus:ring-1 focus:ring-n2-lime focus:border-n2-lime bg-white">
+<option value="">All Statuses</option>
+<option value="active">Active</option>
+<option value="locked">Locked</option>
+</select>
+</div>
+<!-- Registration Date -->
+<div>
+<label class="block text-xs font-medium text-n2-gray mb-1">Registration Date</label>
+<input class="w-full py-2 px-3 border border-n2-gray rounded-lg text-sm focus:ring-1 focus:ring-n2-lime focus:border-n2-lime text-n2-gray" type="date"/>
+</div>
+<!-- Spend Range Slider -->
+<div>
+<div class="flex justify-between mb-1">
+<label class="block text-xs font-medium text-n2-gray">Total Spent</label>
+<span class="text-xs font-bold text-primary">$0 - $5,000+</span>
+</div>
+<input class="w-full h-1 bg-n2-light rounded-lg appearance-none cursor-pointer accent-primary" max="5000" min="0" type="range"/>
+</div>
+<!-- Order Count Slider -->
+<div>
+<div class="flex justify-between mb-1">
+<label class="block text-xs font-medium text-n2-gray">Total Orders</label>
+<span class="text-xs font-bold text-n2-black">0 - 100+</span>
+</div>
+<input class="w-full h-1 bg-n2-light rounded-lg appearance-none cursor-pointer accent-n2-black" max="100" min="0" type="range"/>
+</div>
+<!-- Action Buttons -->
+<div class="flex items-end gap-2">
+<button class="flex-1 py-2 px-3 bg-primary text-white text-sm font-bold rounded-lg hover:bg-red-700 transition-colors">Apply</button>
+<button class="py-2 px-3 border border-n2-gray text-n2-gray hover:text-n2-black text-sm font-bold rounded-lg hover:bg-n2-light transition-colors">Clear</button>
+</div>
+</div>
+</details>
+</section>
+<!-- Data Table Section -->
+<section class="bg-white border border-n2-light rounded-xl shadow-sm overflow-hidden flex flex-col">
+<div class="overflow-x-auto scrollbar-hide">
+<table class="min-w-full divide-y divide-n2-light">
+<thead class="bg-n2-light">
+<tr>
+<th class="px-6 py-3 text-left text-xs font-bold text-n2-gray uppercase tracking-wider sticky left-0 bg-n2-light z-10 shadow-sm sm:shadow-none" scope="col">Customer</th>
+<th class="px-6 py-3 text-left text-xs font-bold text-n2-gray uppercase tracking-wider" scope="col">Contact Info</th>
+<th class="px-6 py-3 text-left text-xs font-bold text-n2-gray uppercase tracking-wider" scope="col">Role</th>
+<th class="px-6 py-3 text-left text-xs font-bold text-n2-gray uppercase tracking-wider cursor-pointer group hover:text-n2-black" scope="col">
+<div class="flex items-center gap-1">Orders <span class="material-symbols-outlined text-[16px] opacity-0 group-hover:opacity-100">arrow_drop_down</span></div>
+</th>
+<th class="px-6 py-3 text-left text-xs font-bold text-n2-gray uppercase tracking-wider cursor-pointer group hover:text-n2-black" scope="col">
+<div class="flex items-center gap-1">Spent <span class="material-symbols-outlined text-[16px] opacity-0 group-hover:opacity-100">arrow_drop_down</span></div>
+</th>
+<th class="px-6 py-3 text-left text-xs font-bold text-n2-gray uppercase tracking-wider" scope="col">Points</th>
+<th class="px-6 py-3 text-left text-xs font-bold text-n2-gray uppercase tracking-wider" scope="col">Joined</th>
+<th class="px-6 py-3 text-center text-xs font-bold text-n2-gray uppercase tracking-wider" scope="col">Status</th>
+<th class="px-6 py-3 text-right text-xs font-bold text-n2-gray uppercase tracking-wider" scope="col">Actions</th>
+</tr>
+</thead>
+<tbody class="bg-white divide-y divide-n2-light">
+<!-- Row 1 -->
+<tr class="hover:bg-[#fafafa] transition-colors group">
+<td class="px-6 py-4 whitespace-nowrap sticky left-0 bg-white group-hover:bg-[#fafafa]">
+<div class="flex items-center">
+<div class="h-10 w-10 flex-shrink-0">
+<div class="h-10 w-10 rounded-full bg-n2-light bg-cover bg-center border border-n2-light" data-alt="Profile picture of Sarah Johnson" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCl9VesP21Ufa8L97ONIGL4gDvOXZf98Pt8QLQSvVyLP4sDwDeSVugFxtjCYc5EsoH01AQST12L54uo84O2CLpoTK1NxxkcepjcCp0d45mlwOQaf2htB0BU_Rp90Jnz0GPht8UyRlh-N-NijDvb4R8pBKTdwbv_6itIn_HTrhmr3ep5t5Ey8vYbPc02eb5NW8Kqfe_wTSeGzZGbVUKScVamrcSaNJEBLS0E0ZcppaGCq7b7YfvqsYGZUKBFHuYrH93hOWafJ0MlvDRm');"></div>
+</div>
+<div class="ml-4">
+<div class="text-sm font-bold text-n2-black hover:text-primary cursor-pointer">Sarah Johnson</div>
+<div class="text-xs text-n2-gray">ID: #CUS-00129</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-n2-black">sarah.j@example.com</div>
+<div class="text-xs text-n2-gray">+1 (555) 012-3456</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-2 inline-flex text-xs leading-5 font-bold rounded-full bg-n2-lime text-n2-black">
+                                    VIP Member
+                                </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-n2-lime font-bold bg-n2-black/5 rounded">
+<span class="text-n2-black">14</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-primary">
+                                $2,450.00
+                            </td>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-n2-black">
+<span class="text-n2-lime">●</span> 540 pts
+                            </td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-n2-gray">
+                                Jan 12, 2023
+                            </td>
+<td class="px-6 py-4 whitespace-nowrap text-center">
+<label class="inline-flex items-center cursor-pointer" for="toggle1">
+<input checked="" class="sr-only peer" id="toggle1" type="checkbox"/>
+<div class="relative w-11 h-6 bg-n2-light rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-n2-lime"></div>
+</label>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<button class="text-n2-gray hover:text-n2-black p-1 rounded-md hover:bg-n2-light">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-[#fafafa] transition-colors group">
+<td class="px-6 py-4 whitespace-nowrap sticky left-0 bg-white group-hover:bg-[#fafafa]">
+<div class="flex items-center">
+<div class="h-10 w-10 flex-shrink-0">
+<div class="h-10 w-10 rounded-full bg-n2-light bg-cover bg-center border border-n2-light" data-alt="Profile picture of Michael Chen" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCs8ro16Q1CLmcTL_vBuSQef0isDXAAJd06q6H8hMD2O6hjuVmkPKS27RTWdf22FlWXgX2xBZXREAdTUCBGP8h3tJ1BDJeIy1GGwjMYWb6koCZODtjKtIMKYQclGZeoxXq2oYUJ34SzcHee_tr2jGaMWYEWVNw_AyrBc-PcLqfURepTWesv7gyLrVlgSf_j46GV-_IFIx4TGD7Sbsvbg4jE-NfUYfvBuFwiUDN0UrDuacvz4VaTIIGMiJO-4B1T0ngP0ByFKEgU7CWM');"></div>
+</div>
+<div class="ml-4">
+<div class="text-sm font-bold text-n2-black hover:text-primary cursor-pointer">Michael Chen</div>
+<div class="text-xs text-n2-gray">ID: #CUS-00130</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-n2-black">m.chen@example.com</div>
+<div class="text-xs text-n2-gray">+1 (555) 987-6543</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-2 inline-flex text-xs leading-5 font-bold rounded-full bg-n2-light text-n2-gray border border-n2-gray">
+                                    Standard
+                                </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-n2-black">
+                                2
+                            </td>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-primary">
+                                $125.50
+                            </td>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-n2-black">
+<span class="text-n2-gray">●</span> 25 pts
+                            </td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-n2-gray">
+                                Oct 24, 2023
+                            </td>
+<td class="px-6 py-4 whitespace-nowrap text-center">
+<label class="inline-flex items-center cursor-pointer" for="toggle2">
+<input checked="" class="sr-only peer" id="toggle2" type="checkbox"/>
+<div class="relative w-11 h-6 bg-n2-light rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-n2-lime"></div>
+</label>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<button class="text-n2-gray hover:text-n2-black p-1 rounded-md hover:bg-n2-light">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 (Locked) -->
+<tr class="hover:bg-[#fafafa] transition-colors group bg-red-50/50">
+<td class="px-6 py-4 whitespace-nowrap sticky left-0 bg-white group-hover:bg-[#fafafa]">
+<div class="flex items-center">
+<div class="h-10 w-10 flex-shrink-0 flex items-center justify-center bg-n2-light rounded-full text-n2-gray">
+<span class="material-symbols-outlined">person_off</span>
+</div>
+<div class="ml-4">
+<div class="text-sm font-bold text-n2-gray line-through">Robert Fox</div>
+<div class="text-xs text-primary font-bold">LOCKED</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap opacity-50">
+<div class="text-sm text-n2-black">r.fox@example.com</div>
+<div class="text-xs text-n2-gray">+1 (555) 000-0000</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap opacity-50">
+<span class="px-2 inline-flex text-xs leading-5 font-bold rounded-full bg-n2-light text-n2-gray border border-n2-gray">
+                                    Standard
+                                </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-n2-black opacity-50">
+                                0
+                            </td>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-n2-gray opacity-50">
+                                $0.00
+                            </td>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-n2-black opacity-50">
+                                0 pts
+                            </td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-n2-gray opacity-50">
+                                Nov 01, 2023
+                            </td>
+<td class="px-6 py-4 whitespace-nowrap text-center">
+<label class="inline-flex items-center cursor-pointer" for="toggle3">
+<input class="sr-only peer" id="toggle3" type="checkbox"/>
+<div class="relative w-11 h-6 bg-primary rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-n2-lime"></div>
+</label>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<button class="text-primary hover:text-red-800 p-1 rounded-md hover:bg-red-50">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-[#fafafa] transition-colors group">
+<td class="px-6 py-4 whitespace-nowrap sticky left-0 bg-white group-hover:bg-[#fafafa]">
+<div class="flex items-center">
+<div class="h-10 w-10 flex-shrink-0">
+<div class="h-10 w-10 rounded-full bg-n2-light bg-cover bg-center border border-n2-light" data-alt="Profile picture of Esther Howard" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD9aemOIhpbWjToah7f5V5LKeRW7oQSLYsEMEBhg81MfvZaixPUizpYKv78wnhEtbVqem_n-EOh_022oyf7V5YG46H-WnuukRg5YnTyldLUJ35khslrc0dMAl6fEkqmg_IkvliLthEkRNrnOku_xVOw-ZCCgweeh_bbutP2bSCKVVLsv_1_33sPQzMuRPG4gkm4TZ-CeXib9uvYOQ0ibpV8bdw0vUPNv3gQEOClvEcyel7wu1NXoj4Rtx_ABrshxCDDvKGcz82PrDrV');"></div>
+</div>
+<div class="ml-4">
+<div class="text-sm font-bold text-n2-black hover:text-primary cursor-pointer">Esther Howard</div>
+<div class="text-xs text-n2-gray">ID: #CUS-00135</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-n2-black">esther.h@example.com</div>
+<div class="text-xs text-n2-gray">+1 (555) 456-7890</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-2 inline-flex text-xs leading-5 font-bold rounded-full bg-n2-lime text-n2-black">
+                                    VIP Member
+                                </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-n2-black">
+                                42
+                            </td>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-primary">
+                                $5,890.00
+                            </td>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-n2-black">
+<span class="text-n2-lime">●</span> 1240 pts
+                            </td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-n2-gray">
+                                Sep 15, 2022
+                            </td>
+<td class="px-6 py-4 whitespace-nowrap text-center">
+<label class="inline-flex items-center cursor-pointer" for="toggle4">
+<input checked="" class="sr-only peer" id="toggle4" type="checkbox"/>
+<div class="relative w-11 h-6 bg-n2-light rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-n2-lime"></div>
+</label>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<button class="text-n2-gray hover:text-n2-black p-1 rounded-md hover:bg-n2-light">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-4 flex items-center justify-between border-t border-n2-light bg-white">
+<div class="flex-1 flex justify-between sm:hidden">
+<a class="relative inline-flex items-center px-4 py-2 border border-n2-gray/30 text-sm font-medium rounded-md text-n2-black bg-white hover:bg-n2-light" href="#">
+                        Previous
+                    </a>
+<a class="ml-3 relative inline-flex items-center px-4 py-2 border border-n2-gray/30 text-sm font-medium rounded-md text-n2-black bg-white hover:bg-n2-light" href="#">
+                        Next
+                    </a>
+</div>
+<div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+<div>
+<p class="text-sm text-n2-gray">
+                            Showing <span class="font-bold text-n2-black">1</span> to <span class="font-bold text-n2-black">10</span> of <span class="font-bold text-n2-black">1240</span> results
+                        </p>
+</div>
+<div>
+<nav aria-label="Pagination" class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px">
+<a class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-n2-gray/30 bg-white text-sm font-medium text-n2-gray hover:bg-n2-light" href="#">
+<span class="sr-only">Previous</span>
+<span class="material-symbols-outlined">chevron_left</span>
+</a>
+<a aria-current="page" class="z-10 bg-n2-lime/20 border-n2-lime text-primary relative inline-flex items-center px-4 py-2 border text-sm font-bold" href="#">
+                                1
+                            </a>
+<a class="bg-white border-n2-gray/30 text-n2-black hover:bg-n2-light relative inline-flex items-center px-4 py-2 border text-sm font-medium" href="#">
+                                2
+                            </a>
+<a class="bg-white border-n2-gray/30 text-n2-black hover:bg-n2-light hidden md:inline-flex relative items-center px-4 py-2 border text-sm font-medium" href="#">
+                                3
+                            </a>
+<span class="relative inline-flex items-center px-4 py-2 border border-n2-gray/30 bg-white text-sm font-medium text-n2-gray">
+                                ...
+                            </span>
+<a class="bg-white border-n2-gray/30 text-n2-black hover:bg-n2-light hidden md:inline-flex relative items-center px-4 py-2 border text-sm font-medium" href="#">
+                                8
+                            </a>
+<a class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-n2-gray/30 bg-white text-sm font-medium text-n2-gray hover:bg-n2-light" href="#">
+<span class="sr-only">Next</span>
+<span class="material-symbols-outlined">chevron_right</span>
+</a>
+</nav>
+<select class="ml-4 border-n2-gray/30 rounded-md text-sm text-n2-black focus:ring-n2-lime focus:border-n2-lime">
+<option>10 / page</option>
+<option>20 / page</option>
+<option>50 / page</option>
+</select>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-n2-black text-white mt-auto py-8">
+<div class="max-w-[1440px] mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-n2-lime">bolt</span>
+<span class="font-bold text-lg">N2 Sport Admin</span>
+</div>
+<div class="flex gap-6 text-sm text-n2-gray">
+<a class="hover:text-white transition-colors" href="#">Dashboard</a>
+<a class="hover:text-white transition-colors" href="#">Support</a>
+<a class="hover:text-white transition-colors" href="#">Settings</a>
+</div>
+<div class="text-xs text-n2-gray">
+                © 2023 N2 Sport Inc. All rights reserved.
+            </div>
+</div>
+</footer>
+</body></html>

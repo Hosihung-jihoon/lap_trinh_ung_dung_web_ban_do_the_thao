@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>N2 Sport Admin - Edit Article</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#AFED00", // As requested: Lime green
+                        "alert": "#E42C14",   // As requested: Red
+                        "text-main": "#111111", // As requested: Black
+                        "text-sub": "#A5A5A5",  // As requested: Grey
+                        "divider": "#E8E8E8",   // As requested: Light grey
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#1e230f",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "Noto Sans", "sans-serif"],
+                        "sans": ["Inter", "Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for editor if needed */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #A5A5A5;
+        }
+        
+        /* Simulating WYSIWYG Content */
+        .editor-content h2 { font-size: 1.5rem; font-weight: bold; margin-top: 1em; margin-bottom: 0.5em; }
+        .editor-content p { margin-bottom: 1em; line-height: 1.6; }
+        .editor-content ul { list-style-type: disc; margin-left: 1.5em; margin-bottom: 1em; }
+    </style>
+</head>
+<body class="bg-background-light font-display text-text-main antialiased selection:bg-primary/30">
+<div class="flex min-h-screen w-full flex-col bg-white">
+<!-- Header -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-b-divider bg-white px-6 py-3 shadow-sm lg:px-10">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-text-main">
+<div class="flex size-8 items-center justify-center rounded bg-primary/20 text-primary">
+<span class="material-symbols-outlined text-3xl">sports_soccer</span>
+</div>
+<h2 class="text-text-main text-xl font-bold leading-tight tracking-tight">N2 Sport Admin</h2>
+</div>
+<label class="hidden md:flex flex-col min-w-40 !h-10 max-w-64 group">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full border border-text-sub/30 focus-within:border-primary transition-colors overflow-hidden">
+<div class="text-text-sub flex bg-white items-center justify-center pl-3 pr-1">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden text-text-main focus:outline-0 focus:ring-0 border-none bg-white focus:border-none h-full placeholder:text-text-sub px-2 text-sm font-normal leading-normal" placeholder="Search modules..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<nav class="hidden lg:flex items-center gap-8 mr-4">
+<a class="text-text-main hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Dashboard</a>
+<div class="relative group">
+<a class="text-primary text-sm font-bold leading-normal flex items-center gap-1 cursor-pointer" href="#">
+                            Content <span class="material-symbols-outlined text-sm">expand_more</span>
+</a>
+</div>
+<a class="text-text-main hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Orders</a>
+<a class="text-text-main hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Users</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="relative flex items-center justify-center rounded-full size-10 hover:bg-divider transition-colors text-text-main">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 flex size-2.5 items-center justify-center rounded-full bg-alert ring-2 ring-white"></span>
+</button>
+<div class="h-8 w-px bg-divider"></div>
+<button class="flex items-center gap-2 group">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-9 border border-divider" data-alt="User avatar profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDHHhaweIOKA-eyBx1-y9lvKqxIKe674s0u_vdIwO81ss9IC9lFn70HgshYb_AD3fPGdDApzpxx3EZ7dnSpynxiOlUDs74_I26l0AbdJpUpX2vL2huumbdkzhPTCN4L7U0re6BnSWmQLHEDAv3fcg19T-HT_mxVDC7MkVjcmg29ukq0W-lP7U4QSBovwlZH1bqlDwVyF7IYF7MVvxDPH3G3FFRH07rGbuZ2Ur995lQKRSqs9wwPZGRM3w6JNygSfq58KqMwDXu3jeFN");'></div>
+<div class="hidden md:flex flex-col items-start">
+<span class="text-xs font-bold text-text-main">Admin User</span>
+<span class="text-[10px] text-text-sub">Editor</span>
+</div>
+<span class="material-symbols-outlined text-text-sub group-hover:text-text-main transition-colors text-sm">expand_more</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 bg-background-light p-4 md:p-8 lg:px-20 lg:py-10">
+<div class="mx-auto max-w-[1200px]">
+<!-- Breadcrumbs & Heading -->
+<div class="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+<div>
+<div class="flex flex-wrap items-center gap-2 text-sm text-text-sub mb-2">
+<a class="hover:text-text-main transition-colors" href="#">Admin</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<a class="hover:text-text-main transition-colors" href="#">Articles</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="font-medium text-text-main">Edit Article</span>
+</div>
+<h1 class="text-3xl font-black text-text-main tracking-tight">Summer Running Tips 2024</h1>
+</div>
+<div class="flex items-center gap-3">
+<span class="flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 text-text-main text-xs font-bold border border-primary/30">
+<span class="size-2 rounded-full bg-primary"></span>
+                            Published
+                        </span>
+<span class="text-xs text-text-sub">Last saved: 2 mins ago</span>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Left Column: Main Editor -->
+<div class="lg:col-span-2 flex flex-col gap-6">
+<!-- Title & Slug -->
+<div class="bg-white rounded-xl border border-divider shadow-sm p-6 flex flex-col gap-5">
+<label class="flex flex-col gap-2">
+<span class="text-text-main text-sm font-bold">Article Title <span class="text-alert">*</span></span>
+<input class="w-full rounded-lg border-text-sub/40 bg-white px-4 py-3 text-text-main placeholder:text-text-sub focus:border-primary focus:ring-primary/20 text-lg font-medium" placeholder="Enter article title" type="text" value="Summer Running Tips 2024: Stay Cool and Hydrated"/>
+</label>
+<div class="flex flex-col gap-1">
+<span class="text-text-main text-sm font-bold">Slug</span>
+<div class="flex items-center gap-2">
+<div class="flex-1 flex items-center rounded-lg border border-text-sub/40 bg-background-light px-3 py-2 text-text-sub text-sm">
+<span class="select-none text-text-sub/70">https://n2sport.com/blog/</span>
+<input class="flex-1 bg-transparent border-none p-0 focus:ring-0 text-text-main font-medium" type="text" value="summer-running-tips-2024"/>
+</div>
+<button class="p-2 text-text-sub hover:text-primary hover:bg-background-light rounded-lg transition-colors" title="Regenerate from Title">
+<span class="material-symbols-outlined">autorenew</span>
+</button>
+</div>
+<a class="text-xs text-primary hover:underline flex items-center gap-1 mt-1" href="#">
+                                    View live page <span class="material-symbols-outlined text-[10px]">open_in_new</span>
+</a>
+</div>
+</div>
+<!-- Summary -->
+<div class="bg-white rounded-xl border border-divider shadow-sm p-6">
+<label class="flex flex-col gap-2">
+<div class="flex justify-between items-center">
+<span class="text-text-main text-sm font-bold">Summary / Excerpt</span>
+<span class="text-xs font-medium text-text-sub">145 / 300</span>
+</div>
+<textarea class="w-full rounded-lg border-none bg-divider/50 px-4 py-3 text-text-main placeholder:text-text-sub focus:bg-white focus:ring-1 focus:ring-primary min-h-[100px] resize-y text-sm" placeholder="Write a brief summary for the article list view...">Discover essential tips for maintaining your running routine during the hot summer months. Learn about hydration, gear, and timing your runs.</textarea>
+</label>
+</div>
+<!-- Rich Text Editor -->
+<div class="bg-white rounded-xl border border-divider shadow-sm flex flex-col overflow-hidden min-h-[500px]">
+<!-- Toolbar -->
+<div class="sticky top-0 z-10 flex flex-wrap items-center gap-1 border-b border-divider bg-white p-2">
+<div class="flex items-center border-r border-divider pr-2 mr-1">
+<select class="text-sm border-none py-1 pl-2 pr-6 font-medium text-text-main focus:ring-0 cursor-pointer hover:bg-background-light rounded">
+<option>Paragraph</option>
+<option>Heading 2</option>
+<option>Heading 3</option>
+</select>
+</div>
+<button class="p-1.5 rounded hover:bg-background-light text-text-main"><span class="material-symbols-outlined text-[20px]">format_bold</span></button>
+<button class="p-1.5 rounded hover:bg-background-light text-text-main"><span class="material-symbols-outlined text-[20px]">format_italic</span></button>
+<button class="p-1.5 rounded hover:bg-background-light text-text-main"><span class="material-symbols-outlined text-[20px]">format_underlined</span></button>
+<div class="h-4 w-px bg-divider mx-1"></div>
+<button class="p-1.5 rounded hover:bg-background-light text-text-main"><span class="material-symbols-outlined text-[20px]">format_list_bulleted</span></button>
+<button class="p-1.5 rounded hover:bg-background-light text-text-main"><span class="material-symbols-outlined text-[20px]">format_list_numbered</span></button>
+<div class="h-4 w-px bg-divider mx-1"></div>
+<button class="p-1.5 rounded hover:bg-background-light text-text-main"><span class="material-symbols-outlined text-[20px]">link</span></button>
+<button class="p-1.5 rounded hover:bg-background-light text-text-main"><span class="material-symbols-outlined text-[20px]">image</span></button>
+<button class="p-1.5 rounded hover:bg-background-light text-text-main"><span class="material-symbols-outlined text-[20px]">code</span></button>
+<div class="flex-1"></div>
+<button class="p-1.5 rounded hover:bg-background-light text-text-sub hover:text-text-main"><span class="material-symbols-outlined text-[20px]">fullscreen</span></button>
+</div>
+<!-- Content Area -->
+<div class="flex-1 p-6 outline-none editor-content text-text-main" contenteditable="true">
+<p>Summer running presents a unique set of challenges, but with the right preparation, it can be just as rewarding as running in cooler seasons.</p>
+<h2>1. Hydration is Key</h2>
+<p>When temperatures rise, your body loses water faster. It's crucial to drink water before, during, and after your run. Aim for at least 8 ounces every 20 minutes.</p>
+<h2>2. Choose the Right Gear</h2>
+<p>Wear light-colored, moisture-wicking fabrics. Dark colors absorb heat, while cotton retains sweat, making you heavier and hotter. Don't forget a visor and sunglasses!</p>
+<ul>
+<li>Lightweight shorts</li>
+<li>Breathable tank tops</li>
+<li>UV-protection sunglasses</li>
+</ul>
+<p>Running early in the morning or late in the evening can also help you avoid the peak heat of the day.</p>
+</div>
+</div>
+<!-- SEO Section (Collapsible) -->
+<details class="group bg-white rounded-xl border border-divider shadow-sm overflow-hidden" open="">
+<summary class="flex items-center justify-between p-4 cursor-pointer bg-background-light/50 hover:bg-background-light transition-colors">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-text-sub">search</span>
+<span class="text-sm font-bold text-text-main">SEO Settings</span>
+</div>
+<span class="material-symbols-outlined text-text-sub transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="p-6 border-t border-divider flex flex-col gap-5">
+<label class="flex flex-col gap-2">
+<span class="text-text-main text-sm font-bold">Meta Title</span>
+<input class="w-full rounded-lg border-text-sub/40 bg-white px-3 py-2 text-text-main text-sm focus:border-primary focus:ring-primary/20" type="text" value="Summer Running Tips 2024 - N2 Sport Blog"/>
+</label>
+<label class="flex flex-col gap-2">
+<div class="flex justify-between items-center">
+<span class="text-text-main text-sm font-bold">Meta Description</span>
+<span class="text-xs font-bold text-alert">165 / 160</span> <!-- Over limit example -->
+</div>
+<textarea class="w-full rounded-lg border-alert bg-alert/5 px-3 py-2 text-text-main focus:bg-white focus:ring-1 focus:ring-alert min-h-[80px] text-sm resize-none">Learn how to keep running through the summer heat with our expert tips on hydration, gear selection, and timing your workouts for maximum performance and safety.</textarea>
+<span class="text-xs text-alert flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+                                        Description is too long. Recommended max length is 160 characters.
+                                    </span>
+</label>
+</div>
+</details>
+</div>
+<!-- Right Column: Settings & Meta -->
+<div class="lg:col-span-1 flex flex-col gap-6">
+<!-- Publishing Status -->
+<div class="bg-white rounded-xl border border-divider shadow-sm p-5 flex flex-col gap-5">
+<h3 class="text-sm font-bold text-text-main uppercase tracking-wider text-text-sub">Publishing</h3>
+<div class="flex items-center justify-between">
+<span class="text-sm font-medium text-text-main">Status</span>
+<label class="inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="relative w-11 h-6 bg-text-sub/30 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+<span class="ms-3 text-sm font-medium text-text-main">Published</span>
+</label>
+</div>
+<div class="flex flex-col gap-2">
+<span class="text-sm font-medium text-text-main">Publish Date</span>
+<div class="relative">
+<div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none text-text-sub">
+<span class="material-symbols-outlined text-[20px]">calendar_today</span>
+</div>
+<input class="bg-white border border-text-sub/40 text-text-main text-sm rounded-lg focus:ring-primary focus:border-primary block w-full ps-10 p-2.5" placeholder="Select date" type="text" value="2024-06-15 09:00 AM"/>
+</div>
+</div>
+</div>
+<!-- Category -->
+<div class="bg-white rounded-xl border border-divider shadow-sm p-5 flex flex-col gap-4">
+<h3 class="text-sm font-bold text-text-main uppercase tracking-wider text-text-sub">Organization</h3>
+<label class="flex flex-col gap-2">
+<span class="text-sm font-medium text-text-main">Category <span class="text-alert">*</span></span>
+<select class="bg-white border border-text-sub/40 text-text-main text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5">
+<option>Training Tips</option>
+<option selected="">Nutrition &amp; Health</option>
+<option>Product Reviews</option>
+<option>Events</option>
+</select>
+</label>
+<label class="flex flex-col gap-2">
+<span class="text-sm font-medium text-text-main">Tags</span>
+<div class="flex flex-wrap gap-2 p-2 border border-text-sub/40 rounded-lg min-h-[42px]">
+<span class="bg-background-light border border-divider px-2 py-0.5 rounded text-xs font-medium text-text-main flex items-center gap-1">
+                                        Summer <button class="hover:text-alert"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</span>
+<span class="bg-background-light border border-divider px-2 py-0.5 rounded text-xs font-medium text-text-main flex items-center gap-1">
+                                        Hydration <button class="hover:text-alert"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</span>
+<input class="border-none bg-transparent p-0 text-sm focus:ring-0 w-20" placeholder="Add tag..." type="text"/>
+</div>
+</label>
+</div>
+<!-- Thumbnail Image -->
+<div class="bg-white rounded-xl border border-divider shadow-sm p-5 flex flex-col gap-4">
+<h3 class="text-sm font-bold text-text-main uppercase tracking-wider text-text-sub">Featured Image</h3>
+<div class="relative w-full aspect-video rounded-lg overflow-hidden border border-divider bg-background-light group">
+<img alt="Runner jogging on a sunny road" class="w-full h-full object-cover" data-alt="Runner jogging on a sunny road" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUVudrvr5GiS9XNWvsMEa86wrVM8Ar_7ty_y7O27JF0rS7C54s7_QAHVghmFbQ-om3bMiNSNCowPm6tapw1YtJkC4MvJyS3R7AyANByUms16D8Bs6BSzG3sTCPAY48W_IIYol6ucJkuGhxPjrSCHS-ecovgpFv6M-HjDeHE2XqMjr5BLdsOzBBXpjCZcjwd1eriM4TYYGjCYpJk9trV3xL1u026hIE-QECJLoEaBqVwLZWPQeJCmxsN1zvcay8e0aLBa-8w8qGL6I9"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 backdrop-blur-sm">
+<button class="bg-white text-text-main p-2 rounded-full hover:bg-primary transition-colors" title="Replace">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="bg-white text-alert p-2 rounded-full hover:bg-alert hover:text-white transition-colors" title="Remove">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Upload State (Hidden for this view but structural) -->
+<!--
+                            <div class="flex items-center justify-center w-full">
+                                <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-40 border-2 border-text-sub border-dashed rounded-lg cursor-pointer bg-background-light hover:bg-divider transition-colors">
+                                    <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                        <span class="material-symbols-outlined text-text-sub mb-2 text-3xl">cloud_upload</span>
+                                        <p class="mb-2 text-sm text-text-sub font-medium">Click to upload or drag and drop</p>
+                                        <p class="text-xs text-text-sub/70">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+                                    </div>
+                                    <input id="dropzone-file" type="file" class="hidden" />
+                                </label>
+                            </div> 
+                            -->
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Sticky Bottom Action Bar -->
+<div class="sticky bottom-0 z-40 w-full border-t border-divider bg-white/90 backdrop-blur-md px-6 py-4 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+<div class="mx-auto flex max-w-[1200px] items-center justify-between">
+<div class="hidden sm:flex items-center gap-2 text-sm text-primary font-medium">
+<span class="material-symbols-outlined text-lg">check_circle</span>
+                    All changes saved
+                </div>
+<div class="flex flex-1 justify-end gap-3 sm:flex-none">
+<button class="rounded-lg border border-text-sub/30 bg-white px-5 py-2.5 text-sm font-bold text-text-sub hover:border-text-main hover:text-text-main transition-colors">
+                        Save Draft
+                    </button>
+<button class="rounded-lg border border-text-sub/30 bg-white px-5 py-2.5 text-sm font-bold text-text-main hover:bg-background-light transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+                        Preview
+                    </button>
+<button class="rounded-lg bg-primary px-6 py-2.5 text-sm font-bold text-text-main hover:brightness-105 shadow-sm transition-all active:scale-95 flex items-center gap-2">
+                        Update Article
+                        <span class="material-symbols-outlined text-[18px]">send</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="bg-text-main text-white py-8 px-6">
+<div class="mx-auto max-w-[1200px] flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="text-sm text-text-sub">
+                    © 2024 N2 Sport Inc. All rights reserved.
+                </div>
+<div class="flex gap-6">
+<a class="text-sm text-text-sub hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-sm text-text-sub hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="text-sm text-text-sub hover:text-primary transition-colors" href="#">Help Center</a>
+</div>
+</div>
+</footer>
+</div>
+</body></html>

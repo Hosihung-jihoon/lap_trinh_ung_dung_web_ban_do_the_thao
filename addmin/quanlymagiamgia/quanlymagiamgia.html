@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>N2 Sport - Quản Lý Mã Giảm Giá</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#AFED00",
+                        "primary-hover": "#9bd100",
+                        "danger": "#E42C14",
+                        "danger-hover": "#c1230f",
+                        "text-main": "#111111",
+                        "text-secondary": "#A5A5A5",
+                        "border-color": "#E8E8E8",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#1e230f",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light font-display text-text-main antialiased selection:bg-primary selection:text-text-main">
+<!-- Main Layout -->
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Header -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-border-color bg-white px-6 py-3 shadow-sm lg:px-10">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3">
+<div class="flex h-8 w-8 items-center justify-center rounded bg-text-main text-primary">
+<span class="material-symbols-outlined text-[24px]">bolt</span>
+</div>
+<h2 class="text-text-main text-lg font-bold leading-tight tracking-tight">N2 Sport <span class="text-primary">Admin</span></h2>
+</div>
+<!-- Desktop Search -->
+<div class="hidden lg:flex flex-col min-w-64 max-w-lg">
+<div class="flex w-full items-center rounded-lg border border-text-secondary/30 bg-background-light px-3 h-10 focus-within:border-primary transition-colors">
+<span class="material-symbols-outlined text-text-secondary">search</span>
+<input class="flex-1 bg-transparent border-none px-3 text-sm text-text-main placeholder:text-text-secondary focus:ring-0" placeholder="Search orders, customers..."/>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<!-- Navigation Links (Desktop) -->
+<div class="hidden xl:flex items-center gap-8">
+<a class="text-text-main hover:text-primary text-sm font-medium transition-colors" href="#">Dashboard</a>
+<a class="text-text-main hover:text-primary text-sm font-medium transition-colors" href="#">Promotions</a>
+<a class="text-text-main border-b-2 border-primary text-sm font-bold transition-colors" href="#">Coupons</a>
+<a class="text-text-main hover:text-primary text-sm font-medium transition-colors" href="#">Customers</a>
+</div>
+<div class="flex gap-3">
+<!-- Notifications -->
+<button class="relative flex h-10 w-10 items-center justify-center rounded-lg bg-background-light text-text-main hover:bg-[#e6e6e6] transition-colors">
+<span class="material-symbols-outlined text-[22px]">notifications</span>
+<span class="absolute top-2 right-2 h-2 w-2 rounded-full bg-danger"></span>
+</button>
+<!-- User Profile -->
+<button class="flex h-10 w-10 items-center justify-center rounded-lg bg-background-light text-text-main hover:bg-[#e6e6e6] transition-colors">
+<span class="material-symbols-outlined text-[22px]">account_circle</span>
+</button>
+<!-- Mobile Menu Toggle -->
+<button class="flex xl:hidden h-10 w-10 items-center justify-center rounded-lg bg-background-light text-text-main hover:bg-[#e6e6e6] transition-colors">
+<span class="material-symbols-outlined text-[22px]">menu</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 px-4 py-8 lg:px-8 lg:py-10 bg-white">
+<div class="mx-auto max-w-7xl flex flex-col gap-8">
+<!-- Page Heading & Actions -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div class="flex flex-col gap-1">
+<h1 class="text-3xl font-black text-text-main tracking-tight">Quản Lý Mã Giảm Giá</h1>
+<p class="text-text-secondary text-sm md:text-base">Quản lý, tạo mới và phân phối mã giảm giá cho các chiến dịch khuyến mãi.</p>
+</div>
+<div class="flex flex-wrap gap-3">
+<button class="group flex items-center justify-center gap-2 rounded-lg border border-primary bg-transparent px-5 py-2.5 text-sm font-bold text-text-main transition-all hover:bg-primary/10">
+<span class="material-symbols-outlined text-[20px] text-primary group-hover:scale-110 transition-transform">autorenew</span>
+                            Generate Bulk
+                        </button>
+<button class="flex items-center justify-center gap-2 rounded-lg bg-danger px-5 py-2.5 text-sm font-bold text-white shadow-sm transition-all hover:bg-danger-hover hover:shadow-md">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                            Create Coupon
+                        </button>
+</div>
+</div>
+<!-- Filters Section -->
+<div class="rounded-xl border border-border-color bg-background-light p-5 shadow-sm">
+<div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+<!-- Search by Code -->
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-semibold uppercase tracking-wider text-text-secondary">Search Code</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-text-secondary">qr_code</span>
+<input class="w-full rounded-lg border-border-color bg-white py-2 pl-10 pr-3 text-sm text-text-main placeholder:text-text-secondary/50 focus:border-primary focus:ring-1 focus:ring-primary" placeholder="e.g. SUMMER2024" type="text"/>
+</div>
+</div>
+<!-- Status Filter -->
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-semibold uppercase tracking-wider text-text-secondary">Status</label>
+<div class="relative">
+<select class="w-full appearance-none rounded-lg border-border-color bg-white py-2 pl-3 pr-10 text-sm text-text-main focus:border-primary focus:ring-1 focus:ring-primary">
+<option value="">All Statuses</option>
+<option value="unused">Unused (Active)</option>
+<option value="used">Used</option>
+<option value="expired">Expired</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-text-secondary">expand_more</span>
+</div>
+</div>
+<!-- User Filter -->
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-semibold uppercase tracking-wider text-text-secondary">Assignee</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-text-secondary">person_search</span>
+<input class="w-full rounded-lg border-border-color bg-white py-2 pl-10 pr-3 text-sm text-text-main placeholder:text-text-secondary/50 focus:border-primary focus:ring-1 focus:ring-primary" placeholder="Email or Name" type="text"/>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex items-end gap-2">
+<button class="flex h-[38px] flex-1 items-center justify-center rounded-lg bg-text-main text-sm font-medium text-white transition-colors hover:bg-black">
+                                Apply
+                            </button>
+<button class="flex h-[38px] w-[38px] items-center justify-center rounded-lg border border-border-color bg-white text-text-secondary hover:bg-gray-50 hover:text-danger">
+<span class="material-symbols-outlined">filter_alt_off</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Data Table Section -->
+<div class="overflow-hidden rounded-xl border border-border-color bg-white shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full min-w-[800px] border-collapse text-left">
+<thead class="bg-background-light border-b border-border-color">
+<tr>
+<th class="p-4 text-xs font-bold uppercase tracking-wider text-text-secondary">
+<div class="flex items-center gap-1 cursor-pointer hover:text-text-main group">
+                                            Code
+                                            <span class="material-symbols-outlined text-[16px] opacity-0 group-hover:opacity-100">arrow_drop_down</span>
+</div>
+</th>
+<th class="p-4 text-xs font-bold uppercase tracking-wider text-text-secondary">Assigned To</th>
+<th class="p-4 text-xs font-bold uppercase tracking-wider text-text-secondary">Campaign</th>
+<th class="p-4 text-xs font-bold uppercase tracking-wider text-text-secondary">
+<div class="flex items-center gap-1 cursor-pointer hover:text-text-main group">
+                                            Expiry
+                                            <span class="material-symbols-outlined text-[16px] opacity-0 group-hover:opacity-100">arrow_drop_down</span>
+</div>
+</th>
+<th class="p-4 text-xs font-bold uppercase tracking-wider text-text-secondary text-center">Limit</th>
+<th class="p-4 text-xs font-bold uppercase tracking-wider text-text-secondary">Status</th>
+<th class="p-4 text-xs font-bold uppercase tracking-wider text-text-secondary text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-color">
+<!-- Row 1 -->
+<tr class="hover:bg-background-light/50 transition-colors group">
+<td class="p-4">
+<div class="flex items-center gap-2">
+<span class="font-mono font-bold text-text-main">SUMMER2024</span>
+<button class="text-text-secondary hover:text-primary transition-colors" title="Copy">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+</div>
+<div class="text-xs text-text-secondary mt-0.5">Created: Oct 24, 2023</div>
+</td>
+<td class="p-4">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-text-main">Global</span>
+<span class="text-xs text-text-secondary">All customers</span>
+</div>
+</td>
+<td class="p-4">
+<a class="text-sm font-medium text-text-main hover:text-primary underline decoration-dotted underline-offset-2" href="#">Summer Sale Off</a>
+</td>
+<td class="p-4">
+<div class="flex items-center gap-1.5 text-danger font-medium text-sm">
+<span class="material-symbols-outlined text-[16px]">warning</span>
+<span>In 3 days</span>
+</div>
+<div class="text-xs text-text-secondary">Nov 01, 2023</div>
+</td>
+<td class="p-4 text-center">
+<span class="inline-flex items-center justify-center rounded-md bg-background-light px-2 py-1 text-xs font-bold text-text-main border border-border-color">
+                                            15/500
+                                        </span>
+</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 rounded-full bg-primary/20 px-3 py-1 text-xs font-bold text-[#658a00]">
+<span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
+                                            Unused
+                                        </span>
+</td>
+<td class="p-4 text-right">
+<div class="relative inline-block text-left">
+<button class="flex h-8 w-8 items-center justify-center rounded-full text-text-secondary hover:bg-gray-100 hover:text-text-main">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-background-light/50 transition-colors group">
+<td class="p-4">
+<div class="flex items-center gap-2">
+<span class="font-mono font-bold text-text-main">VIP99X</span>
+<button class="text-text-secondary hover:text-primary transition-colors" title="Copy">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+</div>
+<div class="text-xs text-text-secondary mt-0.5">Created: Sep 15, 2023</div>
+</td>
+<td class="p-4">
+<div class="flex flex-col">
+<a class="text-sm font-medium text-text-main hover:text-primary" href="#">Minh Long</a>
+<span class="text-xs text-text-secondary">long.m@example.com</span>
+</div>
+</td>
+<td class="p-4">
+<a class="text-sm font-medium text-text-main hover:text-primary underline decoration-dotted underline-offset-2" href="#">VIP Welcome</a>
+</td>
+<td class="p-4">
+<div class="text-sm text-text-secondary">Dec 31, 2023</div>
+</td>
+<td class="p-4 text-center">
+<span class="inline-flex items-center justify-center rounded-md bg-danger/10 px-2 py-1 text-xs font-bold text-danger border border-danger/20">
+                                            1/1
+                                        </span>
+</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 rounded-full bg-danger/10 px-3 py-1 text-xs font-bold text-danger">
+<span class="h-1.5 w-1.5 rounded-full bg-danger"></span>
+                                            Used
+                                        </span>
+<div class="text-[10px] text-text-secondary mt-1">Oct 10, 2023</div>
+</td>
+<td class="p-4 text-right">
+<div class="relative inline-block text-left">
+<button class="flex h-8 w-8 items-center justify-center rounded-full text-text-secondary hover:bg-gray-100 hover:text-text-main">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-background-light/50 transition-colors group">
+<td class="p-4">
+<div class="flex items-center gap-2">
+<span class="font-mono font-bold text-text-main">FLASH50</span>
+<button class="text-text-secondary hover:text-primary transition-colors" title="Copy">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+</div>
+<div class="text-xs text-text-secondary mt-0.5">Created: Aug 01, 2023</div>
+</td>
+<td class="p-4">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-text-main">Global</span>
+<span class="text-xs text-text-secondary">All customers</span>
+</div>
+</td>
+<td class="p-4">
+<a class="text-sm font-medium text-text-main hover:text-primary underline decoration-dotted underline-offset-2" href="#">Flash Sale Aug</a>
+</td>
+<td class="p-4">
+<div class="text-sm text-text-secondary">Aug 05, 2023</div>
+</td>
+<td class="p-4 text-center">
+<span class="inline-flex items-center justify-center rounded-md bg-background-light px-2 py-1 text-xs font-bold text-text-main border border-border-color">
+                                            500/500
+                                        </span>
+</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 rounded-full bg-text-secondary/10 px-3 py-1 text-xs font-bold text-text-secondary">
+<span class="h-1.5 w-1.5 rounded-full bg-text-secondary"></span>
+                                            Expired
+                                        </span>
+</td>
+<td class="p-4 text-right">
+<div class="relative inline-block text-left">
+<button class="flex h-8 w-8 items-center justify-center rounded-full text-text-secondary hover:bg-gray-100 hover:text-text-main">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-background-light/50 transition-colors group">
+<td class="p-4">
+<div class="flex items-center gap-2">
+<span class="font-mono font-bold text-text-main">RUN10OFF</span>
+<button class="text-text-secondary hover:text-primary transition-colors" title="Copy">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+</div>
+<div class="text-xs text-text-secondary mt-0.5">Created: Nov 01, 2023</div>
+</td>
+<td class="p-4">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-text-main">Global</span>
+<span class="text-xs text-text-secondary">All customers</span>
+</div>
+</td>
+<td class="p-4">
+<a class="text-sm font-medium text-text-main hover:text-primary underline decoration-dotted underline-offset-2" href="#">Running Gear Promo</a>
+</td>
+<td class="p-4">
+<div class="text-sm text-text-main">Dec 01, 2023</div>
+</td>
+<td class="p-4 text-center">
+<span class="inline-flex items-center justify-center rounded-md bg-background-light px-2 py-1 text-xs font-bold text-text-main border border-border-color">
+                                            0/1000
+                                        </span>
+</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 rounded-full bg-primary/20 px-3 py-1 text-xs font-bold text-[#658a00]">
+<span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
+                                            Unused
+                                        </span>
+</td>
+<td class="p-4 text-right">
+<div class="relative inline-block text-left">
+<button class="flex h-8 w-8 items-center justify-center rounded-full text-text-secondary hover:bg-gray-100 hover:text-text-main">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="flex items-center justify-between border-t border-border-color bg-white px-4 py-3 sm:px-6">
+<div class="flex flex-1 justify-between sm:hidden">
+<a class="relative inline-flex items-center rounded-md border border-border-color bg-white px-4 py-2 text-sm font-medium text-text-main hover:bg-gray-50" href="#">Previous</a>
+<a class="relative ml-3 inline-flex items-center rounded-md border border-border-color bg-white px-4 py-2 text-sm font-medium text-text-main hover:bg-gray-50" href="#">Next</a>
+</div>
+<div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+<div>
+<p class="text-sm text-text-secondary">
+                                    Showing <span class="font-medium text-text-main">1</span> to <span class="font-medium text-text-main">10</span> of <span class="font-medium text-text-main">97</span> results
+                                </p>
+</div>
+<div>
+<nav aria-label="Pagination" class="isolate inline-flex -space-x-px rounded-md shadow-sm">
+<a class="relative inline-flex items-center rounded-l-md px-2 py-2 text-text-secondary ring-1 ring-inset ring-border-color hover:bg-gray-50 focus:z-20 focus:outline-offset-0" href="#">
+<span class="sr-only">Previous</span>
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</a>
+<a aria-current="page" class="relative z-10 inline-flex items-center bg-primary px-4 py-2 text-sm font-semibold text-text-main focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="#">1</a>
+<a class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-text-main ring-1 ring-inset ring-border-color hover:bg-gray-50 focus:z-20 focus:outline-offset-0" href="#">2</a>
+<a class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-text-main ring-1 ring-inset ring-border-color hover:bg-gray-50 focus:z-20 focus:outline-offset-0" href="#">3</a>
+<span class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-text-secondary ring-1 ring-inset ring-border-color focus:outline-offset-0">...</span>
+<a class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-text-main ring-1 ring-inset ring-border-color hover:bg-gray-50 focus:z-20 focus:outline-offset-0" href="#">10</a>
+<a class="relative inline-flex items-center rounded-r-md px-2 py-2 text-text-secondary ring-1 ring-inset ring-border-color hover:bg-gray-50 focus:z-20 focus:outline-offset-0" href="#">
+<span class="sr-only">Next</span>
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</a>
+</nav>
+<select class="ml-4 h-9 rounded-md border-border-color text-sm text-text-main focus:border-primary focus:ring-primary">
+<option>10 / page</option>
+<option>20 / page</option>
+<option>50 / page</option>
+</select>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-text-main py-6 text-white">
+<div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 md:flex-row">
+<p class="text-sm text-gray-400">© 2023 N2 Sport Admin. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="text-sm text-gray-400 hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="text-sm text-gray-400 hover:text-white transition-colors" href="#">Terms of Service</a>
+<a class="text-sm text-gray-400 hover:text-white transition-colors" href="#">Support</a>
+</div>
+</div>
+</footer>
+<!-- Modal Overlay (Mock for Visualization) -->
+<!-- This is visually hidden by default but present in code for structure reference -->
+<div class="hidden fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+<div class="w-full max-w-lg rounded-2xl bg-white p-6 shadow-2xl">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xl font-bold text-text-main">Create Coupon</h3>
+<button class="text-text-secondary hover:text-danger">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<form class="space-y-4">
+<div>
+<label class="mb-1.5 block text-sm font-bold text-text-main">Coupon Code</label>
+<input class="w-full rounded-lg border-border-color bg-background-light py-2.5 px-3 text-text-main focus:border-primary focus:ring-primary" placeholder="e.g. WINTER23" type="text"/>
+</div>
+<div>
+<label class="mb-1.5 block text-sm font-bold text-text-main">Select Promotion</label>
+<select class="w-full rounded-lg border-border-color bg-background-light py-2.5 px-3 text-text-main focus:border-primary focus:ring-primary">
+<option>Winter Sale Collection</option>
+<option>Black Friday Deal</option>
+</select>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="mb-1.5 block text-sm font-bold text-text-main">Expiry Date</label>
+<input class="w-full rounded-lg border-border-color bg-background-light py-2.5 px-3 text-text-main focus:border-primary focus:ring-primary" type="date"/>
+</div>
+<div>
+<label class="mb-1.5 block text-sm font-bold text-text-main">Usage Limit</label>
+<input class="w-full rounded-lg border-border-color bg-background-light py-2.5 px-3 text-text-main focus:border-primary focus:ring-primary" placeholder="100" type="number"/>
+</div>
+</div>
+<div class="pt-4 flex gap-3">
+<button class="flex-1 rounded-lg border border-border-color bg-white py-2.5 text-sm font-bold text-text-main hover:bg-gray-50" type="button">Cancel</button>
+<button class="flex-1 rounded-lg bg-danger py-2.5 text-sm font-bold text-white hover:bg-danger-hover" type="submit">Create</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</body></html>

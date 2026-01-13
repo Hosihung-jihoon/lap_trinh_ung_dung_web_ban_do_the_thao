@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>N2 Sport - Danh Sách Đơn Hàng</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#aceb00", // Matches requested #AFED00 closely
+                        "danger": "#E42C14",
+                        "dark": "#111111",
+                        "gray-text": "#A5A5A5",
+                        "gray-bg": "#E8E8E8",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#1e230f",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom Scrollbar for Tabs */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-white text-dark font-display antialiased flex flex-col min-h-screen">
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-white border-b border-gray-200">
+<div class="px-4 sm:px-6 lg:px-8">
+<div class="flex h-16 items-center justify-between gap-4">
+<!-- Logo & Nav -->
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-2">
+<div class="size-8 bg-black rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined font-bold">bolt</span>
+</div>
+<h1 class="text-dark text-xl font-extrabold tracking-tight">N2 Sport <span class="text-primary">Admin</span></h1>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-sm font-bold text-dark hover:text-primary transition-colors" href="#">Tổng quan</a>
+<a class="text-sm font-bold text-primary border-b-2 border-primary pb-0.5" href="#">Đơn hàng</a>
+<a class="text-sm font-bold text-gray-text hover:text-dark transition-colors" href="#">Sản phẩm</a>
+<a class="text-sm font-bold text-gray-text hover:text-dark transition-colors" href="#">Khách hàng</a>
+</nav>
+</div>
+<!-- Search & Actions -->
+<div class="flex items-center gap-4 flex-1 justify-end">
+<div class="hidden md:flex max-w-md w-full relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-gray-text text-[20px]">search</span>
+</div>
+<input class="block w-full rounded-lg border-gray-text/30 pl-10 sm:text-sm focus:border-primary focus:ring-primary py-2 placeholder:text-gray-text/70" placeholder="Tìm đơn hàng, khách hàng..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<button class="relative p-2 text-dark hover:bg-gray-100 rounded-lg transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 size-2 bg-danger rounded-full border border-white"></span>
+</button>
+<div class="h-8 w-[1px] bg-gray-200 mx-1"></div>
+<button class="flex items-center gap-2 hover:bg-gray-50 rounded-lg p-1 pr-2 transition-colors">
+<div class="size-8 rounded-full bg-gray-200 overflow-hidden" data-alt="Admin User Profile Picture" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBtXwazCqAtB2n6w-tC0B53Y4ndZynOflQw0OYSNmDCv1LNuef0N6HvCGRfPDrw11Gvlk2RZozV1cg8FcMoD6Jg9aELU3X228T9PzKkpZjlxvy1wmNwBbV_cvMWftx42KZkPBYfuso1IsmyvRDUpW0SledrWDRn2p8R2x2NLbJMLpH5xb1t3ZBgs0SJQQhmHMDgkmpRqy04qrPa8AJY7t-c0DGOOVcQVDBkVl721XEaA8ytSjK5tfVyA9u0nSSbq9K9-eUF5J4Vh_BT'); background-size: cover;"></div>
+<span class="text-sm font-bold text-dark hidden sm:block">Admin N2</span>
+<span class="material-symbols-outlined text-gray-text text-[18px]">expand_more</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 bg-white">
+<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<!-- Stats Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+<!-- Card 1 -->
+<div class="bg-gray-bg rounded-xl p-6 flex flex-col justify-between h-32 relative overflow-hidden group">
+<div class="flex justify-between items-start z-10">
+<div>
+<p class="text-dark/70 text-sm font-medium mb-1">Đơn hàng đang chờ</p>
+<p class="text-3xl font-bold text-danger">12</p>
+</div>
+<div class="size-10 rounded-full bg-white flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined">notifications_active</span>
+</div>
+</div>
+<div class="absolute -right-4 -bottom-4 text-white/10 opacity-10 transform rotate-12 group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-[120px]">shopping_cart</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-gray-bg rounded-xl p-6 flex flex-col justify-between h-32 relative overflow-hidden group">
+<div class="flex justify-between items-start z-10">
+<div>
+<p class="text-dark/70 text-sm font-medium mb-1">Doanh thu hôm nay</p>
+<p class="text-3xl font-bold text-dark">15,400,000₫</p>
+</div>
+<div class="flex items-center gap-1 text-sm font-bold text-green-600 bg-green-100 px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+                            +5%
+                        </div>
+</div>
+<div class="absolute -right-4 -bottom-4 text-white/10 opacity-10 transform rotate-12 group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-[120px]">payments</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-gray-bg rounded-xl p-6 flex flex-col justify-between h-32 relative overflow-hidden group">
+<div class="flex justify-between items-start z-10">
+<div>
+<p class="text-dark/70 text-sm font-medium mb-1">Đơn hàng đang xử lý</p>
+<p class="text-3xl font-bold text-primary drop-shadow-sm text-shadow-sm" style="text-shadow: 1px 1px 0px rgba(0,0,0,0.1);">45</p>
+</div>
+<div class="size-10 rounded-full bg-white flex items-center justify-center text-gray-text shadow-sm">
+<span class="material-symbols-outlined">settings</span>
+</div>
+</div>
+<div class="absolute -right-4 -bottom-4 text-white/10 opacity-10 transform rotate-12 group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-[120px]">inventory_2</span>
+</div>
+</div>
+</div>
+<!-- Tabs -->
+<div class="border-b border-gray-200 mb-6 overflow-x-auto hide-scrollbar">
+<nav aria-label="Tabs" class="flex space-x-8 min-w-max">
+<a class="border-primary text-dark whitespace-nowrap py-4 px-1 border-b-[3px] font-bold text-sm flex items-center gap-2" href="#">
+                        Tất cả <span class="bg-gray-100 text-gray-600 py-0.5 px-2 rounded-full text-xs">105</span>
+</a>
+<a class="border-transparent text-gray-500 hover:text-danger hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-[3px] font-medium text-sm flex items-center gap-2 group" href="#">
+                        Chờ xác nhận <span class="bg-danger/10 text-danger py-0.5 px-2 rounded-full text-xs group-hover:bg-danger group-hover:text-white transition-colors">12</span>
+</a>
+<a class="border-transparent text-gray-500 hover:text-dark hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-[3px] font-medium text-sm flex items-center gap-2" href="#">
+                        Đang xử lý <span class="bg-gray-100 text-gray-600 py-0.5 px-2 rounded-full text-xs">45</span>
+</a>
+<a class="border-transparent text-gray-500 hover:text-dark hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-[3px] font-medium text-sm flex items-center gap-2" href="#">
+                        Đang giao <span class="bg-gray-100 text-gray-600 py-0.5 px-2 rounded-full text-xs">30</span>
+</a>
+<a class="border-transparent text-gray-500 hover:text-dark hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-[3px] font-medium text-sm flex items-center gap-2" href="#">
+                        Đã hoàn thành <span class="bg-gray-100 text-gray-600 py-0.5 px-2 rounded-full text-xs">15</span>
+</a>
+<a class="border-transparent text-gray-500 hover:text-dark hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-[3px] font-medium text-sm flex items-center gap-2" href="#">
+                        Đã hủy <span class="bg-gray-100 text-gray-600 py-0.5 px-2 rounded-full text-xs">4</span>
+</a>
+</nav>
+</div>
+<!-- Filters & Toolbar -->
+<div class="flex flex-col gap-4 mb-6">
+<!-- Advanced Filters Accordion -->
+<details class="group bg-white border border-gray-200 rounded-lg open">
+<summary class="flex items-center justify-between cursor-pointer p-4 list-none bg-gray-50 rounded-t-lg group-open:rounded-b-none transition-all">
+<div class="flex items-center gap-2 text-dark font-bold text-sm">
+<span class="material-symbols-outlined">filter_list</span>
+                            Bộ lọc tìm kiếm
+                        </div>
+<span class="material-symbols-outlined text-gray-text group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="p-4 border-t border-gray-200 grid grid-cols-1 md:grid-cols-4 gap-4">
+<!-- Date Range -->
+<div class="col-span-1">
+<label class="block text-xs font-semibold text-gray-500 mb-1">Khoảng ngày</label>
+<div class="relative">
+<input class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm pl-9" placeholder="dd/mm/yyyy - dd/mm/yyyy" type="text"/>
+<div class="absolute inset-y-0 left-0 pl-2 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-gray-400 text-[18px]">calendar_month</span>
+</div>
+</div>
+</div>
+<!-- Search Input -->
+<div class="col-span-1">
+<label class="block text-xs font-semibold text-gray-500 mb-1">Từ khóa</label>
+<input class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm" placeholder="Mã ĐH, Tên KH, SĐT" type="text"/>
+</div>
+<!-- Payment Method -->
+<div class="col-span-1">
+<label class="block text-xs font-semibold text-gray-500 mb-1">Thanh toán</label>
+<select class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm">
+<option>Tất cả phương thức</option>
+<option>COD</option>
+<option>Chuyển khoản</option>
+<option>Ví điện tử</option>
+</select>
+</div>
+<!-- Actions -->
+<div class="col-span-1 flex items-end gap-2">
+<button class="bg-danger text-white px-4 py-2 rounded-md text-sm font-bold shadow-sm hover:bg-red-700 w-full transition-colors">Áp dụng</button>
+<button class="bg-white border border-gray-300 text-gray-text px-4 py-2 rounded-md text-sm font-bold shadow-sm hover:bg-gray-50 w-full transition-colors">Xóa</button>
+</div>
+</div>
+</details>
+<!-- Toolbar -->
+<div class="flex flex-wrap items-center justify-between gap-4">
+<div class="flex items-center gap-2">
+<div class="relative group/dropdown">
+<button class="flex items-center gap-2 bg-white border border-gray-300 px-4 py-2 rounded-lg text-sm font-bold text-dark hover:bg-gray-50 transition-colors">
+<span class="material-symbols-outlined text-[18px]">check_box</span>
+                                Hành động (0)
+                                <span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+<!-- Dropdown menu would go here -->
+</div>
+<button class="flex items-center gap-2 text-primary hover:text-green-600 font-bold text-sm px-2">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                            Xuất Excel
+                        </button>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-sm text-gray-500">Hiển thị:</span>
+<select class="block w-20 rounded-md border-gray-300 py-1.5 text-base focus:border-primary focus:outline-none focus:ring-primary sm:text-sm">
+<option>10</option>
+<option>20</option>
+<option>50</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Data Table -->
+<div class="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm">
+<div class="overflow-x-auto">
+<table class="min-w-full divide-y divide-gray-200">
+<thead class="bg-gray-50">
+<tr>
+<th class="relative px-6 py-4 w-12" scope="col">
+<input class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary" type="checkbox"/>
+</th>
+<th class="px-6 py-4 text-left text-xs font-bold text-gray-text uppercase tracking-wider cursor-pointer hover:text-dark group" scope="col">
+<div class="flex items-center gap-1">
+                                        Mã Đơn
+                                        <span class="material-symbols-outlined text-[16px] opacity-0 group-hover:opacity-100">unfold_more</span>
+</div>
+</th>
+<th class="px-6 py-4 text-left text-xs font-bold text-gray-text uppercase tracking-wider" scope="col">
+                                    Ngày đặt
+                                </th>
+<th class="px-6 py-4 text-left text-xs font-bold text-gray-text uppercase tracking-wider" scope="col">
+                                    Khách hàng
+                                </th>
+<th class="px-6 py-4 text-right text-xs font-bold text-gray-text uppercase tracking-wider" scope="col">
+                                    Tổng tiền
+                                </th>
+<th class="px-6 py-4 text-center text-xs font-bold text-gray-text uppercase tracking-wider" scope="col">
+                                    Thanh toán
+                                </th>
+<th class="px-6 py-4 text-center text-xs font-bold text-gray-text uppercase tracking-wider" scope="col">
+                                    Trạng thái
+                                </th>
+<th class="relative px-6 py-4" scope="col">
+<span class="sr-only">Actions</span>
+</th>
+</tr>
+</thead>
+<tbody class="bg-white divide-y divide-gray-200 text-sm">
+<!-- Row 1 -->
+<tr class="hover:bg-gray-50 transition-colors group">
+<td class="px-6 py-4 whitespace-nowrap">
+<input class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary" type="checkbox"/>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<a class="text-danger font-bold hover:underline" href="#">#ORD-2310-001</a>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-gray-500 font-medium">
+                                    24/10/2023 <br/> <span class="text-xs">10:30 AM</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 font-bold text-xs mr-3">NV</div>
+<div>
+<a class="text-dark font-bold hover:text-primary transition-colors" href="#">Nguyễn Văn A</a>
+<div class="text-gray-500 text-xs">0901234567</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right font-bold text-danger">
+                                    2,500,000₫
+                                </td>
+<td class="px-6 py-4 whitespace-nowrap text-center">
+<div class="flex flex-col items-center gap-1">
+<span class="text-xs font-semibold text-dark">COD</span>
+<span class="inline-flex items-center rounded-full bg-yellow-100 px-2.5 py-0.5 text-xs font-bold text-yellow-800">
+                                            Đang chờ
+                                        </span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-center">
+<span class="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-xs font-bold text-blue-800">
+<span class="w-1.5 h-1.5 rounded-full bg-blue-600 mr-1.5"></span>
+                                        Đang xử lý
+                                    </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-gray-400 hover:text-primary" title="Xem chi tiết">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+<button class="text-gray-400 hover:text-dark" title="In đơn hàng">
+<span class="material-symbols-outlined">print</span>
+</button>
+<button class="text-gray-400 hover:text-danger" title="Xóa">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-gray-50 transition-colors group">
+<td class="px-6 py-4 whitespace-nowrap">
+<input class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary" type="checkbox"/>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<a class="text-danger font-bold hover:underline" href="#">#ORD-2310-005</a>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-gray-500 font-medium">
+                                    24/10/2023 <br/> <span class="text-xs">09:15 AM</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="h-8 w-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-500 font-bold text-xs mr-3">TT</div>
+<div>
+<a class="text-dark font-bold hover:text-primary transition-colors" href="#">Trần Thị B</a>
+<div class="text-gray-500 text-xs">0987654321</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right font-bold text-danger">
+                                    1,200,000₫
+                                </td>
+<td class="px-6 py-4 whitespace-nowrap text-center">
+<div class="flex flex-col items-center gap-1">
+<span class="text-xs font-semibold text-dark">Banking</span>
+<span class="inline-flex items-center rounded-full bg-primary/20 px-2.5 py-0.5 text-xs font-bold text-green-900">
+                                            Đã thanh toán
+                                        </span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-center">
+<span class="inline-flex items-center rounded-full bg-yellow-100 px-3 py-1 text-xs font-bold text-yellow-800">
+<span class="w-1.5 h-1.5 rounded-full bg-yellow-600 mr-1.5"></span>
+                                        Chờ xác nhận
+                                    </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-gray-400 hover:text-primary">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+<button class="text-gray-400 hover:text-dark">
+<span class="material-symbols-outlined">print</span>
+</button>
+<button class="text-gray-400 hover:text-danger">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-gray-50 transition-colors group">
+<td class="px-6 py-4 whitespace-nowrap">
+<input class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary" type="checkbox"/>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<a class="text-danger font-bold hover:underline" href="#">#ORD-2309-998</a>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-gray-500 font-medium">
+                                    23/10/2023 <br/> <span class="text-xs">14:45 PM</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="h-8 w-8 rounded-full bg-green-100 flex items-center justify-center text-green-600 font-bold text-xs mr-3">LH</div>
+<div>
+<a class="text-dark font-bold hover:text-primary transition-colors" href="#">Lê Hoàng C</a>
+<div class="text-gray-500 text-xs">0912345678</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right font-bold text-danger">
+                                    5,450,000₫
+                                </td>
+<td class="px-6 py-4 whitespace-nowrap text-center">
+<div class="flex flex-col items-center gap-1">
+<span class="text-xs font-semibold text-dark">Momo</span>
+<span class="inline-flex items-center rounded-full bg-primary/20 px-2.5 py-0.5 text-xs font-bold text-green-900">
+                                            Đã thanh toán
+                                        </span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-center">
+<span class="inline-flex items-center rounded-full bg-green-100 px-3 py-1 text-xs font-bold text-green-800">
+<span class="w-1.5 h-1.5 rounded-full bg-green-600 mr-1.5"></span>
+                                        Đang giao
+                                    </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-gray-400 hover:text-primary">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+<button class="text-gray-400 hover:text-dark">
+<span class="material-symbols-outlined">print</span>
+</button>
+<button class="text-gray-400 hover:text-danger">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-gray-50 transition-colors group">
+<td class="px-6 py-4 whitespace-nowrap">
+<input class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary" type="checkbox"/>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<a class="text-danger font-bold hover:underline" href="#">#ORD-2309-990</a>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-gray-500 font-medium">
+                                    23/10/2023 <br/> <span class="text-xs">08:00 AM</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="h-8 w-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 font-bold text-xs mr-3">PM</div>
+<div>
+<a class="text-dark font-bold hover:text-primary transition-colors" href="#">Phạm Minh D</a>
+<div class="text-gray-500 text-xs">0933445566</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right font-bold text-danger">
+                                    890,000₫
+                                </td>
+<td class="px-6 py-4 whitespace-nowrap text-center">
+<div class="flex flex-col items-center gap-1">
+<span class="text-xs font-semibold text-dark">COD</span>
+<span class="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-bold text-gray-600">
+                                            Đã hoàn tiền
+                                        </span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-center">
+<span class="inline-flex items-center rounded-full bg-red-100 px-3 py-1 text-xs font-bold text-red-800">
+<span class="w-1.5 h-1.5 rounded-full bg-red-600 mr-1.5"></span>
+                                        Đã hủy
+                                    </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-gray-400 hover:text-primary">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+<button class="text-gray-400 hover:text-dark">
+<span class="material-symbols-outlined">print</span>
+</button>
+<button class="text-gray-400 hover:text-danger">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-gray-50 transition-colors group">
+<td class="px-6 py-4 whitespace-nowrap">
+<input class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary" type="checkbox"/>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<a class="text-danger font-bold hover:underline" href="#">#ORD-2309-980</a>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-gray-500 font-medium">
+                                    22/10/2023 <br/> <span class="text-xs">16:20 PM</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="h-8 w-8 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 font-bold text-xs mr-3">VN</div>
+<div>
+<a class="text-dark font-bold hover:text-primary transition-colors" href="#">Vũ Ngọc E</a>
+<div class="text-gray-500 text-xs">0944556677</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right font-bold text-danger">
+                                    3,150,000₫
+                                </td>
+<td class="px-6 py-4 whitespace-nowrap text-center">
+<div class="flex flex-col items-center gap-1">
+<span class="text-xs font-semibold text-dark">Banking</span>
+<span class="inline-flex items-center rounded-full bg-primary/20 px-2.5 py-0.5 text-xs font-bold text-green-900">
+                                            Đã thanh toán
+                                        </span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-center">
+<span class="inline-flex items-center rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold text-emerald-800">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600 mr-1.5"></span>
+                                        Đã hoàn thành
+                                    </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-gray-400 hover:text-primary">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+<button class="text-gray-400 hover:text-dark">
+<span class="material-symbols-outlined">print</span>
+</button>
+<button class="text-gray-400 hover:text-danger">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+<div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+<div>
+<p class="text-sm text-gray-700">
+                                Hiển thị <span class="font-bold text-dark">1</span> đến <span class="font-bold text-dark">10</span> trong số <span class="font-bold text-dark">105</span> kết quả
+                            </p>
+</div>
+<div>
+<nav aria-label="Pagination" class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px">
+<a class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50" href="#">
+<span class="sr-only">Previous</span>
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</a>
+<a aria-current="page" class="z-10 bg-primary/20 border-primary text-green-800 relative inline-flex items-center px-4 py-2 border text-sm font-bold" href="#">
+                                    1
+                                </a>
+<a class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium" href="#">
+                                    2
+                                </a>
+<a class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 hidden md:inline-flex relative items-center px-4 py-2 border text-sm font-medium" href="#">
+                                    3
+                                </a>
+<span class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700">
+                                    ...
+                                </span>
+<a class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 hidden md:inline-flex relative items-center px-4 py-2 border text-sm font-medium" href="#">
+                                    8
+                                </a>
+<a class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50" href="#">
+<span class="sr-only">Next</span>
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</a>
+</nav>
+</div>
+</div>
+<!-- Mobile Pagination Simplified -->
+<div class="flex items-center justify-between sm:hidden w-full">
+<a class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50" href="#">
+                            Trước
+                        </a>
+<span class="text-sm text-gray-700 font-bold">Trang 1 / 8</span>
+<a class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50" href="#">
+                            Sau
+                        </a>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-dark text-white py-8 mt-auto">
+<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="flex items-center gap-2">
+<div class="size-6 bg-primary rounded flex items-center justify-center text-dark">
+<span class="material-symbols-outlined text-[16px] font-bold">bolt</span>
+</div>
+<span class="font-bold text-lg">N2 Sport Admin</span>
+</div>
+<div class="text-gray-400 text-sm">
+                © 2023 N2 Sport Commerce. All rights reserved.
+            </div>
+<div class="flex gap-4 text-sm font-medium text-gray-400">
+<a class="hover:text-primary transition-colors" href="#">Điều khoản</a>
+<a class="hover:text-primary transition-colors" href="#">Bảo mật</a>
+<a class="hover:text-primary transition-colors" href="#">Hỗ trợ</a>
+</div>
+</div>
+</footer>
+</body></html>

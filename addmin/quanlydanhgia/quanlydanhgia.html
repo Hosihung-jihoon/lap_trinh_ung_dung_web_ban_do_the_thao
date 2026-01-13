@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>N2 Sport - Quản Lý Đánh Giá</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#aceb00", // Neon Green
+                        "danger": "#E42C14", // Red
+                        "text-main": "#111111",
+                        "text-secondary": "#A5A5A5",
+                        "border-color": "#E8E8E8",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#1e230f",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>body {
+    font-family: "Manrope", sans-serif
+    }
+/* Hide scrollbar for clean horizontal scroll */
+.no-scrollbar::-webkit-scrollbar {
+    display: none
+    }
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none
+    }
+/* Custom checkbox */
+.custom-checkbox:checked {
+    background-color: #aceb00;
+    border-color: #aceb00;
+    color: #111;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuB835OKf53CEm47LrHmYn3XxHahghHF5ImfulEL8MXjm_NOiANFk_EfqeGPceuhpyAyycOXHgDiDZGbDZFTANwU2aC6WlvkCtkouyCFxv7lDU9PCA0mwGym7fhwO4AJoW974GYm_12ifXWKHGHw-pDZsufOwxpL4FrMTzLh_U5cxblfZkmTH5lbjycucr05qouj-e0Mef24LNRLlGJRcHPYgBEkYS0io-pAZAdE4XGaI-Tt1PrCC6eKaNoxi-RHlcw2oxrrNHPTiZBn)
+    }</style>
+</head>
+<body class="bg-background-light text-text-main antialiased min-h-screen flex flex-col">
+<!-- Header -->
+<header class="sticky top-0 z-30 w-full bg-white border-b border-border-color">
+<div class="px-6 h-16 flex items-center justify-between">
+<div class="flex items-center gap-12">
+<div class="flex items-center gap-3 text-text-main">
+<div class="w-8 h-8 bg-text-main text-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">bolt</span>
+</div>
+<h2 class="text-xl font-extrabold tracking-tight">N2 Sport Admin</h2>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-text-secondary hover:text-text-main font-semibold text-sm transition-colors" href="#">Dashboard</a>
+<a class="text-text-secondary hover:text-text-main font-semibold text-sm transition-colors" href="#">Orders</a>
+<a class="text-text-main font-bold text-sm border-b-2 border-primary pb-5 mt-5" href="#">Reviews</a>
+<a class="text-text-secondary hover:text-text-main font-semibold text-sm transition-colors" href="#">Products</a>
+<a class="text-text-secondary hover:text-text-main font-semibold text-sm transition-colors" href="#">Customers</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<!-- Global Search -->
+<div class="hidden lg:flex relative group">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary material-symbols-outlined text-[20px]">search</span>
+<input class="bg-[#f3f5f0] border-transparent focus:border-primary focus:ring-0 rounded-full py-2 pl-10 pr-4 text-sm w-64 transition-all" placeholder="Search orders, customers..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<button class="relative w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors">
+<span class="material-symbols-outlined text-text-main">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-danger rounded-full ring-2 ring-white"></span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors">
+<img alt="Admin Avatar" class="w-8 h-8 rounded-full object-cover border border-gray-200" data-alt="Admin User Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMQA-_r_BGKe5E9QsxbbMTPECsXKV_pWMtrGYliHiwS5Z8qcl57tiuBQCHCRDXXs4MLxh88SapywXpjGO7TONWhEav8Z_jVpW96AKqR8-PCw8HhSUxkbwXjYDEl_xD1CbOwnUYd2G7Br3dOPQfv92TgyOB_dX8WQRvbqhVL8cfkLFAbI6rPfHDH_7Cm_5HRzkI_XcoPw2cDRMRAUItyc5jz8CUlfsEEO-9k3pKWdDelIR6s1UaV8E7-Som1ZVbHyIQDU6S9fpb5eDT"/>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 w-full max-w-[1400px] mx-auto px-4 md:px-6 py-8">
+<!-- Page Header -->
+<div class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<h1 class="text-3xl font-black text-text-main mb-1">Quản Lý Đánh Giá</h1>
+<p class="text-text-secondary text-base">Kiểm duyệt và quản lý phản hồi từ khách hàng</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2.5 bg-white border border-border-color rounded-lg text-sm font-bold shadow-sm hover:bg-gray-50 transition-colors">
+<span class="material-symbols-outlined text-[20px]">download</span>
+                    Export CSV
+                </button>
+<button class="flex items-center gap-2 px-4 py-2.5 bg-text-main text-white rounded-lg text-sm font-bold shadow-lg hover:bg-black/80 transition-colors">
+<span class="material-symbols-outlined text-[20px] text-primary">settings</span>
+                    Settings
+                </button>
+</div>
+</div>
+<!-- Content Card -->
+<div class="bg-white rounded-2xl shadow-sm border border-border-color overflow-hidden">
+<!-- Tabs -->
+<div class="border-b border-border-color px-6">
+<div class="flex gap-8 overflow-x-auto no-scrollbar">
+<a class="relative py-4 text-text-main font-bold text-sm flex items-center gap-2 border-b-[3px] border-primary" href="#">
+                        Chờ duyệt
+                        <span class="bg-danger/10 text-danger text-xs font-extrabold px-2 py-0.5 rounded-full">12</span>
+</a>
+<a class="py-4 text-text-secondary hover:text-text-main font-medium text-sm flex items-center gap-2 border-b-[3px] border-transparent transition-colors" href="#">
+                        Đã duyệt
+                    </a>
+<a class="py-4 text-text-secondary hover:text-text-main font-medium text-sm flex items-center gap-2 border-b-[3px] border-transparent transition-colors" href="#">
+                        Đã từ chối
+                    </a>
+<a class="py-4 text-text-secondary hover:text-text-main font-medium text-sm flex items-center gap-2 border-b-[3px] border-transparent transition-colors" href="#">
+                        Tất cả
+                    </a>
+</div>
+</div>
+<!-- Filters & Toolbar -->
+<div class="p-5 border-b border-border-color bg-gray-50/50">
+<div class="flex flex-col xl:flex-row gap-4 justify-between items-start xl:items-center">
+<!-- Search & Filter Controls -->
+<div class="flex flex-col md:flex-row gap-3 w-full xl:w-auto">
+<!-- Search -->
+<div class="relative w-full md:w-80">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary material-symbols-outlined text-[20px]">search</span>
+<input class="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-300 rounded-lg text-sm focus:ring-1 focus:ring-primary focus:border-primary placeholder:text-text-secondary" placeholder="Tìm theo tên sản phẩm, khách hàng..." type="text"/>
+</div>
+<!-- Rating Filter -->
+<div class="w-full md:w-48 relative">
+<select class="w-full pl-3 pr-10 py-2.5 bg-white border border-gray-300 rounded-lg text-sm focus:ring-1 focus:ring-primary focus:border-primary appearance-none cursor-pointer">
+<option value="">Tất cả số sao</option>
+<option value="5">5 Sao</option>
+<option value="4">4 Sao &amp; lên</option>
+<option value="3">3 Sao &amp; lên</option>
+</select>
+<span class="absolute right-3 top-1/2 -translate-y-1/2 text-text-secondary material-symbols-outlined text-[20px] pointer-events-none">star</span>
+</div>
+<!-- Date Filter -->
+<div class="w-full md:w-48 relative">
+<input class="w-full pl-3 pr-10 py-2.5 bg-white border border-gray-300 rounded-lg text-sm focus:ring-1 focus:ring-primary focus:border-primary cursor-pointer" placeholder="Chọn ngày" type="text"/>
+<span class="absolute right-3 top-1/2 -translate-y-1/2 text-text-secondary material-symbols-outlined text-[20px] pointer-events-none">calendar_month</span>
+</div>
+</div>
+<!-- Bulk Actions -->
+<div class="flex items-center gap-3 w-full xl:w-auto justify-end">
+<span class="text-xs font-semibold text-text-secondary hidden sm:inline-block">Đã chọn: 0</span>
+<button class="flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-200 text-gray-400 rounded-lg text-sm font-bold cursor-not-allowed" disabled="">
+                            Approve
+                        </button>
+<button class="flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-200 text-gray-400 rounded-lg text-sm font-bold cursor-not-allowed" disabled="">
+                            Delete
+                        </button>
+</div>
+</div>
+</div>
+<!-- Data Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-white border-b border-border-color text-xs uppercase tracking-wider text-text-secondary font-bold">
+<th class="p-5 w-10">
+<input class="rounded border-gray-300 text-primary focus:ring-primary w-4 h-4 custom-checkbox" type="checkbox"/>
+</th>
+<th class="p-5 min-w-[240px]">Sản phẩm</th>
+<th class="p-5 min-w-[200px]">Khách hàng</th>
+<th class="p-5 min-w-[140px]">Đánh giá</th>
+<th class="p-5 min-w-[300px]">Nội dung</th>
+<th class="p-5 min-w-[120px]">Ngày</th>
+<th class="p-5 min-w-[120px]">Trạng thái</th>
+<th class="p-5 w-24 text-right">Hành động</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-color text-sm">
+<!-- Row 1: Pending -->
+<tr class="group hover:bg-gray-50 transition-colors">
+<td class="p-5 align-top">
+<input class="rounded border-gray-300 text-primary focus:ring-primary w-4 h-4 custom-checkbox mt-1" type="checkbox"/>
+</td>
+<td class="p-5 align-top">
+<div class="flex gap-3">
+<div class="w-12 h-12 rounded-lg bg-gray-100 overflow-hidden shrink-0 border border-gray-200">
+<img class="w-full h-full object-cover" data-alt="Red Nike running shoe" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfo__zMzSsKMEZBaz8N5aWCI70LlQv2BtK_Aa2Ru9nMLF_jIeel_hHXHqmpKPa7AGv_62T04ja8h8nsH6mJyHNUsIc0cqPSRVqQcY-VOcrS0TN4IDHgN6Aq87gPFqoq7RclBYGL_QnbbGTy9ND25SGbBVpOhDc9KOSxL61QW8xGSH6JDRNFqb7E-EY6G-2Q9f4plb1FD2dVu29EJ2Rd-DTWbvJOrkoHJc8MDNHpbNkP51nvr3nNo05NfIB_5zEHtU-xVdr-MJDEheh"/>
+</div>
+<div>
+<p class="font-bold text-text-main line-clamp-1">Nike Air Zoom Pegasus 39</p>
+<p class="text-text-secondary text-xs mt-0.5">Size: 42 • Black/Red</p>
+</div>
+</div>
+</td>
+<td class="p-5 align-top">
+<div class="flex items-center gap-3">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="User Avatar Male" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAo1d2iKnJviohK-munLPWMwP03A7cVA3u-cLlGsSwEYTz2geXn7mRJ_lYlDaDhk4l3hvpM-Ilb-fX1keQgzx7cjB9jBO1x1Zrf3UcEGZUhRz2AhXXxT8Tq7kuyQ_b-EUMLa3p-pllEiKltMDMcA8BIEhLuGa2NJwWYcGCH0Ue7BJi2gL1IMGzSmU1WEdq8c3KBGnoM5Aymm3QJiq4cMAyJzjkyhb4Se50EkIl9ywwP3Qwh6Sd-DbFx2zzSabnWCV6P1pnRS16tKtTl"/>
+<div>
+<p class="font-semibold text-text-main">Tran Minh Hoang</p>
+<p class="text-text-secondary text-xs">Verified Buyer</p>
+</div>
+</div>
+</td>
+<td class="p-5 align-top">
+<div class="flex text-primary text-[18px]">
+<span class="material-symbols-outlined fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-gray-300">star</span>
+</div>
+<div class="flex items-center gap-1 mt-1 text-xs text-text-secondary">
+<span class="material-symbols-outlined text-[14px]">thumb_up</span>
+<span>2 hữu ích</span>
+</div>
+</td>
+<td class="p-5 align-top">
+<p class="text-text-main line-clamp-2 leading-relaxed">
+                                    Giày đi rất êm, ôm chân. Giao hàng nhanh hơn dự kiến 2 ngày. Tuy nhiên hộp hơi móp một chút do vận chuyển nhưng giày vẫn ổn. Sẽ ủng hộ shop lần sau.
+                                </p>
+</td>
+<td class="p-5 align-top">
+<p class="text-text-secondary font-medium">Oct 24, 2023</p>
+<p class="text-xs text-text-secondary mt-0.5">14:30 PM</p>
+</td>
+<td class="p-5 align-top">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-[#fff0ed] text-danger border border-[#ffdbd6]">
+                                    Chờ duyệt
+                                </span>
+</td>
+<td class="p-5 align-top text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-[#f0fce0] text-primary hover:bg-primary hover:text-black transition-colors" title="Approve">
+<span class="material-symbols-outlined text-[20px]">check</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-[#fff0ed] text-danger hover:bg-danger hover:text-white transition-colors" title="Reject">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-gray-100 text-text-secondary hover:bg-gray-200 transition-colors" title="View Details">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Pending with Images -->
+<tr class="group hover:bg-gray-50 transition-colors">
+<td class="p-5 align-top">
+<input class="rounded border-gray-300 text-primary focus:ring-primary w-4 h-4 custom-checkbox mt-1" type="checkbox"/>
+</td>
+<td class="p-5 align-top">
+<div class="flex gap-3">
+<div class="w-12 h-12 rounded-lg bg-gray-100 overflow-hidden shrink-0 border border-gray-200">
+<img class="w-full h-full object-cover" data-alt="Running Shirt" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABEjowJ_Nc7yF_nID1h6WlXM2JEYgAIYwhvhbpyGSa8386dtKbkQJMEZEDLffeyoavENqkSiTJHg5tmORqw227IfxXZENJZ8HQpJXQU77I4J7h4yv1eHV9EM1h75RJVcdBPUDuf4GdxpdIlUUhREjceHmJDCCYtFrmrSYJ9g17qoS7amO-u28mslvg4bZ9IwB7a09dcMsC5-4xDLrR_j4CFZvL2-BoEZsDa6vlBUJoiKBpF0l9o7ISlQE8txQuXhl2tDDx6a8QQGQr"/>
+</div>
+<div>
+<p class="font-bold text-text-main line-clamp-1">Áo Thun Chạy Bộ Dri-Fit</p>
+<p class="text-text-secondary text-xs mt-0.5">Size: L • Blue</p>
+</div>
+</div>
+</td>
+<td class="p-5 align-top">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-xs">
+                                        LN
+                                    </div>
+<div>
+<p class="font-semibold text-text-main">Le Ngoc</p>
+<p class="text-text-secondary text-xs">Guest</p>
+</div>
+</div>
+</td>
+<td class="p-5 align-top">
+<div class="flex text-primary text-[18px]">
+<span class="material-symbols-outlined fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<div class="flex items-center gap-1 mt-1 text-xs text-text-secondary">
+<span class="material-symbols-outlined text-[14px]">thumb_up</span>
+<span>0 hữu ích</span>
+</div>
+</td>
+<td class="p-5 align-top">
+<p class="text-text-main line-clamp-2 leading-relaxed">
+                                    Chất vải thoáng mát, thấm hút mồ hôi tốt.
+                                </p>
+<div class="flex gap-2 mt-2">
+<img class="w-10 h-10 rounded border border-gray-200 object-cover cursor-pointer hover:opacity-80" data-alt="Review image 1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBf8FRv3wxxixlWAJ5tGhmrbltcG3iQqj4_L4yhIv1RaR_HWQTK5u-ht-Ea5Rk1E2HHAajooRED8dP-yX0hV52vRoANuz2f6MQb9VkI_obBYKA4gxgc-_3LyUVJT36inTcA9hRTP1bx1I7gBDT5-g_JLt8U-b7lRP7JMA9CW4HgKtwoCh0-EBShUfoQgeI-z884QHM2bc7kBTDHAOX2iBHwtPbWvPr_zvkye7xKpUvO35Wqhm0wj5YnYWq23i0U43QfS3TmCWB5c2hs"/>
+</div>
+</td>
+<td class="p-5 align-top">
+<p class="text-text-secondary font-medium">Oct 23, 2023</p>
+<p class="text-xs text-text-secondary mt-0.5">09:15 AM</p>
+</td>
+<td class="p-5 align-top">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-[#fff0ed] text-danger border border-[#ffdbd6]">
+                                    Chờ duyệt
+                                </span>
+</td>
+<td class="p-5 align-top text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-[#f0fce0] text-primary hover:bg-primary hover:text-black transition-colors" title="Approve">
+<span class="material-symbols-outlined text-[20px]">check</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-[#fff0ed] text-danger hover:bg-danger hover:text-white transition-colors" title="Reject">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-gray-100 text-text-secondary hover:bg-gray-200 transition-colors" title="View Details">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Approved -->
+<tr class="group hover:bg-gray-50 transition-colors bg-gray-50/30">
+<td class="p-5 align-top">
+<input class="rounded border-gray-300 text-primary focus:ring-primary w-4 h-4 custom-checkbox mt-1" type="checkbox"/>
+</td>
+<td class="p-5 align-top">
+<div class="flex gap-3">
+<div class="w-12 h-12 rounded-lg bg-gray-100 overflow-hidden shrink-0 border border-gray-200">
+<img class="w-full h-full object-cover" data-alt="White Sneakers" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsCCyfqBUBV3HFgYsEZf_CVsNJ7Bkk4Dwsgn4Hy0XAu4oRVqjUZ8t4Po_eBgfXe1tHfeErTl5Q5GhQy-tIZmjVgx6H9hYDiEFhZFo6fwWUpJB2BxbmwSLeyV5DhfO_wal_8d7EyFTZ7lGo-GCNgs0tqKUTYHZtuFnNiAZnL4VzRP-HTvH_EO0T6qH1tugSx8UBSFJlePhQZJrouS8IkdW2hSsgyx9tM0WkxXgmchzwXhqiXyaHe56VW42MtiASTJxWWozK4e7U3Ii-"/>
+</div>
+<div>
+<p class="font-bold text-text-main line-clamp-1">Adidas Ultraboost 22</p>
+<p class="text-text-secondary text-xs mt-0.5">Size: 40 • White</p>
+</div>
+</div>
+</td>
+<td class="p-5 align-top">
+<div class="flex items-center gap-3">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="User Avatar Female" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFG-CJLy8aF9r1N8aS4SfEh6xceLbrOKri7KoETxq4br5WSGh-1-GuRczNgsEqHala_ZQMBMIJp7f_vizBHpKQOpK_E5ZDxFX5WkBau1i34iQ1jVB2sizqMjv3M-DFcaFUfrinBd1X7MflOTtvSDda8vZmXA6Lif6IlsQIcsAt0cu1FkXev5CnDuwM1Oc5WpkP-xt43ZDccRURoRRnVKxxmsQkynnoy42OW3fB294Ih5HrKe9555t3Z0k0LxPgINhqA4fcIuKkHMHM"/>
+<div>
+<p class="font-semibold text-text-main">Nguyen Thi B</p>
+<p class="text-text-secondary text-xs">Verified Buyer</p>
+</div>
+</div>
+</td>
+<td class="p-5 align-top">
+<div class="flex text-primary text-[18px]">
+<span class="material-symbols-outlined fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-gray-300">star</span>
+</div>
+<div class="flex items-center gap-1 mt-1 text-xs text-text-secondary">
+<span class="material-symbols-outlined text-[14px]">thumb_up</span>
+<span>15 hữu ích</span>
+</div>
+</td>
+<td class="p-5 align-top">
+<p class="text-text-main line-clamp-2 leading-relaxed">
+                                    Màu trắng rất đẹp nhưng hơi dễ bẩn. Cần vệ sinh thường xuyên. Đế boost đi êm chân cực kỳ.
+                                </p>
+</td>
+<td class="p-5 align-top">
+<p class="text-text-secondary font-medium">Oct 20, 2023</p>
+<p class="text-xs text-text-secondary mt-0.5">18:00 PM</p>
+</td>
+<td class="p-5 align-top">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-[#f0fce0] text-[#5c8500] border border-[#d6f0a6]">
+                                    Đã duyệt
+                                </span>
+</td>
+<td class="p-5 align-top text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-[#fff0ed] text-danger hover:bg-danger hover:text-white transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4: Low Rating -->
+<tr class="group hover:bg-gray-50 transition-colors">
+<td class="p-5 align-top">
+<input class="rounded border-gray-300 text-primary focus:ring-primary w-4 h-4 custom-checkbox mt-1" type="checkbox"/>
+</td>
+<td class="p-5 align-top">
+<div class="flex gap-3">
+<div class="w-12 h-12 rounded-lg bg-gray-100 overflow-hidden shrink-0 border border-gray-200">
+<img class="w-full h-full object-cover" data-alt="Yoga Mat" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBB5JRvi8s9ePac7fFp1YLGhCY-fC7ji2uk5JU7Xq0e7mmiYIIouhDa-1AH4_GaUsKu5DbVyGxuXW6f_48jgcvd6UMEbFFVOIt4O1_ibor0LXkgqwkTOyG9NvhtIC3rEhMabc2g7d4fBcVhboZq9ERRimjlfCjESEyFZ2QTeV_m6QsxR6lilA3xTAp0Qv9o1-UoZGwMAoaLmRKD4YjxzLra-mVmmo5gDUXMQKeU0mjnBBm4RPX3v8qhcoNUCfzmuicBVE2FyAGg3Pv5"/>
+</div>
+<div>
+<p class="font-bold text-text-main line-clamp-1">Thảm Yoga TPE 2 Lớp</p>
+<p class="text-text-secondary text-xs mt-0.5">Size: Free • Purple</p>
+</div>
+</div>
+</td>
+<td class="p-5 align-top">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center font-bold text-xs">
+                                        KT
+                                    </div>
+<div>
+<p class="font-semibold text-text-main">Kieu Tuan</p>
+<p class="text-text-secondary text-xs">Guest</p>
+</div>
+</div>
+</td>
+<td class="p-5 align-top">
+<div class="flex text-primary text-[18px]">
+<span class="material-symbols-outlined fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-gray-300">star</span>
+<span class="material-symbols-outlined text-gray-300">star</span>
+<span class="material-symbols-outlined text-gray-300">star</span>
+<span class="material-symbols-outlined text-gray-300">star</span>
+</div>
+<div class="flex items-center gap-1 mt-1 text-xs text-text-secondary">
+<span class="material-symbols-outlined text-[14px]">thumb_up</span>
+<span>0 hữu ích</span>
+</div>
+</td>
+<td class="p-5 align-top">
+<p class="text-text-main line-clamp-2 leading-relaxed">
+                                    Thảm có mùi nhựa rất nồng, để ngoài ban công 2 ngày vẫn không hết. Hơi thất vọng.
+                                </p>
+</td>
+<td class="p-5 align-top">
+<p class="text-text-secondary font-medium">Oct 23, 2023</p>
+<p class="text-xs text-text-secondary mt-0.5">11:20 AM</p>
+</td>
+<td class="p-5 align-top">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-[#fff0ed] text-danger border border-[#ffdbd6]">
+                                    Chờ duyệt
+                                </span>
+</td>
+<td class="p-5 align-top text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-[#f0fce0] text-primary hover:bg-primary hover:text-black transition-colors" title="Approve">
+<span class="material-symbols-outlined text-[20px]">check</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-[#fff0ed] text-danger hover:bg-danger hover:text-white transition-colors" title="Reject">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-gray-100 text-text-secondary hover:bg-gray-200 transition-colors" title="View Details">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-4 border-t border-border-color flex items-center justify-between bg-white">
+<div class="flex items-center gap-2 text-sm text-text-secondary">
+<span>Rows per page:</span>
+<select class="border-none bg-transparent font-bold text-text-main focus:ring-0 cursor-pointer">
+<option>10</option>
+<option>20</option>
+<option>50</option>
+</select>
+</div>
+<div class="flex items-center gap-1">
+<button class="p-2 rounded-lg text-text-secondary hover:bg-gray-100 disabled:opacity-50">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<button class="min-w-[32px] h-8 flex items-center justify-center rounded-lg bg-primary text-black font-bold text-sm">1</button>
+<button class="min-w-[32px] h-8 flex items-center justify-center rounded-lg text-text-main hover:bg-gray-100 font-medium text-sm">2</button>
+<button class="min-w-[32px] h-8 flex items-center justify-center rounded-lg text-text-main hover:bg-gray-100 font-medium text-sm">3</button>
+<span class="px-2 text-text-secondary">...</span>
+<button class="min-w-[32px] h-8 flex items-center justify-center rounded-lg text-text-main hover:bg-gray-100 font-medium text-sm">12</button>
+<button class="p-2 rounded-lg text-text-secondary hover:bg-gray-100">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-text-main text-white py-8 mt-auto">
+<div class="max-w-[1400px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 bg-primary text-black rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">bolt</span>
+</div>
+<span class="font-bold text-lg">N2 Sport Admin</span>
+</div>
+<div class="flex gap-8 text-sm text-gray-400">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-primary transition-colors" href="#">Support</a>
+</div>
+<div class="text-sm text-gray-500">
+                © 2024 N2 Sport. All rights reserved.
+            </div>
+</div>
+</footer>
+<!-- Review Details Modal (Hidden for design demo, uncomment HTML structure below to see visually if needed, though interaction requires JS) -->
+<!-- 
+    <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+        <div class="bg-white rounded-2xl w-full max-w-2xl shadow-2xl overflow-hidden animate-fade-in-up">
+            <div class="p-6 border-b border-gray-100 flex justify-between items-center">
+                <h3 class="text-xl font-bold text-text-main">Chi tiết đánh giá</h3>
+                <button class="text-gray-400 hover:text-text-main">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div class="p-6 max-h-[70vh] overflow-y-auto">
+                ... content ...
+            </div>
+            <div class="p-6 bg-gray-50 flex justify-end gap-3 border-t border-gray-100">
+                <button class="px-5 py-2.5 rounded-lg border border-gray-300 font-bold text-gray-600 hover:bg-gray-100">Đóng</button>
+                <button class="px-5 py-2.5 rounded-lg bg-danger text-white font-bold hover:opacity-90">Từ chối</button>
+                <button class="px-5 py-2.5 rounded-lg bg-primary text-black font-bold hover:opacity-90">Duyệt bài</button>
+            </div>
+        </div>
+    </div> 
+    -->
+</body></html>

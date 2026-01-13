@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>N2 Sport - Brand Management</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#AFED00", // Using prompt specific color
+                        "danger": "#E42C14",
+                        "dark-text": "#111111",
+                        "gray-text": "#A5A5A5",
+                        "light-bg": "#E8E8E8",
+                        "white-bg": "#FFFFFF",
+                        "background-light": "#f7f8f5", // Fallback for body
+                        "background-dark": "#1c230f", // Fallback for body
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+        /* Custom scrollbar for table container */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="relative flex min-h-screen flex-col bg-background-light dark:bg-background-dark overflow-x-hidden font-display">
+<!-- Sticky Header -->
+<header class="sticky top-0 z-50 flex items-center justify-between border-b border-[#e8e8e8] bg-white px-4 py-3 shadow-sm md:px-10">
+<div class="flex items-center gap-4 md:gap-8">
+<div class="flex items-center gap-2 text-dark-text">
+<div class="flex h-8 w-8 items-center justify-center rounded bg-primary/20 text-primary">
+<span class="material-symbols-outlined !text-3xl text-[#AFED00]">bolt</span>
+</div>
+<h1 class="hidden text-xl font-bold tracking-tight text-dark-text md:block">N2 Sport Admin</h1>
+<h1 class="block text-xl font-bold tracking-tight text-dark-text md:hidden">N2</h1>
+</div>
+<!-- Desktop Nav -->
+<nav class="hidden items-center gap-6 md:flex">
+<a class="text-sm font-medium text-dark-text hover:text-primary transition-colors" href="#">Products</a>
+<a class="border-b-2 border-primary pb-0.5 text-sm font-bold text-dark-text" href="#">Brands</a>
+<a class="text-sm font-medium text-dark-text hover:text-primary transition-colors" href="#">Users</a>
+<a class="text-sm font-medium text-dark-text hover:text-primary transition-colors" href="#">Settings</a>
+</nav>
+</div>
+<div class="flex items-center gap-4 md:gap-6">
+<!-- Mobile Search Icon -->
+<button class="flex items-center justify-center md:hidden text-dark-text">
+<span class="material-symbols-outlined">search</span>
+</button>
+<!-- Desktop Search -->
+<div class="hidden w-64 md:block">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-gray-text text-[20px]">search</span>
+<input class="w-full rounded-lg border border-gray-text/30 bg-[#f9fafb] py-2 pl-10 pr-4 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary" placeholder="Search admin..." type="text"/>
+</div>
+</div>
+<!-- Notifications -->
+<button class="relative flex items-center justify-center text-dark-text hover:bg-light-bg rounded-full p-2 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute right-1.5 top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-danger text-[10px] font-bold text-white">3</span>
+</button>
+<!-- User Profile -->
+<div class="flex items-center gap-3 cursor-pointer">
+<div class="h-9 w-9 overflow-hidden rounded-full border border-light-bg bg-cover bg-center" data-alt="User profile avatar showing a smiling person" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBp0sgGNfZrEt4YaEVTU04zxGzu6joSK5cMG0JPCNOMRqLVMD3ft_1mkYXwxV-ImWDMs41j-OajO3y4wLpHdW2ognbC4gW4SwFla_vxZ7tRntfhHuSxKqOY5IsAKU7GsB5s2_MlI6FlBDbXaMsx9Pesd60oNN2AeXD280GOEYOOONCcNJUvQ68jOw-S0AuMEQtLGUX9CW0wFDatiXl5IxcAexi82ctDqOvHfCmbOoFTuAYg_EmyRxSXs31R2HSOYcXwXuNTH_wlVwgV");'></div>
+<div class="hidden flex-col md:flex">
+<span class="text-sm font-bold text-dark-text leading-tight">Admin User</span>
+<span class="text-xs text-gray-text leading-tight">Super Admin</span>
+</div>
+<span class="material-symbols-outlined hidden text-gray-text md:block">expand_more</span>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 px-4 py-8 md:px-10 lg:px-20 xl:px-40 bg-[#f7f8f5]">
+<div class="mx-auto max-w-7xl">
+<!-- Page Header & Toolbar -->
+<div class="mb-6 flex flex-col justify-between gap-4 md:flex-row md:items-center">
+<div>
+<h2 class="text-2xl font-bold text-dark-text">Brand Management</h2>
+<p class="text-sm text-gray-text mt-1">Manage sports brands, logos, and visibility settings.</p>
+</div>
+<div class="flex gap-3">
+<button class="group flex items-center gap-2 rounded-lg bg-danger px-5 py-2.5 text-sm font-bold text-white transition-all hover:bg-red-700 hover:shadow-lg">
+<span class="material-symbols-outlined text-[20px] group-hover:rotate-90 transition-transform">add</span>
+                        Add Brand
+                    </button>
+</div>
+</div>
+<!-- Filters & Controls Section -->
+<div class="mb-6 rounded-xl bg-white p-4 shadow-sm border border-light-bg">
+<div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+<!-- Search & Filter Group -->
+<div class="flex flex-1 flex-col gap-4 md:flex-row">
+<!-- Search Input -->
+<div class="flex-1 max-w-md">
+<label class="mb-1.5 block text-xs font-semibold text-gray-text">Find Brand</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-text">search</span>
+<input class="h-11 w-full rounded-lg border border-gray-300 bg-white pl-10 pr-4 text-dark-text placeholder:text-gray-400 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary" placeholder="Search by brand name..." type="text"/>
+</div>
+</div>
+<!-- Status Filter -->
+<div class="w-full md:w-48">
+<label class="mb-1.5 block text-xs font-semibold text-gray-text">Status</label>
+<div class="relative">
+<select class="h-11 w-full appearance-none rounded-lg border border-gray-300 bg-white px-4 text-dark-text focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary">
+<option>All Status</option>
+<option>Active</option>
+<option>Inactive</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-text">expand_more</span>
+</div>
+</div>
+<!-- Apply Button -->
+<div class="flex items-end">
+<button class="h-11 rounded-lg border border-gray-300 bg-white px-4 text-sm font-semibold text-dark-text hover:border-danger hover:text-danger transition-colors">
+                                Clear
+                            </button>
+</div>
+</div>
+<!-- View Toggle -->
+<div class="flex items-center gap-2 self-end lg:self-auto pt-4 lg:pt-0">
+<span class="text-xs font-semibold text-gray-text mr-2 hidden md:block">View:</span>
+<button class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/20 text-dark-text ring-1 ring-primary transition-colors" title="Grid View">
+<span class="material-symbols-outlined">grid_view</span>
+</button>
+<button class="flex h-10 w-10 items-center justify-center rounded-lg bg-light-bg text-gray-text hover:bg-gray-200 transition-colors" title="List View">
+<span class="material-symbols-outlined">view_list</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Grid View Content -->
+<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+<!-- Brand Card 1 -->
+<div class="group relative flex flex-col rounded-xl border border-light-bg bg-white p-5 shadow-sm transition-all hover:border-primary/50 hover:shadow-md">
+<div class="absolute right-4 top-4">
+<button class="text-gray-text hover:text-dark-text" onclick="alert('Menu clicked')">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="mb-4 flex h-20 w-20 items-center justify-center rounded-full border border-light-bg bg-white p-2 mx-auto">
+<img alt="Nike Logo" class="h-full w-full object-contain" data-alt="Nike black swoosh logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwLZRsXlkvz-22EeAuJlB2n4oE5pawNb3BzirOZ2e_adSN6DStEqfQfOnFBLGAqw7r9pkhL6YPY1jdHPN7WvzdVCkSnoWBpy-ljn11YXjH6ipEdq5gxnxq0m0ahDujrvM0mA0bHrlN4378VKgmdUR59F0AIlbeN5PNAog-0-Y43kDi671pajj_lFjDOUOti-PEg3jfhU0LDlEUPtM_I-fgYWZ9J8TKHlLYPFJIhTG61te_XEkR8kvBkJVEviFsVDt0K8dJEzL06Myr"/>
+</div>
+<div class="text-center">
+<h3 class="text-lg font-bold text-dark-text group-hover:text-primary transition-colors cursor-pointer">Nike</h3>
+<p class="text-xs text-gray-text mt-1">Updated 2 hours ago</p>
+</div>
+<div class="mt-4 flex items-center justify-between border-t border-light-bg pt-4">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold uppercase text-gray-text tracking-wider">Products</span>
+<span class="flex items-center gap-1 text-sm font-bold text-dark-text">
+<span class="flex h-2 w-2 rounded-full bg-primary"></span>
+                                142
+                            </span>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-[10px] font-bold uppercase text-gray-text tracking-wider">Status</span>
+<span class="inline-flex items-center rounded-full bg-primary/20 px-2 py-0.5 text-xs font-bold text-dark-text border border-primary/30">
+                                Active
+                            </span>
+</div>
+</div>
+<!-- Overlay Actions on Hover -->
+<div class="absolute inset-x-0 bottom-0 flex translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-4 group-hover:opacity-100 z-10 justify-center gap-2 pb-2">
+<button class="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-dark-text shadow-lg hover:scale-110 transition-transform" title="Edit">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="flex h-9 w-9 items-center justify-center rounded-full bg-danger text-white shadow-lg hover:scale-110 transition-transform" title="Delete">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Brand Card 2 -->
+<div class="group relative flex flex-col rounded-xl border border-light-bg bg-white p-5 shadow-sm transition-all hover:border-primary/50 hover:shadow-md">
+<div class="absolute right-4 top-4">
+<button class="text-gray-text hover:text-dark-text">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="mb-4 flex h-20 w-20 items-center justify-center rounded-full border border-light-bg bg-white p-2 mx-auto">
+<img alt="Adidas Logo" class="h-full w-full object-contain" data-alt="Adidas three stripes logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDp_FB0VcioPJkfOwAG72_iolsuSmE1Ucz5zRVli5B3DSjQLjk9U5AqSMeckwFzI61eg-IdoYhRtCdNg_NnF6cz-mnxs3lV2h4pwzwR8iHsmAhHe7KGUq57zz23vFBNzAbn0D1DoN7531kbPTtR-OXy9lsxl_zwaaep5hTqzHuhyozXaGv97YtZn8HhWXR8axpB1oxx02ZQ50YZjanElzsEQwF77LJ60TpBrwTMt91syVUtxQd2POSS46-8qTh1HnkRax-Qv5-WpkDG"/>
+</div>
+<div class="text-center">
+<h3 class="text-lg font-bold text-dark-text group-hover:text-primary transition-colors cursor-pointer">Adidas</h3>
+<p class="text-xs text-gray-text mt-1">Updated yesterday</p>
+</div>
+<div class="mt-4 flex items-center justify-between border-t border-light-bg pt-4">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold uppercase text-gray-text tracking-wider">Products</span>
+<span class="flex items-center gap-1 text-sm font-bold text-dark-text">
+<span class="flex h-2 w-2 rounded-full bg-primary"></span>
+                                98
+                            </span>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-[10px] font-bold uppercase text-gray-text tracking-wider">Status</span>
+<span class="inline-flex items-center rounded-full bg-primary/20 px-2 py-0.5 text-xs font-bold text-dark-text border border-primary/30">
+                                Active
+                            </span>
+</div>
+</div>
+<!-- Overlay Actions on Hover -->
+<div class="absolute inset-x-0 bottom-0 flex translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-4 group-hover:opacity-100 z-10 justify-center gap-2 pb-2">
+<button class="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-dark-text shadow-lg hover:scale-110 transition-transform" title="Edit">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="flex h-9 w-9 items-center justify-center rounded-full bg-danger text-white shadow-lg hover:scale-110 transition-transform" title="Delete">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Brand Card 3 (Inactive) -->
+<div class="group relative flex flex-col rounded-xl border border-light-bg bg-white p-5 shadow-sm transition-all hover:border-primary/50 hover:shadow-md">
+<div class="absolute right-4 top-4">
+<button class="text-gray-text hover:text-dark-text">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="mb-4 flex h-20 w-20 items-center justify-center rounded-full border border-light-bg bg-white p-2 mx-auto grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all">
+<img alt="Puma Logo" class="h-full w-full object-contain" data-alt="Puma jumping cat logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXq67NGnNPcGUUytDYksFJ2WfQ3pYLt2bi7Lba2PwjBWjVC8ybJMVWbOfQ_S48HlrZIZjdkLfBtwhRUsnpnfmwC9VJ322ZPXM54gdF5YVaolQcfcqdII5ERx_eADfhdlJaDPiJ69eStqLORRjipPc1LCwtrvn53y6b_W2u3mPfwDAZdBXZ2yciw67bOlFDARTTd_VwtL0WWfxLVmpyjTAZiEY3kYdVnU34Bf_Pd2jHPE-zuuA05LZgE2njmC1x-et5HizlQ3jmiodx"/>
+</div>
+<div class="text-center">
+<h3 class="text-lg font-bold text-dark-text group-hover:text-primary transition-colors cursor-pointer">Puma</h3>
+<p class="text-xs text-gray-text mt-1">Updated 3 days ago</p>
+</div>
+<div class="mt-4 flex items-center justify-between border-t border-light-bg pt-4">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold uppercase text-gray-text tracking-wider">Products</span>
+<span class="flex items-center gap-1 text-sm font-bold text-dark-text">
+<span class="flex h-2 w-2 rounded-full bg-gray-300"></span>
+                                0
+                            </span>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-[10px] font-bold uppercase text-gray-text tracking-wider">Status</span>
+<span class="inline-flex items-center rounded-full bg-danger/10 px-2 py-0.5 text-xs font-bold text-danger border border-danger/20">
+                                Inactive
+                            </span>
+</div>
+</div>
+<!-- Overlay Actions on Hover -->
+<div class="absolute inset-x-0 bottom-0 flex translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-4 group-hover:opacity-100 z-10 justify-center gap-2 pb-2">
+<button class="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-dark-text shadow-lg hover:scale-110 transition-transform" title="Edit">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="flex h-9 w-9 items-center justify-center rounded-full bg-danger text-white shadow-lg hover:scale-110 transition-transform" title="Delete">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Brand Card 4 -->
+<div class="group relative flex flex-col rounded-xl border border-light-bg bg-white p-5 shadow-sm transition-all hover:border-primary/50 hover:shadow-md">
+<div class="absolute right-4 top-4">
+<button class="text-gray-text hover:text-dark-text">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="mb-4 flex h-20 w-20 items-center justify-center rounded-full border border-light-bg bg-white p-2 mx-auto">
+<img alt="New Balance Logo" class="h-full w-full object-contain" data-alt="New Balance NB logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYuf9uZe1tl5eWReXEUP3Op9CapwnwO3CTCO9dZUd4CwTHBbMGXq6jMHsQuBwoE4VJOGtnr_x3lE_tPskmQIkRi-y9lHiMu08E66L2-wPd3lO2MCywBZjN4pIBM6fRzdPCspf7Ta1TRKi4_H7KPr8N8x9_D8-jAmRjjtRqVC4G-SSWvbLWgVyApskv4BZooEGEz8ep5w721zp27g4WN-WbQeG0B1ud7oW_Dz94YkjjQlzT8Qsey4XI7fMq2HZp4fU9CjIoRbE5VkxN"/>
+</div>
+<div class="text-center">
+<h3 class="text-lg font-bold text-dark-text group-hover:text-primary transition-colors cursor-pointer">New Balance</h3>
+<p class="text-xs text-gray-text mt-1">Updated 1 week ago</p>
+</div>
+<div class="mt-4 flex items-center justify-between border-t border-light-bg pt-4">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold uppercase text-gray-text tracking-wider">Products</span>
+<span class="flex items-center gap-1 text-sm font-bold text-dark-text">
+<span class="flex h-2 w-2 rounded-full bg-primary"></span>
+                                65
+                            </span>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-[10px] font-bold uppercase text-gray-text tracking-wider">Status</span>
+<span class="inline-flex items-center rounded-full bg-primary/20 px-2 py-0.5 text-xs font-bold text-dark-text border border-primary/30">
+                                Active
+                            </span>
+</div>
+</div>
+<!-- Overlay Actions on Hover -->
+<div class="absolute inset-x-0 bottom-0 flex translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-4 group-hover:opacity-100 z-10 justify-center gap-2 pb-2">
+<button class="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-dark-text shadow-lg hover:scale-110 transition-transform" title="Edit">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="flex h-9 w-9 items-center justify-center rounded-full bg-danger text-white shadow-lg hover:scale-110 transition-transform" title="Delete">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Brand Card 5 -->
+<div class="group relative flex flex-col rounded-xl border border-light-bg bg-white p-5 shadow-sm transition-all hover:border-primary/50 hover:shadow-md">
+<div class="absolute right-4 top-4">
+<button class="text-gray-text hover:text-dark-text">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="mb-4 flex h-20 w-20 items-center justify-center rounded-full border border-light-bg bg-white p-2 mx-auto">
+<img alt="Under Armour Logo" class="h-full w-full object-contain" data-alt="Under Armour crossed curve logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFuUMDnngm5rhKvjLVoSqxfnWtpz08ynuXQ0rCOsuMMqZMw8vPxE3Xdm4BHCxAVVsrTyNzhgLqvWuzmcLsXyfonuimfSHngSn8NdKrgclRXWeVyFmAIVODVgbTDsYQEwFjL_1cPfDWBtDmczxez5Js7Sm4AONL3ZTBUbw_aUxg0wltKYsoHaLgFM2MpkTS_sek1oOTb66JvMNq7nNN8MJeywmfsH9XvzX68V_lk7JcMbfmRns0r8mcYe-WBcPwZzkq0I6o64KUj0Rw"/>
+</div>
+<div class="text-center">
+<h3 class="text-lg font-bold text-dark-text group-hover:text-primary transition-colors cursor-pointer">Under Armour</h3>
+<p class="text-xs text-gray-text mt-1">Updated 2 weeks ago</p>
+</div>
+<div class="mt-4 flex items-center justify-between border-t border-light-bg pt-4">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold uppercase text-gray-text tracking-wider">Products</span>
+<span class="flex items-center gap-1 text-sm font-bold text-dark-text">
+<span class="flex h-2 w-2 rounded-full bg-primary"></span>
+                                42
+                            </span>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-[10px] font-bold uppercase text-gray-text tracking-wider">Status</span>
+<span class="inline-flex items-center rounded-full bg-primary/20 px-2 py-0.5 text-xs font-bold text-dark-text border border-primary/30">
+                                Active
+                            </span>
+</div>
+</div>
+<!-- Overlay Actions on Hover -->
+<div class="absolute inset-x-0 bottom-0 flex translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-4 group-hover:opacity-100 z-10 justify-center gap-2 pb-2">
+<button class="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-dark-text shadow-lg hover:scale-110 transition-transform" title="Edit">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="flex h-9 w-9 items-center justify-center rounded-full bg-danger text-white shadow-lg hover:scale-110 transition-transform" title="Delete">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Brand Card 6 -->
+<div class="group relative flex flex-col rounded-xl border border-light-bg bg-white p-5 shadow-sm transition-all hover:border-primary/50 hover:shadow-md">
+<div class="absolute right-4 top-4">
+<button class="text-gray-text hover:text-dark-text">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="mb-4 flex h-20 w-20 items-center justify-center rounded-full border border-light-bg bg-white p-2 mx-auto">
+<img alt="Reebok Logo" class="h-full w-full object-contain" data-alt="Reebok text logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0FrjV5TM3ZrCA7GBzt9ptYbFDP6ySxunTGNDbS9WWzdkZ-w96nb3Jh46tVFCQAGvi0WxYuCWDdeJ7yvbnbhkGjnDEZcJUR1O4NeUyfsqz7gh5yJmfsebl_Bx6b9Y1Z9NGKPtWrd0y3T4RW51rxcyiB_4bQq8U6QiK1KcZ2lG71DbeD4olmYslMyMHlOXLNUnzzYLjNHyJ3_lofq-3tu70L_Xb0FtDuXIT-sYMxDpvOttTU0aMGp0v71AB9r3jA5lvQSieJd-rwELQ"/>
+</div>
+<div class="text-center">
+<h3 class="text-lg font-bold text-dark-text group-hover:text-primary transition-colors cursor-pointer">Reebok</h3>
+<p class="text-xs text-gray-text mt-1">Updated 1 month ago</p>
+</div>
+<div class="mt-4 flex items-center justify-between border-t border-light-bg pt-4">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold uppercase text-gray-text tracking-wider">Products</span>
+<span class="flex items-center gap-1 text-sm font-bold text-dark-text">
+<span class="flex h-2 w-2 rounded-full bg-primary"></span>
+                                23
+                            </span>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-[10px] font-bold uppercase text-gray-text tracking-wider">Status</span>
+<span class="inline-flex items-center rounded-full bg-primary/20 px-2 py-0.5 text-xs font-bold text-dark-text border border-primary/30">
+                                Active
+                            </span>
+</div>
+</div>
+<!-- Overlay Actions on Hover -->
+<div class="absolute inset-x-0 bottom-0 flex translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-4 group-hover:opacity-100 z-10 justify-center gap-2 pb-2">
+<button class="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-dark-text shadow-lg hover:scale-110 transition-transform" title="Edit">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="flex h-9 w-9 items-center justify-center rounded-full bg-danger text-white shadow-lg hover:scale-110 transition-transform" title="Delete">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Brand Card 7 (Add New Placeholder) -->
+<button class="group relative flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-gray-300 bg-transparent p-5 text-gray-400 transition-all hover:border-primary hover:bg-primary/5 hover:text-dark-text">
+<div class="mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-gray-100 group-hover:bg-primary group-hover:text-dark-text transition-colors">
+<span class="material-symbols-outlined text-3xl">add</span>
+</div>
+<span class="font-bold">Add New Brand</span>
+</button>
+</div>
+<!-- Pagination -->
+<div class="mt-10 flex flex-col items-center justify-between gap-4 md:flex-row">
+<span class="text-sm text-gray-text">
+                    Showing <span class="font-bold text-dark-text">1-6</span> of <span class="font-bold text-dark-text">50</span> brands
+                </span>
+<div class="flex items-center gap-2">
+<button class="flex h-9 w-9 items-center justify-center rounded-lg border border-light-bg text-dark-text hover:bg-light-bg disabled:opacity-50">
+<span class="material-symbols-outlined text-lg">chevron_left</span>
+</button>
+<button class="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-sm font-bold text-dark-text">1</button>
+<button class="flex h-9 w-9 items-center justify-center rounded-lg border border-light-bg text-sm font-medium text-dark-text hover:bg-light-bg hover:border-primary/50 transition-colors">2</button>
+<button class="flex h-9 w-9 items-center justify-center rounded-lg border border-light-bg text-sm font-medium text-dark-text hover:bg-light-bg hover:border-primary/50 transition-colors">3</button>
+<span class="flex h-9 w-9 items-center justify-center text-gray-text">...</span>
+<button class="flex h-9 w-9 items-center justify-center rounded-lg border border-light-bg text-sm font-medium text-dark-text hover:bg-light-bg hover:border-primary/50 transition-colors">5</button>
+<button class="flex h-9 w-9 items-center justify-center rounded-lg border border-light-bg text-dark-text hover:bg-danger hover:text-white transition-colors">
+<span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-sm text-gray-text">Show:</span>
+<select class="rounded-lg border border-light-bg bg-white px-2 py-1 text-sm font-bold text-dark-text focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary">
+<option>20</option>
+<option>50</option>
+<option>100</option>
+</select>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-dark-text px-4 py-8 text-white md:px-10">
+<div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 md:flex-row">
+<div class="flex flex-col gap-1 md:flex-row md:gap-8">
+<p class="text-sm text-gray-400">© 2023 N2 Sport Inc. All rights reserved.</p>
+</div>
+<div class="flex gap-6">
+<a class="text-sm text-gray-400 hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-sm text-gray-400 hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="text-sm text-gray-400 hover:text-primary transition-colors" href="#">Help Center</a>
+</div>
+</div>
+</footer>
+<!-- Example Modal (Hidden by default, shown for structure) -->
+<!-- Add 'hidden' class to hide it -->
+<div class="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm hidden">
+<div class="w-full max-w-lg rounded-2xl bg-white p-6 shadow-2xl">
+<div class="mb-6 flex items-center justify-between">
+<h3 class="text-xl font-bold text-dark-text">Delete Brand?</h3>
+<button class="flex h-8 w-8 items-center justify-center rounded-full bg-light-bg text-gray-500 hover:bg-gray-200">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="mb-6 flex flex-col items-center gap-4 text-center">
+<div class="flex h-16 w-16 items-center justify-center rounded-full bg-red-100 text-danger">
+<span class="material-symbols-outlined text-3xl">warning</span>
+</div>
+<div>
+<p class="text-lg font-bold text-dark-text">Are you sure?</p>
+<p class="text-sm text-gray-text">This action will delete the brand <span class="font-bold text-dark-text">"Puma"</span> and affect <span class="font-bold text-danger">5 products</span> associated with it.</p>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 rounded-lg border border-gray-300 bg-white py-3 font-bold text-dark-text hover:bg-gray-50">Cancel</button>
+<button class="flex-1 rounded-lg bg-danger py-3 font-bold text-white hover:bg-red-700">Delete Brand</button>
+</div>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>N2 Sport - Master Sizes</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#AFED00", // User specified positive/success color
+                        "n2-red": "#E42C14",   // User specified alert/primary-button color
+                        "n2-black": "#111111", // Main text
+                        "n2-gray": "#A5A5A5",  // Secondary text/border
+                        "n2-light": "#E8E8E8", // Divider/Secondary BG
+                        "background-light": "#FFFFFF",
+                        "background-dark": "#1e230f", // Fallback for dark mode pattern
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for table container */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* Drag and Drop visual simulation classes */
+        .draggable-source {
+            opacity: 0.5;
+            background-color: #f3f5f0;
+            border: 2px dashed #AFED00;
+        }
+        
+        .draggable-over {
+            border-bottom: 2px solid #AFED00;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-n2-black font-display antialiased min-h-screen flex flex-col">
+<!-- Sticky Header -->
+<header class="sticky top-0 z-50 bg-white border-b border-n2-light shadow-sm">
+<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<!-- Logo & Nav -->
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 bg-n2-black rounded flex items-center justify-center text-primary font-bold text-xl">N2</div>
+<h1 class="text-n2-black text-xl font-bold tracking-tight">N2 Sport Admin</h1>
+</div>
+<nav class="hidden md:flex gap-6">
+<div class="relative group">
+<button class="flex items-center gap-1 text-sm font-medium text-n2-black hover:text-n2-red transition-colors">
+                                Master Data
+                                <span class="material-symbols-outlined text-lg">expand_more</span>
+</button>
+</div>
+<div class="relative group">
+<button class="flex items-center gap-1 text-sm font-medium text-n2-gray hover:text-n2-black transition-colors">
+                                Products
+                                <span class="material-symbols-outlined text-lg">expand_more</span>
+</button>
+</div>
+</nav>
+</div>
+<!-- Utilities -->
+<div class="flex items-center gap-4">
+<div class="hidden sm:flex relative max-w-xs w-full">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-n2-gray text-xl">search</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-2 border border-n2-gray/30 rounded-lg leading-5 bg-white placeholder-n2-gray focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary sm:text-sm" placeholder="Search..." type="text"/>
+</div>
+<button class="relative p-2 text-n2-black hover:bg-n2-light rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 block h-2 w-2 rounded-full bg-n2-red ring-2 ring-white"></span>
+</button>
+<div class="flex items-center gap-2 pl-2 border-l border-n2-light cursor-pointer">
+<div class="h-8 w-8 rounded-full bg-n2-black text-white flex items-center justify-center font-bold text-xs">AD</div>
+<span class="hidden sm:block text-sm font-medium text-n2-black">Admin</span>
+<span class="material-symbols-outlined text-n2-black text-lg">expand_more</span>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow bg-[#F9F9F9]">
+<div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<!-- Page Heading & Tabs -->
+<div class="mb-8">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+<div>
+<h2 class="text-3xl font-bold text-n2-black">Master Sizes</h2>
+<p class="text-n2-gray text-sm mt-1">Manage product size attributes for the catalog.</p>
+</div>
+<button class="flex items-center justify-center gap-2 bg-n2-red hover:bg-red-700 text-white px-5 py-2.5 rounded-lg shadow-sm transition-all font-medium text-sm w-full sm:w-auto">
+<span class="material-symbols-outlined text-lg">add</span>
+                        Add Size
+                    </button>
+</div>
+<!-- Tabs -->
+<div class="border-b border-n2-light">
+<nav aria-label="Tabs" class="-mb-px flex space-x-8">
+<a class="border-transparent text-n2-gray hover:text-n2-red hover:border-n2-gray whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors" href="#">
+                            Master Colors
+                        </a>
+<a aria-current="page" class="border-primary text-n2-black whitespace-nowrap py-4 px-1 border-b-2 font-bold text-sm" href="#">
+                            Master Sizes
+                        </a>
+<a class="border-transparent text-n2-gray hover:text-n2-red hover:border-n2-gray whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors" href="#">
+                            Master Brands
+                        </a>
+</nav>
+</div>
+</div>
+<!-- Content Area -->
+<div class="bg-white rounded-xl shadow-sm border border-n2-light overflow-hidden">
+<!-- Toolbar/Filter (Optional, keeping it clean as per request but structured) -->
+<div class="p-4 border-b border-n2-light flex justify-between items-center bg-[#FAFAFA]">
+<div class="flex items-center gap-2 text-sm text-n2-gray">
+<span class="material-symbols-outlined text-lg">info</span>
+<span>Drag rows to reorder sizes.</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="text-n2-gray hover:text-n2-black p-1 rounded">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+</div>
+<!-- Responsive Table Container -->
+<div class="overflow-x-auto relative">
+<table class="w-full text-left text-sm">
+<thead class="bg-[#FAFAFA] text-n2-gray font-medium border-b border-n2-light">
+<tr>
+<th class="pl-6 pr-3 py-3 w-12 text-center" scope="col">
+<span class="material-symbols-outlined text-lg">drag_indicator</span>
+</th>
+<th class="px-3 py-3 w-[30%]" scope="col">
+<div class="flex items-center gap-1 cursor-pointer hover:text-primary transition-colors">
+                                        Size Name
+                                        <span class="material-symbols-outlined text-base">unfold_more</span>
+</div>
+</th>
+<th class="px-3 py-3 w-[25%]" scope="col">
+<div class="flex items-center gap-1 cursor-pointer hover:text-primary transition-colors">
+                                        Type
+                                        <span class="material-symbols-outlined text-base">unfold_more</span>
+</div>
+</th>
+<th class="px-3 py-3 w-[20%]" scope="col">
+<div class="flex items-center gap-1 cursor-pointer hover:text-primary transition-colors">
+                                        Sort Order
+                                        <span class="material-symbols-outlined text-base">arrow_upward</span>
+</div>
+</th>
+<th class="pl-3 pr-6 py-3 text-right" scope="col">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-n2-light bg-white">
+<!-- Row 1 -->
+<tr class="group hover:bg-[#F9F9F9] transition-colors cursor-move">
+<td class="pl-6 pr-3 py-4 text-center text-n2-gray group-hover:text-n2-black cursor-grab active:cursor-grabbing">
+<span class="material-symbols-outlined text-lg">drag_handle</span>
+</td>
+<td class="px-3 py-4 font-medium text-n2-black">
+                                    Small (S)
+                                </td>
+<td class="px-3 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-n2-gray border border-n2-light">
+                                        Clothing
+                                    </span>
+</td>
+<td class="px-3 py-4">
+<input class="w-16 h-8 text-center text-sm border border-n2-light rounded focus:ring-1 focus:ring-primary focus:border-primary text-n2-black" type="number" value="1"/>
+</td>
+<td class="pl-3 pr-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="text-primary hover:text-lime-600 p-1 rounded hover:bg-primary/10 transition-colors" title="Edit">
+<span class="material-symbols-outlined text-xl">edit</span>
+</button>
+<button class="text-n2-red hover:text-red-700 p-1 rounded hover:bg-n2-red/10 transition-colors" title="Delete">
+<span class="material-symbols-outlined text-xl">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="group hover:bg-[#F9F9F9] transition-colors cursor-move">
+<td class="pl-6 pr-3 py-4 text-center text-n2-gray group-hover:text-n2-black cursor-grab active:cursor-grabbing">
+<span class="material-symbols-outlined text-lg">drag_handle</span>
+</td>
+<td class="px-3 py-4 font-medium text-n2-black">
+                                    Medium (M)
+                                </td>
+<td class="px-3 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-n2-gray border border-n2-light">
+                                        Clothing
+                                    </span>
+</td>
+<td class="px-3 py-4">
+<input class="w-16 h-8 text-center text-sm border border-n2-light rounded focus:ring-1 focus:ring-primary focus:border-primary text-n2-black" type="number" value="2"/>
+</td>
+<td class="pl-3 pr-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="text-primary hover:text-lime-600 p-1 rounded hover:bg-primary/10 transition-colors" title="Edit">
+<span class="material-symbols-outlined text-xl">edit</span>
+</button>
+<button class="text-n2-red hover:text-red-700 p-1 rounded hover:bg-n2-red/10 transition-colors" title="Delete">
+<span class="material-symbols-outlined text-xl">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 (Drag target simulation) -->
+<tr class="group hover:bg-[#F9F9F9] transition-colors cursor-move">
+<td class="pl-6 pr-3 py-4 text-center text-n2-gray group-hover:text-n2-black cursor-grab active:cursor-grabbing">
+<span class="material-symbols-outlined text-lg">drag_handle</span>
+</td>
+<td class="px-3 py-4 font-medium text-n2-black">
+                                    Large (L)
+                                </td>
+<td class="px-3 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-n2-gray border border-n2-light">
+                                        Clothing
+                                    </span>
+</td>
+<td class="px-3 py-4">
+<input class="w-16 h-8 text-center text-sm border border-n2-light rounded focus:ring-1 focus:ring-primary focus:border-primary text-n2-black" type="number" value="3"/>
+</td>
+<td class="pl-3 pr-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="text-primary hover:text-lime-600 p-1 rounded hover:bg-primary/10 transition-colors" title="Edit">
+<span class="material-symbols-outlined text-xl">edit</span>
+</button>
+<button class="text-n2-red hover:text-red-700 p-1 rounded hover:bg-n2-red/10 transition-colors" title="Delete">
+<span class="material-symbols-outlined text-xl">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="group hover:bg-[#F9F9F9] transition-colors cursor-move">
+<td class="pl-6 pr-3 py-4 text-center text-n2-gray group-hover:text-n2-black cursor-grab active:cursor-grabbing">
+<span class="material-symbols-outlined text-lg">drag_handle</span>
+</td>
+<td class="px-3 py-4 font-medium text-n2-black">
+                                    39
+                                </td>
+<td class="px-3 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-n2-gray border border-n2-light">
+                                        Shoe
+                                    </span>
+</td>
+<td class="px-3 py-4">
+<input class="w-16 h-8 text-center text-sm border border-n2-light rounded focus:ring-1 focus:ring-primary focus:border-primary text-n2-black" type="number" value="4"/>
+</td>
+<td class="pl-3 pr-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="text-primary hover:text-lime-600 p-1 rounded hover:bg-primary/10 transition-colors" title="Edit">
+<span class="material-symbols-outlined text-xl">edit</span>
+</button>
+<button class="text-n2-red hover:text-red-700 p-1 rounded hover:bg-n2-red/10 transition-colors" title="Delete">
+<span class="material-symbols-outlined text-xl">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="group hover:bg-[#F9F9F9] transition-colors cursor-move">
+<td class="pl-6 pr-3 py-4 text-center text-n2-gray group-hover:text-n2-black cursor-grab active:cursor-grabbing">
+<span class="material-symbols-outlined text-lg">drag_handle</span>
+</td>
+<td class="px-3 py-4 font-medium text-n2-black">
+                                    40
+                                </td>
+<td class="px-3 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-n2-gray border border-n2-light">
+                                        Shoe
+                                    </span>
+</td>
+<td class="px-3 py-4">
+<input class="w-16 h-8 text-center text-sm border border-n2-light rounded focus:ring-1 focus:ring-primary focus:border-primary text-n2-black" type="number" value="5"/>
+</td>
+<td class="pl-3 pr-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="text-primary hover:text-lime-600 p-1 rounded hover:bg-primary/10 transition-colors" title="Edit">
+<span class="material-symbols-outlined text-xl">edit</span>
+</button>
+<button class="text-n2-red hover:text-red-700 p-1 rounded hover:bg-n2-red/10 transition-colors" title="Delete">
+<span class="material-symbols-outlined text-xl">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Inline Add Row -->
+<tr class="bg-gray-50 border-t-2 border-primary/20">
+<td class="pl-6 pr-3 py-4 text-center text-n2-gray">
+<span class="material-symbols-outlined text-lg opacity-40">add_circle</span>
+</td>
+<td class="px-3 py-4">
+<input class="w-full text-sm border-0 bg-white border-b border-n2-light focus:border-primary focus:ring-0 px-0 py-1 text-n2-black placeholder:text-n2-gray/60" placeholder="New Size Name" type="text"/>
+</td>
+<td class="px-3 py-4">
+<select class="w-full text-sm border-0 bg-transparent border-b border-n2-light focus:border-primary focus:ring-0 px-0 py-1 text-n2-black">
+<option disabled="" selected="" value="">Select Type</option>
+<option value="clothing">Clothing</option>
+<option value="shoe">Shoe</option>
+<option value="accessory">Accessory</option>
+</select>
+</td>
+<td class="px-3 py-4">
+<input class="w-16 h-8 text-center text-sm border border-n2-light rounded bg-white text-n2-gray focus:ring-1 focus:ring-primary focus:border-primary" disabled="" type="number" value="6"/>
+</td>
+<td class="pl-3 pr-6 py-4 text-right">
+<button class="inline-flex items-center gap-1 bg-primary text-n2-black hover:bg-lime-400 px-3 py-1.5 rounded text-xs font-bold transition-colors">
+<span class="material-symbols-outlined text-sm">check</span>
+                                        Save
+                                    </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer/Pagination -->
+<div class="px-6 py-4 border-t border-n2-light flex items-center justify-between bg-white">
+<p class="text-sm text-n2-gray">
+                        Showing <span class="font-medium text-n2-black">1</span> to <span class="font-medium text-n2-black">5</span> of <span class="font-medium text-n2-black">42</span> results
+                    </p>
+<div class="flex gap-2">
+<button class="relative inline-flex items-center px-2 py-2 border border-n2-light bg-white text-sm font-medium text-n2-gray rounded hover:bg-gray-50 disabled:opacity-50">
+<span class="sr-only">Previous</span>
+<span class="material-symbols-outlined text-lg">chevron_left</span>
+</button>
+<button class="relative inline-flex items-center px-2 py-2 border border-n2-light bg-white text-sm font-medium text-n2-gray rounded hover:bg-gray-50">
+<span class="sr-only">Next</span>
+<span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-n2-black text-white mt-auto">
+<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<div class="flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="flex items-center gap-2">
+<span class="font-bold text-lg">N2 Sport</span>
+<span class="text-n2-gray text-sm">Admin Portal</span>
+</div>
+<div class="flex gap-6 text-sm text-n2-gray">
+<a class="hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="hover:text-primary transition-colors" href="#">Support</a>
+<a class="hover:text-primary transition-colors" href="#">Settings</a>
+</div>
+<div class="text-sm text-n2-gray">
+                    © 2024 N2 Sport Inc.
+                </div>
+</div>
+</div>
+</footer>
+<!-- Modals -->
+<!-- Add/Edit Modal (Hidden by default, simulated here for display purposes with a wrapper) -->
+<!-- In a real app, this would be toggled via JS. I will position it absolute to show design -->
+<div aria-labelledby="modal-title" aria-modal="true" class="hidden fixed inset-0 z-[60] overflow-y-auto" role="dialog">
+<div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+<!-- Background overlay -->
+<div aria-hidden="true" class="fixed inset-0 bg-n2-black bg-opacity-75 transition-opacity"></div>
+<span aria-hidden="true" class="hidden sm:inline-block sm:align-middle sm:h-screen">​</span>
+<div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg w-full">
+<div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+<div class="sm:flex sm:items-start">
+<div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-primary/20 sm:mx-0 sm:h-10 sm:w-10">
+<span class="material-symbols-outlined text-primary text-xl">straighten</span>
+</div>
+<div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+<h3 class="text-lg leading-6 font-medium text-n2-black" id="modal-title">Edit Size</h3>
+<div class="mt-4 space-y-4">
+<div>
+<label class="block text-sm font-medium text-n2-gray" for="size-name">Size Name <span class="text-n2-red">*</span></label>
+<input class="mt-1 focus:ring-primary focus:border-primary block w-full shadow-sm sm:text-sm border-n2-light rounded-md" id="size-name" name="size-name" type="text" value="Medium (M)"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-n2-gray" for="size-type">Type</label>
+<select class="mt-1 block w-full py-2 px-3 border border-n2-light bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm" id="size-type" name="size-type">
+<option>Clothing</option>
+<option>Shoe</option>
+<option>Accessory</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-medium text-n2-gray" for="sort-order">Sort Order</label>
+<input class="mt-1 focus:ring-primary focus:border-primary block w-full shadow-sm sm:text-sm border-n2-light rounded-md" id="sort-order" name="sort-order" type="number" value="2"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+<button class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary text-base font-medium text-n2-black hover:bg-lime-400 focus:outline-none sm:ml-3 sm:w-auto sm:text-sm" type="button">
+                        Save Changes
+                    </button>
+<button class="mt-3 w-full inline-flex justify-center rounded-md border border-n2-gray/30 shadow-sm px-4 py-2 bg-white text-base font-medium text-n2-gray hover:text-n2-black focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" type="button">
+                        Cancel
+                    </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Delete Confirmation Modal Simulation (Hidden) -->
+<div class="hidden fixed inset-0 z-[60] overflow-y-auto">
+<div class="flex items-center justify-center min-h-screen px-4">
+<div class="fixed inset-0 bg-n2-black bg-opacity-75 transition-opacity"></div>
+<div class="bg-white rounded-lg max-w-sm w-full z-10 p-6 shadow-xl">
+<div class="flex flex-col items-center text-center">
+<div class="h-12 w-12 rounded-full bg-n2-red/10 flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-n2-red text-2xl">warning</span>
+</div>
+<h3 class="text-lg font-bold text-n2-black mb-2">Delete Size?</h3>
+<p class="text-sm text-n2-gray mb-6">Are you sure you want to delete this size? This may affect 14 products currently using it.</p>
+<div class="flex gap-3 w-full">
+<button class="flex-1 px-4 py-2 bg-white border border-n2-gray/30 rounded-lg text-n2-black hover:bg-gray-50 font-medium">Cancel</button>
+<button class="flex-1 px-4 py-2 bg-n2-red text-white rounded-lg hover:bg-red-700 font-medium">Delete</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>

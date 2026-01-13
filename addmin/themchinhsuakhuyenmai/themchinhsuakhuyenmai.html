@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>N2 Sport - Add/Edit Promotion</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#e62c14", // Red
+                        "secondary-accent": "#AFED00", // Lime Green
+                        "text-main": "#111111",
+                        "text-sub": "#896661", // Muted text based on previous example, adjusting to user requested #A5A5A5 where appropriate
+                        "border-color": "#A5A5A5",
+                        "background-light": "#FFFFFF",
+                        "background-alt": "#E8E8E8",
+                        "background-dark": "#221210",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                },
+            },
+        }
+    </script>
+<style>/* Custom scrollbar for better look */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px
+    }
+::-webkit-scrollbar-track {
+    background: #f1f1f1
+    }
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px
+    }
+/* Custom Switch Toggle */
+.toggle-checkbox:checked {
+    right: 0;
+    border-color: #AFED00
+    }
+.toggle-checkbox:checked + .toggle-label {
+    background-color: #AFED00
+    }
+/* Custom Radio */
+input[type="radio"]:checked {
+    background-color: #AFED00;
+    border-color: #AFED00;
+    color: #AFED00;
+    /* For the dot */
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuA1lTzb2e8_hxUnVCn3OZiV1jS7kC0tXubTdmQU-hkRhmhsHvtqIFRu9zOIX4mJA9xZKHI6lPKsWlGNyF4HyNwmW5IIhbpWv9EsPiYXJUhCoBtJ3sgb5ND2sXZNfSXFxYGtYWfoHevOAwcmgTe9EZj7mEJ2m4Ft3C5J5PbTuaxzhvzm-_dwvZyRxaKAMm2ps4PePcAEFzENBF90W8WLm_rO-OKImMmAaWmjqKM1p0dsW4AS3Mi8Uyf6QKCxMlaNllV_Sbe3X2XMsPsq)
+    }
+input[type="radio"]:focus {
+    --tw-ring-color: #AFED00
+    }
+/* Custom Checkbox */
+input[type="checkbox"]:checked {
+    background-color: #AFED00;
+    border-color: #AFED00;
+    color: #111;
+    /* Checkmark color */
+    }
+input[type="checkbox"]:focus {
+    --tw-ring-color: #AFED00
+    }</style>
+</head>
+<body class="bg-background-light text-text-main font-display antialiased flex flex-col min-h-screen">
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-white border-b border-[#f4f1f0] px-6 py-3 shadow-sm">
+<div class="flex items-center justify-between max-w-[1400px] mx-auto w-full">
+<div class="flex items-center gap-8">
+<a class="flex items-center gap-3 text-text-main hover:opacity-80 transition-opacity" href="#">
+<div class="size-8 flex items-center justify-center bg-black rounded text-secondary-accent">
+<span class="material-symbols-outlined">bolt</span>
+</div>
+<h2 class="text-text-main text-xl font-extrabold tracking-tight">N2 Sport <span class="text-primary font-normal text-sm align-middle">Admin</span></h2>
+</a>
+<!-- Desktop Nav -->
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-text-main text-sm font-bold border-b-2 border-transparent hover:border-primary py-1 transition-all" href="#">Promotions</a>
+<a class="text-[#A5A5A5] text-sm font-medium hover:text-text-main py-1 transition-all" href="#">Orders</a>
+<a class="text-[#A5A5A5] text-sm font-medium hover:text-text-main py-1 transition-all" href="#">Customers</a>
+<a class="text-[#A5A5A5] text-sm font-medium hover:text-text-main py-1 transition-all" href="#">Analytics</a>
+</nav>
+</div>
+<!-- Search & Actions -->
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#A5A5A5] text-[20px]">search</span>
+<input class="pl-10 pr-4 py-2 bg-[#f4f1f0] border border-[#f4f1f0] rounded-lg text-sm focus:bg-white focus:border-border-color focus:ring-0 w-64 transition-colors placeholder-[#A5A5A5]" placeholder="Search..." type="text"/>
+</div>
+<button class="relative p-2 rounded-full hover:bg-gray-100 transition-colors">
+<span class="material-symbols-outlined text-text-main">notifications</span>
+<span class="absolute top-1.5 right-1.5 size-2 bg-primary rounded-full ring-2 ring-white"></span>
+</button>
+<div class="flex items-center gap-3 pl-2 border-l border-gray-200 cursor-pointer">
+<div class="text-right hidden sm:block">
+<p class="text-xs font-bold text-text-main">Admin User</p>
+<p class="text-[10px] text-[#A5A5A5]">Super Admin</p>
+</div>
+<div class="size-9 rounded-full bg-gray-200 overflow-hidden border border-gray-200" data-alt="User profile avatar placeholder">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCtfYIUTpAJV3mtw2ykQbyJKq5Bvi6Rpb5Ck1cb28wHBkBW_EHOWouJ4lPy7GcawQDdGhanI7CjwDzOin5CLCUgm1Kh-3F17BlpGFn3Ht1RDrxfLibiccuw98Mj3OYgM2LLlGfBuoyr2-VnmrdErD17LdPvvlZabX_HUN3WidYL7ZWwqcAy1srbcWvR9CTgwFvY1DTNXF9BRjHOvFKkKGfKu2gg31KLCP4TIjMLp3T__lFluen-tlMSm8Ha_5KxptopNx5OdWCzIex"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-grow bg-[#F9FAFB] pb-24">
+<div class="max-w-[1400px] mx-auto w-full px-6 py-8">
+<!-- Breadcrumbs -->
+<div class="flex items-center gap-2 mb-6 text-sm">
+<a class="text-[#A5A5A5] hover:text-primary" href="#">Dashboard</a>
+<span class="text-[#A5A5A5]">/</span>
+<a class="text-[#A5A5A5] hover:text-primary" href="#">Promotions</a>
+<span class="text-[#A5A5A5]">/</span>
+<span class="text-text-main font-bold">Add New Promotion</span>
+</div>
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+<div>
+<h1 class="text-3xl font-black text-text-main mb-2">Add/Edit Promotion</h1>
+<p class="text-[#A5A5A5]">Create new campaigns, manage discount rules, and generate coupons.</p>
+</div>
+<div class="flex items-center gap-3">
+<span class="px-3 py-1 rounded-full bg-secondary-accent/20 text-sm font-bold text-[#6a8f00] border border-secondary-accent flex items-center gap-1">
+<span class="size-2 rounded-full bg-secondary-accent"></span> Active Draft
+                    </span>
+</div>
+</div>
+<!-- Tabbed Navigation -->
+<div class="bg-white rounded-t-xl border border-b-0 border-gray-200 shadow-sm overflow-x-auto">
+<div class="flex min-w-max px-6">
+<button class="group flex items-center gap-2 px-4 py-4 border-b-[3px] border-secondary-accent text-text-main font-bold text-sm transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit_document</span>
+                        Basic Info
+                    </button>
+<button class="group flex items-center gap-2 px-4 py-4 border-b-[3px] border-transparent text-[#A5A5A5] hover:text-primary hover:border-primary/30 font-bold text-sm transition-colors">
+<span class="material-symbols-outlined text-[20px]">rule</span>
+                        Conditions
+                    </button>
+<button class="group flex items-center gap-2 px-4 py-4 border-b-[3px] border-transparent text-[#A5A5A5] hover:text-primary hover:border-primary/30 font-bold text-sm transition-colors">
+<span class="material-symbols-outlined text-[20px]">inventory_2</span>
+                        Applicable Products
+                    </button>
+<button class="group flex items-center gap-2 px-4 py-4 border-b-[3px] border-transparent text-[#A5A5A5] hover:text-primary hover:border-primary/30 font-bold text-sm transition-colors">
+<span class="material-symbols-outlined text-[20px]">confirmation_number</span>
+                        Generated Coupons
+                    </button>
+</div>
+</div>
+<!-- Tab Content (Basic Info) -->
+<div class="bg-white rounded-b-xl border border-gray-200 shadow-sm p-6 lg:p-10">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+<!-- Left Column: Main Details -->
+<div class="lg:col-span-8 space-y-8">
+<!-- Name & Desc -->
+<div class="space-y-4">
+<label class="block">
+<span class="text-text-main font-bold mb-1.5 block">Promotion Name <span class="text-primary">*</span></span>
+<input class="w-full rounded-lg border-border-color bg-white px-4 py-3 text-text-main focus:border-primary focus:ring-1 focus:ring-primary placeholder-[#A5A5A5]" placeholder="e.g., Summer Run 2024 Sale" type="text" value="Summer Run 2024 Sale"/>
+</label>
+<label class="block">
+<span class="text-text-main font-bold mb-1.5 block">Description</span>
+<textarea class="w-full rounded-lg border-transparent bg-background-alt px-4 py-3 text-text-main focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary placeholder-[#A5A5A5]" placeholder="Internal notes or customer facing description..." rows="3"></textarea>
+</label>
+</div>
+<!-- Image Upload -->
+<div>
+<span class="text-text-main font-bold mb-1.5 block">Promotion Thumbnail</span>
+<div class="border-2 border-dashed border-[#A5A5A5] rounded-xl p-8 flex flex-col items-center justify-center bg-[#fafafa] hover:bg-[#f0f0f0] transition-colors cursor-pointer group">
+<div class="size-12 rounded-full bg-background-alt flex items-center justify-center mb-3 group-hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-[#A5A5A5]">add_photo_alternate</span>
+</div>
+<p class="text-sm text-text-main font-medium">Click to upload or drag and drop</p>
+<p class="text-xs text-[#A5A5A5]">SVG, PNG, JPG or GIF (max. 800x400px)</p>
+</div>
+</div>
+<!-- Discount Rules -->
+<div class="border border-gray-100 rounded-xl p-6 bg-gray-50/50">
+<h3 class="text-lg font-bold text-text-main mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">sell</span>
+                                Discount Configuration
+                            </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<span class="text-text-main font-bold mb-2 block text-sm">Discount Type</span>
+<div class="flex items-center gap-4">
+<label class="inline-flex items-center">
+<input checked="" class="form-radio size-5 text-secondary-accent focus:ring-secondary-accent" name="discountType" type="radio" value="percent"/>
+<span class="ml-2 text-text-main">Percentage (%)</span>
+</label>
+<label class="inline-flex items-center">
+<input class="form-radio size-5 text-secondary-accent focus:ring-secondary-accent" name="discountType" type="radio" value="fixed"/>
+<span class="ml-2 text-text-main">Fixed Amount ($)</span>
+</label>
+</div>
+</div>
+<div>
+<label class="block relative">
+<span class="text-text-main font-bold mb-1.5 block text-sm">Value</span>
+<input class="w-full rounded-lg border-border-color bg-white px-4 py-2.5 text-primary font-bold text-lg focus:border-primary focus:ring-1 focus:ring-primary" type="number" value="25"/>
+<span class="absolute right-4 top-[34px] text-[#A5A5A5] font-bold">%</span>
+</label>
+</div>
+<div>
+<label class="block">
+<span class="text-text-main font-bold mb-1.5 block text-sm text-[#A5A5A5]">Max Discount Amount</span>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-[#A5A5A5]">$</span>
+<input class="w-full rounded-lg border-border-color bg-white pl-7 pr-4 py-2 text-text-main focus:border-primary focus:ring-1 focus:ring-primary" placeholder="0.00" type="number"/>
+</div>
+</label>
+</div>
+<div>
+<label class="block">
+<span class="text-text-main font-bold mb-1.5 block text-sm text-[#A5A5A5]">Min Order Value</span>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-[#A5A5A5]">$</span>
+<input class="w-full rounded-lg border-border-color bg-white pl-7 pr-4 py-2 text-text-main focus:border-primary focus:ring-1 focus:ring-primary" placeholder="0.00" type="number"/>
+</div>
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Settings & Meta -->
+<div class="lg:col-span-4 space-y-6">
+<!-- Status Card -->
+<div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
+<h4 class="text-sm font-bold text-[#A5A5A5] uppercase tracking-wider mb-4">Status &amp; Visibility</h4>
+<div class="flex items-center justify-between mb-4">
+<span class="text-text-main font-medium">Active</span>
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer border-[#A5A5A5] checked:border-secondary-accent transition-all duration-300" id="toggle" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-[#A5A5A5] cursor-pointer transition-colors duration-300" for="toggle"></label>
+</div>
+</div>
+<div class="flex items-center gap-2 mb-2">
+<input checked="" class="rounded text-secondary-accent focus:ring-secondary-accent border-gray-300 size-5" id="stackable" type="checkbox"/>
+<label class="text-text-main text-sm" for="stackable">Stackable with other codes</label>
+</div>
+<p class="text-xs text-[#A5A5A5] ml-7">If checked, this can be used alongside other promotions.</p>
+</div>
+<!-- Schedule Card -->
+<div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
+<h4 class="text-sm font-bold text-[#A5A5A5] uppercase tracking-wider mb-4">Schedule</h4>
+<div class="space-y-4">
+<div>
+<label class="block text-sm font-bold text-text-main mb-1">Start Date</label>
+<div class="relative">
+<input class="w-full rounded-lg border-border-color text-sm text-text-main focus:border-secondary-accent focus:ring-secondary-accent" type="datetime-local"/>
+</div>
+</div>
+<div>
+<label class="block text-sm font-bold text-text-main mb-1">End Date</label>
+<div class="relative">
+<input class="w-full rounded-lg border-border-color text-sm text-text-main focus:border-secondary-accent focus:ring-secondary-accent" type="datetime-local"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Limits Card -->
+<div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
+<h4 class="text-sm font-bold text-[#A5A5A5] uppercase tracking-wider mb-4">Constraints</h4>
+<div class="space-y-4">
+<div>
+<label class="block text-sm font-bold text-text-main mb-1">Total Usage Limit</label>
+<input class="w-full rounded-lg border-border-color text-sm py-2 px-3 text-text-main focus:border-primary focus:ring-1 focus:ring-primary" placeholder="Unlimited" type="number"/>
+</div>
+<div>
+<label class="block text-sm font-bold text-text-main mb-1">Priority Level</label>
+<div class="flex items-center">
+<input class="w-full rounded-lg border-border-color text-sm py-2 px-3 text-text-main focus:border-primary focus:ring-1 focus:ring-primary" type="number" value="1"/>
+<div class="ml-2 flex flex-col gap-0.5">
+<button class="size-4 bg-gray-100 hover:bg-gray-200 rounded flex items-center justify-center text-[10px]"><span class="material-symbols-outlined text-xs">expand_less</span></button>
+<button class="size-4 bg-gray-100 hover:bg-gray-200 rounded flex items-center justify-center text-[10px]"><span class="material-symbols-outlined text-xs">expand_more</span></button>
+</div>
+</div>
+<p class="text-xs text-[#A5A5A5] mt-1">Higher number = higher priority</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Example of Tab 2 Content (Conditions) - Visually representing logic builder -->
+<div class="mt-8 bg-white rounded-xl border border-gray-200 shadow-sm p-6 lg:p-10">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-lg font-bold text-text-main">Conditions Logic</h3>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary hover:bg-primary hover:text-white rounded-lg font-bold text-sm transition-colors">
+<span class="material-symbols-outlined text-lg">add_circle</span>
+                        Add Condition
+                    </button>
+</div>
+<div class="relative space-y-4 before:absolute before:left-[19px] before:top-4 before:bottom-4 before:w-0.5 before:bg-gray-200 before:content-['']">
+<!-- Condition Item -->
+<div class="relative flex items-center gap-4 group">
+<div class="z-10 size-10 rounded-full bg-white border-2 border-[#A5A5A5] flex items-center justify-center font-bold text-xs text-[#A5A5A5]">IF</div>
+<div class="flex-1 bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow flex flex-wrap gap-4 items-center">
+<select class="rounded-md border-gray-300 text-sm focus:border-primary focus:ring-primary py-1.5 pl-3 pr-8">
+<option>Product Category</option>
+<option>Cart Total</option>
+<option>Customer Tag</option>
+</select>
+<span class="text-sm font-medium text-[#A5A5A5]">equals</span>
+<select class="rounded-md border-gray-300 text-sm focus:border-primary focus:ring-primary py-1.5 pl-3 pr-8 min-w-[200px]">
+<option>Running Shoes</option>
+<option>Gym Apparel</option>
+</select>
+<div class="ml-auto flex items-center gap-2">
+<button class="text-[#A5A5A5] hover:text-primary p-1"><span class="material-symbols-outlined">delete</span></button>
+</div>
+</div>
+</div>
+<!-- Logical Operator -->
+<div class="relative pl-12 py-2">
+<div class="inline-flex bg-secondary-accent/20 border border-secondary-accent rounded-md px-2 py-0.5 text-xs font-bold text-[#557300]">AND</div>
+</div>
+<!-- Condition Item -->
+<div class="relative flex items-center gap-4 group">
+<div class="z-10 size-10 rounded-full bg-white border-2 border-secondary-accent flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary-accent text-sm">check</span>
+</div>
+<div class="flex-1 bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow flex flex-wrap gap-4 items-center">
+<select class="rounded-md border-gray-300 text-sm focus:border-primary focus:ring-primary py-1.5 pl-3 pr-8">
+<option selected="">Cart Quantity</option>
+<option>Product Category</option>
+</select>
+<span class="text-sm font-medium text-[#A5A5A5]">is greater than</span>
+<input class="rounded-md border-gray-300 text-sm focus:border-primary focus:ring-primary py-1.5 w-20" type="number" value="2"/>
+<div class="ml-auto flex items-center gap-2">
+<button class="text-[#A5A5A5] hover:text-primary p-1"><span class="material-symbols-outlined">delete</span></button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Example of Tab 4 Content (Coupons) - Table View -->
+<div class="mt-8 bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+<div class="p-6 border-b border-gray-200 flex flex-wrap items-center justify-between gap-4">
+<h3 class="text-lg font-bold text-text-main">Generated Coupons</h3>
+<div class="flex gap-2">
+<input class="w-24 rounded-lg border-gray-300 text-sm py-2 px-3" placeholder="Prefix" type="text"/>
+<input class="w-20 rounded-lg border-gray-300 text-sm py-2 px-3" placeholder="Qty" type="number"/>
+<button class="bg-primary hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-sm">autorenew</span>
+                            Generate
+                        </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-gray-50 text-[#A5A5A5] text-xs uppercase font-bold tracking-wider">
+<tr>
+<th class="px-6 py-4">Coupon Code</th>
+<th class="px-6 py-4">Assigned To</th>
+<th class="px-6 py-4">Status</th>
+<th class="px-6 py-4">Expiry</th>
+<th class="px-6 py-4 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-100 text-sm">
+<tr class="hover:bg-gray-50 transition-colors">
+<td class="px-6 py-4 font-mono font-medium text-text-main">SUMMER24-X9J2</td>
+<td class="px-6 py-4">
+<span class="text-[#A5A5A5] italic">Unassigned</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold bg-secondary-accent/20 text-[#6a8f00]">Available</span>
+</td>
+<td class="px-6 py-4 text-text-main">Dec 31, 2024</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 hover:bg-gray-200 rounded text-[#A5A5A5]" title="Copy"><span class="material-symbols-outlined text-sm">content_copy</span></button>
+<button class="p-1.5 hover:bg-gray-200 rounded text-secondary-accent" title="Send"><span class="material-symbols-outlined text-sm">send</span></button>
+<button class="p-1.5 hover:bg-red-100 rounded text-primary" title="Delete"><span class="material-symbols-outlined text-sm">delete</span></button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 transition-colors">
+<td class="px-6 py-4 font-mono font-medium text-text-main">SUMMER24-MK88</td>
+<td class="px-6 py-4">
+<a class="text-primary hover:underline font-medium" href="#">john.doe@example.com</a>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold bg-primary/10 text-primary">Used</span>
+</td>
+<td class="px-6 py-4 text-text-main">Dec 31, 2024</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 hover:bg-gray-200 rounded text-[#A5A5A5]" title="Copy"><span class="material-symbols-outlined text-sm">content_copy</span></button>
+<button class="p-1.5 hover:bg-red-100 rounded text-primary" title="Delete"><span class="material-symbols-outlined text-sm">delete</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+<!-- Sticky Footer Action Bar -->
+<div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-6 py-4 z-40 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+<div class="max-w-[1400px] mx-auto w-full flex flex-col sm:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-2 text-sm">
+<span class="size-2 rounded-full bg-secondary-accent animate-pulse"></span>
+<span class="text-secondary-accent font-bold">Draft Saved 10:42 AM</span>
+</div>
+<div class="flex items-center gap-4 w-full sm:w-auto">
+<button class="flex-1 sm:flex-none px-6 py-2.5 rounded-lg border border-[#A5A5A5] text-[#111111] font-bold text-sm hover:bg-gray-50 transition-colors">
+                    Cancel
+                </button>
+<button class="flex-1 sm:flex-none px-8 py-2.5 rounded-lg bg-primary text-white font-bold text-sm hover:bg-red-700 shadow-lg shadow-red-500/30 transition-all transform active:scale-95">
+                    Save Promotion
+                </button>
+</div>
+</div>
+</div>
+<!-- Main Footer -->
+<footer class="bg-background-dark text-white py-12 mb-[72px]">
+<div class="max-w-[1400px] mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+<div class="col-span-1 md:col-span-2">
+<div class="flex items-center gap-3 mb-4">
+<div class="size-6 flex items-center justify-center bg-white rounded text-background-dark">
+<span class="material-symbols-outlined text-sm">bolt</span>
+</div>
+<h2 class="text-white text-lg font-extrabold tracking-tight">N2 Sport Admin</h2>
+</div>
+<p class="text-gray-400 text-sm max-w-xs">Empowering your e-commerce journey with advanced tools for athletic gear management.</p>
+</div>
+<div>
+<h4 class="font-bold mb-4 text-sm uppercase tracking-wider text-gray-500">Quick Links</h4>
+<ul class="space-y-2 text-sm text-gray-300">
+<li><a class="hover:text-white" href="#">Dashboard</a></li>
+<li><a class="hover:text-white" href="#">Orders</a></li>
+<li><a class="hover:text-white" href="#">Products</a></li>
+<li><a class="hover:text-white" href="#">Customers</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-4 text-sm uppercase tracking-wider text-gray-500">Support</h4>
+<ul class="space-y-2 text-sm text-gray-300">
+<li><a class="hover:text-white" href="#">Documentation</a></li>
+<li><a class="hover:text-white" href="#">API Status</a></li>
+<li><a class="hover:text-white" href="#">Contact IT</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-[1400px] mx-auto px-6 mt-12 pt-8 border-t border-gray-800 text-xs text-gray-500 flex flex-col md:flex-row justify-between items-center">
+<p>© 2024 N2 Sport Inc. All rights reserved.</p>
+<div class="flex gap-4 mt-4 md:mt-0">
+<a class="hover:text-white" href="#">Privacy Policy</a>
+<a class="hover:text-white" href="#">Terms of Service</a>
+</div>
+</div>
+</footer>
+</body></html>

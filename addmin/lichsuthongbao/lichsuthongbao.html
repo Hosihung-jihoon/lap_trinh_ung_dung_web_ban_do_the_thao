@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>N2 Sport - Notification History</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#AFED00", /* User specific lime green */
+                        "alert": "#E42C14", /* User specific red */
+                        "dark-text": "#111111", /* User specific black */
+                        "secondary-text": "#A5A5A5", /* User specific gray */
+                        "divider": "#E8E8E8",
+                        "background-light": "#FFFFFF",
+                        "background-dark": "#111111",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .material-symbols-outlined.filled { font-variation-settings: 'FILL' 1; }
+    </style>
+</head>
+<body class="bg-background-light text-dark-text min-h-screen flex flex-col">
+<!-- Sticky Header -->
+<header class="sticky top-0 z-50 w-full bg-white border-b border-divider shadow-sm">
+<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<!-- Logo & Brand -->
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-2">
+<div class="size-8 rounded-lg bg-primary flex items-center justify-center text-dark-text">
+<span class="material-symbols-outlined font-bold text-xl">bolt</span>
+</div>
+<h1 class="text-dark-text text-xl font-bold tracking-tight">N2 Sport <span class="text-secondary-text font-normal">Admin</span></h1>
+</div>
+<!-- Desktop Nav -->
+<nav class="hidden md:flex items-center gap-1">
+<a class="px-3 py-2 text-sm font-medium text-secondary-text hover:text-dark-text rounded-md transition-colors" href="#">Dashboard</a>
+<a class="px-3 py-2 text-sm font-medium text-secondary-text hover:text-dark-text rounded-md transition-colors" href="#">Users</a>
+<a class="px-3 py-2 text-sm font-medium text-dark-text bg-primary/10 rounded-md transition-colors" href="#">Notifications</a>
+<div class="relative group">
+<button class="flex items-center gap-1 px-3 py-2 text-sm font-medium text-secondary-text hover:text-dark-text rounded-md transition-colors">
+                                Settings
+                                <span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+</div>
+</nav>
+</div>
+<!-- Right Actions -->
+<div class="flex items-center gap-4">
+<!-- Search -->
+<div class="hidden md:flex items-center relative">
+<span class="material-symbols-outlined absolute left-3 text-secondary-text text-[20px]">search</span>
+<input class="pl-10 pr-4 py-2 bg-gray-50 border border-secondary-text/30 rounded-lg text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary w-64 placeholder-secondary-text" placeholder="Search..." type="text"/>
+</div>
+<!-- Notifications -->
+<button class="relative p-2 text-dark-text hover:bg-gray-100 rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 size-2.5 bg-alert rounded-full border-2 border-white"></span>
+</button>
+<!-- Profile -->
+<div class="flex items-center gap-3 pl-2 border-l border-divider">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-semibold text-dark-text leading-none">Admin User</p>
+<p class="text-xs text-secondary-text mt-1">Super Admin</p>
+</div>
+<div class="size-9 rounded-full bg-gray-200 bg-center bg-cover border border-divider" data-alt="User profile photo" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDuuubynjUiJi4KQG53DGvHgX0FGnUnTxWODB5Y9_0uP6csQPznwqj0XDeALHbSPOvJq4muh9JnWA-EKUbBBKtS5VhSkPJU3Fyjb0Q3l-D_Z6tcx-0fqT-UWCIiKO3cckr8WSXSFmGH-9aB8R5hmoucgX9agQdtNorJfdQN9T_tOLfExwcaPLPaiSue6q2IqgoXhVAvB-_YswyRfsAZ4933rxEs8cq52c-aokOqjxp9tXvGT9jnPzfKtNPmXJ0o_q36iILSOBURL5bj');"></div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<!-- Page Header & Tabs -->
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 border-b border-divider">
+<h2 class="text-2xl font-bold text-dark-text mb-4 sm:mb-0">Notifications</h2>
+<div class="flex gap-6">
+<a class="pb-3 text-sm font-medium text-secondary-text border-b-2 border-transparent hover:text-alert transition-colors" href="#">
+                    Send New Notification
+                </a>
+<a class="pb-3 text-sm font-bold text-dark-text border-b-2 border-primary" href="#">
+                    Notification History
+                </a>
+</div>
+</div>
+<!-- Filters Section -->
+<section class="bg-white rounded-xl border border-divider p-5 mb-6 shadow-sm">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-end">
+<!-- Search -->
+<div class="md:col-span-4">
+<label class="block text-xs font-semibold text-dark-text mb-1.5 uppercase tracking-wide">Search by Title</label>
+<div class="relative">
+<input class="w-full h-10 px-3 pl-10 rounded-lg border border-secondary-text text-dark-text text-sm focus:ring-primary focus:border-primary placeholder-secondary-text/70" placeholder="e.g. Summer Sale..." type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-secondary-text text-[20px]">search</span>
+</div>
+</div>
+<!-- Date Range -->
+<div class="md:col-span-3">
+<label class="block text-xs font-semibold text-dark-text mb-1.5 uppercase tracking-wide">Date Range</label>
+<div class="relative">
+<input class="w-full h-10 px-3 pl-10 rounded-lg border border-secondary-text text-dark-text text-sm focus:ring-primary focus:border-primary" type="text" value="Oct 1, 2023 - Oct 31, 2023"/>
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-secondary-text text-[20px]">calendar_today</span>
+</div>
+</div>
+<!-- Type -->
+<div class="md:col-span-3">
+<label class="block text-xs font-semibold text-dark-text mb-1.5 uppercase tracking-wide">Type</label>
+<div class="relative">
+<select class="w-full h-10 px-3 pl-10 rounded-lg border border-secondary-text text-dark-text text-sm focus:ring-primary focus:border-primary appearance-none bg-white">
+<option>All Types</option>
+<option>Promotional</option>
+<option>System Update</option>
+<option>Order Status</option>
+</select>
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-secondary-text text-[20px]">category</span>
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-secondary-text text-[20px] pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Actions -->
+<div class="md:col-span-2 flex gap-2">
+<button class="flex-1 h-10 bg-alert hover:bg-red-700 text-white font-medium rounded-lg text-sm transition-colors shadow-sm">
+                        Apply
+                    </button>
+<button class="flex-1 h-10 bg-white border border-secondary-text text-secondary-text hover:text-dark-text hover:border-dark-text font-medium rounded-lg text-sm transition-colors">
+                        Clear
+                    </button>
+</div>
+</div>
+</section>
+<!-- Data Table Section -->
+<section class="bg-white rounded-xl border border-divider shadow-sm overflow-hidden flex flex-col">
+<div class="overflow-x-auto">
+<table class="w-full min-w-[800px] text-left border-collapse">
+<thead>
+<tr class="bg-gray-50 border-b border-divider">
+<th class="p-4 text-xs font-bold text-secondary-text uppercase tracking-wider cursor-pointer group hover:bg-gray-100 transition-colors">
+<div class="flex items-center gap-1">
+                                    Title
+                                    <span class="material-symbols-outlined text-[16px] text-secondary-text group-hover:text-primary">unfold_more</span>
+</div>
+</th>
+<th class="p-4 text-xs font-bold text-secondary-text uppercase tracking-wider cursor-pointer group hover:bg-gray-100 transition-colors">
+<div class="flex items-center gap-1">
+                                    Recipients
+                                    <span class="material-symbols-outlined text-[16px] text-secondary-text group-hover:text-primary">unfold_more</span>
+</div>
+</th>
+<th class="p-4 text-xs font-bold text-secondary-text uppercase tracking-wider cursor-pointer group hover:bg-gray-100 transition-colors">
+<div class="flex items-center gap-1">
+                                    Sent Date
+                                    <span class="material-symbols-outlined text-[16px] text-secondary-text group-hover:text-primary">unfold_more</span>
+</div>
+</th>
+<th class="p-4 text-xs font-bold text-secondary-text uppercase tracking-wider w-1/4">
+                                Read Rate
+                            </th>
+<th class="p-4 text-xs font-bold text-secondary-text uppercase tracking-wider text-right">
+                                Actions
+                            </th>
+</tr>
+</thead>
+<tbody class="divide-y divide-divider">
+<!-- Row 1 -->
+<tr class="hover:bg-gray-50 transition-colors group">
+<td class="p-4">
+<div class="flex flex-col">
+<a class="font-semibold text-dark-text hover:text-primary transition-colors text-sm" href="#">Flash Sale: 50% Off Running Gear</a>
+<span class="text-xs text-secondary-text mt-0.5">Promotional</span>
+</div>
+</td>
+<td class="p-4 text-sm font-medium text-dark-text">
+                                12,540
+                            </td>
+<td class="p-4 text-sm text-secondary-text">
+                                Oct 24, 2023 <br/><span class="text-xs opacity-75">10:30 AM</span>
+</td>
+<td class="p-4">
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-bold text-primary">85%</span>
+<span class="text-xs text-secondary-text">10,659 opened</span>
+</div>
+<div class="w-full bg-divider rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 85%"></div>
+</div>
+</td>
+<td class="p-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 text-secondary-text hover:text-primary hover:bg-primary/10 rounded transition-colors" title="View Details">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+<button class="p-1.5 text-secondary-text hover:text-alert hover:bg-alert/10 rounded transition-colors" title="Resend">
+<span class="material-symbols-outlined text-[20px]">forward_to_inbox</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-gray-50 transition-colors group">
+<td class="p-4">
+<div class="flex flex-col">
+<a class="font-semibold text-dark-text hover:text-primary transition-colors text-sm" href="#">New Arrival: Nike Air Zoom Series</a>
+<span class="text-xs text-secondary-text mt-0.5">Product Launch</span>
+</div>
+</td>
+<td class="p-4 text-sm font-medium text-dark-text">
+                                8,200
+                            </td>
+<td class="p-4 text-sm text-secondary-text">
+                                Oct 22, 2023 <br/><span class="text-xs opacity-75">09:15 AM</span>
+</td>
+<td class="p-4">
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-bold text-yellow-500">45%</span>
+<span class="text-xs text-secondary-text">3,690 opened</span>
+</div>
+<div class="w-full bg-divider rounded-full h-2">
+<div class="bg-yellow-500 h-2 rounded-full" style="width: 45%"></div>
+</div>
+</td>
+<td class="p-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 text-secondary-text hover:text-primary hover:bg-primary/10 rounded transition-colors" title="View Details">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+<button class="p-1.5 text-secondary-text hover:text-alert hover:bg-alert/10 rounded transition-colors" title="Resend">
+<span class="material-symbols-outlined text-[20px]">forward_to_inbox</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 (Low Performace) -->
+<tr class="hover:bg-gray-50 transition-colors group">
+<td class="p-4">
+<div class="flex flex-col">
+<a class="font-semibold text-dark-text hover:text-primary transition-colors text-sm" href="#">System Maintenance Scheduled</a>
+<span class="text-xs text-secondary-text mt-0.5">System Update</span>
+</div>
+</td>
+<td class="p-4 text-sm font-medium text-dark-text">
+                                45,000
+                            </td>
+<td class="p-4 text-sm text-secondary-text">
+                                Oct 20, 2023 <br/><span class="text-xs opacity-75">02:00 PM</span>
+</td>
+<td class="p-4">
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-bold text-alert">12%</span>
+<span class="text-xs text-secondary-text">5,400 opened</span>
+</div>
+<div class="w-full bg-divider rounded-full h-2">
+<div class="bg-alert h-2 rounded-full" style="width: 12%"></div>
+</div>
+</td>
+<td class="p-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 text-secondary-text hover:text-primary hover:bg-primary/10 rounded transition-colors" title="View Details">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+<button class="p-1.5 text-secondary-text hover:text-alert hover:bg-alert/10 rounded transition-colors" title="Resend">
+<span class="material-symbols-outlined text-[20px]">forward_to_inbox</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-gray-50 transition-colors group">
+<td class="p-4">
+<div class="flex flex-col">
+<a class="font-semibold text-dark-text hover:text-primary transition-colors text-sm" href="#">Winter Collection Preview</a>
+<span class="text-xs text-secondary-text mt-0.5">Promotional</span>
+</div>
+</td>
+<td class="p-4 text-sm font-medium text-dark-text">
+                                5,100
+                            </td>
+<td class="p-4 text-sm text-secondary-text">
+                                Oct 18, 2023 <br/><span class="text-xs opacity-75">11:00 AM</span>
+</td>
+<td class="p-4">
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-bold text-primary">78%</span>
+<span class="text-xs text-secondary-text">3,978 opened</span>
+</div>
+<div class="w-full bg-divider rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 78%"></div>
+</div>
+</td>
+<td class="p-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 text-secondary-text hover:text-primary hover:bg-primary/10 rounded transition-colors" title="View Details">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+<button class="p-1.5 text-secondary-text hover:text-alert hover:bg-alert/10 rounded transition-colors" title="Resend">
+<span class="material-symbols-outlined text-[20px]">forward_to_inbox</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-gray-50 transition-colors group">
+<td class="p-4">
+<div class="flex flex-col">
+<a class="font-semibold text-dark-text hover:text-primary transition-colors text-sm" href="#">Review Your Recent Purchase</a>
+<span class="text-xs text-secondary-text mt-0.5">Feedback</span>
+</div>
+</td>
+<td class="p-4 text-sm font-medium text-dark-text">
+                                320
+                            </td>
+<td class="p-4 text-sm text-secondary-text">
+                                Oct 15, 2023 <br/><span class="text-xs opacity-75">04:45 PM</span>
+</td>
+<td class="p-4">
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-bold text-yellow-500">55%</span>
+<span class="text-xs text-secondary-text">176 opened</span>
+</div>
+<div class="w-full bg-divider rounded-full h-2">
+<div class="bg-yellow-500 h-2 rounded-full" style="width: 55%"></div>
+</div>
+</td>
+<td class="p-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 text-secondary-text hover:text-primary hover:bg-primary/10 rounded transition-colors" title="View Details">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+<button class="p-1.5 text-secondary-text hover:text-alert hover:bg-alert/10 rounded transition-colors" title="Resend">
+<span class="material-symbols-outlined text-[20px]">forward_to_inbox</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="bg-white px-4 py-3 flex items-center justify-between border-t border-divider sm:px-6">
+<div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+<div>
+<p class="text-sm text-secondary-text">
+                            Showing <span class="font-medium text-dark-text">1</span> to <span class="font-medium text-dark-text">5</span> of <span class="font-medium text-dark-text">42</span> results
+                        </p>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<span class="text-sm text-secondary-text">Rows per page:</span>
+<select class="form-select block w-16 p-1 pl-2 text-sm border-secondary-text rounded bg-white text-dark-text focus:ring-primary focus:border-primary">
+<option>10</option>
+<option>20</option>
+<option>50</option>
+</select>
+</div>
+<nav aria-label="Pagination" class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px">
+<a class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-divider bg-white text-sm font-medium text-secondary-text hover:bg-gray-50 hover:text-alert" href="#">
+<span class="sr-only">Previous</span>
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</a>
+<a aria-current="page" class="z-10 bg-primary/10 border-primary text-primary relative inline-flex items-center px-4 py-2 border text-sm font-bold" href="#">1</a>
+<a class="bg-white border-divider text-secondary-text hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium" href="#">2</a>
+<a class="bg-white border-divider text-secondary-text hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium" href="#">3</a>
+<span class="relative inline-flex items-center px-4 py-2 border border-divider bg-white text-sm font-medium text-secondary-text">...</span>
+<a class="bg-white border-divider text-secondary-text hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium" href="#">9</a>
+<a class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-divider bg-white text-sm font-medium text-secondary-text hover:bg-gray-50 hover:text-alert" href="#">
+<span class="sr-only">Next</span>
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</a>
+</nav>
+</div>
+</div>
+<!-- Mobile Pagination -->
+<div class="flex items-center justify-between w-full sm:hidden">
+<button class="relative inline-flex items-center px-4 py-2 border border-divider text-sm font-medium rounded-md text-secondary-text bg-white hover:bg-gray-50">
+                        Previous
+                    </button>
+<span class="text-sm text-secondary-text">Page 1 of 9</span>
+<button class="relative inline-flex items-center px-4 py-2 border border-divider text-sm font-medium rounded-md text-secondary-text bg-white hover:bg-gray-50">
+                        Next
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-background-dark text-white border-t border-gray-800">
+<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<div class="flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-2">
+<div class="size-6 rounded bg-primary flex items-center justify-center text-dark-text">
+<span class="material-symbols-outlined text-sm font-bold">bolt</span>
+</div>
+<span class="text-lg font-bold tracking-tight">N2 Sport Admin</span>
+</div>
+<div class="flex flex-wrap justify-center gap-6 text-sm text-secondary-text">
+<a class="hover:text-primary transition-colors" href="#">Support</a>
+<a class="hover:text-primary transition-colors" href="#">Documentation</a>
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+</div>
+<div class="text-sm text-secondary-text">
+                    © 2024 N2 Sport Inc. All rights reserved.
+                </div>
+</div>
+</div>
+</footer>
+</body></html>

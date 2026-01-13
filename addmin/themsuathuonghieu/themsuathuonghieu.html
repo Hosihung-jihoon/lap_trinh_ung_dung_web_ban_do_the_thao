@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>N2 Sport Admin - Thêm Thương Hiệu</title>
+<!-- Google Fonts: Manrope -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#e62c14", // User's requested Red
+                        "primary-hover": "#c91e09",
+                        "n2-green": "#AFED00", // User's requested Green
+                        "n2-dark": "#111111", // User's requested Dark Text/BG
+                        "n2-gray": "#A5A5A5", // User's requested Gray
+                        "n2-light-gray": "#E8E8E8", // User's requested Divider/BG
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221210",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for the drawer */
+        .drawer-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        .drawer-content::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        .drawer-content::-webkit-scrollbar-thumb {
+            background: #d1d5db; 
+            border-radius: 4px;
+        }
+        .drawer-content::-webkit-scrollbar-thumb:hover {
+            background: #9ca3af; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-n2-dark overflow-hidden">
+<!-- Main Layout Container -->
+<div class="relative flex h-screen w-full flex-col overflow-hidden">
+<!-- Header (Context) -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-[#E8E8E8] bg-white px-6 py-3 shrink-0 z-10">
+<div class="flex items-center gap-4">
+<button class="p-1 hover:bg-gray-100 rounded-lg text-n2-dark">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">fitness_center</span>
+<h2 class="text-n2-dark text-lg font-bold tracking-tight">N2 Sport Admin</h2>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="relative flex items-center justify-center rounded-lg p-2 hover:bg-gray-100 text-n2-dark">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 h-2 w-2 rounded-full bg-primary"></span>
+</button>
+<div class="h-10 w-10 overflow-hidden rounded-full bg-gray-200 border border-gray-100">
+<img alt="Admin user avatar" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2abhZKzuizo1GYgZDf5wnb0ZqNe6L-4_TJ-hqWhrhVh75lydBRydydiPi2_XsIfOuJbctVraXeXAzZWg-_TwzEQLKDXRl3ZMtvimobDi_sEPdKDWxuEb1NbAobpDgfkTPoMKmURUX8IyMp-d9zeF536i1_XS1aAJQ8Wfk8VSNC2_9bULa3VDjjMtwAcHJ5Mfst1_FO8D6poQimGTZbMJeY8Vr4F12XxGlhOTzYAidWqbv7VQSrBayZvib0cufG4fJHQlyK4VzjkHv"/>
+</div>
+</div>
+</header>
+<!-- Main Content (Blurred Background Context) -->
+<main class="flex-1 flex overflow-hidden relative">
+<!-- Sidebar Navigation (Simplified) -->
+<aside class="w-64 bg-white border-r border-[#E8E8E8] hidden md:flex flex-col p-4 gap-2">
+<div class="flex items-center gap-3 p-3 rounded-lg text-n2-gray hover:bg-gray-50 cursor-pointer">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-medium">Dashboard</span>
+</div>
+<div class="flex items-center gap-3 p-3 rounded-lg bg-primary/10 text-primary cursor-pointer font-bold">
+<span class="material-symbols-outlined">inventory_2</span>
+<span>Sản phẩm</span>
+</div>
+<div class="pl-12 py-2 text-primary font-medium cursor-pointer">Thương hiệu</div>
+<div class="pl-12 py-2 text-n2-gray hover:text-n2-dark cursor-pointer">Danh mục</div>
+<div class="flex items-center gap-3 p-3 rounded-lg text-n2-gray hover:bg-gray-50 cursor-pointer">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="font-medium">Đơn hàng</span>
+</div>
+</aside>
+<!-- Page Content (Context behind modal) -->
+<div class="flex-1 flex flex-col bg-background-light p-6 md:p-10 overflow-y-auto">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap gap-2 mb-6 text-sm">
+<span class="text-n2-gray">Dashboard</span>
+<span class="text-n2-gray">/</span>
+<span class="text-n2-gray">Sản phẩm</span>
+<span class="text-n2-gray">/</span>
+<span class="text-n2-dark font-medium">Thương hiệu</span>
+</div>
+<!-- Action Bar -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+<h1 class="text-2xl font-bold text-n2-dark">Danh sách thương hiệu</h1>
+<button class="bg-primary hover:bg-primary-hover text-white px-4 py-2.5 rounded-lg font-bold flex items-center gap-2 shadow-sm transition-colors">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                        Thêm thương hiệu
+                    </button>
+</div>
+<!-- Context Table (Visual Dummy) -->
+<div class="w-full bg-white rounded-xl shadow-sm border border-[#E8E8E8] overflow-hidden opacity-50 pointer-events-none select-none">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-[#E8E8E8] bg-gray-50 text-xs uppercase tracking-wider text-n2-gray">
+<th class="p-4 font-semibold w-16">ID</th>
+<th class="p-4 font-semibold">Logo</th>
+<th class="p-4 font-semibold">Tên thương hiệu</th>
+<th class="p-4 font-semibold">Slug</th>
+<th class="p-4 font-semibold">Trạng thái</th>
+<th class="p-4 font-semibold text-right">Hành động</th>
+</tr>
+</thead>
+<tbody class="text-sm">
+<tr class="border-b border-[#E8E8E8]">
+<td class="p-4 text-n2-gray">#102</td>
+<td class="p-4">
+<div class="h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center text-xs font-bold text-n2-gray">NK</div>
+</td>
+<td class="p-4 font-bold text-n2-dark">Nike</td>
+<td class="p-4 text-n2-gray">nike</td>
+<td class="p-4"><span class="bg-n2-green/20 text-green-700 px-2 py-1 rounded-md text-xs font-bold">Active</span></td>
+<td class="p-4 text-right"><span class="material-symbols-outlined text-n2-gray">more_horiz</span></td>
+</tr>
+<tr class="border-b border-[#E8E8E8]">
+<td class="p-4 text-n2-gray">#103</td>
+<td class="p-4">
+<div class="h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center text-xs font-bold text-n2-gray">AD</div>
+</td>
+<td class="p-4 font-bold text-n2-dark">Adidas</td>
+<td class="p-4 text-n2-gray">adidas</td>
+<td class="p-4"><span class="bg-n2-green/20 text-green-700 px-2 py-1 rounded-md text-xs font-bold">Active</span></td>
+<td class="p-4 text-right"><span class="material-symbols-outlined text-n2-gray">more_horiz</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+<!-- Overlay / Backdrop -->
+<div aria-hidden="true" class="absolute inset-0 bg-n2-dark/60 backdrop-blur-sm z-40 transition-opacity duration-300"></div>
+<!-- SLIDE-OVER PANEL / DRAWER -->
+<div aria-modal="true" class="absolute inset-y-0 right-0 z-50 flex w-full max-w-2xl flex-col bg-white shadow-2xl transition-transform duration-300 transform translate-x-0" role="dialog">
+<!-- Drawer Header -->
+<div class="flex items-center justify-between border-b border-[#E8E8E8] px-6 py-4 bg-white shrink-0">
+<div>
+<h2 class="text-xl font-bold text-n2-dark leading-tight">Thêm thương hiệu</h2>
+<p class="text-sm text-n2-gray mt-1">Điền thông tin chi tiết cho thương hiệu mới.</p>
+</div>
+<button aria-label="Close panel" class="rounded-full p-2 text-n2-gray hover:bg-gray-100 hover:text-n2-dark transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Drawer Content (Scrollable) -->
+<div class="drawer-content flex-1 overflow-y-auto px-6 py-6 bg-white space-y-8">
+<!-- Section: Basic Info -->
+<div class="space-y-6">
+<!-- Brand Name -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-bold text-n2-dark" for="brand-name">Tên thương hiệu <span class="text-primary">*</span></label>
+<input class="w-full rounded-lg border border-n2-gray/50 bg-white px-4 py-3 text-n2-dark placeholder-n2-gray focus:border-primary focus:ring-1 focus:ring-primary transition-colors text-base" id="brand-name" placeholder="Nhập tên thương hiệu (VD: Nike, Puma...)" type="text" value="Puma"/>
+<p class="text-xs text-primary hidden mt-1">Tên thương hiệu không được để trống.</p>
+</div>
+<!-- Slug -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-bold text-n2-dark flex items-center gap-2" for="brand-slug">
+                            Slug
+                            <span class="material-symbols-outlined text-n2-gray text-[16px] cursor-help" title="Đường dẫn tĩnh thân thiện với SEO">help</span>
+</label>
+<div class="relative">
+<input class="w-full rounded-lg border border-n2-gray/30 bg-[#F9F9F9] px-4 py-3 text-n2-dark placeholder-n2-gray focus:border-n2-gray focus:bg-white focus:ring-0 transition-colors text-base font-mono" id="brand-slug" placeholder="puma" type="text" value="puma"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-n2-gray hover:text-primary p-1 rounded">
+<span class="material-symbols-outlined text-[20px]">refresh</span>
+</button>
+</div>
+<p class="text-xs text-n2-gray">Tự động tạo từ tên thương hiệu. Có thể chỉnh sửa.</p>
+</div>
+</div>
+<hr class="border-[#E8E8E8]"/>
+<!-- Section: Media -->
+<div class="space-y-4">
+<label class="text-sm font-bold text-n2-dark">Logo thương hiệu</label>
+<!-- Dropzone -->
+<div class="group relative flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-n2-gray/50 bg-background-light p-8 transition-colors hover:border-primary/50 hover:bg-primary/5 cursor-pointer">
+<div class="mb-4 rounded-full bg-white p-3 shadow-sm group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-n2-gray group-hover:text-primary text-3xl">cloud_upload</span>
+</div>
+<p class="text-sm font-medium text-n2-dark mb-1">Kéo thả hình ảnh vào đây hoặc <span class="text-primary font-bold">Click để tải lên</span></p>
+<p class="text-xs text-n2-gray">Hỗ trợ: PNG, JPG, WEBP (Tối đa 2MB)</p>
+<input class="absolute inset-0 cursor-pointer opacity-0" type="file"/>
+</div>
+<!-- Preview of Uploaded Image (Mockup) -->
+<div class="flex items-start gap-4 rounded-lg border border-[#E8E8E8] bg-white p-3">
+<div class="h-16 w-16 shrink-0 overflow-hidden rounded-md border border-[#E8E8E8] bg-gray-50 flex items-center justify-center" data-alt="Puma Logo Preview">
+<!-- Example abstract logo preview -->
+<svg class="w-10 h-10 text-n2-dark" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5-5 2.5L12 22l10-8.5-5-2.5-5 2.5z"></path>
+</svg>
+</div>
+<div class="flex-1 min-w-0">
+<p class="truncate text-sm font-bold text-n2-dark">puma-logo-vector.png</p>
+<p class="text-xs text-n2-gray">125 KB • Đã tải lên</p>
+<div class="mt-2 flex gap-3">
+<button class="flex items-center gap-1 text-xs font-bold text-n2-gray hover:text-n2-dark transition-colors">
+<span class="material-symbols-outlined text-[16px]">crop</span> Cắt ảnh
+                                </button>
+<button class="flex items-center gap-1 text-xs font-bold text-primary hover:text-red-700 transition-colors">
+<span class="material-symbols-outlined text-[16px]">delete</span> Xóa
+                                </button>
+</div>
+</div>
+<button class="text-n2-green">
+<span class="material-symbols-outlined">check_circle</span>
+</button>
+</div>
+</div>
+<hr class="border-[#E8E8E8]"/>
+<!-- Section: Description (Rich Text) -->
+<div class="space-y-2">
+<label class="text-sm font-bold text-n2-dark">Mô tả chi tiết</label>
+<div class="rounded-lg border border-n2-gray/30 overflow-hidden bg-white focus-within:ring-1 focus-within:ring-n2-gray focus-within:border-n2-gray">
+<!-- Toolbar -->
+<div class="flex flex-wrap items-center gap-1 border-b border-[#E8E8E8] bg-[#F9F9F9] px-2 py-2">
+<button class="rounded p-1 text-n2-dark hover:bg-gray-200" title="Bold" type="button">
+<span class="material-symbols-outlined text-[20px]">format_bold</span>
+</button>
+<button class="rounded p-1 text-n2-dark hover:bg-gray-200" title="Italic" type="button">
+<span class="material-symbols-outlined text-[20px]">format_italic</span>
+</button>
+<button class="rounded p-1 text-n2-dark hover:bg-gray-200" title="Underline" type="button">
+<span class="material-symbols-outlined text-[20px]">format_underlined</span>
+</button>
+<div class="mx-1 h-5 w-px bg-gray-300"></div>
+<button class="rounded p-1 text-n2-dark hover:bg-gray-200" title="Bulleted List" type="button">
+<span class="material-symbols-outlined text-[20px]">format_list_bulleted</span>
+</button>
+<button class="rounded p-1 text-n2-dark hover:bg-gray-200" title="Numbered List" type="button">
+<span class="material-symbols-outlined text-[20px]">format_list_numbered</span>
+</button>
+<div class="mx-1 h-5 w-px bg-gray-300"></div>
+<button class="rounded p-1 text-n2-dark hover:bg-gray-200" title="Link" type="button">
+<span class="material-symbols-outlined text-[20px]">link</span>
+</button>
+<button class="rounded p-1 text-n2-dark hover:bg-gray-200" title="Image" type="button">
+<span class="material-symbols-outlined text-[20px]">image</span>
+</button>
+</div>
+<!-- Editor Area -->
+<textarea class="w-full resize-y border-0 bg-white p-4 text-base text-n2-dark focus:ring-0 min-h-[160px]" placeholder="Nhập mô tả thương hiệu..."></textarea>
+</div>
+</div>
+<!-- Section: Status -->
+<div class="flex items-center justify-between rounded-lg border border-[#E8E8E8] bg-[#F9F9F9] p-4">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-n2-dark">Trạng thái hoạt động</span>
+<span class="text-xs text-n2-gray">Hiển thị thương hiệu này trên website.</span>
+</div>
+<!-- Toggle Switch -->
+<label class="relative inline-flex cursor-pointer items-center">
+<input checked="" class="peer sr-only" type="checkbox" value=""/>
+<div class="peer h-7 w-12 rounded-full bg-n2-gray after:absolute after:left-[2px] after:top-[2px] after:h-6 after:w-6 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-n2-green peer-checked:after:translate-x-full peer-checked:after:border-white focus:outline-none"></div>
+</label>
+</div>
+</div>
+<!-- Drawer Footer -->
+<div class="flex items-center justify-end gap-4 border-t border-[#E8E8E8] bg-white px-6 py-4 shrink-0">
+<button class="rounded-lg border border-n2-gray px-6 py-2.5 text-sm font-bold text-n2-dark hover:bg-gray-50 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-n2-gray/50">
+                    Hủy bỏ
+                </button>
+<button class="flex items-center justify-center gap-2 rounded-lg bg-primary px-8 py-2.5 text-sm font-bold text-white shadow-md hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition-all">
+<span class="material-symbols-outlined text-[18px]">save</span>
+                    Lưu thương hiệu
+                </button>
+</div>
+<!-- Global Footer (Inside drawer visually or main layout - placed here for drawer completeness as requested context) -->
+<div class="bg-n2-dark px-6 py-3 text-center text-xs text-n2-gray">
+                © 2024 N2 Sport Admin. All rights reserved. <a class="hover:text-white underline ml-2" href="#">Điều khoản</a>
+</div>
+</div>
+</div>
+</body></html>

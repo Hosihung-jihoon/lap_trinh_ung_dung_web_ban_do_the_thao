@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>N2 Sport - Master Colors</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#E42C14", // User specified red
+              "accent": "#AFED00", // User specified lime
+              "neutral-dark": "#111111", // Main text
+              "neutral-gray": "#A5A5A5", // Secondary text/borders
+              "neutral-light": "#E8E8E8", // Divider/bg
+              "background-light": "#FFFFFF",
+              "background-dark": "#111111", // In case of dark mode toggle, though user asked for white main bg
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"],
+              "sans": ["Inter", "sans-serif"],
+            },
+            borderRadius: {
+              "DEFAULT": "0.375rem", 
+              "lg": "0.5rem", 
+              "xl": "0.75rem", 
+              "full": "9999px"
+            },
+          },
+        },
+      }
+    </script>
+<style>
+        /* Custom scrollbar for better looking table scroll */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .form-checkbox:checked {
+            background-color: #AFED00;
+            border-color: #AFED00;
+            color: #AFED00;
+        }
+        /* Custom dragging style simulation */
+        .drag-active {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border-color: #AFED00 !important;
+            background-color: #FAFAFA;
+        }
+    </style>
+</head>
+<body class="bg-[#f8f6f6] min-h-screen flex flex-col font-display text-neutral-dark">
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-white border-b border-[#e5dcdc] shadow-sm">
+<div class="px-4 md:px-6 lg:px-8 py-3 mx-auto w-full max-w-[1440px]">
+<div class="flex items-center justify-between gap-4">
+<!-- Logo & Branding -->
+<div class="flex items-center gap-6">
+<a class="flex items-center gap-2 group" href="#">
+<div class="size-8 bg-neutral-dark rounded flex items-center justify-center text-accent">
+<span class="material-symbols-outlined font-bold">sports_score</span>
+</div>
+<h2 class="text-neutral-dark text-xl font-bold tracking-tight">N2 Sport <span class="text-accent">Admin</span></h2>
+</a>
+<!-- Search Bar (Desktop) -->
+<div class="hidden md:flex items-center w-64 lg:w-96 relative">
+<span class="absolute left-3 text-neutral-gray material-symbols-outlined text-[20px]">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-white border border-neutral-gray rounded-lg text-sm text-neutral-dark placeholder-neutral-gray focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors" placeholder="Search data..." type="text"/>
+</div>
+</div>
+<!-- Right Actions -->
+<div class="flex items-center gap-4 md:gap-6">
+<!-- Navigation Links (Desktop) -->
+<nav class="hidden lg:flex items-center gap-6">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Dashboard</a>
+<div class="relative group cursor-pointer">
+<span class="flex items-center gap-1 text-sm font-medium text-primary">
+                                Master Data <span class="material-symbols-outlined text-[16px]">expand_more</span>
+</span>
+</div>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Products</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Orders</a>
+</nav>
+<div class="flex items-center gap-3 md:gap-4 border-l border-neutral-light pl-4 md:pl-6">
+<!-- Notification -->
+<button class="relative p-2 text-neutral-dark hover:bg-neutral-light rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-white">3</span>
+</button>
+<!-- Profile -->
+<div class="flex items-center gap-3 cursor-pointer">
+<div class="size-9 rounded-full bg-cover bg-center border border-neutral-light" data-alt="User profile avatar showing a smiling person" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDnUN6EgsIsi9CA2tkpWxuLP6iFJi3vZ5WjJhInVwvqH6QJ9_MTcqjXd0lsqF0V-VMg1kQJeb8A0anoNP65-ONDaoDzUTyV74RCZAL5ZpKgVNGiPYCZzP_GUk-3lW_HJCwwRbYmjDe0YiMjZG-TSV8piRh1rkyIydHUlf2nQS4RTVJJWjpS8rs51i7KVLdNQ1kt72pzKsudnrHAJeQMsYBUL-m6dwa-P5PUK10y95gGq8rg7cYj1LT1aNuUZe3u4nEXLScNuYbhaTrm");'></div>
+<span class="hidden md:block text-sm font-medium">Admin User</span>
+<span class="hidden md:block material-symbols-outlined text-neutral-gray text-[18px]">expand_more</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Mobile Search (visible only on small screens) -->
+<div class="mt-3 md:hidden">
+<div class="flex items-center w-full relative">
+<span class="absolute left-3 text-neutral-gray material-symbols-outlined text-[20px]">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-white border border-neutral-gray rounded-lg text-sm focus:outline-none focus:border-accent" placeholder="Search..." type="text"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-[1440px] mx-auto px-4 md:px-6 lg:px-8 py-8">
+<!-- Page Header & Actions -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-6">
+<div>
+<h1 class="text-3xl font-bold text-neutral-dark mb-1">Master Colors</h1>
+<p class="text-neutral-gray text-sm">Manage global color attributes for products.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="bg-primary hover:bg-red-700 text-white px-4 py-2.5 rounded-lg text-sm font-semibold flex items-center gap-2 shadow-sm transition-colors" onclick="document.getElementById('addModal').classList.remove('hidden')">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                    Add Color
+                </button>
+</div>
+</div>
+<!-- Tab Navigation -->
+<div class="mb-8 border-b border-[#e5dcdc]">
+<div class="flex gap-8 overflow-x-auto scrollbar-hide">
+<a class="relative pb-3 text-neutral-dark text-sm font-bold border-b-[3px] border-accent whitespace-nowrap" href="#">
+                    Master Colors
+                </a>
+<a class="relative pb-3 text-neutral-gray hover:text-primary hover:border-b-[3px] hover:border-transparent text-sm font-bold whitespace-nowrap transition-all" href="#">
+                    Master Sizes
+                </a>
+<a class="relative pb-3 text-neutral-gray hover:text-primary hover:border-b-[3px] hover:border-transparent text-sm font-bold whitespace-nowrap transition-all" href="#">
+                    Master Materials
+                </a>
+</div>
+</div>
+<!-- Data Table Container -->
+<div class="bg-white border border-[#e5dcdc] rounded-lg shadow-sm overflow-hidden flex flex-col">
+<!-- Table Wrapper for Responsiveness -->
+<div class="overflow-x-auto">
+<table class="w-full min-w-[800px] text-left border-collapse">
+<thead>
+<tr class="bg-white border-b border-[#e5dcdc]">
+<th class="p-4 w-16 text-neutral-gray font-medium text-sm text-center">
+<span class="material-symbols-outlined text-[20px] align-middle cursor-pointer hover:text-accent">swap_vert</span>
+</th>
+<th class="p-4 w-24 text-neutral-dark font-semibold text-sm">Preview</th>
+<th class="p-4 text-neutral-dark font-semibold text-sm cursor-pointer group hover:bg-neutral-light/30 transition-colors">
+                                Color Name <span class="material-symbols-outlined text-[16px] align-middle text-neutral-gray opacity-0 group-hover:opacity-100">arrow_upward</span>
+</th>
+<th class="p-4 text-neutral-dark font-semibold text-sm">Hex Code</th>
+<th class="p-4 text-neutral-dark font-semibold text-sm">Texture</th>
+<th class="p-4 w-24 text-neutral-dark font-semibold text-sm">Sort Order</th>
+<th class="p-4 w-32 text-right text-neutral-dark font-semibold text-sm">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#e5dcdc]">
+<!-- Row 1 -->
+<tr class="group hover:bg-[#fafafa] transition-colors">
+<td class="p-4 text-center cursor-grab active:cursor-grabbing text-neutral-gray group-hover:text-neutral-dark">
+<span class="material-symbols-outlined">drag_indicator</span>
+</td>
+<td class="p-4">
+<div class="size-8 rounded-full border border-neutral-gray shadow-sm" style="background-color: #AFED00;"></div>
+</td>
+<td class="p-4">
+<span class="text-neutral-dark font-medium text-sm">Lime Green</span>
+</td>
+<td class="p-4">
+<div class="flex items-center gap-2">
+<span class="font-mono text-sm text-neutral-gray uppercase">#AFED00</span>
+<button class="text-neutral-gray hover:text-accent p-1 rounded transition-colors" title="Copy Hex">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+</button>
+</div>
+</td>
+<td class="p-4">
+<div class="text-xs text-neutral-gray italic">None</div>
+</td>
+<td class="p-4">
+<input class="w-16 px-2 py-1 text-sm border border-neutral-gray rounded focus:border-accent focus:ring-0 text-center" type="number" value="1"/>
+</td>
+<td class="p-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 text-neutral-gray hover:text-accent hover:bg-accent/10 rounded transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 text-neutral-gray hover:text-primary hover:bg-primary/10 rounded transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="group hover:bg-[#fafafa] transition-colors">
+<td class="p-4 text-center cursor-grab active:cursor-grabbing text-neutral-gray group-hover:text-neutral-dark">
+<span class="material-symbols-outlined">drag_indicator</span>
+</td>
+<td class="p-4">
+<div class="size-8 rounded-full border border-neutral-gray shadow-sm" style="background-color: #E42C14;"></div>
+</td>
+<td class="p-4">
+<span class="text-neutral-dark font-medium text-sm">Fire Red</span>
+</td>
+<td class="p-4">
+<div class="flex items-center gap-2">
+<span class="font-mono text-sm text-neutral-gray uppercase">#E42C14</span>
+<button class="text-neutral-gray hover:text-accent p-1 rounded transition-colors" title="Copy Hex">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+</button>
+</div>
+</td>
+<td class="p-4">
+<div class="text-xs text-neutral-gray italic">None</div>
+</td>
+<td class="p-4">
+<input class="w-16 px-2 py-1 text-sm border border-neutral-gray rounded focus:border-accent focus:ring-0 text-center" type="number" value="2"/>
+</td>
+<td class="p-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 text-neutral-gray hover:text-accent hover:bg-accent/10 rounded transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 text-neutral-gray hover:text-primary hover:bg-primary/10 rounded transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 with Texture Image -->
+<tr class="group hover:bg-[#fafafa] transition-colors">
+<td class="p-4 text-center cursor-grab active:cursor-grabbing text-neutral-gray group-hover:text-neutral-dark">
+<span class="material-symbols-outlined">drag_indicator</span>
+</td>
+<td class="p-4">
+<div class="size-8 rounded-full border border-neutral-gray shadow-sm overflow-hidden relative">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Camo pattern texture swatch" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDsJdOazOVvLyELe0mTAbfAE6vT9D_LVBlNJG_Vv0zfOQxJx9gICaYybRMAlw0IKjFfDLQ_Claj8TCREJjKBsXWjrBi_N_hd02c8UOimu5N9wJX_tqtc5F9X4umQWRiyP_g0or1rWZm8ZtLmmKrngKO9NTZJPcx7L9o9HmVE26Dg5KcJoNqDQMf6GM04OIePYpBebNnFZWuX13_t0s0yXl7CqmQWE5KMT3vvwsvFvCtMkQP98MP2eBe9-pDULyBC8_dbC6Fn3TBk4sV');"></div>
+</div>
+</td>
+<td class="p-4">
+<span class="text-neutral-dark font-medium text-sm">Urban Camo</span>
+</td>
+<td class="p-4">
+<div class="flex items-center gap-2">
+<span class="font-mono text-sm text-neutral-gray uppercase">Mixed</span>
+<button class="text-neutral-gray hover:text-accent p-1 rounded transition-colors" title="Copy Hex">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+</button>
+</div>
+</td>
+<td class="p-4">
+<div class="flex items-center gap-2">
+<div class="size-6 rounded bg-neutral-light bg-cover bg-center" data-alt="Small thumbnail of camo pattern" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDQozGUBAWfhNorgLsZsGwFc3Ua_dSZwGBf7XglL8jK9aVt60oSE4yA9h88WhXsCGm0lryuuAUKl3RQHpOngGHUq_-IsVVdLR_IbW7dRImBYFr3TljofkOmBPmJhcDB_1tQyMp_XIymFE5k8eWp4u-3FDSqd3jlLfcolHc2e7BYZy11aDzgrpvx7UOcIiQgH3w5X7JOmFUZ1HExlq-YAltKlzCRaGZvUqTpeAinESVyuRYtz4PdSenrn9YGhPB0DpSvUYhBl_nB_1On');"></div>
+<span class="text-xs text-neutral-dark underline cursor-pointer">camo_v2.png</span>
+</div>
+</td>
+<td class="p-4">
+<input class="w-16 px-2 py-1 text-sm border border-neutral-gray rounded focus:border-accent focus:ring-0 text-center" type="number" value="3"/>
+</td>
+<td class="p-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 text-neutral-gray hover:text-accent hover:bg-accent/10 rounded transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 text-neutral-gray hover:text-primary hover:bg-primary/10 rounded transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="group hover:bg-[#fafafa] transition-colors">
+<td class="p-4 text-center cursor-grab active:cursor-grabbing text-neutral-gray group-hover:text-neutral-dark">
+<span class="material-symbols-outlined">drag_indicator</span>
+</td>
+<td class="p-4">
+<div class="size-8 rounded-full border border-neutral-gray shadow-sm" style="background-color: #111111;"></div>
+</td>
+<td class="p-4">
+<span class="text-neutral-dark font-medium text-sm">Midnight Black</span>
+</td>
+<td class="p-4">
+<div class="flex items-center gap-2">
+<span class="font-mono text-sm text-neutral-gray uppercase">#111111</span>
+<button class="text-neutral-gray hover:text-accent p-1 rounded transition-colors" title="Copy Hex">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+</button>
+</div>
+</td>
+<td class="p-4">
+<div class="text-xs text-neutral-gray italic">None</div>
+</td>
+<td class="p-4">
+<input class="w-16 px-2 py-1 text-sm border border-neutral-gray rounded focus:border-accent focus:ring-0 text-center" type="number" value="4"/>
+</td>
+<td class="p-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 text-neutral-gray hover:text-accent hover:bg-accent/10 rounded transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 text-neutral-gray hover:text-primary hover:bg-primary/10 rounded transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+<!-- Inline Quick Add Row -->
+<tfoot class="bg-[#fafafa] border-t-2 border-[#e5dcdc]">
+<tr>
+<td class="p-4 text-center">
+<span class="material-symbols-outlined text-neutral-gray/50 text-[20px]">add</span>
+</td>
+<td class="p-4">
+<div class="size-8 rounded-full border border-dashed border-neutral-gray bg-white flex items-center justify-center text-xs text-neutral-gray">
+                                    ?
+                                </div>
+</td>
+<td class="p-4">
+<input class="w-full px-3 py-2 bg-white border border-neutral-gray rounded text-sm placeholder-neutral-gray focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent" placeholder="New Color Name" type="text"/>
+</td>
+<td class="p-4">
+<div class="flex items-center gap-2">
+<input class="w-24 px-3 py-2 bg-white border border-neutral-gray rounded text-sm placeholder-neutral-gray font-mono focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent" placeholder="#HEX" type="text"/>
+<input class="h-9 w-9 p-0 border border-neutral-gray rounded cursor-pointer" type="color" value="#ffffff"/>
+</div>
+</td>
+<td class="p-4">
+<button class="text-xs text-neutral-gray hover:text-accent underline flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">upload_file</span> Upload
+                                </button>
+</td>
+<td class="p-4">
+<input class="w-16 px-2 py-2 text-sm bg-white border border-neutral-gray rounded focus:border-accent focus:ring-0 text-center" placeholder="Order" type="number"/>
+</td>
+<td class="p-4 text-right">
+<button class="bg-accent hover:bg-[#9ed600] text-neutral-dark px-3 py-1.5 rounded text-sm font-semibold shadow-sm transition-colors">
+                                    Add
+                                </button>
+</td>
+</tr>
+</tfoot>
+</table>
+</div>
+<!-- Table Footer / Pagination -->
+<div class="p-4 border-t border-[#e5dcdc] bg-white flex items-center justify-between text-sm text-neutral-gray">
+<div>Showing <span class="font-semibold text-neutral-dark">1-4</span> of <span class="font-semibold text-neutral-dark">12</span> colors</div>
+<div class="flex gap-2">
+<button class="px-3 py-1 border border-neutral-gray rounded hover:bg-neutral-light disabled:opacity-50" disabled="">Previous</button>
+<button class="px-3 py-1 border border-neutral-gray rounded hover:bg-neutral-light text-neutral-dark">Next</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-neutral-dark text-white py-8 mt-auto">
+<div class="max-w-[1440px] mx-auto px-4 md:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="flex flex-col gap-1">
+<span class="font-bold text-lg">N2 Sport</span>
+<span class="text-xs text-neutral-gray">© 2023 N2 Sport Inc. All rights reserved.</span>
+</div>
+<div class="flex gap-6 text-sm text-neutral-gray">
+<a class="hover:text-accent transition-colors" href="#">Dashboard</a>
+<a class="hover:text-accent transition-colors" href="#">Products</a>
+<a class="hover:text-accent transition-colors" href="#">Settings</a>
+<a class="hover:text-accent transition-colors" href="#">Support</a>
+</div>
+</div>
+</footer>
+<!-- Add/Edit Modal (Hidden by default) -->
+<div class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm" id="addModal">
+<div class="bg-white rounded-xl shadow-2xl w-full max-w-lg overflow-hidden animate-fade-in">
+<div class="px-6 py-4 border-b border-[#e5dcdc] flex justify-between items-center bg-[#fafafa]">
+<h3 class="text-lg font-bold text-neutral-dark">Add New Color</h3>
+<button class="text-neutral-gray hover:text-primary transition-colors" onclick="document.getElementById('addModal').classList.add('hidden')">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="p-6 flex flex-col gap-5">
+<!-- Color Name Field -->
+<div>
+<label class="block text-sm font-medium text-neutral-dark mb-1.5">Color Name <span class="text-primary">*</span></label>
+<input class="w-full px-4 py-2.5 border border-neutral-gray rounded-lg focus:ring-1 focus:ring-accent focus:border-accent outline-none text-neutral-dark placeholder-neutral-gray/70" placeholder="e.g. Neon Blue" type="text"/>
+</div>
+<!-- Hex Code & Picker -->
+<div>
+<label class="block text-sm font-medium text-neutral-dark mb-1.5">Hex Color <span class="text-primary">*</span></label>
+<div class="flex gap-3">
+<div class="relative flex-1">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-gray">#</span>
+<input class="w-full pl-7 pr-4 py-2.5 border border-neutral-gray rounded-lg focus:ring-1 focus:ring-accent focus:border-accent outline-none font-mono uppercase" placeholder="AFED00" type="text" value="AFED00"/>
+</div>
+<input class="h-[42px] w-[60px] p-1 border border-neutral-gray rounded-lg cursor-pointer bg-white" type="color" value="#AFED00"/>
+</div>
+<p class="text-xs text-primary mt-1 hidden">Please enter a valid hex code.</p>
+</div>
+<!-- Texture Image Dropzone -->
+<div>
+<label class="block text-sm font-medium text-neutral-dark mb-1.5">Texture Pattern (Optional)</label>
+<div class="border-2 border-dashed border-neutral-gray rounded-lg p-6 flex flex-col items-center justify-center text-center hover:bg-neutral-light/30 transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-3xl text-neutral-gray mb-2 group-hover:text-accent">cloud_upload</span>
+<p class="text-sm text-neutral-dark font-medium">Click to upload or drag and drop</p>
+<p class="text-xs text-neutral-gray mt-1">PNG, JPG up to 2MB</p>
+</div>
+</div>
+<!-- Sort Order -->
+<div>
+<label class="block text-sm font-medium text-neutral-dark mb-1.5">Sort Order</label>
+<input class="w-32 px-4 py-2.5 border border-neutral-gray rounded-lg focus:ring-1 focus:ring-accent focus:border-accent outline-none" type="number" value="0"/>
+</div>
+</div>
+<div class="px-6 py-4 bg-[#fafafa] border-t border-[#e5dcdc] flex justify-end gap-3">
+<button class="px-5 py-2 rounded-lg text-sm font-medium text-neutral-gray border border-neutral-gray hover:bg-white hover:text-neutral-dark transition-colors" onclick="document.getElementById('addModal').classList.add('hidden')">
+                    Cancel
+                </button>
+<button class="px-5 py-2 rounded-lg text-sm font-bold text-white bg-primary hover:bg-red-700 shadow-md transition-colors">
+                    Save Color
+                </button>
+</div>
+</div>
+</div>
+</body></html>

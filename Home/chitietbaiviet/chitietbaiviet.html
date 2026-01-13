@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>N2 Sport - Blog Detail</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&amp;family=Montserrat:wght@400;600;700&amp;family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#AFED00", // Bright Green
+                        "secondary": "#E42C14", // Red Orange
+                        "dark": "#111111", // Black
+                        "gray-medium": "#A5A5A5",
+                        "gray-light": "#E8E8E8",
+                        "background-light": "#FFFFFF",
+                        "background-dark": "#1e230f", // Dark mode fallback (though strict dark mode isn't requested, good to have)
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "body": ["Roboto", "sans-serif"],
+                        "heading": ["Montserrat", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for reading progress */
+        .progress-container {
+            position: fixed;
+            top: 73px; /* Below header approx height */
+            z-index: 40;
+            width: 100%;
+            height: 4px;
+            background: #E8E8E8;
+        }
+        .progress-bar {
+            height: 4px;
+            background: #AFED00;
+            width: 0%;
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Hide scrollbar for sideways scrolling */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light text-dark font-body antialiased selection:bg-primary selection:text-dark">
+<!-- Sticky Header -->
+<header class="sticky top-0 z-50 w-full bg-white border-b border-gray-light">
+<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 h-[72px] flex items-center justify-between gap-4">
+<!-- Logo -->
+<div class="flex items-center gap-8 shrink-0">
+<a class="flex items-center gap-2 group" href="#">
+<div class="size-8 bg-primary rounded-full flex items-center justify-center text-dark transform group-hover:rotate-12 transition-transform">
+<span class="material-symbols-outlined font-bold text-xl">bolt</span>
+</div>
+<h1 class="font-display text-2xl font-extrabold tracking-tight text-dark group-hover:text-primary transition-colors">N2 Sport</h1>
+</a>
+</div>
+<!-- Mega Menu (Desktop) -->
+<nav class="hidden lg:flex items-center gap-8">
+<a class="font-display font-medium text-dark hover:text-primary transition-colors" href="#">Home</a>
+<a class="font-display font-medium text-dark hover:text-primary transition-colors" href="#">Shop</a>
+<a class="font-display font-medium text-dark hover:text-primary transition-colors" href="#">Men</a>
+<a class="font-display font-medium text-dark hover:text-primary transition-colors" href="#">Women</a>
+<a class="font-display font-bold text-primary" href="#">Blog</a>
+</nav>
+<!-- Search & Actions -->
+<div class="flex items-center gap-4 flex-1 justify-end max-w-xl">
+<!-- Search Bar -->
+<div class="hidden md:flex relative w-full max-w-xs group">
+<input class="w-full pl-10 pr-4 py-2 rounded-full border border-gray-medium focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-gray-medium text-sm font-display" placeholder="Search..." type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-medium group-focus-within:text-primary">search</span>
+</div>
+<!-- Icons -->
+<div class="flex items-center gap-3">
+<button class="relative p-2 rounded-full hover:bg-gray-light transition-colors group">
+<span class="material-symbols-outlined text-dark group-hover:text-secondary">shopping_cart</span>
+<span class="absolute top-0 right-0 size-4 bg-secondary text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-white">2</span>
+</button>
+<button class="p-2 rounded-full hover:bg-gray-light transition-colors group">
+<span class="material-symbols-outlined text-dark group-hover:text-primary">person</span>
+</button>
+<!-- Mobile Menu Button -->
+<button class="lg:hidden p-2 rounded-full hover:bg-gray-light transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Reading Progress Bar -->
+<div class="w-full h-1 bg-gray-light">
+<div class="h-full bg-primary w-0 transition-all duration-100 ease-out" id="readingProgress"></div>
+</div>
+</header>
+<main class="w-full flex flex-col items-center pb-20">
+<!-- Breadcrumbs -->
+<div class="w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 py-4">
+<div class="flex items-center gap-2 text-sm font-display">
+<a class="text-dark hover:text-secondary transition-colors font-medium" href="#">Home</a>
+<span class="material-symbols-outlined text-xs text-gray-medium">chevron_right</span>
+<a class="text-dark hover:text-secondary transition-colors font-medium" href="#">Blog</a>
+<span class="material-symbols-outlined text-xs text-gray-medium">chevron_right</span>
+<a class="text-dark hover:text-secondary transition-colors font-medium" href="#">Training</a>
+<span class="material-symbols-outlined text-xs text-gray-medium">chevron_right</span>
+<span class="text-gray-medium truncate max-w-[200px]">How to Train for Your First 5K Marathon</span>
+</div>
+</div>
+<!-- Article Header Section -->
+<section class="w-full max-w-[960px] px-4 sm:px-6 lg:px-8 pt-6 pb-8 flex flex-col items-center text-center">
+<div class="mb-4 inline-flex items-center px-4 py-1 rounded-full bg-primary text-dark text-xs font-bold uppercase tracking-wider">
+                Training Tips
+            </div>
+<h1 class="font-display text-4xl md:text-5xl font-extrabold text-dark leading-[1.15] mb-6 tracking-tight">
+                How to Train for Your First 5K Marathon: A Complete Guide
+            </h1>
+<div class="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-medium">
+<div class="flex items-center gap-2">
+<img class="size-8 rounded-full border border-gray-medium object-cover" data-alt="Author portrait of Nguyen Van A" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAV3TDLDvec3TYrUidsoXDtwikhKuXPC2wLz51yQzECI3Hf0DbzlKgB-QyTutxFCzLa-UcfLBbeOm6wPuWlV2GQOoqZvaWgKK3sv0nSzFyn410nRjHgzXGGSm7bAr60GaBYJmzyp9A2yMTwsw-HOZXa6OqZf11eBrbWDnKYRPyqINGcODQCUFG42jeMHAOWZhNnGqve0gPT1wU3P7Vv7K74GVC6TmwBJZH_L--DSdoye3queN5xgiRTHPGOUUPHG8hH9QfCmHOAGDed"/>
+<span class="text-dark font-medium">By Nguyen Van A</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base">calendar_today</span>
+<span>Oct 24, 2023</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base text-primary">visibility</span>
+<span>1.5k Views</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base">schedule</span>
+<span>8 min read</span>
+</div>
+</div>
+</section>
+<!-- Featured Image -->
+<div class="w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 mb-12">
+<div class="relative w-full aspect-video md:aspect-[21/9] rounded-2xl overflow-hidden group shadow-lg">
+<img class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-in-out" data-alt="Runner tying shoelaces on a track at sunset" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBibOeM5c-9ls06wr6HmdpNcO4xcEXXush7HepAb3sxsy2A3pgrSfS9TkLtpHKxofWATBd-J7WdGH8_0NhwiT04mQLAir0Rb1t0AjUTFB14GFBAdnXdLp623GmjeV5ejHN1Pe7WZ-klBKINRZth1daAIsLq_GO02DotGPqgN9uFyH4PHLExy5PV12AiAjYEIkLtuVeq-nCx4X_a2C3POTHZfXFW08viYalb974r1RHzaLm0FaQ74UAbPxSU3GCVtu7tlNSkOrEO-oaa"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
+</div>
+</div>
+<!-- Main Content Wrapper with Sidebar -->
+<div class="w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10">
+<!-- Left Sidebar (Socials) - Sticky Desktop / Fixed Bottom Mobile -->
+<aside class="hidden lg:block lg:col-span-1 relative">
+<div class="sticky top-28 flex flex-col gap-4 items-center">
+<p class="text-xs font-bold text-gray-medium uppercase tracking-widest writing-mode-vertical rotate-180 mb-2">Share</p>
+<button class="size-10 rounded-full bg-gray-light text-dark hover:bg-secondary hover:text-white transition-all flex items-center justify-center group shadow-sm hover:shadow-md">
+<i class="fa-brands fa-facebook-f text-lg font-display font-bold">f</i>
+</button>
+<button class="size-10 rounded-full bg-gray-light text-dark hover:bg-secondary hover:text-white transition-all flex items-center justify-center group shadow-sm hover:shadow-md">
+<span class="font-display font-bold">X</span>
+</button>
+<button class="size-10 rounded-full bg-gray-light text-dark hover:bg-secondary hover:text-white transition-all flex items-center justify-center group shadow-sm hover:shadow-md">
+<span class="font-display font-bold">in</span>
+</button>
+<div class="h-8 w-[1px] bg-gray-medium mt-2"></div>
+<span class="text-xs font-bold text-dark font-display">124</span>
+</div>
+</aside>
+<!-- Article Content -->
+<article class="col-span-1 lg:col-span-8 lg:px-4">
+<div class="prose prose-lg max-w-none text-dark prose-headings:font-display prose-headings:font-bold prose-headings:text-dark prose-p:font-body prose-p:leading-relaxed prose-p:text-gray-700 prose-strong:text-dark prose-a:text-secondary prose-a:no-underline hover:prose-a:text-primary prose-img:rounded-xl">
+<p class="text-xl leading-8 text-gray-600 font-light mb-8">
+                        Training for your first 5K can be daunting, but with the right mindset and preparation, anyone can cross that finish line. This guide covers everything from gear selection to weekly training schedules designed for beginners.
+                    </p>
+<h2 class="scroll-mt-24 text-2xl mb-4 mt-8" id="getting-started">Getting Started: The Essentials</h2>
+<p class="mb-6">
+                        Before you hit the pavement, you need to ensure you have the right equipment. Running is a high-impact sport, and protecting your joints starts with your feet.
+                    </p>
+<blockquote class="border-l-4 border-primary bg-gray-light/50 p-6 rounded-r-xl not-italic mb-8">
+<p class="text-lg font-medium text-dark mb-2">"The only bad run is the one that didn't happen."</p>
+<footer class="text-sm text-gray-500">— Anonymous Runner</footer>
+</blockquote>
+<!-- Inline Product Card -->
+<div class="my-10 bg-white border border-gray-light rounded-2xl p-6 flex flex-col sm:flex-row items-center gap-6 shadow-sm hover:shadow-md transition-shadow">
+<div class="shrink-0 w-full sm:w-40 aspect-square bg-gray-100 rounded-xl overflow-hidden relative">
+<img class="w-full h-full object-cover mix-blend-multiply" data-alt="Red Nike running shoe on a white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDt1pggN6cnW2epoENQmNyYyn2jp1od-AP2gpT2aUNZS_oOJQSlv4vHqCdGlanOeIxnTkxkmPyxhu2qsG3aNlFF2XP84dEluA0RKWvm0Y_m-YXOCwEVsbRyRON7xinuz7j2vH3HkwNSAdKqb0XtXC0z2sC9cZKwHwNKNUeGPNC4bdeKWbjFr1roig38hn5Mk62zjOPMXr1DEV6cJkqpJoW38VuOdoaLZ6NSohOvgz7ow1GK0_VnpjTN8m8k1mDDCl8Vhw96LC4FBfT"/>
+<div class="absolute top-2 right-2 bg-secondary text-white text-xs font-bold px-2 py-0.5 rounded-full">-20%</div>
+</div>
+<div class="flex-1 text-center sm:text-left">
+<h3 class="font-display font-bold text-lg mb-1">Nike Air Zoom Pegasus 39</h3>
+<p class="text-gray-500 text-sm mb-3 line-clamp-2">Ideal for everyday training with responsive foam cushioning and breathable mesh.</p>
+<div class="flex items-center justify-center sm:justify-start gap-3">
+<span class="text-xl font-bold text-dark">$110.00</span>
+<span class="text-sm text-gray-400 line-through">$135.00</span>
+</div>
+</div>
+<button class="bg-dark text-white hover:bg-primary hover:text-dark px-6 py-3 rounded-full font-bold text-sm transition-colors whitespace-nowrap">
+                            Buy Now
+                        </button>
+</div>
+<h2 class="scroll-mt-24 text-2xl mb-4 mt-8" id="training-schedule">The 8-Week Training Schedule</h2>
+<p class="mb-4">
+                        Consistency is key. Our 8-week plan gradually builds your endurance using a mix of running and walking intervals.
+                    </p>
+<ul class="list-none pl-0 space-y-3 mb-8">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-0.5">check_circle</span>
+<span><strong>Week 1-2:</strong> Run 1 min, Walk 2 mins (Repeat 20 mins)</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-0.5">check_circle</span>
+<span><strong>Week 3-4:</strong> Run 3 mins, Walk 2 mins (Repeat 25 mins)</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-0.5">check_circle</span>
+<span><strong>Week 5-6:</strong> Run 8 mins, Walk 2 mins (Repeat 30 mins)</span>
+</li>
+</ul>
+<figure class="mb-8">
+<img class="w-full rounded-xl" data-alt="Group of people stretching in a park" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3fYZPiG0ibeWBVi5_xPQgHbaDnFFLPW-Px6uFs6Dj7OsdLznKKaaBn_X08MAhRct5ETOc_dDe-WAHKdL7C9y44ut5tY7D6O_e9N7Y9xYpB58mUvHUtI2uqgSEEW5JHpJli6pdsL5SefNXaZSjwIMmCNq8OjMRkD-OWKT-Z1PTtcRNLU-HYEl7gxS--CMhaw6LEruYeX0bfiiZVB0P32uTsrjXCG0DIocPRzvYqIH3uJ3Ye-48Dij6cPAHVpCBNe_dt59bYgY37Tms"/>
+<figcaption class="text-center text-sm text-gray-medium mt-3 italic">Don't forget to warm up before every session.</figcaption>
+</figure>
+<h2 class="scroll-mt-24 text-2xl mb-4 mt-8" id="recovery">Recovery &amp; Nutrition</h2>
+<p class="mb-6">
+                        Rest days are when your muscles repair and strengthen. Pair rest with proper hydration and protein intake.
+                    </p>
+</div>
+<!-- Tags -->
+<div class="mt-12 pt-8 border-t border-gray-light">
+<div class="flex flex-wrap gap-3">
+<a class="px-4 py-2 bg-gray-light text-gray-600 rounded-full text-sm font-medium hover:bg-white hover:border-primary hover:text-primary border border-transparent transition-all" href="#">#Running</a>
+<a class="px-4 py-2 bg-gray-light text-gray-600 rounded-full text-sm font-medium hover:bg-white hover:border-primary hover:text-primary border border-transparent transition-all" href="#">#TrainingTips</a>
+<a class="px-4 py-2 bg-gray-light text-gray-600 rounded-full text-sm font-medium hover:bg-white hover:border-primary hover:text-primary border border-transparent transition-all" href="#">#Marathon</a>
+<a class="px-4 py-2 bg-gray-light text-gray-600 rounded-full text-sm font-medium hover:bg-white hover:border-primary hover:text-primary border border-transparent transition-all" href="#">#Beginner</a>
+</div>
+</div>
+<!-- Author Bio Box -->
+<div class="mt-12 p-6 bg-gray-50 rounded-2xl flex flex-col sm:flex-row gap-6 items-center sm:items-start text-center sm:text-left border border-gray-100">
+<img class="size-20 rounded-full object-cover border-2 border-white shadow-md" data-alt="Author Nguyen Van A" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDQFQC_ksb3L7U3JKV0NW5ukYMnVtsf8LljeVOiN7mjMY0IPGJSEvHSDL2y5PwjR41afMiE7yCt3zTl5KVNe7CTf8h0cQ4f_FfKpZ4AWqa7y9pr_9ZRopLOc_Z9SObNrcHOWaCUnr7113bKjYifnkteaC2TqaAnH8ikubH5QdEZMvODgMjG1ukqdWptsrEXnXsQbWbYT3zle2_miSTtRjwOvapGLatG7pM58yYda8F707fQzRC8rMEBeTkNRfLFu99HJX0wHsdQhmY"/>
+<div class="flex-1">
+<h4 class="font-display font-bold text-lg text-dark mb-1">Nguyen Van A</h4>
+<p class="text-sm text-secondary font-medium mb-2 uppercase tracking-wide">Elite Coach</p>
+<p class="text-gray-600 text-sm leading-relaxed">Certified running coach and nutritionist with over 10 years of experience helping athletes reach their peak performance. Passionate about sustainable training methods.</p>
+</div>
+</div>
+<!-- Comments Section -->
+<div class="mt-16">
+<h3 class="font-display font-bold text-2xl text-dark mb-6">Comments (3)</h3>
+<!-- Comment Form -->
+<form class="mb-10 bg-white p-6 rounded-2xl border border-gray-light shadow-sm">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+<input class="w-full px-4 py-3 rounded-xl border border-gray-medium focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-gray-medium text-sm" placeholder="Your Name" type="text"/>
+<input class="w-full px-4 py-3 rounded-xl border border-gray-medium focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-gray-medium text-sm" placeholder="Your Email" type="email"/>
+</div>
+<textarea class="w-full px-4 py-3 rounded-xl border border-gray-medium focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-gray-medium text-sm mb-4 resize-none" placeholder="Write your comment..." rows="4"></textarea>
+<button class="bg-dark text-white px-8 py-3 rounded-full font-bold text-sm hover:bg-primary hover:text-dark transition-colors" type="button">Post Comment</button>
+</form>
+<!-- Comment List -->
+<div class="space-y-6">
+<div class="flex gap-4">
+<div class="shrink-0 size-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 font-bold text-sm">JD</div>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="font-bold text-dark text-sm">John Doe</span>
+<span class="text-xs text-gray-medium">• 2 days ago</span>
+</div>
+<p class="text-sm text-dark leading-relaxed">Great article! The 8-week plan looks very manageable for a beginner like me. Thanks for sharing.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<img class="shrink-0 size-10 rounded-full object-cover" data-alt="User Sarah avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsg3IochLhjEwbiaEKXP-O1zjxHSxYrZiGwdtQgMyaw4qu0gV478OT3313HLbiqqVjrHsO_HfNr-ZZUSzes1v0wWedku_cfljTeY_QKeEk2VOBj6tky9zNa0IVRHnW33k0MWnXtQCcMPv4OyPEURNZcz2qSg3v55eIsClvHPMzaOuxOB9GDf3ltyKyaDdxLjx_VKiuzNUg7lcepLuVyYuKgaF_A5kPo1O8tn74PnP0Nuhw2brg5Sbtxz-iAL-nYh3tqFRI7K-A1hDn"/>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="font-bold text-dark text-sm">Sarah Jenkins</span>
+<span class="text-xs text-gray-medium">• 1 day ago</span>
+</div>
+<p class="text-sm text-dark leading-relaxed">I love the Nike Pegasus recommendation. I've been using them for years and they never disappoint.</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<!-- Right Sidebar (Table of Contents) -->
+<aside class="hidden lg:block lg:col-span-3 relative">
+<div class="sticky top-28 p-6 bg-gray-50 rounded-2xl border border-gray-100">
+<h3 class="font-display font-bold text-lg text-dark mb-4">Table of Contents</h3>
+<nav class="flex flex-col gap-3">
+<a class="text-sm text-dark hover:text-primary font-medium pl-3 border-l-2 border-primary transition-colors" href="#getting-started">Getting Started</a>
+<a class="text-sm text-gray-500 hover:text-primary font-medium pl-3 border-l-2 border-transparent hover:border-primary transition-colors" href="#training-schedule">Training Schedule</a>
+<a class="text-sm text-gray-500 hover:text-primary font-medium pl-3 border-l-2 border-transparent hover:border-primary transition-colors" href="#recovery">Recovery &amp; Nutrition</a>
+</nav>
+<!-- Sidebar Promo -->
+<div class="mt-8 relative rounded-xl overflow-hidden aspect-[3/4] group cursor-pointer">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform group-hover:scale-110 duration-700" data-alt="Gym equipment sale banner" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKLbJjMXzz_y2zk8nxzqPBtb6yP_Mqq7P8ryI-jD3K7jlj_aB5_EvqoYIXj3n5iTnEGwUEybtWw8c58afmV93NRuDtWoTZih-DoeoOPBi0QBh6YgyHgAwxlXK9anhczEsA1n9n0Vs1ufbEtq_fwL-9Nt19YiJOnMoy_A_8j4MKrUNCt-E0Qlfwr2mukkFMQ5I0fGmEPBVLupBN1HU3cNB-DPl6irs1IJS0CMVs6CWF3O4uUUTDKvqkWDw7bdLjDADj_drEcKEpecFD"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-5">
+<span class="bg-secondary text-white text-xs font-bold px-2 py-1 rounded w-fit mb-2">HOT SALE</span>
+<h4 class="text-white font-display font-bold text-xl leading-tight mb-2">Summer Gear Collection</h4>
+<button class="bg-primary text-dark font-bold text-xs py-2 px-4 rounded-full w-full hover:bg-white transition-colors">Shop Now</button>
+</div>
+</div>
+</div>
+</aside>
+</div>
+<!-- Related Articles Section -->
+<section class="w-full bg-gray-50 py-16 mt-20 border-t border-gray-light">
+<div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-end mb-8">
+<div>
+<span class="text-secondary font-bold uppercase tracking-widest text-sm block mb-2">Read More</span>
+<h2 class="font-display text-3xl font-bold text-dark">Related Articles</h2>
+</div>
+<a class="hidden sm:inline-flex items-center gap-1 font-bold text-dark hover:text-secondary transition-colors" href="#">
+                        View All Posts <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Article Card 1 -->
+<div class="group flex flex-col h-full bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300">
+<div class="relative aspect-video overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Woman stretching outdoors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgxVd5EiIhdCk1Nm6VoZUqM_WVlMpxiGSSuQC2gI8Rc06i-NjSS70O8P-KlET-fW0mCF9u_PR5uXrdctTa7pptfoRVDdKpLUm6CuSW0uhbB0Ccm37EMplu0eVSZL8_Lkaq01DIvp3P2FpFs799jm31lQGMWkPAH_FKZXepoSS-NuctWLNgkhVWW5Scf3PGcR3JhIufHTKFEtsTHNCdoIP7IvTBNZeb9f1BeiTXrDDAaNwJbwPQIuJe2vamXflzjntn3jIChszM7Soi"/>
+<div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-dark">Wellness</div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<div class="text-xs text-gray-400 mb-3 flex items-center gap-2">
+<span>Oct 20, 2023</span> • <span>5 min read</span>
+</div>
+<h3 class="font-display font-bold text-lg text-dark mb-3 group-hover:text-secondary transition-colors line-clamp-2">The Importance of Stretching Before Cardio</h3>
+<p class="text-gray-500 text-sm line-clamp-3 mb-4 flex-1">Stretching helps keep your muscles flexible, strong, and healthy, and we need that flexibility to maintain range of motion.</p>
+<a class="inline-flex items-center text-secondary text-sm font-bold hover:text-dark transition-colors mt-auto" href="#">
+                                Read Article <span class="material-symbols-outlined text-sm ml-1">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Article Card 2 -->
+<div class="group flex flex-col h-full bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300">
+<div class="relative aspect-video overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Gym weights and dumbbells" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYxANBgjORmKzny185ULa8FAPL7njguXHVg2r6frbU3RDRSHPujl1BetU4W2VSDKP1Q3fbUUalHArfQQ4kd2rjS6xw61tFSP1QTaFrKVvvD-DN0ovwEMGG66NT9dcWBpA-1fvoGIpglDh1ZhitcFt7Q17jXQD17_3OlNos8aXiMTG69uhm8ClBfeEVjSx8mD7_GnQdXxI-aA9N-7jKOj2LuEWXFVXRtO-5MZipXN_KU09gnsJ2kCKdylMpn7HU1W13qmbjAOXwowLY"/>
+<div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-dark">Gear</div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<div class="text-xs text-gray-400 mb-3 flex items-center gap-2">
+<span>Oct 18, 2023</span> • <span>6 min read</span>
+</div>
+<h3 class="font-display font-bold text-lg text-dark mb-3 group-hover:text-secondary transition-colors line-clamp-2">Best Home Gym Equipment for Small Spaces</h3>
+<p class="text-gray-500 text-sm line-clamp-3 mb-4 flex-1">You don't need a massive garage to build a great home gym. Here are our top picks for compact equipment.</p>
+<a class="inline-flex items-center text-secondary text-sm font-bold hover:text-dark transition-colors mt-auto" href="#">
+                                Read Article <span class="material-symbols-outlined text-sm ml-1">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Article Card 3 -->
+<div class="group flex flex-col h-full bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300">
+<div class="relative aspect-video overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Healthy smoothie bowl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrAGKW4PK4NDpZZo8S8TtMKx60ua21F3RUj5lXFIRQc_beDufxjGpssT7c-gGJsjaA7FasPYOJ4xiXhLN4DBAiuFQBxE2uApwO8E4M5zaTwug0yO1wl3sZm5OtqHX3QSlIEyLbFkI4xh2W5BremE5Bt9Ny-XReR_D7QB1M-9eFrHPmLuou3HfMfmJgZYg_g2PBv15WYEANFJ499pz18MNZsjMHBoS_kufDu5xB7ymXYmIvIy7SyjMchVERTjJhCoGhhzzKOWkmC_f-"/>
+<div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-dark">Nutrition</div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<div class="text-xs text-gray-400 mb-3 flex items-center gap-2">
+<span>Oct 15, 2023</span> • <span>4 min read</span>
+</div>
+<h3 class="font-display font-bold text-lg text-dark mb-3 group-hover:text-secondary transition-colors line-clamp-2">5 Post-Workout Meals for Muscle Recovery</h3>
+<p class="text-gray-500 text-sm line-clamp-3 mb-4 flex-1">Refuel your body with these delicious and protein-packed recipes designed for optimal recovery.</p>
+<a class="inline-flex items-center text-secondary text-sm font-bold hover:text-dark transition-colors mt-auto" href="#">
+                                Read Article <span class="material-symbols-outlined text-sm ml-1">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Mobile Sticky Footer Action Bar -->
+<div class="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-light px-6 py-3 flex items-center justify-between lg:hidden shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+<div class="flex items-center gap-4">
+<button class="size-10 rounded-full bg-gray-50 text-dark hover:bg-secondary hover:text-white transition-colors flex items-center justify-center">
+<i class="fa-brands fa-facebook-f text-lg font-bold">f</i>
+</button>
+<button class="size-10 rounded-full bg-gray-50 text-dark hover:bg-secondary hover:text-white transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-lg">share</span>
+</button>
+</div>
+<button class="bg-primary text-dark font-bold text-sm px-6 py-2.5 rounded-full shadow-lg shadow-primary/30">
+            Subscribe
+        </button>
+</div>
+<!-- Footer -->
+<footer class="bg-dark text-white pt-16 pb-24 lg:pb-8">
+<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+<!-- Brand -->
+<div class="col-span-1 md:col-span-2 lg:col-span-1">
+<div class="flex items-center gap-2 mb-6">
+<div class="size-8 bg-primary rounded-full flex items-center justify-center text-dark">
+<span class="material-symbols-outlined font-bold text-xl">bolt</span>
+</div>
+<h2 class="font-display text-2xl font-extrabold tracking-tight text-white">N2 Sport</h2>
+</div>
+<p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Empowering athletes with high-performance gear and expert advice. Push your limits with N2 Sport.
+                    </p>
+<div class="flex gap-4">
+<a class="text-gray-400 hover:text-primary transition-colors" href="#"><span class="font-display font-bold text-lg">Fb.</span></a>
+<a class="text-gray-400 hover:text-primary transition-colors" href="#"><span class="font-display font-bold text-lg">In.</span></a>
+<a class="text-gray-400 hover:text-primary transition-colors" href="#"><span class="font-display font-bold text-lg">Tw.</span></a>
+</div>
+</div>
+<!-- Links -->
+<div>
+<h3 class="font-display font-bold text-lg mb-6">Shop</h3>
+<ul class="space-y-4 text-sm text-gray-400">
+<li><a class="hover:text-primary transition-colors" href="#">Men's Shoes</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Women's Clothing</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Accessories</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">New Arrivals</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Sale</a></li>
+</ul>
+</div>
+<!-- Support -->
+<div>
+<h3 class="font-display font-bold text-lg mb-6">Support</h3>
+<ul class="space-y-4 text-sm text-gray-400">
+<li><a class="hover:text-primary transition-colors" href="#">Order Tracking</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Shipping &amp; Returns</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Size Guide</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Contact Us</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">FAQ</a></li>
+</ul>
+</div>
+<!-- Newsletter -->
+<div>
+<h3 class="font-display font-bold text-lg mb-6">Stay Updated</h3>
+<p class="text-gray-400 text-sm mb-4">Subscribe for latest sports news and exclusive offers.</p>
+<form class="flex flex-col gap-3">
+<input class="w-full bg-white/5 border border-white/10 rounded-full px-4 py-2.5 text-white placeholder:text-gray-600 focus:border-primary focus:ring-0 outline-none transition-colors text-sm" placeholder="Email Address" type="email"/>
+<button class="w-full bg-primary text-dark font-bold rounded-full py-2.5 hover:bg-white transition-colors text-sm">Subscribe</button>
+</form>
+</div>
+</div>
+<div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-gray-600 text-xs">© 2023 N2 Sport Inc. All rights reserved.</p>
+<div class="flex gap-6 text-xs text-gray-600">
+<a class="hover:text-gray-400" href="#">Privacy Policy</a>
+<a class="hover:text-gray-400" href="#">Terms of Service</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- Script for Scroll Progress -->
+<script>
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercentage = (scrollTop / scrollHeight) * 100;
+            document.getElementById('readingProgress').style.width = scrollPercentage + '%';
+        });
+    </script>
+</body></html>

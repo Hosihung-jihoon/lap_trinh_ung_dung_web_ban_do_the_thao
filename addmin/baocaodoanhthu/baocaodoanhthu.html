@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>N2 Sport - Báo Cáo Doanh Thu</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ebeb00", 
+                        "n2-green": "#AFED00",
+                        "n2-red": "#E42C14",
+                        "n2-dark": "#111111",
+                        "n2-grey": "#A5A5A5",
+                        "n2-light-grey": "#E8E8E8",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#23230f",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for better look */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b3b3b3;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-n2-dark font-display antialiased overflow-x-hidden">
+<div class="relative flex min-h-screen w-full flex-col">
+<!-- Header -->
+<header class="sticky top-0 z-50 flex w-full items-center justify-between border-b border-[#E8E8E8] bg-white px-6 py-3 shadow-sm">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-2">
+<div class="flex size-8 items-center justify-center rounded-lg bg-n2-dark text-n2-green">
+<span class="material-symbols-outlined text-[24px]">bolt</span>
+</div>
+<h2 class="text-xl font-black tracking-tight text-[#111111]">N2 Sport <span class="text-n2-green">Admin</span></h2>
+</div>
+<!-- Desktop Nav -->
+<nav class="hidden md:flex gap-6 text-sm font-medium text-[#111111]">
+<a class="flex items-center gap-1 hover:text-n2-red transition-colors" href="#">
+                    Dashboard
+                </a>
+<a class="flex items-center gap-1 text-n2-red font-bold" href="#">
+                    Reports
+                    <span class="material-symbols-outlined text-[16px]">expand_more</span>
+</a>
+<a class="flex items-center gap-1 hover:text-n2-red transition-colors" href="#">
+                    Orders
+                </a>
+<a class="flex items-center gap-1 hover:text-n2-red transition-colors" href="#">
+                    Products
+                </a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<label class="hidden md:flex relative min-w-[240px]">
+<span class="absolute inset-y-0 left-0 flex items-center pl-3 text-n2-grey">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</span>
+<input class="w-full rounded-lg border border-n2-grey/50 bg-white py-2 pl-10 pr-4 text-sm text-n2-dark placeholder-n2-grey focus:border-n2-green focus:outline-none focus:ring-1 focus:ring-n2-green" placeholder="Search data..."/>
+</label>
+<div class="flex items-center gap-4">
+<button class="relative flex items-center justify-center text-n2-dark hover:text-n2-red transition-colors">
+<span class="material-symbols-outlined text-[24px]">notifications</span>
+<span class="absolute -right-1 -top-1 flex size-4 items-center justify-center rounded-full bg-n2-red text-[10px] font-bold text-white">3</span>
+</button>
+<div class="flex items-center gap-3 cursor-pointer">
+<div class="size-9 rounded-full bg-gray-200 bg-center bg-cover border border-n2-grey" data-alt="User profile avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBQIADCtA44abBgLnwGzCHTeUVOq_KtWRm2yavZAozXEgQvEnQJjKA2k-XpcHNM0xf1DjibiPTB_xeDn1JL0SE2_6QdtWmsB03XLNZAXON9wY7vFNVfiotmdg-jvr_7ohkPcsD-nafX9QJ99I2iJ46rc92jJz8DYnLFKxePZ7MpF8fLwvbK2f3be0EgHp_DLO1myTgYdkishIwnbIWsfvFhWy0Cq87B7GysLRJbWuuUGY2eIZCPJ9gIAFNjSEZ7hVAX7pnzApVOb9Nz');"></div>
+<div class="hidden lg:flex flex-col">
+<span class="text-xs font-bold text-n2-dark">Admin User</span>
+<span class="text-[10px] text-n2-grey">Super Admin</span>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 px-4 py-8 md:px-8 lg:px-12 max-w-[1440px] mx-auto w-full">
+<!-- Page Title & Exports -->
+<div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between mb-8">
+<div>
+<h1 class="text-3xl font-bold text-[#111111] tracking-tight">Revenue Report</h1>
+<p class="text-sm text-n2-grey mt-1">Detailed insights into revenue, products, customers, and promotions.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 rounded-lg border border-n2-green bg-white px-4 py-2 text-sm font-bold text-n2-dark hover:bg-n2-green/10 transition-colors">
+<span class="material-symbols-outlined text-[18px] text-n2-green">table_view</span>
+                    Export Excel
+                </button>
+<button class="flex items-center gap-2 rounded-lg border border-n2-green bg-white px-4 py-2 text-sm font-bold text-n2-dark hover:bg-n2-green/10 transition-colors">
+<span class="material-symbols-outlined text-[18px] text-n2-green">picture_as_pdf</span>
+                    Export PDF
+                </button>
+</div>
+</div>
+<!-- Navigation Tabs -->
+<div class="mb-8 border-b border-[#E8E8E8]">
+<nav aria-label="Tabs" class="flex space-x-8 overflow-x-auto">
+<a class="whitespace-nowrap border-b-2 border-n2-green py-4 px-1 text-sm font-bold text-[#111111]" href="#">
+                    Revenue Report
+                </a>
+<a class="whitespace-nowrap border-b-2 border-transparent py-4 px-1 text-sm font-medium text-n2-grey hover:border-n2-red hover:text-n2-red transition-colors" href="#">
+                    Product Report
+                </a>
+<a class="whitespace-nowrap border-b-2 border-transparent py-4 px-1 text-sm font-medium text-n2-grey hover:border-n2-red hover:text-n2-red transition-colors" href="#">
+                    Customer Report
+                </a>
+<a class="whitespace-nowrap border-b-2 border-transparent py-4 px-1 text-sm font-medium text-n2-grey hover:border-n2-red hover:text-n2-red transition-colors" href="#">
+                    Promotion Report
+                </a>
+</nav>
+</div>
+<!-- Controls / Filters -->
+<div class="mb-8 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between rounded-xl bg-white p-4 shadow-sm border border-[#E8E8E8]">
+<div class="flex flex-col gap-4 sm:flex-row sm:items-center w-full">
+<span class="text-sm font-bold text-[#111111] min-w-fit">Date Range:</span>
+<!-- Presets -->
+<div class="flex flex-wrap gap-2">
+<button class="rounded-md border border-n2-grey/30 bg-white px-3 py-1.5 text-xs font-medium text-n2-grey hover:border-n2-green hover:text-n2-dark transition-colors">Today</button>
+<button class="rounded-md border border-n2-grey/30 bg-white px-3 py-1.5 text-xs font-medium text-n2-grey hover:border-n2-green hover:text-n2-dark transition-colors">Yesterday</button>
+<button class="rounded-md border border-n2-green bg-n2-green/10 px-3 py-1.5 text-xs font-bold text-n2-dark ring-1 ring-n2-green">Last 7 days</button>
+<button class="rounded-md border border-n2-grey/30 bg-white px-3 py-1.5 text-xs font-medium text-n2-grey hover:border-n2-green hover:text-n2-dark transition-colors">Last 30 days</button>
+</div>
+<!-- Custom Picker -->
+<div class="flex items-center gap-2 flex-1 sm:max-w-xs">
+<div class="relative w-full">
+<input class="w-full rounded-lg border border-n2-grey/30 bg-white py-2 pl-3 pr-10 text-sm text-[#111111] focus:border-n2-green focus:ring-1 focus:ring-n2-green" type="text" value="Jan 15, 2023 - Jan 22, 2023"/>
+<span class="absolute inset-y-0 right-0 flex items-center pr-3 text-n2-grey pointer-events-none">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+</span>
+</div>
+</div>
+<button class="rounded-lg bg-n2-red px-6 py-2 text-sm font-bold text-white shadow-sm hover:bg-red-700 transition-colors w-full sm:w-auto">
+                    Apply
+                </button>
+</div>
+</div>
+<!-- KPI Cards -->
+<div class="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+<!-- Card 1 -->
+<div class="rounded-xl border border-[#E8E8E8] bg-white p-5 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<div>
+<p class="text-xs font-medium text-n2-grey uppercase tracking-wider">Total Revenue</p>
+<h3 class="mt-2 text-2xl font-black text-[#111111]">$124,500</h3>
+</div>
+<div class="rounded-full bg-n2-green/20 p-2 text-n2-dark">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+</div>
+</div>
+<div class="mt-4 flex items-center gap-2">
+<span class="flex items-center text-xs font-bold text-n2-dark bg-n2-green/30 px-1.5 py-0.5 rounded text-[#111111]">
+<span class="material-symbols-outlined text-[14px] mr-1">trending_up</span>
+                        +12.5%
+                    </span>
+<span class="text-xs text-n2-grey">vs last period</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="rounded-xl border border-[#E8E8E8] bg-white p-5 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<div>
+<p class="text-xs font-medium text-n2-grey uppercase tracking-wider">Total Orders</p>
+<h3 class="mt-2 text-2xl font-black text-[#111111]">1,842</h3>
+</div>
+<div class="rounded-full bg-[#f5f5f0] p-2 text-n2-dark">
+<span class="material-symbols-outlined text-[20px]">shopping_bag</span>
+</div>
+</div>
+<div class="mt-4 flex items-center gap-2">
+<span class="flex items-center text-xs font-bold text-n2-red bg-n2-red/10 px-1.5 py-0.5 rounded">
+<span class="material-symbols-outlined text-[14px] mr-1">trending_down</span>
+                        -2.1%
+                    </span>
+<span class="text-xs text-n2-grey">vs last period</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="rounded-xl border border-[#E8E8E8] bg-white p-5 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<div>
+<p class="text-xs font-medium text-n2-grey uppercase tracking-wider">Avg. Order Value</p>
+<h3 class="mt-2 text-2xl font-black text-[#111111]">$67.50</h3>
+</div>
+<div class="rounded-full bg-[#f5f5f0] p-2 text-n2-dark">
+<span class="material-symbols-outlined text-[20px]">receipt_long</span>
+</div>
+</div>
+<div class="mt-4 flex items-center gap-2">
+<span class="flex items-center text-xs font-bold text-n2-dark bg-n2-green/30 px-1.5 py-0.5 rounded text-[#111111]">
+<span class="material-symbols-outlined text-[14px] mr-1">trending_up</span>
+                        +5.4%
+                    </span>
+<span class="text-xs text-n2-grey">vs last period</span>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="rounded-xl border border-[#E8E8E8] bg-white p-5 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<div>
+<p class="text-xs font-medium text-n2-grey uppercase tracking-wider">Net Profit</p>
+<h3 class="mt-2 text-2xl font-black text-[#111111]">$42,300</h3>
+</div>
+<div class="rounded-full bg-[#f5f5f0] p-2 text-n2-dark">
+<span class="material-symbols-outlined text-[20px]">account_balance_wallet</span>
+</div>
+</div>
+<div class="mt-4 flex items-center gap-2">
+<span class="flex items-center text-xs font-bold text-n2-dark bg-n2-green/30 px-1.5 py-0.5 rounded text-[#111111]">
+<span class="material-symbols-outlined text-[14px] mr-1">trending_up</span>
+                        +8.2%
+                    </span>
+<span class="text-xs text-n2-grey">vs last period</span>
+</div>
+</div>
+</div>
+<!-- Charts Grid -->
+<div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+<!-- Chart 1: Revenue Over Time -->
+<div class="col-span-1 md:col-span-2 rounded-xl border border-[#E8E8E8] bg-white p-6 shadow-sm">
+<div class="mb-6 flex items-center justify-between">
+<h3 class="text-lg font-bold text-[#111111]">Revenue Over Time</h3>
+<button class="text-n2-grey hover:text-n2-dark">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<!-- Visual Mockup of Line Chart -->
+<div class="relative h-64 w-full">
+<div class="absolute inset-0 flex items-end justify-between px-2 pb-6">
+<!-- Y-Axis Grid Lines (Visual) -->
+<div class="absolute inset-0 flex flex-col justify-between py-6 pointer-events-none">
+<div class="w-full border-t border-dashed border-[#E8E8E8]"></div>
+<div class="w-full border-t border-dashed border-[#E8E8E8]"></div>
+<div class="w-full border-t border-dashed border-[#E8E8E8]"></div>
+<div class="w-full border-t border-dashed border-[#E8E8E8]"></div>
+<div class="w-full border-t border-[#E8E8E8]"></div>
+</div>
+<!-- Bars Mockup -->
+<div class="group relative z-10 flex h-full w-[8%] flex-col justify-end">
+<div class="w-full rounded-t-sm bg-n2-green/40 hover:bg-n2-red transition-colors h-[40%]"></div>
+<div class="mt-2 text-center text-xs text-n2-grey">Mon</div>
+<!-- Tooltip -->
+<div class="absolute -top-10 left-1/2 hidden -translate-x-1/2 rounded bg-[#111111] px-2 py-1 text-xs text-white group-hover:block z-20 whitespace-nowrap">
+                                $12k
+                            </div>
+</div>
+<div class="group relative z-10 flex h-full w-[8%] flex-col justify-end">
+<div class="w-full rounded-t-sm bg-n2-green/60 hover:bg-n2-red transition-colors h-[55%]"></div>
+<div class="mt-2 text-center text-xs text-n2-grey">Tue</div>
+<div class="absolute -top-10 left-1/2 hidden -translate-x-1/2 rounded bg-[#111111] px-2 py-1 text-xs text-white group-hover:block z-20 whitespace-nowrap">
+                                $18k
+                            </div>
+</div>
+<div class="group relative z-10 flex h-full w-[8%] flex-col justify-end">
+<div class="w-full rounded-t-sm bg-n2-green/80 hover:bg-n2-red transition-colors h-[30%]"></div>
+<div class="mt-2 text-center text-xs text-n2-grey">Wed</div>
+</div>
+<div class="group relative z-10 flex h-full w-[8%] flex-col justify-end">
+<div class="w-full rounded-t-sm bg-n2-green hover:bg-n2-red transition-colors h-[75%]"></div>
+<div class="mt-2 text-center text-xs text-n2-grey">Thu</div>
+<div class="absolute -top-10 left-1/2 hidden -translate-x-1/2 rounded bg-[#111111] px-2 py-1 text-xs text-white group-hover:block z-20 whitespace-nowrap">
+                                $25k
+                            </div>
+</div>
+<div class="group relative z-10 flex h-full w-[8%] flex-col justify-end">
+<div class="w-full rounded-t-sm bg-n2-green/90 hover:bg-n2-red transition-colors h-[60%]"></div>
+<div class="mt-2 text-center text-xs text-n2-grey">Fri</div>
+</div>
+<div class="group relative z-10 flex h-full w-[8%] flex-col justify-end">
+<div class="w-full rounded-t-sm bg-n2-green/50 hover:bg-n2-red transition-colors h-[85%]"></div>
+<div class="mt-2 text-center text-xs text-n2-grey">Sat</div>
+</div>
+<div class="group relative z-10 flex h-full w-[8%] flex-col justify-end">
+<div class="w-full rounded-t-sm bg-n2-green/30 hover:bg-n2-red transition-colors h-[50%]"></div>
+<div class="mt-2 text-center text-xs text-n2-grey">Sun</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Chart 2: Revenue by Category (Donut) -->
+<div class="col-span-1 rounded-xl border border-[#E8E8E8] bg-white p-6 shadow-sm">
+<div class="mb-6 flex items-center justify-between">
+<h3 class="text-lg font-bold text-[#111111]">Sales by Category</h3>
+</div>
+<div class="flex flex-col items-center justify-center">
+<div class="relative size-48 rounded-full" style="background: conic-gradient(#AFED00 0% 40%, #E42C14 40% 55%, #111111 55% 80%, #A5A5A5 80% 100%);">
+<div class="absolute inset-0 m-auto size-32 rounded-full bg-white flex flex-col items-center justify-center">
+<span class="text-xs text-n2-grey">Total</span>
+<span class="text-xl font-bold text-[#111111]">$124k</span>
+</div>
+</div>
+<div class="mt-6 grid w-full grid-cols-2 gap-4 text-sm">
+<div class="flex items-center gap-2">
+<span class="size-3 rounded-full bg-n2-green"></span>
+<span class="text-n2-dark">Football (40%)</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="size-3 rounded-full bg-n2-red"></span>
+<span class="text-n2-dark">Gym (15%)</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="size-3 rounded-full bg-[#111111]"></span>
+<span class="text-n2-dark">Running (25%)</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="size-3 rounded-full bg-n2-grey"></span>
+<span class="text-n2-dark">Others (20%)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Chart 3: Revenue by Brand -->
+<div class="col-span-1 md:col-span-1 rounded-xl border border-[#E8E8E8] bg-white p-6 shadow-sm">
+<div class="mb-6 flex items-center justify-between">
+<h3 class="text-lg font-bold text-[#111111]">Top Brands</h3>
+</div>
+<div class="flex flex-col gap-4">
+<!-- Item 1 -->
+<div class="w-full">
+<div class="mb-1 flex justify-between text-sm">
+<span class="font-medium text-n2-dark">Nike</span>
+<span class="font-bold text-n2-dark">$45,200</span>
+</div>
+<div class="h-2 w-full overflow-hidden rounded-full bg-[#f5f5f0]">
+<div class="h-full rounded-full bg-n2-green" style="width: 85%"></div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="w-full">
+<div class="mb-1 flex justify-between text-sm">
+<span class="font-medium text-n2-dark">Adidas</span>
+<span class="font-bold text-n2-dark">$32,100</span>
+</div>
+<div class="h-2 w-full overflow-hidden rounded-full bg-[#f5f5f0]">
+<div class="h-full rounded-full bg-n2-green/80" style="width: 65%"></div>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="w-full">
+<div class="mb-1 flex justify-between text-sm">
+<span class="font-medium text-n2-dark">Puma</span>
+<span class="font-bold text-n2-dark">$18,400</span>
+</div>
+<div class="h-2 w-full overflow-hidden rounded-full bg-[#f5f5f0]">
+<div class="h-full rounded-full bg-n2-green/60" style="width: 40%"></div>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="w-full">
+<div class="mb-1 flex justify-between text-sm">
+<span class="font-medium text-n2-dark">Under Armour</span>
+<span class="font-bold text-n2-dark">$9,800</span>
+</div>
+<div class="h-2 w-full overflow-hidden rounded-full bg-[#f5f5f0]">
+<div class="h-full rounded-full bg-n2-red" style="width: 25%"></div>
+</div>
+</div>
+<!-- Item 5 -->
+<div class="w-full">
+<div class="mb-1 flex justify-between text-sm">
+<span class="font-medium text-n2-dark">N2 Local</span>
+<span class="font-bold text-n2-dark">$5,200</span>
+</div>
+<div class="h-2 w-full overflow-hidden rounded-full bg-[#f5f5f0]">
+<div class="h-full rounded-full bg-n2-grey" style="width: 15%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Chart 4: Payment Methods -->
+<div class="col-span-1 md:col-span-1 xl:col-span-2 rounded-xl border border-[#E8E8E8] bg-white p-6 shadow-sm">
+<div class="mb-6 flex items-center justify-between">
+<h3 class="text-lg font-bold text-[#111111]">Payment Methods</h3>
+</div>
+<div class="flex flex-col md:flex-row items-center justify-between gap-8">
+<!-- Pie Visual -->
+<div class="relative size-40 rounded-full flex-shrink-0" data-alt="Pie chart showing payment methods distribution" style="background: conic-gradient(#AFED00 0% 60%, #111111 60% 85%, #A5A5A5 85% 100%);"></div>
+<!-- Table breakdown -->
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left text-sm">
+<thead class="border-b border-[#E8E8E8] text-xs uppercase text-n2-grey">
+<tr>
+<th class="py-2 font-medium">Method</th>
+<th class="py-2 font-medium">Transactions</th>
+<th class="py-2 font-medium text-right">Amount</th>
+<th class="py-2 font-medium text-right">%</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#E8E8E8]">
+<tr>
+<td class="py-3 flex items-center gap-2">
+<span class="size-2 rounded-full bg-n2-green"></span>
+                                        VNPay / Banking
+                                    </td>
+<td class="py-3">1,205</td>
+<td class="py-3 text-right font-bold">$74,700</td>
+<td class="py-3 text-right">60%</td>
+</tr>
+<tr>
+<td class="py-3 flex items-center gap-2">
+<span class="size-2 rounded-full bg-[#111111]"></span>
+                                        COD (Cash)
+                                    </td>
+<td class="py-3">450</td>
+<td class="py-3 text-right font-bold">$31,125</td>
+<td class="py-3 text-right">25%</td>
+</tr>
+<tr>
+<td class="py-3 flex items-center gap-2">
+<span class="size-2 rounded-full bg-n2-grey"></span>
+                                        Credit Card
+                                    </td>
+<td class="py-3">187</td>
+<td class="py-3 text-right font-bold">$18,675</td>
+<td class="py-3 text-right">15%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Transactions Table Section (Bonus for 'Stats Table' requirement) -->
+<div class="mt-8 rounded-xl border border-[#E8E8E8] bg-white shadow-sm overflow-hidden">
+<div class="flex items-center justify-between border-b border-[#E8E8E8] px-6 py-4">
+<h3 class="text-lg font-bold text-[#111111]">Recent Daily Revenue</h3>
+<button class="text-sm font-medium text-n2-red hover:underline">View All Reports</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left text-sm text-n2-dark">
+<thead class="bg-[#f9f9f9] text-xs uppercase text-n2-grey">
+<tr>
+<th class="px-6 py-3 font-semibold">Date</th>
+<th class="px-6 py-3 font-semibold">Orders</th>
+<th class="px-6 py-3 font-semibold">Gross Sales</th>
+<th class="px-6 py-3 font-semibold text-n2-red">Returns</th>
+<th class="px-6 py-3 font-semibold text-right">Net Sales</th>
+<th class="px-6 py-3 font-semibold text-center">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#E8E8E8]">
+<tr class="hover:bg-[#f9f9f9]">
+<td class="px-6 py-4">Jan 22, 2023</td>
+<td class="px-6 py-4">156</td>
+<td class="px-6 py-4">$12,450</td>
+<td class="px-6 py-4 text-n2-red">-$450</td>
+<td class="px-6 py-4 text-right font-bold">$12,000</td>
+<td class="px-6 py-4 text-center"><span class="inline-block rounded-full bg-n2-green/20 px-2 py-1 text-xs font-bold text-n2-dark">Excellent</span></td>
+</tr>
+<tr class="hover:bg-[#f9f9f9]">
+<td class="px-6 py-4">Jan 21, 2023</td>
+<td class="px-6 py-4">142</td>
+<td class="px-6 py-4">$10,800</td>
+<td class="px-6 py-4 text-n2-red">-$200</td>
+<td class="px-6 py-4 text-right font-bold">$10,600</td>
+<td class="px-6 py-4 text-center"><span class="inline-block rounded-full bg-n2-green/20 px-2 py-1 text-xs font-bold text-n2-dark">Good</span></td>
+</tr>
+<tr class="hover:bg-[#f9f9f9]">
+<td class="px-6 py-4">Jan 20, 2023</td>
+<td class="px-6 py-4">98</td>
+<td class="px-6 py-4">$6,200</td>
+<td class="px-6 py-4 text-n2-red">-$1,200</td>
+<td class="px-6 py-4 text-right font-bold">$5,000</td>
+<td class="px-6 py-4 text-center"><span class="inline-block rounded-full bg-n2-red/10 px-2 py-1 text-xs font-bold text-n2-red">Low</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="mt-auto bg-[#111111] px-6 py-10 text-white">
+<div class="mx-auto flex max-w-[1440px] flex-col justify-between gap-8 md:flex-row">
+<div>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-n2-green">bolt</span>
+<span class="text-xl font-bold">N2 Sport Admin</span>
+</div>
+<p class="text-sm text-n2-grey max-w-xs">
+                    Comprehensive sports e-commerce management system. Monitor sales, manage products, and grow your business.
+                </p>
+</div>
+<div class="flex gap-12 text-sm">
+<div class="flex flex-col gap-3">
+<span class="font-bold text-white">Quick Links</span>
+<a class="text-n2-grey hover:text-n2-green" href="#">Dashboard</a>
+<a class="text-n2-grey hover:text-n2-green" href="#">Orders</a>
+<a class="text-n2-grey hover:text-n2-green" href="#">Products</a>
+<a class="text-n2-grey hover:text-n2-green" href="#">Customers</a>
+</div>
+<div class="flex flex-col gap-3">
+<span class="font-bold text-white">Support</span>
+<a class="text-n2-grey hover:text-n2-green" href="#">Help Center</a>
+<a class="text-n2-grey hover:text-n2-green" href="#">Documentation</a>
+<a class="text-n2-grey hover:text-n2-green" href="#">Contact Tech</a>
+</div>
+</div>
+</div>
+<div class="mx-auto mt-10 max-w-[1440px] border-t border-n2-grey/20 pt-6 text-center text-xs text-n2-grey md:text-left">
+            © 2023 N2 Sport Inc. All rights reserved.
+        </div>
+</footer>
+</div>
+</body></html>

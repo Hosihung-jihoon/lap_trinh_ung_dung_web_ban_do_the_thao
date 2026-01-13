@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>N2 Sport - Chính sách bảo mật</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&amp;family=Montserrat:wght@500;600;700&amp;family=Roboto:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#AFED00", // Neon Lime
+                        "secondary": "#E42C14", // Red Orange
+                        "neutral-dark": "#111111", // Black
+                        "neutral-mid": "#A5A5A5", // Medium Grey
+                        "neutral-light": "#E8E8E8", // Light Grey
+                        "background-light": "#FFFFFF",
+                        "background-dark": "#1e230f",
+                    },
+                    fontFamily: {
+                        "display": ["Montserrat", "sans-serif"],
+                        "body": ["Lexend", "sans-serif"],
+                        "content": ["Roboto", "sans-serif"],
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Smooth scrolling for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Print styles */
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            .print-only {
+                display: block !important;
+            }
+            body {
+                background-color: white;
+                color: black;
+            }
+            .print-container {
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background-light font-body text-neutral-dark antialiased selection:bg-primary selection:text-neutral-dark flex flex-col min-h-screen">
+<!-- Header: Sticky, White Background -->
+<header class="sticky top-0 z-50 w-full bg-white border-b border-neutral-light no-print">
+<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-20">
+<!-- Logo & Menu -->
+<div class="flex items-center gap-10">
+<a class="flex items-center gap-2 group" href="#">
+<!-- Logo Icon -->
+<div class="size-8 bg-neutral-dark rounded flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-neutral-dark transition-colors">
+<span class="material-symbols-outlined font-bold">bolt</span>
+</div>
+<h1 class="text-3xl font-display font-extrabold text-primary tracking-tighter group-hover:text-neutral-dark transition-colors">N2 SPORT</h1>
+</a>
+<!-- Mega Menu (Desktop) -->
+<nav class="hidden lg:flex items-center gap-8">
+<a class="text-neutral-dark font-medium hover:text-secondary transition-colors" href="#">Nam</a>
+<a class="text-neutral-dark font-medium hover:text-secondary transition-colors" href="#">Nữ</a>
+<a class="text-neutral-dark font-medium hover:text-secondary transition-colors" href="#">Phụ kiện</a>
+<a class="text-secondary font-bold hover:opacity-80 transition-opacity" href="#">Sale</a>
+</nav>
+</div>
+<!-- Actions: Search, Cart, User -->
+<div class="flex items-center gap-6">
+<!-- Search Bar -->
+<div class="hidden md:flex items-center relative w-64 group">
+<input class="w-full pl-4 pr-10 py-2 rounded-full border border-neutral-mid focus:border-secondary focus:ring-1 focus:ring-secondary text-sm outline-none transition-all placeholder:text-neutral-mid/70" placeholder="Tìm kiếm sản phẩm..." type="text"/>
+<button class="absolute right-3 text-neutral-mid group-hover:text-secondary transition-colors">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</button>
+</div>
+<div class="flex items-center gap-4">
+<button class="relative group p-1">
+<span class="material-symbols-outlined text-neutral-dark group-hover:text-secondary transition-colors">shopping_cart</span>
+<span class="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-secondary text-[10px] font-bold text-white">3</span>
+</button>
+<button class="group p-1">
+<span class="material-symbols-outlined text-neutral-dark group-hover:text-secondary transition-colors">account_circle</span>
+</button>
+<!-- Mobile Menu Button -->
+<button class="lg:hidden p-1">
+<span class="material-symbols-outlined text-neutral-dark">menu</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Container -->
+<main class="flex-grow w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-6 print-container">
+<!-- Breadcrumbs -->
+<nav class="flex items-center text-sm font-medium mb-8 no-print">
+<a class="text-neutral-dark hover:text-secondary transition-colors" href="#">Home</a>
+<span class="material-symbols-outlined text-neutral-mid text-sm mx-2">chevron_right</span>
+<a class="text-neutral-dark hover:text-secondary transition-colors" href="#">Chính sách</a>
+<span class="material-symbols-outlined text-neutral-mid text-sm mx-2">chevron_right</span>
+<span class="text-neutral-mid">Chính sách bảo mật</span>
+</nav>
+<div class="flex flex-col lg:flex-row gap-12">
+<!-- Sticky Sidebar Navigation -->
+<aside class="w-full lg:w-1/4 no-print">
+<div class="lg:sticky lg:top-24 bg-neutral-light rounded-xl p-6 shadow-sm">
+<h2 class="text-xl font-display font-bold text-neutral-dark mb-6 border-b border-neutral-mid/20 pb-4">Chính sách</h2>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center justify-between px-4 py-3 rounded-lg bg-primary text-neutral-dark font-semibold shadow-sm transform transition-all" href="#">
+<span>Chính sách bảo mật</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+<a class="px-4 py-3 rounded-lg text-neutral-dark hover:text-secondary hover:bg-white transition-colors" href="#">Điều khoản sử dụng</a>
+<a class="px-4 py-3 rounded-lg text-neutral-dark hover:text-secondary hover:bg-white transition-colors" href="#">Chính sách vận chuyển</a>
+<a class="px-4 py-3 rounded-lg text-neutral-dark hover:text-secondary hover:bg-white transition-colors" href="#">Chính sách đổi trả</a>
+<a class="px-4 py-3 rounded-lg text-neutral-dark hover:text-secondary hover:bg-white transition-colors" href="#">Hướng dẫn chọn size</a>
+<a class="px-4 py-3 rounded-lg text-neutral-dark hover:text-secondary hover:bg-white transition-colors" href="#">Hướng dẫn mua hàng</a>
+<a class="px-4 py-3 rounded-lg text-neutral-dark hover:text-secondary hover:bg-white transition-colors" href="#">Hình thức thanh toán</a>
+</nav>
+</div>
+</aside>
+<!-- Policy Content Area -->
+<article class="w-full lg:w-3/4 max-w-[800px] print-container">
+<!-- Header Section -->
+<div class="flex flex-wrap items-start justify-between gap-4 mb-8 border-b border-neutral-light pb-6">
+<div>
+<h1 class="text-3xl md:text-4xl font-display font-black text-neutral-dark mb-2">Chính sách bảo mật</h1>
+<p class="text-neutral-mid text-sm">Cập nhật lần cuối: 20/10/2023</p>
+</div>
+<button class="no-print flex items-center gap-2 px-4 py-2 border-2 border-secondary rounded-lg text-secondary font-bold hover:bg-secondary hover:text-white transition-colors group" onclick="window.print()">
+<span class="material-symbols-outlined group-hover:animate-bounce">print</span>
+<span>In trang</span>
+</button>
+</div>
+<!-- Table of Contents (Anchor Links) -->
+<div class="bg-neutral-light/30 rounded-lg p-6 mb-10 border border-neutral-light no-print">
+<p class="font-bold text-neutral-dark mb-3">Mục lục:</p>
+<ul class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
+<li><a class="text-neutral-dark hover:text-secondary hover:underline flex items-center gap-2" href="#section-1"><span class="size-1.5 rounded-full bg-primary"></span> 1. Mục đích thu thập thông tin</a></li>
+<li><a class="text-neutral-dark hover:text-secondary hover:underline flex items-center gap-2" href="#section-2"><span class="size-1.5 rounded-full bg-primary"></span> 2. Phạm vi sử dụng thông tin</a></li>
+<li><a class="text-neutral-dark hover:text-secondary hover:underline flex items-center gap-2" href="#section-3"><span class="size-1.5 rounded-full bg-primary"></span> 3. Thời gian lưu trữ</a></li>
+<li><a class="text-neutral-dark hover:text-secondary hover:underline flex items-center gap-2" href="#section-4"><span class="size-1.5 rounded-full bg-primary"></span> 4. Chia sẻ thông tin</a></li>
+</ul>
+</div>
+<!-- Rich Text Content -->
+<div class="font-content text-neutral-dark space-y-8 text-lg leading-relaxed">
+<p>
+                        Chào mừng bạn đến với <strong>N2 Sport</strong>. Chúng tôi cam kết bảo vệ thông tin cá nhân của bạn và tôn trọng quyền riêng tư của khách hàng. Chính sách bảo mật này giải thích cách chúng tôi thu thập, sử dụng và bảo vệ thông tin cá nhân của bạn khi bạn truy cập trang web hoặc mua sắm tại cửa hàng trực tuyến của chúng tôi.
+                    </p>
+<section class="scroll-mt-32" id="section-1">
+<h2 class="text-2xl font-display font-bold mb-4 flex items-center gap-3">
+<span class="bg-primary text-neutral-dark size-8 rounded flex items-center justify-center text-sm font-bold">1</span>
+                            Mục đích và phạm vi thu thập
+                        </h2>
+<p class="mb-4">
+                            Việc thu thập dữ liệu chủ yếu trên website N2 Sport bao gồm: email, điện thoại, tên đăng nhập, mật khẩu đăng nhập, địa chỉ khách hàng. Đây là các thông tin mà N2 Sport cần thành viên cung cấp bắt buộc khi đăng ký sử dụng dịch vụ và để N2 Sport liên hệ xác nhận khi khách hàng đăng ký sử dụng dịch vụ trên website nhằm đảm bảo quyền lợi cho cho người tiêu dùng.
+                        </p>
+<p>Các thành viên sẽ tự chịu trách nhiệm về bảo mật và lưu giữ mọi hoạt động sử dụng dịch vụ dưới tên đăng ký, mật khẩu và hộp thư điện tử của mình.</p>
+</section>
+<section class="scroll-mt-32" id="section-2">
+<h2 class="text-2xl font-display font-bold mb-4 flex items-center gap-3">
+<span class="bg-primary text-neutral-dark size-8 rounded flex items-center justify-center text-sm font-bold">2</span>
+                            Phạm vi sử dụng thông tin
+                        </h2>
+<p class="mb-4">Website N2 Sport sử dụng thông tin thành viên cung cấp để:</p>
+<ul class="list-disc pl-6 space-y-2 marker:text-primary">
+<li>Cung cấp các dịch vụ đến thành viên.</li>
+<li>Gửi các thông báo về các hoạt động trao đổi thông tin giữa thành viên và website N2 Sport.</li>
+<li>Ngăn ngừa các hoạt động phá hủy tài khoản người dùng của thành viên hoặc các hoạt động giả mạo thành viên.</li>
+<li>Liên lạc và giải quyết với thành viên trong những trường hợp đặc biệt.</li>
+<li>Không sử dụng thông tin cá nhân của thành viên ngoài mục đích xác nhận và liên hệ có liên quan đến giao dịch tại N2 Sport.</li>
+</ul>
+</section>
+<section class="scroll-mt-32" id="section-3">
+<h2 class="text-2xl font-display font-bold mb-4 flex items-center gap-3">
+<span class="bg-primary text-neutral-dark size-8 rounded flex items-center justify-center text-sm font-bold">3</span>
+                            Thời gian lưu trữ thông tin
+                        </h2>
+<p class="mb-4">
+                            Dữ liệu cá nhân của thành viên sẽ được lưu trữ cho đến khi có yêu cầu hủy bỏ hoặc tự thành viên đăng nhập và thực hiện hủy bỏ. Còn lại trong mọi trường hợp thông tin cá nhân thành viên sẽ được bảo mật trên máy chủ của N2 Sport.
+                        </p>
+<div class="bg-neutral-light p-4 rounded-lg border-l-4 border-secondary text-sm italic">
+                            Lưu ý: Chúng tôi có thể lưu giữ một số thông tin nhất định theo yêu cầu của pháp luật hoặc cho mục đích kinh doanh hợp pháp.
+                        </div>
+</section>
+<section class="scroll-mt-32" id="section-4">
+<h2 class="text-2xl font-display font-bold mb-4 flex items-center gap-3">
+<span class="bg-primary text-neutral-dark size-8 rounded flex items-center justify-center text-sm font-bold">4</span>
+                            Cam kết bảo mật thông tin
+                        </h2>
+<p>
+                            Thông tin cá nhân của thành viên trên N2 Sport được chúng tôi cam kết bảo mật tuyệt đối theo chính sách bảo vệ thông tin cá nhân của N2 Sport. Việc thu thập và sử dụng thông tin của mỗi thành viên chỉ được thực hiện khi có sự đồng ý của khách hàng đó trừ những trường hợp pháp luật có quy định khác.
+                        </p>
+</section>
+</div>
+<div class="mt-12 pt-8 border-t border-neutral-light">
+<p class="text-neutral-mid text-sm text-center">Nếu bạn có bất kỳ câu hỏi nào về Chính sách bảo mật này, vui lòng liên hệ với chúng tôi qua email <a class="text-secondary font-medium hover:underline" href="mailto:support@n2sport.com">support@n2sport.com</a></p>
+</div>
+</article>
+</div>
+</main>
+<!-- Footer: Dark Theme -->
+<footer class="bg-neutral-dark text-white pt-16 pb-8 mt-20 no-print">
+<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+<!-- Brand Info -->
+<div class="space-y-4">
+<div class="flex items-center gap-2">
+<div class="size-8 bg-primary rounded flex items-center justify-center text-neutral-dark">
+<span class="material-symbols-outlined font-bold">bolt</span>
+</div>
+<h2 class="text-2xl font-display font-extrabold text-white">N2 SPORT</h2>
+</div>
+<p class="text-neutral-mid text-sm leading-relaxed">
+                        Chuyên cung cấp các sản phẩm thể thao chất lượng cao: giày dép, quần áo gym, dụng cụ tập luyện. Đồng hành cùng đam mê của bạn.
+                    </p>
+<div class="flex gap-4 pt-2">
+<a class="text-neutral-mid hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">thumb_up</span></a> <!-- Mock Facebook Icon -->
+<a class="text-neutral-mid hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">photo_camera</span></a> <!-- Mock Instagram Icon -->
+<a class="text-neutral-mid hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">smart_display</span></a> <!-- Mock Youtube Icon -->
+</div>
+</div>
+<!-- Links 1 -->
+<div>
+<h3 class="text-lg font-bold mb-6 text-white font-display">Về N2 Sport</h3>
+<ul class="space-y-3 text-sm">
+<li><a class="text-neutral-mid hover:text-primary transition-colors" href="#">Giới thiệu</a></li>
+<li><a class="text-neutral-mid hover:text-primary transition-colors" href="#">Hệ thống cửa hàng</a></li>
+<li><a class="text-neutral-mid hover:text-primary transition-colors" href="#">Tuyển dụng</a></li>
+<li><a class="text-neutral-mid hover:text-primary transition-colors" href="#">Tin tức</a></li>
+</ul>
+</div>
+<!-- Links 2 (Policy Links Quick Access) -->
+<div>
+<h3 class="text-lg font-bold mb-6 text-white font-display">Chính sách khách hàng</h3>
+<ul class="space-y-3 text-sm">
+<li><a class="text-primary hover:text-white transition-colors" href="#">Chính sách bảo mật</a></li>
+<li><a class="text-neutral-mid hover:text-primary transition-colors" href="#">Điều khoản sử dụng</a></li>
+<li><a class="text-neutral-mid hover:text-primary transition-colors" href="#">Chính sách vận chuyển</a></li>
+<li><a class="text-neutral-mid hover:text-primary transition-colors" href="#">Chính sách đổi trả</a></li>
+</ul>
+</div>
+<!-- Contact -->
+<div>
+<h3 class="text-lg font-bold mb-6 text-white font-display">Liên hệ</h3>
+<ul class="space-y-4 text-sm">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-0.5">location_on</span>
+<span class="text-neutral-mid">123 Đường Thể Thao, Quận 1, TP. Hồ Chí Minh</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">call</span>
+<span class="text-neutral-mid">1900 123 456</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">mail</span>
+<span class="text-neutral-mid">support@n2sport.com</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-neutral-mid">
+<p>© 2024 N2 Sport. All rights reserved.</p>
+<div class="flex gap-6">
+<img alt="Visa payment method logo" class="opacity-50 hover:opacity-100 transition-opacity" data-alt="Visa card logo placeholder" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0aBPh5GDGdLdOuwxC5Tqg6zEUV6iftCm9ezaXM_4Ez6faD2IuhOQSN-QwRgqLIFff4wC7qqTszKa_6xCxjSeRqDKzCVv2mG1zqVvIeTKQguSKJh9GB65JPAM14SaXFnveg7tb-b2wmDy8Ucba4rl0iFINA97o6a_vgrL29Ip9b5OPZyN0D8w0JHPKu0NcSMsD2jr9f_EkNzjD61NbwA-2jBiJio_g1E2f6v5J3sVvHwgJVxrxmIbsaE37QKDJKD_7JxISXQSra5Yd"/>
+<img alt="Mastercard payment method logo" class="opacity-50 hover:opacity-100 transition-opacity" data-alt="Mastercard logo placeholder" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbXZPxqkk_KN8roZleYCA5njxgTgZu5XYYg7DkpNi0_5R1EbNVguXJVf6_U2JcHAMIsH1y6nMuLQs6OAeMFWJfJCdJ1uBH0uE_4VE-kzvoLvtePAOENso7wUJn6fhp-AGxha9Wv1qKpCQPTldSSZFl56AXzvyGDundc7IjBlk0ynCH1DATqkSscctmjXxEzcuXD0R2OmKGixGfMoYj79MjCBeLobTpFlyNOVw1zeKvvXyO2NN5vbaZ188ceCrPZ44pLX2khr44isnb"/>
+<img alt="Momo payment method logo" class="opacity-50 hover:opacity-100 transition-opacity" data-alt="Momo logo placeholder" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAEjbvWVdQsNXUJGdvn4n4tBRdLvlftlovw1koAKrPe9XvVbY1BsVtO9RALS3KEKPM-MeeIuEWIK2KYv6xQLXSkzl70vYe3NmamqWv4YJQFH_zDrZUgO_1LlQM9NPGE75T44-gFgXzUalZ1z7t-XsXYvV_jLyYwl-LOZLMgNjT8D-nyfpdFitPw2hgf7wtuXtMvqudohlXjkhYbsjuDqBT2LduBa6_W1pDvosY0cDrKPHriwvzooG2W0sR4AvleG7rmBFUSOVClztj"/>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

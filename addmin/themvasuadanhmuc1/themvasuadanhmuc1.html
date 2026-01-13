@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>N2 Sport - Add Category</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#e62c14", // Red for actions/warnings
+                        "secondary": "#AFED00", // Lime/Green for success/active
+                        "text-main": "#111111",
+                        "text-sub": "#A5A5A5",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221210",
+                        "border-main": "#A5A5A5",
+                        "surface-secondary": "#E8E8E8"
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for better aesthetic in the panel */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #d1d1d1;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #A5A5A5;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-main font-display antialiased min-h-screen flex flex-col">
+<!-- Main Content Wrapper -->
+<div class="flex-grow w-full flex justify-center items-start pt-8 pb-12 px-4 sm:px-6">
+<!-- Main Form Container (Simulating a Panel/Modal) -->
+<div class="relative w-full max-w-[800px] bg-white rounded-xl shadow-xl border border-gray-100 flex flex-col overflow-hidden animate-fade-in-up">
+<!-- Header -->
+<div class="flex items-center justify-between px-6 py-5 border-b border-surface-secondary bg-white sticky top-0 z-10">
+<div class="flex flex-col gap-1">
+<h1 class="text-text-main text-2xl font-bold leading-tight">Thêm danh mục</h1>
+<p class="text-text-sub text-sm font-medium">Nhập thông tin chi tiết để tạo danh mục sản phẩm mới</p>
+</div>
+<button aria-label="Close" class="group flex items-center justify-center w-10 h-10 rounded-lg hover:bg-surface-secondary transition-colors">
+<span class="material-symbols-outlined text-text-sub group-hover:text-primary transition-colors">close</span>
+</button>
+</div>
+<!-- Form Content (Scrollable) -->
+<div class="flex-1 overflow-y-auto custom-scrollbar p-6 space-y-8 max-h-[calc(100vh-250px)]">
+<!-- Section: General Info -->
+<div class="space-y-6">
+<h2 class="text-lg font-bold text-text-main border-l-4 border-primary pl-3">Thông tin chung</h2>
+<!-- Name & Slug -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<label class="flex flex-col flex-1">
+<span class="text-text-main text-sm font-bold pb-2">Tên danh mục <span class="text-primary">*</span></span>
+<input class="form-input w-full rounded-lg border border-border-main bg-white text-text-main h-12 px-4 focus:ring-0 focus:border-primary placeholder:text-text-sub text-sm transition-colors" placeholder="Ví dụ: Giày chạy bộ nam" type="text" value=""/>
+</label>
+<label class="flex flex-col flex-1">
+<span class="text-text-main text-sm font-bold pb-2">Đường dẫn tĩnh (Slug)</span>
+<div class="relative">
+<input class="form-input w-full rounded-lg border border-border-main bg-white text-text-sub h-12 px-4 focus:ring-0 focus:border-primary text-sm font-mono" type="text" value="giay-chay-bo-nam"/>
+<span class="material-symbols-outlined absolute right-3 top-3 text-text-sub text-[20px]">link</span>
+</div>
+<span class="text-xs text-text-sub mt-1">Preview: n2sport.com/danh-muc/<span class="font-medium">giay-chay-bo-nam</span></span>
+</label>
+</div>
+<!-- Parent Category & Sort Order -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<label class="flex flex-col flex-1 md:col-span-2">
+<span class="text-text-main text-sm font-bold pb-2">Danh mục cha</span>
+<div class="relative">
+<select class="form-select w-full rounded-lg border border-border-main bg-white text-text-main h-12 px-4 pr-10 focus:ring-0 focus:border-primary text-sm appearance-none">
+<option value="root">Danh mục gốc (None)</option>
+<option value="men">👱 Nam</option>
+<option value="men-shoes">   👟 Giày nam</option>
+<option value="women">👩 Nữ</option>
+<option value="women-shoes">   👠 Giày nữ</option>
+<option value="accessories">🎒 Phụ kiện</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 text-text-sub pointer-events-none">expand_more</span>
+</div>
+</label>
+<label class="flex flex-col flex-1">
+<span class="text-text-main text-sm font-bold pb-2">Thứ tự sắp xếp</span>
+<div class="relative">
+<input class="form-input w-full rounded-lg border border-border-main bg-white text-text-main h-12 px-4 focus:ring-0 focus:border-primary text-sm" type="number" value="10"/>
+<div class="absolute right-2 top-1 flex flex-col h-10 justify-center">
+<button class="text-text-sub hover:text-primary"><span class="material-symbols-outlined text-[16px]">expand_less</span></button>
+<button class="text-text-sub hover:text-primary"><span class="material-symbols-outlined text-[16px]">expand_more</span></button>
+</div>
+</div>
+</label>
+</div>
+<!-- Description -->
+<label class="flex flex-col flex-1">
+<span class="text-text-main text-sm font-bold pb-2">Mô tả</span>
+<div class="relative rounded-lg border border-border-main overflow-hidden">
+<div class="bg-surface-secondary px-3 py-2 flex gap-2 border-b border-border-main">
+<button class="text-text-main hover:bg-white p-1 rounded"><span class="material-symbols-outlined text-[18px]">format_bold</span></button>
+<button class="text-text-main hover:bg-white p-1 rounded"><span class="material-symbols-outlined text-[18px]">format_italic</span></button>
+<button class="text-text-main hover:bg-white p-1 rounded"><span class="material-symbols-outlined text-[18px]">format_list_bulleted</span></button>
+<div class="w-[1px] h-6 bg-border-main mx-1"></div>
+<button class="text-text-main hover:bg-white p-1 rounded"><span class="material-symbols-outlined text-[18px]">link</span></button>
+</div>
+<textarea class="form-textarea w-full border-none focus:ring-0 bg-white text-text-main min-h-[120px] p-4 text-sm" placeholder="Nhập mô tả chi tiết cho danh mục..."></textarea>
+</div>
+</label>
+</div>
+<div class="w-full h-[1px] bg-surface-secondary"></div>
+<!-- Section: Media & Status -->
+<div class="space-y-6">
+<h2 class="text-lg font-bold text-text-main border-l-4 border-primary pl-3">Hiển thị &amp; Trạng thái</h2>
+<div class="flex flex-col md:flex-row gap-8">
+<!-- Image Upload -->
+<div class="flex-1">
+<span class="text-text-main text-sm font-bold pb-2 block">Hình ảnh đại diện</span>
+<div class="mt-1 flex justify-center rounded-lg border-2 border-dashed border-border-main px-6 py-8 hover:bg-background-light transition-colors cursor-pointer group">
+<div class="text-center">
+<span class="material-symbols-outlined mx-auto text-4xl text-text-sub group-hover:text-primary transition-colors mb-3">add_photo_alternate</span>
+<div class="flex text-sm leading-6 text-text-sub justify-center">
+<label class="relative cursor-pointer rounded-md bg-transparent font-bold text-primary focus-within:outline-none hover:text-red-700" for="file-upload">
+<span>Tải ảnh lên</span>
+<input class="sr-only" id="file-upload" name="file-upload" type="file"/>
+</label>
+<p class="pl-1">hoặc kéo thả vào đây</p>
+</div>
+<p class="text-xs leading-5 text-text-sub mt-2">PNG, JPG, WEBP tối đa 5MB</p>
+</div>
+</div>
+<!-- Image Preview (Mockup) -->
+<div class="mt-4 flex items-center gap-4 p-3 bg-surface-secondary rounded-lg border border-border-main/20">
+<div class="h-16 w-16 rounded overflow-hidden flex-shrink-0 bg-white border border-border-main/50 relative group/img">
+<img class="w-full h-full object-cover" data-alt="Red athletic shoe mockup for category thumbnail" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcIWvrTYz3-mLLw1ZahACF7xYAd-zwfYb9MRzJd4OP5zwmYWWt_d-OaEndaOC3SswqGFixIVHrWanVMevK2dyV84FYGIpP3TbTygfmE6k1gNE2Gc4sG4YFOVZf49bRYR9wvc4wMRGpXqbqencLMUijFAEWxdYoEqZ5QgQ9ks_MU68CWW7KOfrKDcGGq_64oYpufyesJq1tjEwf7Lyi85XtxQvw1ScQntaST_zSE3j3Tj5PjvlyXxG5tU05P5ckvob2SnIOV7yiv71z"/>
+<div class="absolute inset-0 bg-black/40 hidden group-hover/img:flex items-center justify-center cursor-pointer">
+<span class="material-symbols-outlined text-white text-sm">crop</span>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-bold text-text-main truncate">banner_giay_nam_mua_he.jpg</p>
+<p class="text-xs text-text-sub">1.2 MB</p>
+</div>
+<button class="text-primary hover:bg-red-50 p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+<!-- Status Toggle -->
+<div class="w-full md:w-64 flex flex-col gap-4">
+<span class="text-text-main text-sm font-bold block">Trạng thái hoạt động</span>
+<label class="relative inline-flex items-center cursor-pointer group">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-14 h-7 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-secondary"></div>
+<span class="ml-3 text-sm font-medium text-text-main group-hover:text-primary transition-colors">Đang hiển thị</span>
+</label>
+<p class="text-xs text-text-sub leading-relaxed">
+                                Khi tắt, danh mục này sẽ ẩn khỏi menu và các trang liệt kê, nhưng vẫn có thể truy cập qua link trực tiếp nếu chưa xóa.
+                            </p>
+</div>
+</div>
+</div>
+<div class="w-full h-[1px] bg-surface-secondary"></div>
+<!-- Section: SEO -->
+<div class="space-y-6 bg-surface-secondary/30 p-5 rounded-xl border border-border-main/30">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">search</span>
+<h2 class="text-lg font-bold text-text-main">Tối ưu SEO</h2>
+</div>
+<label class="flex flex-col flex-1">
+<div class="flex justify-between pb-2">
+<span class="text-text-main text-sm font-bold">Thẻ tiêu đề (Meta Title)</span>
+<span class="text-xs text-text-sub">0/70</span>
+</div>
+<input class="form-input w-full rounded-lg border border-border-main bg-white text-text-main h-12 px-4 focus:ring-0 focus:border-primary text-sm" placeholder="Giày Chạy Bộ Nam Chính Hãng, Giá Tốt | N2 Sport" type="text"/>
+</label>
+<label class="flex flex-col flex-1">
+<div class="flex justify-between pb-2">
+<span class="text-text-main text-sm font-bold">Thẻ mô tả (Meta Description)</span>
+<span class="text-xs text-primary font-bold">158/160</span>
+</div>
+<textarea class="form-textarea w-full rounded-lg border border-border-main bg-white text-text-main h-24 p-4 focus:ring-0 focus:border-primary text-sm" placeholder="Mua giày chạy bộ nam chính hãng tại N2 Sport. Đa dạng mẫu mã, công nghệ tiên tiến, hỗ trợ vận động tối ưu. Giao hàng toàn quốc, đổi trả dễ dàng.">Mua giày chạy bộ nam chính hãng tại N2 Sport. Đa dạng mẫu mã, công nghệ tiên tiến, hỗ trợ vận động tối ưu. Giao hàng toàn quốc, đổi trả dễ dàng.</textarea>
+<!-- Validation Warning Example -->
+<p class="text-xs text-primary mt-1 hidden">Mô tả không nên vượt quá 160 ký tự để hiển thị tốt nhất trên Google.</p>
+</label>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="border-t border-surface-secondary bg-white px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4 sticky bottom-0 z-10">
+<span class="text-xs text-text-sub hidden sm:inline-block">* Các trường bắt buộc</span>
+<div class="flex gap-3 w-full sm:w-auto">
+<button class="flex-1 sm:flex-none px-6 py-2.5 rounded-lg border border-border-main text-text-main font-bold text-sm hover:bg-surface-secondary transition-colors">
+                        Hủy
+                    </button>
+<button class="flex-1 sm:flex-none px-8 py-2.5 rounded-lg bg-primary text-white font-bold text-sm hover:bg-red-700 transition-colors shadow-lg shadow-red-500/30 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">save</span>
+                        Lưu thay đổi
+                    </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Admin Site Footer -->
+<footer class="bg-text-main text-white py-8 px-6 mt-auto">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center font-bold text-white">N2</div>
+<span class="font-bold text-lg tracking-tight">N2 SPORT ADMIN</span>
+</div>
+<p class="text-sm text-gray-400">Hệ thống quản trị thương mại điện tử chuyên nghiệp.</p>
+</div>
+<div class="flex gap-6 text-sm text-gray-400">
+<a class="hover:text-white transition-colors" href="#">Tổng quan</a>
+<a class="hover:text-white transition-colors" href="#">Sản phẩm</a>
+<a class="hover:text-white transition-colors" href="#">Đơn hàng</a>
+<a class="hover:text-white transition-colors" href="#">Cài đặt</a>
+</div>
+<div class="text-xs text-gray-500">
+                © 2024 N2 Sport. All rights reserved.
+            </div>
+</div>
+</footer>
+</body></html>

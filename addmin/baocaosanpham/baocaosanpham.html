@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>N2 Sport - Product Report</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#AFED00",
+              "alert": "#E42C14",
+              "dark-text": "#111111",
+              "secondary-text": "#A5A5A5",
+              "divider": "#E8E8E8",
+              "background-light": "#FFFFFF",
+              "background-page": "#F9F9F9",
+              "background-dark": "#111111",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"],
+              "sans": ["Inter", "sans-serif"],
+            },
+            borderRadius: {"DEFAULT": "0.375rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-page text-dark-text min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 bg-background-light border-b border-divider px-6 py-3 shadow-sm">
+<div class="flex items-center justify-between max-w-[1400px] mx-auto w-full">
+<!-- Logo & Nav -->
+<div class="flex items-center gap-10">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-3xl">sports_soccer</span>
+<h1 class="text-xl font-bold tracking-tight text-dark-text">N2 Sport Admin</h1>
+</div>
+<nav class="hidden md:flex items-center gap-6 text-sm font-medium text-secondary-text">
+<a class="hover:text-dark-text transition-colors" href="#">Dashboard</a>
+<a class="text-dark-text relative" href="#">
+                        Reports
+                        <span class="absolute -bottom-[22px] left-0 w-full h-[3px] bg-primary rounded-t-sm"></span>
+</a>
+<a class="hover:text-dark-text transition-colors" href="#">Orders</a>
+<a class="hover:text-dark-text transition-colors" href="#">Customers</a>
+</nav>
+</div>
+<!-- Search & Actions -->
+<div class="flex items-center gap-6">
+<div class="hidden lg:flex items-center bg-gray-50 border border-secondary-text rounded-lg px-3 py-2 w-64 focus-within:ring-2 focus-within:ring-primary/50 transition-all">
+<span class="material-symbols-outlined text-secondary-text text-[20px]">search</span>
+<input class="bg-transparent border-none text-sm w-full focus:ring-0 p-0 pl-2 placeholder:text-secondary-text" placeholder="Search..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="relative p-2 rounded-full hover:bg-gray-100 transition-colors">
+<span class="material-symbols-outlined text-dark-text">notifications</span>
+<span class="absolute top-1.5 right-1.5 size-2.5 bg-alert rounded-full border-2 border-white"></span>
+</button>
+<div class="h-8 w-[1px] bg-divider"></div>
+<button class="flex items-center gap-2 hover:bg-gray-100 p-1 pr-3 rounded-lg transition-colors">
+<div class="size-8 rounded-full bg-gray-200 bg-cover bg-center" data-alt="User profile picture" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDBvxKrp0UVhDuraPAna9wcvV-uiEBwy-l6tT3L4226NJ4DlTO3rheVwNP7TcosZfHBK442CwU73IcQlffhMI5Y7p4bV5YHPPT59WfULXpB3VySw5xYAHyKghz64mtffNgedWGx_hVYCGqeK4-KYY4b-HXZy2k172ZPy3yNDeX580DIm7e7PwCCuBNTPmrbg6k2FtxxW02nK-RoaPvOtFx2R6bt-6dS5Ajs1n83wWPrAAxEV_V2LN15mhFzwtp5FP62MqOeGk12fvvl');"></div>
+<span class="text-sm font-medium hidden sm:block">Admin User</span>
+<span class="material-symbols-outlined text-secondary-text text-[20px]">expand_more</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-[1400px] mx-auto p-6 space-y-8">
+<!-- Header Controls Section -->
+<section class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+<div>
+<h2 class="text-2xl font-bold text-dark-text mb-1">Product Analytics</h2>
+<p class="text-secondary-text text-sm">Detailed insights into product performance, inventory, and trends.</p>
+</div>
+<div class="flex flex-wrap items-center gap-3">
+<!-- Date Filter Chips -->
+<div class="flex bg-white rounded-lg border border-secondary-text/30 p-1 shadow-sm overflow-x-auto hide-scrollbar max-w-full">
+<button class="px-3 py-1.5 text-xs font-medium rounded hover:bg-gray-50 text-secondary-text whitespace-nowrap">Today</button>
+<button class="px-3 py-1.5 text-xs font-medium rounded hover:bg-gray-50 text-secondary-text whitespace-nowrap">Yesterday</button>
+<button class="px-3 py-1.5 text-xs font-medium rounded bg-primary text-dark-text shadow-sm whitespace-nowrap">Last 7 days</button>
+<button class="px-3 py-1.5 text-xs font-medium rounded hover:bg-gray-50 text-secondary-text whitespace-nowrap">Last 30 days</button>
+<div class="w-[1px] bg-divider mx-1 h-4 self-center"></div>
+<button class="flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded hover:bg-gray-50 text-secondary-text whitespace-nowrap">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+                        Custom
+                    </button>
+</div>
+<button class="flex items-center justify-center h-[38px] px-5 bg-alert hover:bg-red-700 text-white text-sm font-bold rounded-lg transition-colors shadow-sm">
+                    Apply
+                </button>
+</div>
+</section>
+<!-- Secondary Nav & Export -->
+<section class="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-divider pb-0 gap-4">
+<div class="flex gap-6 overflow-x-auto w-full sm:w-auto hide-scrollbar">
+<button class="pb-3 text-sm font-medium text-secondary-text hover:text-alert whitespace-nowrap transition-colors">Revenue Report</button>
+<button class="pb-3 text-sm font-bold text-dark-text border-b-2 border-primary whitespace-nowrap">Product Report</button>
+<button class="pb-3 text-sm font-medium text-secondary-text hover:text-alert whitespace-nowrap transition-colors">Customer Report</button>
+<button class="pb-3 text-sm font-medium text-secondary-text hover:text-alert whitespace-nowrap transition-colors">Promotion Report</button>
+</div>
+<div class="flex gap-3 pb-2 self-end sm:self-auto">
+<button class="flex items-center gap-2 px-3 py-2 text-xs font-bold text-dark-text border border-primary rounded-lg hover:bg-primary/10 transition-colors bg-white">
+<span class="material-symbols-outlined text-[18px]">table_view</span>
+                    Export Excel
+                </button>
+<button class="flex items-center gap-2 px-3 py-2 text-xs font-bold text-dark-text border border-primary rounded-lg hover:bg-primary/10 transition-colors bg-white">
+<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+                    Export PDF
+                </button>
+</div>
+</section>
+<!-- KPI Summary Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="bg-background-light p-4 rounded-xl border border-divider shadow-sm">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-secondary-text text-xs font-medium uppercase tracking-wider">Total Products Sold</p>
+<h3 class="text-2xl font-bold mt-1">1,248</h3>
+</div>
+<span class="bg-primary/20 text-dark-text p-1.5 rounded-lg">
+<span class="material-symbols-outlined text-[20px]">shopping_bag</span>
+</span>
+</div>
+<div class="mt-2 flex items-center text-xs text-primary font-bold gap-1">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+<span>+12.5%</span>
+<span class="text-secondary-text font-normal ml-1">vs last period</span>
+</div>
+</div>
+<div class="bg-background-light p-4 rounded-xl border border-divider shadow-sm">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-secondary-text text-xs font-medium uppercase tracking-wider">Total Revenue</p>
+<h3 class="text-2xl font-bold mt-1 text-alert">$48,290</h3>
+</div>
+<span class="bg-alert/10 text-alert p-1.5 rounded-lg">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+</span>
+</div>
+<div class="mt-2 flex items-center text-xs text-alert font-bold gap-1">
+<span class="material-symbols-outlined text-[16px]">trending_down</span>
+<span>-2.1%</span>
+<span class="text-secondary-text font-normal ml-1">vs last period</span>
+</div>
+</div>
+<div class="bg-background-light p-4 rounded-xl border border-divider shadow-sm">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-secondary-text text-xs font-medium uppercase tracking-wider">Low Stock Items</p>
+<h3 class="text-2xl font-bold mt-1">15</h3>
+</div>
+<span class="bg-orange-100 text-orange-600 p-1.5 rounded-lg">
+<span class="material-symbols-outlined text-[20px]">inventory_2</span>
+</span>
+</div>
+<div class="mt-2 flex items-center text-xs text-secondary-text font-normal gap-1">
+                    Needs attention
+                </div>
+</div>
+<div class="bg-background-light p-4 rounded-xl border border-divider shadow-sm">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-secondary-text text-xs font-medium uppercase tracking-wider">Out of Stock</p>
+<h3 class="text-2xl font-bold mt-1">4</h3>
+</div>
+<span class="bg-red-100 text-alert p-1.5 rounded-lg">
+<span class="material-symbols-outlined text-[20px]">block</span>
+</span>
+</div>
+<div class="mt-2 flex items-center text-xs text-alert font-bold gap-1">
+                    Restock required
+                </div>
+</div>
+</div>
+<!-- Top Selling Products Table -->
+<section class="bg-background-light rounded-xl border border-divider shadow-sm overflow-hidden">
+<div class="px-6 py-4 border-b border-divider flex justify-between items-center">
+<h3 class="font-bold text-dark-text">Top Selling Products</h3>
+<button class="text-secondary-text hover:text-dark-text text-sm flex items-center gap-1">
+                    Filter by Revenue <span class="material-symbols-outlined text-[16px]">sort</span>
+</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-gray-50 text-xs text-secondary-text uppercase tracking-wider">
+<th class="px-6 py-3 font-medium">Product</th>
+<th class="px-6 py-3 font-medium text-right">Quantity Sold</th>
+<th class="px-6 py-3 font-medium text-right">Revenue</th>
+<th class="px-6 py-3 font-medium text-right">Trend</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-divider text-sm">
+<!-- Row 1 -->
+<tr class="hover:bg-gray-50 transition-colors group">
+<td class="px-6 py-3">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded bg-gray-200 bg-cover bg-center shrink-0" data-alt="Red Nike running shoe" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCZ3SreBoS2emPWCbVjGUJfkACnyz9zKrTekI0kY8kRI-uuKEzfpBquJOtJWw8KS1fETKgnChvSBBBxOGygTc5JjV_F51lqg47ZlXV1MUqykL9qIiVNl6kS9MuZCPGi86KZk0kntMqc0uHut5W-zkI-5AAw5SjL6eFfIA-wquuV8mT8TKAjiuNKFA6eTtNhgy6OtTFVkyEiraqQRhchMykecEPDchCsVyz6Gxr8i5w4qde3PW1eXCkYkLuJK20A_E17uOOLxPapI2gI');"></div>
+<div>
+<p class="font-semibold text-dark-text group-hover:text-alert transition-colors cursor-pointer">Nike Air Zoom Pegasus</p>
+<p class="text-xs text-secondary-text">SKU: N2-8839</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-3 text-right">
+<span class="bg-primary/20 text-dark-text font-bold px-2 py-1 rounded text-xs">245</span>
+</td>
+<td class="px-6 py-3 text-right font-medium text-alert">$29,400</td>
+<td class="px-6 py-3 text-right">
+<span class="material-symbols-outlined text-primary text-[20px]">trending_up</span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-gray-50 transition-colors group">
+<td class="px-6 py-3">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded bg-gray-200 bg-cover bg-center shrink-0" data-alt="Green running shoe" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAlplkB0b1xMMcmuQmJNBGrFwHuDdovleAzkqKfCQH0HBfN0J-Hj25D3XBmq6FzCgcV347cww_HepNF9qA-JCu_eq8u0xoekRt1iDLAZ6SE1XLTLATB7l0LvKdxGGsuGeMFcCtB745-94m7vFGflfL0dujq-d_dGaou6iXO_XqPOvhhCA6w-CyX7O7KLZjnAh8KfRfqU0vTmhvsWZZRTi05MwelUyzp6DVV7LrFSdtloVeDKsawCLG-u9SaxW03HUjDnu8wnt0qq_5s');"></div>
+<div>
+<p class="font-semibold text-dark-text group-hover:text-alert transition-colors cursor-pointer">Adidas Ultraboost 22</p>
+<p class="text-xs text-secondary-text">SKU: N2-1029</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-3 text-right">
+<span class="bg-primary/20 text-dark-text font-bold px-2 py-1 rounded text-xs">189</span>
+</td>
+<td class="px-6 py-3 text-right font-medium text-alert">$34,020</td>
+<td class="px-6 py-3 text-right">
+<span class="material-symbols-outlined text-primary text-[20px]">trending_up</span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-gray-50 transition-colors group">
+<td class="px-6 py-3">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded bg-gray-200 bg-cover bg-center shrink-0" data-alt="Blue running shoe" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB9VLOSVIDHoKLVwFfMM9euYW9UQdA6-wegJ2yda1xDBwDGQGUD3im0Yc4XbFVSApNeEolhRAw4zdJnipU1XfmUch5IacTUamtF-YLO774eF9fshpjamtkufAL7Ttc_gVuM9Dlh2LqgIGG53J5B96uiSjm3l-sIgmu-XSIYCLsT-44ONORsD4HdUBr6nm-JdzJTSm14otyUQpOH84yk1ausbyjaRCp1T0WGVmlpdp8R6k2YO5BznKwUiDPct_z4byB5-gnL2Xd2FqVj');"></div>
+<div>
+<p class="font-semibold text-dark-text group-hover:text-alert transition-colors cursor-pointer">Puma Velocity Nitro</p>
+<p class="text-xs text-secondary-text">SKU: N2-4412</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-3 text-right">
+<span class="bg-primary/20 text-dark-text font-bold px-2 py-1 rounded text-xs">134</span>
+</td>
+<td class="px-6 py-3 text-right font-medium text-alert">$16,080</td>
+<td class="px-6 py-3 text-right">
+<span class="material-symbols-outlined text-secondary-text text-[20px]">trending_flat</span>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-gray-50 transition-colors group">
+<td class="px-6 py-3">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded bg-gray-200 bg-cover bg-center shrink-0" data-alt="Black hoodie" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB7hWZfWVAIF3RaA6rbsYXs4warOcHgB_iPxs-6OBf3fRK4oUAiEY7kLP5rxrWEcXMVmbedniQAJ4Ona3yjIwAx4dpMiUw77EneSSdNqx13t-u6NsBM1jx_THkLlDKcahLTIL51qgYotktKWLHY-10sPlGgTL27CXgK2VrltFtdvZQ2F3HhnIoU40OXO3t6edQOtWNLS_hMgl58UbPLPIq_5qIRqRUX5zSCIMRCyZdWkbCS5O2skCgI29ijB-sz4qyDDE_T7bPnXIGf');"></div>
+<div>
+<p class="font-semibold text-dark-text group-hover:text-alert transition-colors cursor-pointer">Under Armour Tech Hoodie</p>
+<p class="text-xs text-secondary-text">SKU: N2-5591</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-3 text-right">
+<span class="bg-primary/20 text-dark-text font-bold px-2 py-1 rounded text-xs">98</span>
+</td>
+<td class="px-6 py-3 text-right font-medium text-alert">$5,880</td>
+<td class="px-6 py-3 text-right">
+<span class="material-symbols-outlined text-alert text-[20px]">trending_down</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-6 py-3 border-t border-divider bg-gray-50 flex justify-center">
+<button class="text-xs font-bold text-secondary-text hover:text-dark-text uppercase tracking-wider">View All Products</button>
+</div>
+</section>
+<!-- Inventory Alerts Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<!-- Low Stock -->
+<section class="bg-background-light rounded-xl border border-divider shadow-sm flex flex-col h-full">
+<div class="px-6 py-4 border-b border-divider flex justify-between items-center bg-orange-50/50 rounded-t-xl">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-orange-600">warning</span>
+<h3 class="font-bold text-dark-text">Low Stock Alert</h3>
+</div>
+<span class="bg-orange-100 text-orange-700 text-xs font-bold px-2 py-1 rounded-full">15 Items</span>
+</div>
+<div class="p-0 flex-grow">
+<ul class="divide-y divide-divider">
+<li class="px-6 py-3 flex items-center justify-between hover:bg-gray-50">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded bg-gray-100 bg-cover bg-center" data-alt="blue shoes" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDM4YOWHy5GqJGtDq-M3M-tCHrDyM70LLOBR5pqfU04qBl4ruLbSXLURJaEjPHl4xtuu2aSi54dw0a1oBK1pVojFrwVQEmwSDEcEFQ8vjWtpsnYbePt2fzm6d4wV1pRioeSW9vuHNdgWRvt1ivONpUT-Oh39Xt_Y09dq0w2fVilYST9NJ5Rn4JTB4V6xplkva-vrJXh7CbrHk-rZ6A_06ycl_aKmoGUesBnCLO8NqODPEKF2X9YBVJSVgHPSmWBRG6DF3ivV8xOXP4y');"></div>
+<div>
+<p class="text-sm font-medium text-dark-text">Nike Court Vision Low</p>
+<p class="text-xs text-secondary-text">Size: 42</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-alert">4 left</p>
+<button class="text-[10px] text-primary underline font-medium hover:text-dark-text">Reorder</button>
+</div>
+</li>
+<li class="px-6 py-3 flex items-center justify-between hover:bg-gray-50">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded bg-gray-100 bg-cover bg-center" data-alt="white sneakers" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAkHcKWYMbH5sKzrfQGQ9cMSjalDbh7jg_PE8g6ScBfHdxqas4RBFBbuYVf2TWMyDhjoOMETT78T61qAZHlZV2aJW907f-Bl0QKug6pxEyWzVEnBuEoZlHXNpN94zeRKEzgaOc2vMTEFTComMcWSE6mo66TbU_opbtEGYWdT6LducCa-viz3r9I_FRIXfw9OCZ0Q7w41ZR-NYx9iZBJpZjGxKGITGKUCRqILnmdN2Kb5dfrtuQ_yQoh4bjuGnlN2vhxQ2hZ4IpXBV3x');"></div>
+<div>
+<p class="text-sm font-medium text-dark-text">Adidas Superstar</p>
+<p class="text-xs text-secondary-text">Size: 38</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-alert">2 left</p>
+<button class="text-[10px] text-primary underline font-medium hover:text-dark-text">Reorder</button>
+</div>
+</li>
+<li class="px-6 py-3 flex items-center justify-between hover:bg-gray-50">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded bg-gray-100 bg-cover bg-center" data-alt="high top shoes" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuByNKyHNv9xBl__YNh0pGJqU4PhhIta9kbdWcv4MERmyV49hGYNUk3VXUEIxamY3TpbIXof9p0eA4qRCiMFiGUtlsLeQRxK96ck-pMAQZ2e8ZtJHk811Nh9C-3qVeRDYf0NdYJhuWyEoJB61TFxdnnwz-Gmeuj6D6BtsUpdTEFIipZclwpiRlmsxy7lf9xtZNnqUfbNTublMGl2R7UOuhPNZbRgKn-xLwRxuN721SyYe4F5pkqjkLqUljjuiWnl6rStFj4mTuv3nDiy');"></div>
+<div>
+<p class="text-sm font-medium text-dark-text">Converse Chuck 70</p>
+<p class="text-xs text-secondary-text">Size: 44</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-alert">3 left</p>
+<button class="text-[10px] text-primary underline font-medium hover:text-dark-text">Reorder</button>
+</div>
+</li>
+</ul>
+</div>
+</section>
+<!-- Out of Stock -->
+<section class="bg-background-light rounded-xl border border-divider shadow-sm flex flex-col h-full">
+<div class="px-6 py-4 border-b border-divider flex justify-between items-center bg-red-50/50 rounded-t-xl">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-alert">error</span>
+<h3 class="font-bold text-dark-text">Out of Stock</h3>
+</div>
+<span class="bg-red-100 text-alert text-xs font-bold px-2 py-1 rounded-full">4 Items</span>
+</div>
+<div class="p-0 flex-grow">
+<ul class="divide-y divide-divider">
+<li class="px-6 py-3 flex items-center justify-between hover:bg-gray-50">
+<div class="flex items-center gap-3 opacity-75">
+<div class="size-10 rounded bg-gray-100 bg-cover bg-center grayscale" data-alt="grey t-shirt" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCYwEyFHi0fd1r6LWIj_yizA6oLoo36IG6bQtoS7AE_xv0BPMRV1Fe_t2HghD5MCrXiGYHuQs-3zmd2vtJiHUoeEYaakv1CMuWoCCDHeumYoUfvcsc6P-puZboSU87NfVTqlq1MZlKh2k2lWwzOECOoVLqa0UMk2uXwc2O_ihMAU9dLHmkqKuEWuWuzIXCkf8_dG7bhZjJ3bMQ0-Fyzt8GRF_9F3lkx875sxvhE9hflENTZcUysQ0nQDpe5dG2_yUCmjBHupi5o5Upj');"></div>
+<div>
+<p class="text-sm font-medium text-dark-text line-through">Nike Dri-FIT Tee</p>
+<p class="text-xs text-secondary-text">Size: L</p>
+</div>
+</div>
+<div class="text-right">
+<span class="text-xs font-bold text-white bg-alert px-2 py-0.5 rounded">Sold Out</span>
+<div class="mt-1 text-[10px] text-secondary-text">Lost Rev: $450</div>
+</div>
+</li>
+<li class="px-6 py-3 flex items-center justify-between hover:bg-gray-50">
+<div class="flex items-center gap-3 opacity-75">
+<div class="size-10 rounded bg-gray-100 bg-cover bg-center grayscale" data-alt="basketball" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCnHJaN-YyZruH_-LCfwPj5pz6W1VoX8dbOcN18cXLCb_33cNdQjsmO9MTXq6Ts-VLBNd2NGXeeU78VtlWrjXkCoQhq4LAQBABEUvN0IipYSR-ZQFp9g9FQL7vSZQkKJ3yODlpJwmw7JFbinyAj82N1r74N8TNwp6H-XYw-cV7HpfnELwn8Lu-6HK43cp-FRtm9TQVkfkSauovw4mtTCVQQmTyIdcmzKUT5Nvabgi99qaHgiRNXfk8LvwVp0QwBXzcNunxq_6TKBKGQ');"></div>
+<div>
+<p class="text-sm font-medium text-dark-text line-through">Wilson Evolution Ball</p>
+<p class="text-xs text-secondary-text">Standard</p>
+</div>
+</div>
+<div class="text-right">
+<span class="text-xs font-bold text-white bg-alert px-2 py-0.5 rounded">Sold Out</span>
+<div class="mt-1 text-[10px] text-secondary-text">Lost Rev: $1,200</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="p-3 border-t border-divider bg-red-50/20">
+<button class="w-full text-xs font-bold text-alert border border-alert rounded py-2 hover:bg-alert hover:text-white transition-colors">Generate Restock Order</button>
+</div>
+</section>
+</div>
+<!-- Charts & Ratings Row -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Products by Views (Chart Simulation) -->
+<section class="lg:col-span-2 bg-background-light rounded-xl border border-divider shadow-sm p-6">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-bold text-dark-text">Products by Views</h3>
+<select class="text-xs border-secondary-text/30 rounded py-1 px-2 text-dark-text focus:border-primary focus:ring-0">
+<option>Top 5</option>
+<option>Top 10</option>
+</select>
+</div>
+<!-- Simple CSS Bar Chart -->
+<div class="space-y-4">
+<!-- Bar 1 -->
+<div>
+<div class="flex justify-between text-xs mb-1">
+<span class="font-medium text-dark-text">Nike Air Zoom Pegasus</span>
+<span class="text-secondary-text">12,403 views</span>
+</div>
+<div class="w-full bg-gray-100 rounded-full h-3">
+<div class="bg-primary h-3 rounded-full" style="width: 85%"></div>
+</div>
+</div>
+<!-- Bar 2 -->
+<div>
+<div class="flex justify-between text-xs mb-1">
+<span class="font-medium text-dark-text">Adidas Ultraboost 22</span>
+<span class="text-secondary-text">10,221 views</span>
+</div>
+<div class="w-full bg-gray-100 rounded-full h-3">
+<div class="bg-secondary-text h-3 rounded-full opacity-60" style="width: 70%"></div>
+</div>
+</div>
+<!-- Bar 3 -->
+<div>
+<div class="flex justify-between text-xs mb-1">
+<span class="font-medium text-dark-text">Puma Velocity Nitro</span>
+<span class="text-secondary-text">8,105 views</span>
+</div>
+<div class="w-full bg-gray-100 rounded-full h-3">
+<div class="bg-secondary-text h-3 rounded-full opacity-40" style="width: 55%"></div>
+</div>
+</div>
+<!-- Bar 4 -->
+<div>
+<div class="flex justify-between text-xs mb-1">
+<span class="font-medium text-dark-text">Under Armour Hoodie</span>
+<span class="text-secondary-text">6,400 views</span>
+</div>
+<div class="w-full bg-gray-100 rounded-full h-3">
+<div class="bg-secondary-text h-3 rounded-full opacity-30" style="width: 45%"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Products by Rating -->
+<section class="bg-background-light rounded-xl border border-divider shadow-sm flex flex-col">
+<div class="px-6 py-4 border-b border-divider">
+<h3 class="font-bold text-dark-text">Highest Rated</h3>
+</div>
+<div class="flex-grow overflow-y-auto max-h-[300px] hide-scrollbar">
+<table class="w-full text-left">
+<tbody class="divide-y divide-divider text-sm">
+<tr class="hover:bg-gray-50">
+<td class="px-6 py-3 font-medium text-dark-text">Nike Pegasus</td>
+<td class="px-6 py-3 text-right">
+<div class="flex items-center justify-end gap-1">
+<span class="font-bold text-dark-text">4.9</span>
+<span class="material-symbols-outlined text-primary text-[16px] fill-current">star</span>
+<span class="text-xs text-secondary-text">(120)</span>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-gray-50">
+<td class="px-6 py-3 font-medium text-dark-text">Adidas UB</td>
+<td class="px-6 py-3 text-right">
+<div class="flex items-center justify-end gap-1">
+<span class="font-bold text-dark-text">4.8</span>
+<span class="material-symbols-outlined text-primary text-[16px] fill-current">star</span>
+<span class="text-xs text-secondary-text">(98)</span>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-gray-50">
+<td class="px-6 py-3 font-medium text-dark-text">Yoga Mat Pro</td>
+<td class="px-6 py-3 text-right">
+<div class="flex items-center justify-end gap-1">
+<span class="font-bold text-dark-text">4.7</span>
+<span class="material-symbols-outlined text-primary text-[16px] fill-current">star</span>
+<span class="text-xs text-secondary-text">(54)</span>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-gray-50">
+<td class="px-6 py-3 font-medium text-dark-text">Gym Gloves</td>
+<td class="px-6 py-3 text-right">
+<div class="flex items-center justify-end gap-1">
+<span class="font-bold text-dark-text">4.5</span>
+<span class="material-symbols-outlined text-primary text-[16px] fill-current">star</span>
+<span class="text-xs text-secondary-text">(210)</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+<!-- Slow Moving Inventory -->
+<section class="bg-background-light rounded-xl border border-divider shadow-sm overflow-hidden mb-8">
+<div class="px-6 py-4 border-b border-divider bg-gray-50">
+<h3 class="font-bold text-dark-text">Slow-Moving Inventory</h3>
+<p class="text-xs text-secondary-text mt-1">Products with no sales in last 60+ days</p>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left text-sm">
+<thead>
+<tr class="text-secondary-text border-b border-divider">
+<th class="px-6 py-3 font-medium">Product</th>
+<th class="px-6 py-3 font-medium">Category</th>
+<th class="px-6 py-3 font-medium text-right">Stock</th>
+<th class="px-6 py-3 font-medium text-right">Days in Warehouse</th>
+<th class="px-6 py-3 font-medium text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-divider">
+<tr class="text-secondary-text hover:bg-gray-50 transition-colors">
+<td class="px-6 py-3 text-dark-text font-medium">Old Season Jersey '21</td>
+<td class="px-6 py-3">Apparel</td>
+<td class="px-6 py-3 text-right">45</td>
+<td class="px-6 py-3 text-right">120 days</td>
+<td class="px-6 py-3 text-right">
+<button class="text-xs font-bold text-primary hover:text-dark-text bg-primary/10 hover:bg-primary px-3 py-1 rounded transition-colors">Create Promo</button>
+</td>
+</tr>
+<tr class="text-secondary-text hover:bg-gray-50 transition-colors">
+<td class="px-6 py-3 text-dark-text font-medium">Heavyweight Dumbbell Set</td>
+<td class="px-6 py-3">Equipment</td>
+<td class="px-6 py-3 text-right">12</td>
+<td class="px-6 py-3 text-right">95 days</td>
+<td class="px-6 py-3 text-right">
+<button class="text-xs font-bold text-primary hover:text-dark-text bg-primary/10 hover:bg-primary px-3 py-1 rounded transition-colors">Create Promo</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-background-dark text-white py-8 mt-auto">
+<div class="max-w-[1400px] mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
+<div>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary text-2xl">sports_soccer</span>
+<span class="font-bold text-lg">N2 Sport Admin</span>
+</div>
+<p class="text-gray-400">Efficient e-commerce management for modern sports retail.</p>
+</div>
+<div class="flex flex-col gap-2">
+<h4 class="font-bold mb-2">Quick Links</h4>
+<a class="text-gray-400 hover:text-primary transition-colors" href="#">Product Management</a>
+<a class="text-gray-400 hover:text-primary transition-colors" href="#">Order Processing</a>
+<a class="text-gray-400 hover:text-primary transition-colors" href="#">Customer Support</a>
+</div>
+<div class="flex flex-col gap-2 md:items-end">
+<p class="text-gray-500">© 2023 N2 Sport. All rights reserved.</p>
+<div class="flex gap-4 mt-2">
+<a class="text-gray-400 hover:text-white" href="#">Privacy</a>
+<a class="text-gray-400 hover:text-white" href="#">Terms</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>
