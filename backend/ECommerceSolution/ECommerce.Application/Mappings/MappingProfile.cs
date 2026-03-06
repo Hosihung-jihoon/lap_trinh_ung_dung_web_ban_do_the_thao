@@ -1,6 +1,14 @@
 using AutoMapper;
 using ECommerce.Application.DTOs.Auth;
 using ECommerce.Application.DTOs.User;
+using ECommerce.Application.DTOs.Category;
+using ECommerce.Application.DTOs.Brand;
+using ECommerce.Application.DTOs.MasterData;
+using ECommerce.Application.DTOs.Product;
+using ECommerce.Application.DTOs.Cart;
+using ECommerce.Application.DTOs.Order;
+using ECommerce.Application.DTOs.Promotion;
+using ECommerce.Application.DTOs.Coupon;
 using ECommerce.Core.Entities;
 
 namespace ECommerce.Application.Mappings
