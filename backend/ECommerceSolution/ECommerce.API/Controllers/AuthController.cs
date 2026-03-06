@@ -100,8 +100,8 @@ namespace ECommerce.API.Controllers
 
         [Authorize]
         [HttpPost("logout")]
-        public async Task<IActionResultLogout()
-            {
+        public async Task<IActionResult> Logout()
+        {
             try
             {
                 var userId = GetCurrentUserId();
