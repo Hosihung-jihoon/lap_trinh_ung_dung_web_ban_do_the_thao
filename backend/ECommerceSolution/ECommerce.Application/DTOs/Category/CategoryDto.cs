@@ -32,4 +32,10 @@ namespace ECommerce.Application.DTOs.Category
         public int SortOrder { get; set; }
         public bool IsActive { get; set; }
     }
+
+    public class ReorderCategoryDto
+    {
+        public int Id { get; set; }
+        public int SortOrder { get; set; }
+    }
 }
